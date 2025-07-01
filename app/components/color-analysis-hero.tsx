@@ -110,18 +110,19 @@ export default function ColorAnalysisHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Unlock your personal style with professional 12-season color analysis. From wardrobe curation to personal shopping, let us guide your transformation with the artistry of Le Labo and the innovation of modern styling.
+          Unlock your personal style with Tania's professional 12-season color analysis. From wardrobe curation to personal shopping, let Aura Color guide your transformation with expert artistry and personalized styling innovation.
         </motion.p>
-        <motion.button
-          className="py-4 px-8 rounded-full text-white text-lg font-semibold relative backdrop-blur-sm border border-white/20 hover:border-white/40 transition-all duration-300 group"
+        <motion.a
+          href="/questionnaire"
+          className="inline-block py-4 px-8 rounded-full text-white text-lg font-semibold relative backdrop-blur-sm border border-orange-500/30 hover:border-orange-500 transition-all duration-300 group"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <span className="relative z-10">Free Color Preview Quiz</span>
-          <span className="ml-2 text-sm bg-green-500 text-white px-2 py-1 rounded relative z-10">FREE</span>
-        </motion.button>
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-orange-500/10 to-orange-600/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <span className="relative z-10">Discover Your Color Story</span>
+          <span className="ml-2 text-xs bg-orange-500 text-white px-2 py-1 rounded-full relative z-10 animate-pulse">✨ Start Free</span>
+        </motion.a>
       </div>
     </div>
   )

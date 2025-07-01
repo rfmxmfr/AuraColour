@@ -77,13 +77,13 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-gray-900/80 backdrop-blur-md">
+      <section className="py-12 md:py-20 glass">
         <div className="container mx-auto px-4">
-          <div className="grid gap-8 lg:grid-cols-3">
+          <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                className="bg-black/60 backdrop-blur-md rounded-2xl overflow-hidden border border-orange-500/20 hover:border-orange-500 transition-all duration-300"
+                className="glass glass-hover rounded-2xl overflow-hidden transform hover:scale-105 transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}

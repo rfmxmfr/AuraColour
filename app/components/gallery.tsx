@@ -1,15 +1,13 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { useInView } from "framer-motion"
 import FloatingParticles from "./floating-particles"
-import ColorAnalysisModal from "./color-analysis-modal"
 
 export default function Gallery() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
-  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const services = [
     {
@@ -33,7 +31,7 @@ export default function Gallery() {
   ]
 
   return (
-    <section className="relative py-20 bg-black/60 backdrop-blur-md overflow-hidden">
+    <section className="relative py-12 md:py-20 glass overflow-hidden">
       <FloatingParticles particleCount={20} opacity={0.2} />
       <div className="container mx-auto px-4" ref={ref}>
         <motion.div
@@ -48,11 +46,11 @@ export default function Gallery() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="group bg-black/60 backdrop-blur-md rounded-lg text-center h-full border border-orange-500/20 hover:border-orange-500 transition-all duration-300 overflow-hidden shadow-lg hover:shadow-2xl"
+              className="group glass glass-hover rounded-lg text-center h-full overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
@@ -65,7 +63,7 @@ export default function Gallery() {
                   alt={service.title}
                   className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="inline-block bg-black/80 backdrop-blur-md p-4 rounded-full mb-6 relative z-10 -mt-16 ring-8 ring-orange-500/20">
+                <div className="inline-block glass-strong p-4 rounded-full mb-6 relative z-10 -mt-16 ring-8 ring-orange-500/20">
                   {index === 0 && (
                     <svg className="w-8 h-8 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <circle cx="13.5" cy="6.5" fill="currentColor" r=".5" />
@@ -93,25 +91,15 @@ export default function Gallery() {
                 <h3 className="text-2xl font-bold mb-4 text-white">{service.title}</h3>
                 <p className="text-gray-300 mb-6">{service.description}</p>
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {index === 0 ? (
-                    <button 
-                      onClick={() => setIsModalOpen(true)}
-                      className="inline-block bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full font-semibold transition-colors duration-300"
-                    >
-                      Learn More
-                    </button>
-                  ) : (
-                    <a href={service.link} className="inline-block bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full font-semibold transition-colors duration-300">
-                      Learn More
-                    </a>
-                  )}
+                  <a href={index === 0 ? '/12-season-analysis' : service.link} className="inline-block bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-full font-semibold transition-colors duration-300">
+                    Learn More
+                  </a>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
-      <ColorAnalysisModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   )
 }

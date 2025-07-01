@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion } from "framer-motion"
 import { useState } from 'react'
+import ServicesDropdown from './services-dropdown'
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -38,12 +39,7 @@ export default function Navbar() {
               <span className="relative z-10 text-sm font-medium">Analysis</span>
             </button>
           </Link>
-          <Link href="/services">
-            <button className="py-3 px-6 w-28 h-12 rounded-full text-white relative backdrop-blur-sm border border-white/20 hover:border-white/40 transition-all duration-300 group flex items-center justify-center">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <span className="relative z-10 text-sm font-medium">Services</span>
-            </button>
-          </Link>
+          <ServicesDropdown />
           <Link href="/questionnaire">
             <button className="py-3 px-6 w-28 h-12 rounded-full text-white relative backdrop-blur-sm border border-white/20 hover:border-white/40 transition-all duration-300 group flex items-center justify-center">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
