@@ -7,7 +7,7 @@ import ColorAnalysisHero from "./components/color-analysis-hero"
 import Gallery from "./components/gallery"
 import ParallaxSection from "./components/parallax-section"
 import ProcessSteps from "./components/process-steps"
-
+import Contact from "./components/contact"
 import Footer from "./components/footer"
 
 export default function Page() {
@@ -28,6 +28,9 @@ export default function Page() {
         subtitle="Transform your wardrobe with colors that enhance your natural beauty"
       />
       <ProcessSteps />
+      <div className="hidden">
+        <Contact />
+      </div>
       <Footer />
       </m.main>
     </ClientProvider>

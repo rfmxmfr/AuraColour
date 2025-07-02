@@ -46,7 +46,7 @@ export default function Navbar() {
               <span className="relative z-10 text-sm font-medium">Quiz</span>
             </button>
           </Link>
-          <button className="py-3 px-6 w-28 h-12 rounded-full text-white relative backdrop-blur-sm border border-white/20 hover:border-white/40 transition-all duration-300 group flex items-center justify-center">
+          <button className="hidden py-3 px-6 w-28 h-12 rounded-full text-white relative backdrop-blur-sm border border-white/20 hover:border-white/40 transition-all duration-300 group flex items-center justify-center">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             <span className="relative z-10 text-sm font-medium">Contact</span>
           </button>
@@ -101,7 +101,7 @@ export default function Navbar() {
           </svg>
         </button>
         
-        <a href="#contact">
+        <a href="#contact" className="hidden">
           <button className="py-3 px-6 w-36 h-12 rounded-full text-white relative backdrop-blur-sm border border-white/20 hover:border-white/40 transition-all duration-300 group flex items-center justify-center">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-orange-500/10 to-orange-600/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             <span className="relative z-10 text-sm font-medium">Get in touch</span>

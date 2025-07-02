@@ -8,9 +8,9 @@ export default function ServicesDropdown() {
 
   const services = [
     { name: '12-Season Color Analysis', href: '/12-season-analysis', price: '$149' },
-    { name: 'Virtual Wardrobe Curation', href: '/services', price: '$299' },
-    { name: 'Personal Shopping Service', href: '/services', price: '$399' },
-    { name: 'Style Consultation', href: '/services', price: '$199' }
+    { name: 'Virtual Wardrobe Curation', href: '/virtual-wardrobe-curation', price: '$299' },
+    { name: 'Personal Shopping Service', href: '/personal-shopping-service', price: '$399' },
+    { name: 'Style Consultation', href: '/style-consultation', price: '$199' }
   ]
 
   return (
