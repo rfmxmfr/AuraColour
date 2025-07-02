@@ -114,14 +114,25 @@ export default function ColorAnalysisHero() {
         </motion.p>
         <motion.a
           href="/questionnaire"
-          className="inline-block py-4 px-8 rounded-full btn-gold text-lg font-semibold relative backdrop-blur-sm transition-all duration-300 group"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          className="inline-block py-5 px-10 rounded-full text-xl font-bold relative backdrop-blur-sm transition-all duration-300 group shadow-2xl"
+          style={{
+            background: 'linear-gradient(135deg, #F7E7CE 0%, #E6C7A6 50%, #D4AF37 100%)',
+            color: '#000',
+            border: '2px solid rgba(255,255,255,0.3)'
+          }}
+          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
+          whileHover={{ scale: 1.05, y: -2 }}
+          whileTap={{ scale: 0.98 }}
         >
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400/10 to-amber-400/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <span className="relative z-10">Discover Your Color Story</span>
-          <span className="ml-2 text-xs px-2 py-1 rounded-full relative z-10 animate-pulse" style={{background: '#E6C7A6', color: 'white'}}>✨ Start Free</span>
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/20 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <span className="relative z-10 flex items-center">
+            ✨ Discover Your Color Story
+            <span className="ml-3 text-sm px-3 py-1 rounded-full bg-black/20 text-white animate-pulse">
+              FREE
+            </span>
+          </span>
         </motion.a>
       </div>
     </div>

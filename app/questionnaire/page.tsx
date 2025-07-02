@@ -214,11 +214,30 @@ export default function QuestionnairePage() {
                       {currentStep + 1} of {questions.length}
                     </span>
                   </div>
-                  <div className="w-full bg-gray-700 rounded-full h-2">
+                  <div className="w-full bg-gray-700 rounded-full h-3 mb-3">
                     <div 
-                      className="bg-champagne h-2 rounded-full transition-all duration-300"
+                      className="bg-gradient-to-r from-champagne-primary to-champagne-deep h-3 rounded-full transition-all duration-500 relative"
                       style={{ width: `${progress}%` }}
-                    ></div>
+                    >
+                      <div className="absolute right-0 top-0 w-3 h-3 bg-white rounded-full shadow-lg transform translate-x-1/2 -translate-y-0"></div>
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    {progress < 25 && (
+                      <p className="text-accent text-sm font-medium">🌟 Great start! Let's discover your colors</p>
+                    )}
+                    {progress >= 25 && progress < 50 && (
+                      <p className="text-accent text-sm font-medium">✨ You're doing amazing! Keep going</p>
+                    )}
+                    {progress >= 50 && progress < 75 && (
+                      <p className="text-accent text-sm font-medium">🎨 You're halfway there! Almost done</p>
+                    )}
+                    {progress >= 75 && progress < 100 && (
+                      <p className="text-accent text-sm font-medium">🚀 So close! Final steps ahead</p>
+                    )}
+                    {progress === 100 && (
+                      <p className="text-accent text-sm font-medium">🎉 Perfect! Ready for your analysis</p>
+                    )}
                   </div>
                 </div>
 
@@ -235,7 +254,18 @@ export default function QuestionnairePage() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                         </svg>
                         <p className="text-primary mb-2">Upload your 3 photos</p>
-                        <p className="text-secondary text-sm">JPG, PNG up to 10MB each</p>
+                        <p className="text-secondary text-sm mb-4">JPG, PNG up to 10MB each</p>
+                        
+                        {answers[currentQuestion.id] && answers[currentQuestion.id].length > 0 && (
+                          <div className="mb-4 p-3 bg-green-500/20 border border-green-500/30 rounded-lg">
+                            <p className="text-green-400 text-sm font-medium">
+                              ✓ {answers[currentQuestion.id].length === 1 ? 'Great lighting! Upload 2 more photos' : 
+                                 answers[currentQuestion.id].length === 2 ? 'Perfect! One more photo needed' :
+                                 'Excellent photos! Ready for analysis'}
+                            </p>
+                          </div>
+                        )}
+                        
                         <input
                           type="file"
                           multiple
@@ -247,6 +277,13 @@ export default function QuestionnairePage() {
                         <label htmlFor="photo-upload" className="mt-4 inline-block btn-champagne px-6 py-2 rounded-full cursor-pointer transition-colors">
                           Choose Photos
                         </label>
+                      </div>
+                      
+                      <div className="flex items-center justify-center space-x-2 text-secondary text-sm">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                        <span>🔒 Your photos are secure and only seen by certified analysts</span>
                       </div>
                     </div>
                   ) : currentQuestion.type === 'newsletter' ? (
@@ -265,6 +302,12 @@ export default function QuestionnairePage() {
                         />
                         <span className="text-sm">I agree to receive styling tips and color analysis updates</span>
                       </label>
+                      <div className="flex items-center justify-center space-x-2 text-secondary text-xs">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>We respect your privacy. Unsubscribe anytime.</span>
+                      </div>
                     </div>
                   ) : (
                     <div className="space-y-3">
