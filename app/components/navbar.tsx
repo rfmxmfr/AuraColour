@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import { motion } from "framer-motion"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import ServicesDropdown from './services-dropdown'
 import { NavButton } from './ui'
@@ -11,7 +11,27 @@ import { useTheme } from '../contexts/ThemeContext'
 export default function Navbar() {
   const pathname = usePathname()
   const [isLangOpen, setIsLangOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
   const { theme, toggleTheme } = useTheme()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false)
+      } else {
+        setIsVisible(true)
+      }
+      
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [lastScrollY])
 
   const languages = [
     { code: 'en', name: 'English', selected: true },
@@ -25,27 +45,32 @@ export default function Navbar() {
     <motion.nav 
       className="fixed top-0 left-0 right-0 z-50 p-6"
       initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+      animate={{ 
+        opacity: isVisible ? 1 : 0, 
+        y: isVisible ? 0 : -100 
+      }}
+      transition={{ duration: 0.3 }}
     >
       <div className="flex justify-between items-center max-w-7xl mx-auto">
-        <div className="flex items-center space-x-6">
+        <div className="md:hidden">
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="nav-button group"
+          >
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <svg className="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+        
+        <div className="hidden md:flex items-center space-x-6">
           <Link href="/">
             <div className="nav-button-wide group">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative z-10 text-sm font-medium text-primary text-slide">
                 <span className="main-text">Home</span>
                 <span className="hover-text">Home</span>
-              </div>
-            </div>
-          </Link>
-          
-          <Link href="/color-analysis" className="hidden">
-            <div className="nav-button-wide group">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative z-10 text-sm font-medium text-primary text-slide">
-                <span className="main-text">Analysis</span>
-                <span className="hover-text">Analysis</span>
               </div>
             </div>
           </Link>
@@ -73,8 +98,8 @@ export default function Navbar() {
           </Link>
         </div>
         
-        <div className="flex items-center space-x-6 ml-auto">
-          <div className="relative">
+        <div className="flex items-center space-x-3 md:space-x-6 ml-auto">
+          <div className="relative hidden md:block">
             <button 
               onClick={() => setIsLangOpen(!isLangOpen)}
               className="nav-button-wide group"
@@ -155,6 +180,36 @@ export default function Navbar() {
             <span className="relative z-10 text-sm font-medium text-primary">Get in touch</span>
           </button>
         </a>
+        
+        {isMobileMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 right-0 glass-panel rounded-b-lg shadow-xl">
+            <div className="p-4 space-y-2">
+              <Link href="/" className="block py-2 px-4 text-primary hover:bg-white/10 rounded transition-colors">
+                Home
+              </Link>
+              <Link href="/about" className="block py-2 px-4 text-primary hover:bg-white/10 rounded transition-colors">
+                About
+              </Link>
+              <Link href="/contact" className="block py-2 px-4 text-primary hover:bg-white/10 rounded transition-colors">
+                Contact
+              </Link>
+              <div className="pt-2 border-t border-champagne/20">
+                <Link href="/12-season-analysis" className="block py-2 px-4 text-secondary hover:bg-white/10 rounded transition-colors text-sm">
+                  12-Season Analysis
+                </Link>
+                <Link href="/style-consultation" className="block py-2 px-4 text-secondary hover:bg-white/10 rounded transition-colors text-sm">
+                  Style Consultation
+                </Link>
+                <Link href="/virtual-wardrobe-curation" className="block py-2 px-4 text-secondary hover:bg-white/10 rounded transition-colors text-sm">
+                  Virtual Wardrobe
+                </Link>
+                <Link href="/personal-shopping-service" className="block py-2 px-4 text-secondary hover:bg-white/10 rounded transition-colors text-sm">
+                  Personal Shopping
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </motion.nav>
   )
