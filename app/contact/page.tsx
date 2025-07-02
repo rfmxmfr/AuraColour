@@ -7,7 +7,7 @@ import Footer from '../components/footer'
 import FloatingParticles from '../components/floating-particles'
 import ServiceHero from '../components/service-hero'
 
-export default function PersonalShoppingServicePage() {
+export default function ContactPage() {
   return (
     <ThemeProvider>
       <div className="min-h-screen text-primary" style={{ background: 'var(--bg-primary)' }}>
@@ -22,9 +22,9 @@ export default function PersonalShoppingServicePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              Personal Shopping
+              Discover Your
               <span className="block bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
-                Service
+                Perfect Colors
               </span>
             </motion.h1>
           </div>
@@ -33,8 +33,7 @@ export default function PersonalShoppingServicePage() {
         <ServiceHero 
           title="Discover Your Style"
           subtitle="Transform your wardrobe with expert styling and organization"
-          price="$399"
-          imageUrl="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070"
+          imageUrl="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2074"
         />
 
         <section className="relative py-12 md:py-20 overflow-hidden" style={{ background: 'var(--bg-secondary)', backdropFilter: 'blur(12px)' }}>
@@ -47,61 +46,53 @@ export default function PersonalShoppingServicePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-accent">What is Personal Shopping Service?</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-accent">Get In Touch</h2>
                 <p className="text-base md:text-lg leading-relaxed mb-6 text-secondary">
-                  Our personal shopping service provides you with a dedicated stylist who will curate, select, and purchase 
-                  clothing items that perfectly align with your personal style, color palette, and lifestyle needs.
+                  Ready to discover your perfect colors? We'd love to hear from you. Reach out to schedule your consultation 
+                  or ask any questions about our color analysis services.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-6 md:mt-8">
                   <div>
-                    <h3 className="text-lg md:text-xl font-semibold text-primary mb-4">Service Includes</h3>
+                    <h3 className="text-lg md:text-xl font-semibold text-primary mb-4">Contact Information</h3>
                     <ul className="space-y-3 text-secondary text-sm md:text-base">
                       <li className="flex items-start">
                         <span className="text-accent mr-2">•</span>
-                        Pre-shopping consultation and planning
+                        Email: hello@auracolors.com
                       </li>
                       <li className="flex items-start">
                         <span className="text-accent mr-2">•</span>
-                        Full-day personal shopping session
+                        Phone: +44 (0) 123 456 7890
                       </li>
                       <li className="flex items-start">
                         <span className="text-accent mr-2">•</span>
-                        Professional styling and fitting
+                        Location: Glasgow, Scotland
                       </li>
                       <li className="flex items-start">
                         <span className="text-accent mr-2">•</span>
-                        Budget optimization strategies
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-accent mr-2">•</span>
-                        Follow-up styling tips and care guide
+                        Response Time: Within 24 hours
                       </li>
                     </ul>
                   </div>
                   
                   <div>
-                    <h3 className="text-lg md:text-xl font-semibold text-primary mb-4">Ideal For</h3>
+                    <h3 className="text-lg md:text-xl font-semibold text-primary mb-4">Business Hours</h3>
                     <ul className="space-y-3 text-secondary text-sm md:text-base">
                       <li className="flex items-start">
                         <span className="text-accent mr-2">•</span>
-                        Busy executives with limited shopping time
+                        Monday - Friday: 9:00 AM - 6:00 PM
                       </li>
                       <li className="flex items-start">
                         <span className="text-accent mr-2">•</span>
-                        Special occasion wardrobe needs
+                        Saturday: 10:00 AM - 4:00 PM
                       </li>
                       <li className="flex items-start">
                         <span className="text-accent mr-2">•</span>
-                        Complete wardrobe overhauls
+                        Sunday: Closed
                       </li>
                       <li className="flex items-start">
                         <span className="text-accent mr-2">•</span>
-                        Those who dislike shopping but love results
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-accent mr-2">•</span>
-                        Investment in professional image
+                        Virtual consultations available
                       </li>
                     </ul>
                   </div>
@@ -114,18 +105,21 @@ export default function PersonalShoppingServicePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-accent">Ready for Your Personal Shopping Experience?</h2>
-                <p className="text-secondary mb-6">Full-day personal shopping service for $399</p>
+                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-accent">Ready to Start Your Journey?</h2>
+                <p className="text-secondary mb-6">Begin with our free mini color analysis</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
                     href="/questionnaire"
                     className="py-3 md:py-4 px-6 md:px-8 rounded-full btn-champagne transition-colors text-base md:text-lg font-semibold"
                   >
-                    Start Style Assessment
+                    Start Free Analysis
                   </a>
-                  <button className="py-3 md:py-4 px-6 md:px-8 rounded-full text-primary bg-gray-600 hover:bg-gray-700 transition-colors text-base md:text-lg font-semibold">
-                    Book Consultation
-                  </button>
+                  <a
+                    href="/services"
+                    className="py-3 md:py-4 px-6 md:px-8 rounded-full btn-secondary transition-colors text-base md:text-lg font-semibold"
+                  >
+                    View All Services
+                  </a>
                 </div>
               </motion.div>
             </div>
