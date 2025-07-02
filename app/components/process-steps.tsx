@@ -70,9 +70,12 @@ export default function ProcessSteps() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-6xl font-bold mb-6 text-accent">How It Works</h2>
-          <p className="text-xl text-secondary max-w-3xl mx-auto">
+          <p className="text-xl text-secondary max-w-3xl mx-auto mb-8">
             Get your personalized color analysis in three simple steps
           </p>
+          <a href="/questionnaire" className="inline-block btn-champagne px-6 py-3 rounded-full font-semibold transition-colors duration-300">
+            Start Your Analysis
+          </a>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">

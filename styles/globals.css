@@ -225,20 +225,28 @@
   
   /* Buttons */
   .btn-champagne {
-    background: linear-gradient(90deg, var(--champagne-primary) 0%, var(--champagne-deep) 100%);
-    color: white;
-    border: 1px solid transparent;
+    background: linear-gradient(90deg, #000000 0%, #333333 100%);
+    color: #F7E7CE;
+    border: 1px solid #F7E7CE;
     transition: all 0.3s ease;
   }
   
+  .btn-champagne:hover {
+    background: linear-gradient(90deg, #F7E7CE 0%, #E6C7A6 100%);
+    color: #000000;
+    border: 1px solid #F7E7CE;
+  }
+  
   :root[data-theme="light"] .btn-champagne {
-    background: linear-gradient(90deg, #e1cfbb 0%, #f6f7fa 100%);
-    color: #232323;
+    background: linear-gradient(90deg, #000000 0%, #333333 100%);
+    color: #F7E7CE;
+    border: 1px solid #000000;
   }
   
   :root[data-theme="light"] .btn-champagne:hover {
-    background: #b89a6a;
-    color: white;
+    background: linear-gradient(90deg, #F7E7CE 0%, #E6C7A6 100%);
+    color: #000000;
+    border: 1px solid #F7E7CE;
   }
   
   .btn-champagne:hover {

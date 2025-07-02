@@ -101,7 +101,7 @@ export default function Gallery() {
               <div className="p-8">
                 <h3 className="text-2xl font-bold mb-4 text-primary">{service.title}</h3>
                 <p className="text-secondary mb-6">{service.description}</p>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="transition-opacity duration-300">
                   <a href={service.link} className="inline-block btn-champagne px-6 py-3 rounded-full font-semibold transition-colors duration-300">
                     Learn More
                   </a>

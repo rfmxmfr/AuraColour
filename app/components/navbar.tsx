@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { motion } from "framer-motion"
+import { motion } from '../components/framer-motion-fix'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import ServicesDropdown from './services-dropdown'

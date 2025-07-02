@@ -10,80 +10,77 @@ import FloatingParticles from '../components/floating-particles'
 export default function QuestionnairePage() {
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState({})
+  const [uploadedFiles, setUploadedFiles] = useState([])
+  const [userName, setUserName] = useState('')
   const [showResults, setShowResults] = useState(false)
   const [analysisResults, setAnalysisResults] = useState(null)
 
   const questions = [
     {
-      id: 'skin-tone',
-      title: 'What is your skin tone?',
-      type: 'radio',
-      options: [
-        'Very fair with pink undertones',
-        'Fair with neutral undertones', 
-        'Medium with warm undertones',
-        'Medium with cool undertones',
-        'Deep with warm undertones',
-        'Deep with cool undertones'
-      ]
-    },
-    {
-      id: 'hair-color',
-      title: 'What is your natural hair color?',
-      type: 'radio',
-      options: [
-        'Platinum blonde',
-        'Golden blonde',
-        'Light brown',
-        'Medium brown',
-        'Dark brown',
-        'Black',
-        'Red/Auburn',
-        'Gray/Silver'
-      ]
-    },
-    {
-      id: 'eye-color',
-      title: 'What is your eye color?',
-      type: 'radio',
-      options: [
-        'Blue',
-        'Green',
-        'Brown',
-        'Hazel',
-        'Gray',
-        'Amber'
+      id: 'personal-features',
+      title: 'Tell us about your natural features',
+      type: 'grouped',
+      description: 'Takes less than 1 minute',
+      sections: [
+        {
+          id: 'skin-tone',
+          title: 'Skin Tone',
+          options: ['Very fair with pink undertones', 'Fair with neutral undertones', 'Medium with warm undertones', 'Medium with cool undertones', 'Deep with warm undertones', 'Deep with cool undertones']
+        },
+        {
+          id: 'hair-color', 
+          title: 'Natural Hair Color',
+          options: ['Platinum blonde', 'Golden blonde', 'Light brown', 'Medium brown', 'Dark brown', 'Black', 'Red/Auburn', 'Gray/Silver']
+        },
+        {
+          id: 'eye-color',
+          title: 'Eye Color', 
+          options: ['Blue', 'Green', 'Brown', 'Hazel', 'Gray', 'Amber']
+        }
       ]
     },
     {
       id: 'style-preference',
-      title: 'What is your preferred style?',
+      title: 'What describes your style best?',
       type: 'radio',
-      options: [
-        'Classic and timeless',
-        'Modern and trendy',
-        'Bohemian and relaxed',
-        'Professional and polished',
-        'Edgy and bold',
-        'Romantic and feminine'
-      ]
+      description: 'This helps us personalize your recommendations',
+      options: ['Classic and timeless', 'Modern and trendy', 'Bohemian and relaxed', 'Professional and polished', 'Edgy and bold', 'Romantic and feminine']
     },
     {
       id: 'photos',
       title: 'Upload Your Photos',
       type: 'upload',
-      description: 'Please upload 3 photos: face with hair pulled back, face with hair down, and wrist showing veins'
+      description: '3 specific photos needed for accurate analysis • No payment required'
     },
     {
-      id: 'newsletter',
-      title: 'Get Your Free Mini Analysis',
-      type: 'newsletter',
-      description: 'Subscribe to receive your AI color analysis results and styling tips'
+      id: 'contact',
+      title: 'Get Your Results',
+      type: 'contact',
+      description: 'Email required for results delivery • Newsletter is optional'
     }
   ]
 
   const handleAnswer = (questionId, answer) => {
     setAnswers(prev => ({ ...prev, [questionId]: answer }))
+    if (questionId === 'contact' && answer.name) {
+      setUserName(answer.name)
+    }
+  }
+
+  const handleFileUpload = (files) => {
+    const fileArray = Array.from(files).slice(0, 3)
+    setUploadedFiles(fileArray)
+    handleAnswer('photos', fileArray)
+  }
+
+  const isStepComplete = (question) => {
+    if (question.type === 'grouped') {
+      return question.sections.every(section => answers[section.id])
+    }
+    if (question.type === 'contact') {
+      return answers[question.id]?.email
+    }
+    return !!answers[question.id]
   }
 
   const nextStep = () => {
@@ -224,10 +221,10 @@ export default function QuestionnairePage() {
                   </div>
                   <div className="text-center">
                     {progress < 25 && (
-                      <p className="text-accent text-sm font-medium">🌟 Great start! Let's discover your colors</p>
+                      <p className="text-accent text-sm font-medium">🌟 {userName ? `Great start, ${userName}!` : 'Great start!'} Let's discover your colors</p>
                     )}
                     {progress >= 25 && progress < 50 && (
-                      <p className="text-accent text-sm font-medium">✨ You're doing amazing! Keep going</p>
+                      <p className="text-accent text-sm font-medium">✨ {userName ? `You're doing amazing, ${userName}!` : 'You're doing amazing!'} Keep going</p>
                     )}
                     {progress >= 50 && progress < 75 && (
                       <p className="text-accent text-sm font-medium">🎨 You're halfway there! Almost done</p>
@@ -247,22 +244,57 @@ export default function QuestionnairePage() {
                     <p className="text-secondary mb-4">{currentQuestion.description}</p>
                   )}
                   
-                  {currentQuestion.type === 'upload' ? (
+                  {currentQuestion.type === 'grouped' ? (
+                    <div className="space-y-6">
+                      {currentQuestion.sections.map((section, sectionIndex) => (
+                        <div key={section.id} className="space-y-3">
+                          <h3 className="text-lg font-medium text-accent flex items-center">
+                            {answers[section.id] && <span className="text-green-400 mr-2">✓</span>}
+                            {section.title}
+                          </h3>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            {section.options.map((option, index) => (
+                              <label key={index} className="flex items-center p-3 rounded-lg glass-panel-light dropdown-item cursor-pointer transition-all">
+                                <input
+                                  type="radio"
+                                  name={section.id}
+                                  value={option}
+                                  checked={answers[section.id] === option}
+                                  onChange={(e) => handleAnswer(section.id, e.target.value)}
+                                  className="mr-3 text-accent focus:ring-accent"
+                                />
+                                <span className="text-primary text-sm">{option}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : currentQuestion.type === 'upload' ? (
                     <div className="space-y-4">
                       <div className="border-2 border-dashed border-champagne rounded-lg p-6 md:p-8 text-center glass-panel-light">
                         <svg className="w-12 h-12 mx-auto text-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                         </svg>
                         <p className="text-primary mb-2">Upload your 3 photos</p>
-                        <p className="text-secondary text-sm mb-4">JPG, PNG up to 10MB each</p>
+                        <p className="text-secondary text-sm mb-4">Face with hair back • Face with hair down • Wrist showing veins</p>
                         
-                        {answers[currentQuestion.id] && answers[currentQuestion.id].length > 0 && (
-                          <div className="mb-4 p-3 bg-green-500/20 border border-green-500/30 rounded-lg">
-                            <p className="text-green-400 text-sm font-medium">
-                              ✓ {answers[currentQuestion.id].length === 1 ? 'Great lighting! Upload 2 more photos' : 
-                                 answers[currentQuestion.id].length === 2 ? 'Perfect! One more photo needed' :
-                                 'Excellent photos! Ready for analysis'}
-                            </p>
+                        <div className="mb-4 p-3 rounded-lg" style={{background: uploadedFiles.length > 0 ? 'rgba(34, 197, 94, 0.2)' : 'rgba(156, 163, 175, 0.2)', border: uploadedFiles.length > 0 ? '1px solid rgba(34, 197, 94, 0.3)' : '1px solid rgba(156, 163, 175, 0.3)'}}>
+                          <p className={`text-sm font-medium ${uploadedFiles.length > 0 ? 'text-green-400' : 'text-gray-400'}`}>
+                            {uploadedFiles.length === 0 ? '📷 0/3 photos uploaded' :
+                             uploadedFiles.length === 1 ? '✓ 1/3 photos uploaded - Great lighting! Upload 2 more' :
+                             uploadedFiles.length === 2 ? '✓ 2/3 photos uploaded - Perfect! One more needed' :
+                             '✓ 3/3 photos uploaded - Excellent! Ready for analysis'}
+                          </p>
+                        </div>
+                        
+                        {uploadedFiles.length > 0 && (
+                          <div className="flex justify-center gap-2 mb-4">
+                            {uploadedFiles.map((file, index) => (
+                              <div key={index} className="w-16 h-16 bg-gray-600 rounded-lg flex items-center justify-center text-xs text-gray-300">
+                                📷 {index + 1}
+                              </div>
+                            ))}
                           </div>
                         )}
                         
@@ -272,10 +304,10 @@ export default function QuestionnairePage() {
                           accept="image/*"
                           className="hidden"
                           id="photo-upload"
-                          onChange={(e) => handleAnswer(currentQuestion.id, e.target.files)}
+                          onChange={(e) => handleFileUpload(e.target.files)}
                         />
                         <label htmlFor="photo-upload" className="mt-4 inline-block btn-champagne px-6 py-2 rounded-full cursor-pointer transition-colors">
-                          Choose Photos
+                          {uploadedFiles.length > 0 ? 'Change Photos' : 'Choose Photos'}
                         </label>
                       </div>
                       
@@ -286,27 +318,34 @@ export default function QuestionnairePage() {
                         <span>🔒 Your photos are secure and only seen by certified analysts</span>
                       </div>
                     </div>
-                  ) : currentQuestion.type === 'newsletter' ? (
+                  ) : currentQuestion.type === 'contact' ? (
                     <div className="space-y-4">
                       <input
-                        type="email"
-                        placeholder="Enter your email address"
+                        type="text"
+                        placeholder="Your name (optional)"
                         className="w-full p-3 md:p-4 rounded-lg glass-panel-light text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-champagne transition-all"
-                        onChange={(e) => handleAnswer(currentQuestion.id, e.target.value)}
+                        onChange={(e) => handleAnswer(currentQuestion.id, {...(answers[currentQuestion.id] || {}), name: e.target.value})}
                       />
-                      <label className="flex items-center text-secondary">
+                      <input
+                        type="email"
+                        placeholder="Email address (required for results)"
+                        required
+                        className="w-full p-3 md:p-4 rounded-lg glass-panel-light text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-champagne transition-all"
+                        onChange={(e) => handleAnswer(currentQuestion.id, {...(answers[currentQuestion.id] || {}), email: e.target.value})}
+                      />
+                      <label className="flex items-start text-secondary">
                         <input
                           type="checkbox"
-                          className="mr-3 text-accent focus:ring-accent"
-                          required
+                          className="mr-3 mt-1 text-accent focus:ring-accent"
+                          onChange={(e) => handleAnswer(currentQuestion.id, {...(answers[currentQuestion.id] || {}), newsletter: e.target.checked})}
                         />
-                        <span className="text-sm">I agree to receive styling tips and color analysis updates</span>
+                        <span className="text-sm">Send me styling tips and color updates (optional)</span>
                       </label>
                       <div className="flex items-center justify-center space-x-2 text-secondary text-xs">
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        <span>We respect your privacy. Unsubscribe anytime.</span>
+                        <span>🔒 Your data is secure and used only for your analysis</span>
                       </div>
                     </div>
                   ) : (
@@ -343,15 +382,15 @@ export default function QuestionnairePage() {
                   {currentStep === questions.length - 1 ? (
                     <button
                       onClick={submitQuestionnaire}
-                      disabled={!answers[currentQuestion.id]}
+                      disabled={!isStepComplete(currentQuestion)}
                       className="py-3 px-6 rounded-full btn-champagne disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
-                      Submit
+                      Get My Analysis
                     </button>
                   ) : (
                     <button
                       onClick={nextStep}
-                      disabled={!answers[currentQuestion.id]}
+                      disabled={!isStepComplete(currentQuestion)}
                       className="py-3 px-6 rounded-full btn-champagne disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
                       Next
