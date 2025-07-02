@@ -32,7 +32,8 @@ export default function TwelveSeasonAnalysisPage() {
         </div>
       </section>
 
-      <section className="py-12 md:py-20 bg-gray-900/80 backdrop-blur-md">
+      <section className="relative py-12 md:py-20 bg-gray-900/80 backdrop-blur-md overflow-hidden">
+        <FloatingParticles particleCount={20} opacity={0.15} />
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <motion.div

@@ -77,7 +77,8 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="py-12 md:py-20 glass">
+      <section className="relative py-12 md:py-20 glass overflow-hidden">
+        <FloatingParticles particleCount={20} opacity={0.15} />
         <div className="container mx-auto px-4">
           <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service, index) => (

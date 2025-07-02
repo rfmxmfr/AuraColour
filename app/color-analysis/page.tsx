@@ -39,6 +39,7 @@ export default function ColorAnalysisPage() {
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
+        <FloatingParticles particleCount={25} opacity={0.2} />
         <FloatingParticles particleCount={30} opacity={0.2} />
         <div className="container mx-auto px-4 text-center">
           <motion.h1 
@@ -61,7 +62,8 @@ export default function ColorAnalysisPage() {
       </section>
 
       {/* Upload Section */}
-      <section className="py-20 bg-gray-900/80 backdrop-blur-md">
+      <section className="relative py-20 bg-gray-900/80 backdrop-blur-md overflow-hidden">
+        <FloatingParticles particleCount={15} opacity={0.1} />
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             <motion.div 
