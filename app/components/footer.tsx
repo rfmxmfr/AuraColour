@@ -3,37 +3,29 @@ import Link from "next/link"
 
 export default function Footer() {
   return (
-    <footer className="relative border-t py-16 overflow-hidden" style={{ borderColor: 'var(--champagne-border)', background: 'var(--bg-primary)' }}>
-      <FloatingParticles particleCount={10} opacity={0.1} />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+    <footer className="bg-gray-900 text-white py-16">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-champagne rounded-full flex items-center justify-center">
-                <span className="text-black font-bold text-xl">A</span>
-              </div>
-              <span className="text-2xl font-semibold tracking-wide text-primary">Aura</span>
+            <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-4 inline-block">
+              AuraColor
             </Link>
-            <p className="text-secondary leading-relaxed mb-6 max-w-md">
-              Discover the colors that make you look effortlessly radiant.
+            <p className="text-gray-400 leading-relaxed mb-6 max-w-md">
+              Discover the colors that make you look effortlessly radiant with our AI-powered color analysis.
             </p>
             <div>
-              <h3 className="font-semibold text-lg mb-4 text-primary">Stay Updated</h3>
-              <p className="text-secondary text-sm mb-4">
-                Receive style tips, seasonal updates, and exclusive offers.
+              <h3 className="font-semibold text-lg mb-4">Stay Updated</h3>
+              <p className="text-gray-400 text-sm mb-4">
+                Get style tips and exclusive offers.
               </p>
               <div className="flex space-x-2">
                 <input
-                  className="flex-1 glass-panel-light rounded-md px-4 py-2 text-sm text-primary placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-champagne focus:border-transparent"
+                  className="flex-1 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   name="email"
                   type="email"
-                  required
                   placeholder="Enter your email"
                 />
-                <button
-                  className="btn-champagne px-6 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-                  type="submit"
-                >
+                <button className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg text-sm font-medium hover:shadow-lg transition-all duration-200">
                   Subscribe
                 </button>
               </div>
@@ -41,106 +33,67 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-primary">Services</h3>
-            <ul className="space-y-2">
+            <h3 className="font-semibold text-lg mb-4">Services</h3>
+            <ul className="space-y-3">
               <li>
-                <Link href="/color-analysis" className="text-secondary hover:text-accent transition-colors duration-200 text-sm">
+                <Link href="/color-analysis" className="text-gray-400 hover:text-white transition-colors duration-200">
                   Color Analysis
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="text-secondary hover:text-accent transition-colors duration-200 text-sm">
-                  Wardrobe Management
+                <Link href="/services" className="text-gray-400 hover:text-white transition-colors duration-200">
+                  Style Consultation
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="text-secondary hover:text-accent transition-colors duration-200 text-sm">
-                  Personal Styling
+                <Link href="/services" className="text-gray-400 hover:text-white transition-colors duration-200">
+                  Personal Shopping
                 </Link>
               </li>
             </ul>
           </div>
           
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-primary">Resources</h3>
-            <ul className="space-y-2">
+            <h3 className="font-semibold text-lg mb-4">Company</h3>
+            <ul className="space-y-3">
               <li>
-                <Link href="/services" className="text-secondary hover:text-accent transition-colors duration-200 text-sm">
-                  All Services
-                </Link>
-              </li>
-              <li>
-                <a href="#" className="text-secondary hover:text-accent transition-colors duration-200 text-sm">
-                  Gift Vouchers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-secondary hover:text-accent transition-colors duration-200 text-sm">
-                  Book Consultation
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-secondary hover:text-accent transition-colors duration-200 text-sm">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold text-lg mb-4 text-primary">Company</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/about" className="text-secondary hover:text-accent transition-colors duration-200 text-sm">
+                <Link href="/about" className="text-gray-400 hover:text-white transition-colors duration-200">
                   About
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-secondary hover:text-accent transition-colors duration-200 text-sm">
-                  Privacy Policy
-                </a>
+                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors duration-200">
+                  Contact
+                </Link>
               </li>
               <li>
-                <Link href="/admin" className="text-secondary hover:text-accent transition-colors duration-200 text-sm">
-                  Admin Login
-                </Link>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200">
+                  Privacy Policy
+                </a>
               </li>
             </ul>
           </div>
         </div>
         
-        <div className="border-t pt-8 flex flex-col md:flex-row justify-between items-center" style={{ borderColor: 'var(--champagne-border)' }}>
-          <p className="text-secondary text-sm mb-4 md:mb-0">
-            © 2024 Aura Styling Platform. All rights reserved.
+        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-sm mb-4 md:mb-0">
+            © 2024 AuraColor. All rights reserved.
           </p>
           <div className="flex items-center space-x-4">
-            <a
-              className="w-8 h-8 glass-panel-light hover:bg-champagne/20 rounded-full flex items-center justify-center transition-colors duration-200 group"
-              aria-label="Instagram"
-              href="#"
-            >
-              <svg className="text-secondary group-hover:text-accent" height="16" width="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <rect height="20" width="20" rx="5" ry="5" x="2" y="2" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+            <a href="#" className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 rounded-2xl flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg">
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
             </a>
-            <a
-              className="w-8 h-8 glass-panel-light hover:bg-champagne/20 rounded-full flex items-center justify-center transition-colors duration-200 group"
-              aria-label="Facebook"
-              href="#"
-            >
-              <svg className="text-secondary group-hover:text-accent" height="16" width="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+            <a href="#" className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 rounded-2xl flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg">
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
               </svg>
             </a>
-            <a
-              className="w-8 h-8 glass-panel-light hover:bg-champagne/20 rounded-full flex items-center justify-center transition-colors duration-200 group"
-              aria-label="Twitter"
-              href="#"
-            >
-              <svg className="text-secondary group-hover:text-accent" height="16" width="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+            <a href="#" className="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 rounded-2xl flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg">
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </a>
           </div>

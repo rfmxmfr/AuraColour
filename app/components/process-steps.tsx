@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import { useRef } from "react"
 import { useInView } from "framer-motion"
-import FloatingParticles from "./floating-particles"
 
 export default function ProcessSteps() {
   const ref = useRef(null)
@@ -60,47 +59,59 @@ export default function ProcessSteps() {
   ]
 
   return (
-    <section className="py-20 relative overflow-hidden" style={{ background: 'var(--bg-secondary)', backdropFilter: 'blur(12px)' }}>
-      <FloatingParticles particleCount={15} opacity={0.15} />
-      <div className="container mx-auto px-4" ref={ref}>
+    <section className="py-20 bg-gradient-to-b from-white to-purple-50">
+      <div className="max-w-6xl mx-auto px-6" ref={ref}>
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-accent">How It Works</h2>
-          <p className="text-xl text-secondary max-w-3xl mx-auto mb-8">
-            Get your personalized color analysis in three simple steps
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">How It Works</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Get your personalized color analysis in four simple steps
           </p>
-          <a href="/questionnaire" className="inline-block btn-champagne px-6 py-3 rounded-full font-semibold transition-colors duration-300">
-            Start Your Analysis
-          </a>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-          <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent transform -translate-y-1/2 hidden lg:block"></div>
-          
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
             <motion.div
               key={index}
-              className="relative"
+              className="text-center group"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: index * 0.3 }}
-              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
             >
-              <div className="text-center">
-                <div className="w-16 h-16 bg-black/80 backdrop-blur-md rounded-full flex items-center justify-center mb-6 mx-auto border-4 border-champagne ring-4" style={{ringColor: '#F7E7CE33'}}>
-                  {step.icon}
+              <div className="relative mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg group-hover:scale-110 transition-transform duration-200">
+                  <div className="text-white">{step.icon}</div>
                 </div>
-                <div className="text-6xl font-bold mb-4" style={{color: '#F7E7CE33'}}>{step.number}</div>
-                <h3 className="text-2xl font-bold mb-4 text-primary">{step.title}</h3>
-                <p className="text-secondary leading-relaxed">{step.description}</p>
+                <div className="text-sm font-bold text-purple-600 bg-purple-100 rounded-full px-3 py-1 inline-block">
+                  Step {step.number}
+                </div>
               </div>
+              <h3 className="text-xl font-bold mb-4 text-gray-900">{step.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{step.description}</p>
             </motion.div>
           ))}
         </div>
+        
+        <motion.div
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          <a 
+            href="/questionnaire" 
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full hover:shadow-lg transition-all duration-200"
+          >
+            Start Your Analysis
+            <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </motion.div>
       </div>
     </section>
   )

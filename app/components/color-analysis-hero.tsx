@@ -1,139 +1,126 @@
 'use client'
 
-import { useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 
 export default function ColorAnalysisHero() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  useEffect(() => {
-    if (!canvasRef.current) return
-
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
-
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-
-    const particles: Particle[] = []
-    const particleCount = 100
-
-    class Particle {
-      x: number
-      y: number
-      size: number
-      speedX: number
-      speedY: number
-
-      constructor() {
-        this.x = Math.random() * canvas.width
-        this.y = Math.random() * canvas.height
-        this.size = Math.random() * 2 + 0.1
-        this.speedX = Math.random() * 2 - 1
-        this.speedY = Math.random() * 2 - 1
-      }
-
-      update() {
-        this.x += this.speedX
-        this.y += this.speedY
-
-        if (this.x > canvas.width) this.x = 0
-        if (this.x < 0) this.x = canvas.width
-        if (this.y > canvas.height) this.y = 0
-        if (this.y < 0) this.y = canvas.height
-      }
-
-      draw() {
-        if (!ctx) return
-        ctx.fillStyle = "rgba(255, 255, 255, 0.5)"
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-        ctx.fill()
-      }
-    }
-
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle())
-    }
-
-    function animate() {
-      if (!ctx) return
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      for (const particle of particles) {
-        particle.update()
-        particle.draw()
-      }
-
-      requestAnimationFrame(animate)
-    }
-
-    animate()
-
-    const handleResize = () => {
-      if (!canvasRef.current) return
-      canvasRef.current.width = window.innerWidth
-      canvasRef.current.height = window.innerHeight
-    }
-
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
-
   return (
-    <div className="relative h-screen w-full overflow-hidden">
-      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" style={{ background: 'var(--bg-primary)' }} />
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
-        <motion.h2
-          className="text-lg md:text-xl text-secondary mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Professional Color Analysis
-        </motion.h2>
-        <motion.h1
-          className="text-6xl md:text-8xl font-bold mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          Discover Your
-          <span className="block bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
-            Perfect Colors
-          </span>
-        </motion.h1>
-        <motion.p
-          className="text-xl md:text-2xl mb-8 text-secondary"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          Unlock your personal style with Tania's professional 12-season color analysis. From wardrobe curation to personal shopping, let Aura Color guide your transformation with expert artistry and personalized styling innovation.
-        </motion.p>
-        <motion.a
-          href="/questionnaire"
-          className="inline-block py-5 px-10 rounded-full text-xl font-bold relative backdrop-blur-sm transition-all duration-300 group shadow-2xl"
-          style={{
-            background: 'linear-gradient(135deg, #F7E7CE 0%, #E6C7A6 50%, #D4AF37 100%)',
-            color: '#000',
-            border: '2px solid rgba(255,255,255,0.3)'
-          }}
-          initial={{ opacity: 0, y: 20, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          whileHover={{ scale: 1.05, y: -2 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/20 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <span className="relative z-10 flex items-center">
-            ✨ Discover Your Color Story
-            <span className="ml-3 text-sm px-3 py-1 rounded-full bg-black/20 text-white animate-pulse">
-              FREE
-            </span>
-          </span>
-        </motion.a>
+    <div className="relative min-h-screen w-full bg-gradient-to-br from-slate-50 via-white to-rose-50 flex items-center">
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-100/20 via-transparent to-pink-100/20"></div>
+      
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="space-y-4">
+              <motion.div
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-purple-100 shadow-sm"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium text-gray-700">AI-Powered Color Analysis</span>
+              </motion.div>
+              
+              <motion.h1
+                className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                Discover Your
+                <span className="block bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 bg-clip-text text-transparent">
+                  Perfect Colors
+                </span>
+              </motion.h1>
+              
+              <motion.p
+                className="text-xl text-gray-600 leading-relaxed max-w-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                Discover the colors that make you look effortlessly radiant with our advanced AI color analysis.
+              </motion.p>
+            </div>
+            
+
+            
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              <a
+                href="/questionnaire"
+                className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-200"
+              >
+                Start Analysis
+                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </a>
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                  <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <span>Professional Analysis</span>
+              </div>
+            </motion.div>
+          </motion.div>
+          
+          <motion.div
+            className="relative"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="relative bg-white/20 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/30">
+              <div className="space-y-6">
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Your Color Palette</h3>
+                  <p className="text-gray-600">Personalized just for you</p>
+                </div>
+                
+                <div className="grid grid-cols-4 gap-3">
+                  {[
+                    'from-rose-400 to-pink-500',
+                    'from-purple-400 to-indigo-500', 
+                    'from-blue-400 to-cyan-500',
+                    'from-emerald-400 to-teal-500',
+                    'from-amber-400 to-orange-500',
+                    'from-red-400 to-rose-500',
+                    'from-violet-400 to-purple-500',
+                    'from-slate-400 to-gray-500'
+                  ].map((gradient, i) => (
+                    <motion.div
+                      key={i}
+                      className={`aspect-square rounded-2xl bg-gradient-to-br ${gradient} shadow-lg`}
+                      initial={{ scale: 0, rotate: 180 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      transition={{ delay: 0.8 + i * 0.1, type: "spring" }}
+                      whileHover={{ scale: 1.1 }}
+                    />
+                  ))}
+                </div>
+                
+                <div className="text-center pt-4">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/30 backdrop-blur-md rounded-full border border-white/20">
+                    <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium text-gray-700">AI Analysis Complete</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </div>
   )

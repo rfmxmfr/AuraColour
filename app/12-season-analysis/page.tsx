@@ -154,17 +154,23 @@ export default function TwelveSeasonAnalysisPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <h2 className="text-2xl md:text-3xl font-bold mb-4 text-accent">Ready to Discover Your Season?</h2>
-              <p className="text-secondary mb-6">Professional 12-season color analysis for $149</p>
+              <div className="text-center mb-4">
+                <span className="text-sm text-accent">🔥 Limited time: 50% off first consultation</span>
+              </div>
+              <p className="text-secondary mb-6">Professional 12-season color analysis - Regular $149, Today $74</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="/questionnaire"
                   className="py-3 md:py-4 px-6 md:px-8 rounded-full btn-champagne transition-colors text-base md:text-lg font-semibold"
                 >
-                  Start Free Mini Analysis
+                  Get My FREE Analysis (Worth $149)
                 </a>
                 <button className="py-3 md:py-4 px-6 md:px-8 rounded-full btn-secondary transition-colors text-base md:text-lg font-semibold">
-                  Book Full Analysis
+                  Book My Full Analysis - $74 Today
                 </button>
+              </div>
+              <div className="text-center mt-3">
+                <span className="text-xs text-secondary">✅ Join 500+ satisfied clients • 🔒 100% satisfaction guarantee</span>
               </div>
             </motion.div>
           </div>
