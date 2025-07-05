@@ -7,9 +7,9 @@ import Footer from '../components/footer'
 
 export default function QuestionnairePage() {
   const [currentStep, setCurrentStep] = useState(0)
-  const [answers, setAnswers] = useState({})
+  const [answers, setAnswers] = useState<{[key: string]: any}>({})
   const [showResults, setShowResults] = useState(false)
-  const [analysisResults, setAnalysisResults] = useState(null)
+  const [analysisResults, setAnalysisResults] = useState<any>(null)
 
   const questions = [
     {
@@ -80,7 +80,7 @@ export default function QuestionnairePage() {
     }
   ]
 
-  const handleAnswer = (questionId, answer) => {
+  const handleAnswer = (questionId: string, answer: any) => {
     setAnswers(prev => ({ ...prev, [questionId]: answer }))
   }
 
@@ -146,7 +146,7 @@ export default function QuestionnairePage() {
               <div className="mb-8">
                 <h3 className="text-2xl font-semibold mb-6 text-gray-900">Your Top Colors</h3>
                 <div className="flex justify-center gap-6">
-                  {analysisResults.topColors.map((color, index) => (
+                  {analysisResults.topColors.map((color: string, index: number) => (
                     <div key={index} className="text-center">
                       <div 
                         className="w-20 h-20 rounded-full mx-auto mb-3 shadow-lg border-4 border-white"

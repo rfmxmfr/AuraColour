@@ -23,7 +23,7 @@ export default function ColorAnalysisHero() {
                 transition={{ delay: 0.2 }}
               >
                 <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-gray-700">AI-Powered Color Analysis</span>
+                <span className="text-sm font-medium text-gray-700">Human Powered Color Analysis</span>
               </motion.div>
               
               <motion.h1
