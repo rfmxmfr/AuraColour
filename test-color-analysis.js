@@ -1,5 +1,7 @@
 const fs = require('fs')
 const path = require('path')
+const { FormData } = require('formdata-node')
+const { Blob } = require('fetch-blob')
 
 async function testColorAnalysis() {
   try {
