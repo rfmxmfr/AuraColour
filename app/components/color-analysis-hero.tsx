@@ -44,7 +44,7 @@ export default function ColorAnalysisHero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                Discover the colors that make you look effortlessly radiant with our advanced AI color analysis.
+                Discover the colors that make you look effortlessly radiant with our professional color analysis.
               </motion.p>
             </div>
             

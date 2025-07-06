@@ -1,7 +1,29 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { sendClientConfirmation } from '@/lib/notifications'
+import { sendClientConfirmation } from '@/lib/email-notifications'
+import { handleFormData } from '@/lib/file-upload'
 import { sendSlackNotification, sendDiscordNotification, sendSMS } from '@/lib/integrations'
+
+export async function POST(request: Request) {
+  try {
+    const data = await handleFormData(request)
+    const { email, name, message } = data
+    
+    const supabase = await createClient()
+    await supabase.from('contact_submissions').insert({
+      email,
+      name,
+      message,
+      created_at: new Date().toISOString()
+    })
+    
+    await sendClientConfirmation(email, name)
+    
+    return NextResponse.json({ success: true })
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to send message' }, { status: 500 })
+  }
+}
 
 export async function GET() {
   const results = {

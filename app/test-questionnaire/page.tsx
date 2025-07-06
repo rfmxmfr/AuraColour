@@ -54,17 +54,17 @@ export default function TestQuestionnaire() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-teal-50 p-4">
-      <div className="max-w-2xl mx-auto pt-20">
+      <div className="w-full max-w-2xl mx-auto pt-12 md:pt-20">
         <Card>
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
+          <CardHeader className="text-center p-4 md:p-6">
+            <CardTitle className="text-xl md:text-2xl bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
               Test Color Analysis Questionnaire
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-sm md:text-base">
               Get a complete color analysis test sent directly to your email
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-3 md:space-y-4 p-4 md:p-6">
             <div>
               <label className="text-sm font-medium">Name (Optional)</label>
               <Input
@@ -92,9 +92,9 @@ export default function TestQuestionnaire() {
               {loading ? 'Sending...' : 'Send Test Questionnaire'}
             </Button>
             
-            <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-              <h3 className="font-semibold text-blue-900 mb-2">What you'll receive:</h3>
-              <ul className="text-sm text-blue-800 space-y-1">
+            <div className="mt-4 md:mt-6 p-3 md:p-4 bg-blue-50 rounded-lg">
+              <h3 className="font-semibold text-blue-900 mb-1 md:mb-2 text-sm md:text-base">What you'll receive:</h3>
+              <ul className="text-xs md:text-sm text-blue-800 space-y-1">
                 <li>• Complete color season analysis (Spring/Summer/Autumn/Winter)</li>
                 <li>• Personalized color palette with 5 perfect colors</li>
                 <li>• Confidence score and undertone analysis</li>

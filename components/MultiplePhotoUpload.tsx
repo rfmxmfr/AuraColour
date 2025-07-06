@@ -3,14 +3,19 @@
 import { useState, useRef } from 'react'
 import { uploadImage } from '@/lib/supabase/storage'
 
-interface PhotoUploadProps {
-  onFilesChange: (files: FileList | null) => void
+interface MultiplePhotoUploadProps {
+  onFilesChange?: (files: FileList | null) => void
   onUploadComplete?: (urls: string[]) => void
-  currentFiles?: FileList | null
   maxPhotos?: number
+  required?: boolean
 }
 
-export default function PhotoUpload({ onFilesChange, onUploadComplete, currentFiles, maxPhotos = 3 }: PhotoUploadProps) {
+export default function MultiplePhotoUpload({ 
+  onFilesChange, 
+  onUploadComplete, 
+  maxPhotos = 3,
+  required = false
+}: MultiplePhotoUploadProps) {
   const [dragActive, setDragActive] = useState(false)
   const [previews, setPreviews] = useState<string[]>([])
   const [uploadedUrls, setUploadedUrls] = useState<string[]>([])
@@ -43,7 +48,9 @@ export default function PhotoUpload({ onFilesChange, onUploadComplete, currentFi
     limitedFiles.forEach(file => dataTransfer.items.add(file))
     const limitedFileList = dataTransfer.files
     
-    onFilesChange(limitedFileList)
+    if (onFilesChange) {
+      onFilesChange(limitedFileList)
+    }
     
     // Start upload process
     uploadFiles(limitedFiles)
@@ -141,6 +148,16 @@ export default function PhotoUpload({ onFilesChange, onUploadComplete, currentFi
                   </div>
                 </div>
               ))}
+              
+              {/* Show placeholder slots for remaining photos */}
+              {Array.from({ length: Math.max(0, maxPhotos - previews.length) }).map((_, index) => (
+                <div 
+                  key={`placeholder-${index}`} 
+                  className="w-full h-32 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center bg-gray-50"
+                >
+                  <div className="text-gray-400 text-sm">Photo {previews.length + index + 1}</div>
+                </div>
+              ))}
             </div>
             
             {uploading ? (
@@ -157,7 +174,7 @@ export default function PhotoUpload({ onFilesChange, onUploadComplete, currentFi
               </div>
             ) : (
               <p className="text-green-600 font-semibold">
-                {previews.length} photo{previews.length > 1 ? 's' : ''} uploaded successfully
+                {previews.length} of {maxPhotos} photos uploaded
               </p>
             )}
             
@@ -166,7 +183,7 @@ export default function PhotoUpload({ onFilesChange, onUploadComplete, currentFi
               disabled={uploading}
               className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-200 font-semibold disabled:opacity-50"
             >
-              {uploading ? 'Uploading...' : 'Change Photos'}
+              {uploading ? 'Uploading...' : (previews.length < maxPhotos ? 'Add More Photos' : 'Change Photos')}
             </button>
           </div>
         ) : (
@@ -196,6 +213,7 @@ export default function PhotoUpload({ onFilesChange, onUploadComplete, currentFi
           accept="image/*"
           onChange={handleChange}
           className="hidden"
+          required={required}
         />
       </div>
       

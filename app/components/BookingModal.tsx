@@ -24,6 +24,9 @@ export default function BookingModal({ isOpen, onClose, answers, serviceType }: 
     e.preventDefault()
     setLoading(true)
 
+    // Extract photo URLs from answers if they exist
+    const photoUrls = answers?.photoUrls || []
+    
     try {
       const response = await fetch('/api/create-payment', {
         method: 'POST',
@@ -31,6 +34,7 @@ export default function BookingModal({ isOpen, onClose, answers, serviceType }: 
         body: JSON.stringify({
           ...formData,
           answers: answers || {},
+          photoUrls: photoUrls,
           serviceType: serviceType || '12-Season Color Analysis'
         })
       })

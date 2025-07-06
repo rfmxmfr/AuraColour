@@ -1,10 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { sendClientConfirmation, sendAdminAlert } from '@/lib/notifications'
+import { sendClientConfirmation, sendAdminAlert } from '@/lib/email-notifications'
+import { handleFormData } from '@/lib/file-upload'
 
 export async function POST(request: NextRequest) {
   try {
-    const data = await request.json()
+    const contentType = request.headers.get('content-type')
+    let data: any
+    
+    if (contentType?.includes('multipart/form-data')) {
+      data = await handleFormData(request)
+    } else {
+      data = await request.json()
+    }
     const supabase = await createClient()
     
     const bookingNumber = `BK-${Date.now()}`

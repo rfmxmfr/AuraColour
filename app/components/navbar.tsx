@@ -27,9 +27,7 @@ export default function Navbar() {
             <Link href="/contact" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
               Contact
             </Link>
-            <Link href="/quick-wins" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
-              Demo
-            </Link>
+
           </div>
           
           <button 
@@ -57,9 +55,7 @@ export default function Navbar() {
               <Link href="/contact" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium">
                 Contact
               </Link>
-              <Link href="/quick-wins" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium">
-                Demo
-              </Link>
+
               <Link 
                 href="/questionnaire"
                 className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full"

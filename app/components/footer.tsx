@@ -11,7 +11,7 @@ export default function Footer() {
               AuraColor
             </Link>
             <p className="text-gray-400 leading-relaxed mb-6 max-w-md">
-              Discover the colors that make you look effortlessly radiant with our AI-powered color analysis.
+              Discover the colors that make you look effortlessly radiant with our professional color analysis.
             </p>
             <div>
               <h3 className="font-semibold text-lg mb-4">Stay Updated</h3>

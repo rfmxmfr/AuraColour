@@ -5,13 +5,14 @@ import { motion } from 'framer-motion'
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
 import BookingModal from '../components/BookingModal'
-import PhotoUpload from '../components/PhotoUpload'
+import MultiplePhotoUpload from '@/components/MultiplePhotoUpload'
 import ProgressIndicator from '../components/ProgressIndicator'
 import FeedbackWidget from '../components/FeedbackWidget'
 
 export default function QuestionnairePage() {
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<{[key: string]: any}>({})
+  const [photoUrls, setPhotoUrls] = useState<string[]>([])
   const [showResults, setShowResults] = useState(false)
   const [analysisResults, setAnalysisResults] = useState<any>(null)
   const [showBookingModal, setShowBookingModal] = useState(false)
@@ -169,18 +170,18 @@ export default function QuestionnairePage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-rose-50">
       <Navbar />
       
-      <section className="pt-32 pb-20">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="pt-20 md:pt-32 pb-12 md:pb-20">
+        <div className="max-w-4xl mx-auto px-4 md:px-6">
           <motion.div
-            className="bg-white/20 backdrop-blur-xl rounded-3xl shadow-lg p-8 border border-white/30"
+            className="bg-white/20 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-lg p-4 md:p-8 border border-white/30"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="mb-8">
-              <div className="text-center mb-6">
-                <h1 className="text-3xl font-bold text-gray-900">Style Questionnaire</h1>
-                <p className="text-gray-600 mt-2">Discover your perfect color palette in just a few steps</p>
+            <div className="mb-4 md:mb-8">
+              <div className="text-center mb-4 md:mb-6">
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Style Questionnaire</h1>
+                <p className="text-sm md:text-base text-gray-600 mt-2">Discover your perfect color palette in just a few steps</p>
               </div>
               <ProgressIndicator 
                 currentStep={currentStep}
@@ -189,24 +190,30 @@ export default function QuestionnairePage() {
               />
             </div>
 
-            <div className="mb-8">
-              <h2 className="text-2xl font-semibold mb-6 text-gray-900">{currentQuestion.title}</h2>
+            <div className="mb-4 md:mb-8">
+              <h2 className="text-xl md:text-2xl font-semibold mb-3 md:mb-6 text-gray-900">{currentQuestion.title}</h2>
               {currentQuestion.description && (
-                <p className="text-gray-600 mb-6">{currentQuestion.description}</p>
+                <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-6">{currentQuestion.description}</p>
               )}
               
               {currentQuestion.type === 'upload' ? (
-                <PhotoUpload 
+                <MultiplePhotoUpload 
                   onFilesChange={(files) => handleAnswer(currentQuestion.id, files)}
-                  currentFiles={answers[currentQuestion.id] as FileList | null}
+                  onUploadComplete={(urls) => {
+                    setPhotoUrls(urls)
+                    // Store the URLs in answers as well
+                    handleAnswer('photoUrls', urls)
+                  }}
+                  maxPhotos={3}
+                  required
                 />
 
               ) : (
-                <div className="space-y-3">
+                <div className="space-y-2 md:space-y-3">
                   {currentQuestion.options?.map((option, index) => (
                     <label
                       key={index}
-                      className="flex items-center p-4 rounded-xl border border-white/30 hover:border-purple-300 hover:bg-white/40 cursor-pointer transition-all duration-200 backdrop-blur-sm"
+                      className="flex items-center p-3 md:p-4 rounded-lg md:rounded-xl border border-white/30 hover:border-purple-300 hover:bg-white/40 cursor-pointer transition-all duration-200 backdrop-blur-sm"
                     >
                       <input
                         type="radio"
@@ -214,9 +221,9 @@ export default function QuestionnairePage() {
                         value={option}
                         checked={answers[currentQuestion.id] === option}
                         onChange={(e) => handleAnswer(currentQuestion.id, e.target.value)}
-                        className="mr-4 text-purple-600 focus:ring-purple-500"
+                        className="mr-3 md:mr-4 text-purple-600 focus:ring-purple-500"
                       />
-                      <span className="text-gray-900">{option}</span>
+                      <span className="text-sm md:text-base text-gray-900">{option}</span>
                     </label>
                   ))}
                 </div>
@@ -227,7 +234,7 @@ export default function QuestionnairePage() {
               <button
                 onClick={prevStep}
                 disabled={currentStep === 0}
-                className="py-3 px-6 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold"
+                className="py-2 md:py-3 px-4 md:px-6 text-sm md:text-base rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold"
               >
                 Previous
               </button>
@@ -236,7 +243,7 @@ export default function QuestionnairePage() {
                 <button
                   onClick={submitQuestionnaire}
                   disabled={!answers[currentQuestion.id]}
-                  className="py-4 px-8 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                  className="py-2 md:py-4 px-5 md:px-8 text-sm md:text-base rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                 >
                   Book Your Analysis
                 </button>
@@ -244,7 +251,7 @@ export default function QuestionnairePage() {
                 <button
                   onClick={nextStep}
                   disabled={!answers[currentQuestion.id]}
-                  className="py-3 px-6 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                  className="py-2 md:py-3 px-4 md:px-6 text-sm md:text-base rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                 >
                   Next
                 </button>

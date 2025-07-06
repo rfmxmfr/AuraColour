@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { sendColorAnalysisResults, sendAdminAlert } from '@/lib/notifications'
+import { sendColorAnalysisResults, sendAdminAlert } from '@/lib/email-notifications'
+import { handleFormData } from '@/lib/file-upload'
 import OpenAI from 'openai'
 import { generate, gemini15Flash } from '@/lib/genkit'
 
@@ -10,7 +11,15 @@ const openai = new OpenAI({
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
+    const contentType = request.headers.get('content-type')
+    let body: any
+    
+    if (contentType?.includes('multipart/form-data')) {
+      body = await handleFormData(request)
+    } else {
+      body = await request.json()
+    }
+    
     const { imageUrl, userId, email, name } = body
     
     if (!imageUrl) {
