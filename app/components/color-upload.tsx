@@ -1,24 +1,41 @@
 'use client'
 
 import { useState } from 'react'
+import { uploadImage } from '@/lib/supabase/storage'
+import ImageUpload from './ImageUpload'
 
-export default function ColorUpload() {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+interface ColorUploadProps {
+  onAnalysisComplete?: (result: any) => void
+}
+
+export default function ColorUpload({ onAnalysisComplete }: ColorUploadProps) {
+  const [imageUrl, setImageUrl] = useState<string | null>(null)
   const [analyzing, setAnalyzing] = useState(false)
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (file) {
-      const reader = new FileReader()
-      reader.onload = (e) => setSelectedImage(e.target?.result as string)
-      reader.readAsDataURL(file)
-    }
+  const handleImageUpload = (url: string) => {
+    setImageUrl(url)
   }
 
-  const analyzeImage = () => {
+  const analyzeImage = async () => {
+    if (!imageUrl) return
+    
     setAnalyzing(true)
-    // Simulate analysis
-    setTimeout(() => setAnalyzing(false), 3000)
+    try {
+      const response = await fetch('/api/color-analysis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ imageUrl })
+      })
+      
+      const result = await response.json()
+      if (onAnalysisComplete) {
+        onAnalysisComplete(result)
+      }
+    } catch (error) {
+      console.error('Analysis failed:', error)
+    } finally {
+      setAnalyzing(false)
+    }
   }
 
   return (
@@ -26,30 +43,11 @@ export default function ColorUpload() {
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl font-bold mb-8">Upload Your Photo</h2>
         
-        <div className="border-2 border-dashed border-gray-600 rounded-lg p-12 mb-8">
-          {selectedImage ? (
-            <img src={selectedImage} alt="Uploaded" className="max-w-sm mx-auto rounded-lg" />
-          ) : (
-            <div>
-              <p className="text-gray-400 mb-4">Upload a clear photo of yourself in natural lighting</p>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                className="hidden"
-                id="image-upload"
-              />
-              <label
-                htmlFor="image-upload"
-                className="bg-purple-600 text-white px-6 py-3 rounded-lg cursor-pointer hover:bg-purple-700"
-              >
-                Choose Photo
-              </label>
-            </div>
-          )}
+        <div className="max-w-md mx-auto mb-8">
+          <ImageUpload onUpload={handleImageUpload} />
         </div>
 
-        {selectedImage && (
+        {imageUrl && (
           <button
             onClick={analyzeImage}
             disabled={analyzing}

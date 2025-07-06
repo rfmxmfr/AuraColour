@@ -1,41 +1,13 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isVisible, setIsVisible] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY
-      
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false)
-      } else {
-        setIsVisible(true)
-      }
-      
-      setLastScrollY(currentScrollY)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [lastScrollY])
 
   return (
-    <motion.nav 
-      className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/20 shadow-lg"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ 
-        opacity: isVisible ? 1 : 0, 
-        y: isVisible ? 0 : -100 
-      }}
-      transition={{ duration: 0.3 }}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/20 shadow-lg">
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -55,6 +27,9 @@ export default function Navbar() {
             <Link href="/contact" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
               Contact
             </Link>
+            <Link href="/quick-wins" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
+              Demo
+            </Link>
           </div>
           
           <button 
@@ -68,12 +43,7 @@ export default function Navbar() {
         </div>
         
         {isMobileMenuOpen && (
-          <motion.div 
-            className="md:hidden mt-4 py-4 border-t border-gray-100"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-          >
+          <div className="md:hidden mt-4 py-4 border-t border-gray-100">
             <div className="space-y-4">
               <Link href="/" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium">
                 Home
@@ -87,6 +57,9 @@ export default function Navbar() {
               <Link href="/contact" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium">
                 Contact
               </Link>
+              <Link href="/quick-wins" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium">
+                Demo
+              </Link>
               <Link 
                 href="/questionnaire"
                 className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full"
@@ -94,9 +67,9 @@ export default function Navbar() {
                 Get Started
               </Link>
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
-    </motion.nav>
+    </nav>
   )
 }

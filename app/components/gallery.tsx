@@ -10,28 +10,32 @@ export default function Gallery() {
 
   const services = [
     {
-      title: "Color Analysis",
-      description: "Discover your perfect color palette with our comprehensive seasonal color analysis.",
+      title: "12-Season Color Analysis",
+      price: "£75",
+      description: "A service to determine an individual's optimal color palette based on their natural coloring.",
       image: "https://i0.wp.com/www.lesbonsplansdemodange.com/wp-content/uploads/2020/04/cercle-chromatique.jpg?w=500&ssl=1",
-      link: "/12-season-analysis"
+      link: "/services/color-analysis"
     },
     {
-      title: "Style Consultation", 
-      description: "Get personalized styling advice tailored to your unique preferences and lifestyle.",
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070",
-      link: "/style-consultation"
-    },
-    {
-      title: "Virtual Wardrobe",
-      description: "Transform your closet with strategic wardrobe planning and organization services.",
+      title: "Virtual Wardrobe Curation",
+      price: "£100", 
+      description: "A service to help clients organize, optimize, and plan their existing wardrobe virtually.",
       image: "https://i.pinimg.com/736x/eb/4b/80/eb4b8075c2fb78868ba8e2b4b5a0f0d0.jpg",
-      link: "/virtual-wardrobe-curation"
+      link: "/services/virtual-wardrobe"
     },
     {
-      title: "Personal Shopping",
-      description: "Curated shopping experience tailored to your style, budget, and color palette.",
+      title: "Personal Shopping Service",
+      price: "£150",
+      description: "A service providing guided shopping assistance to help clients acquire new clothing and accessories.",
       image: "http://www.charlotteloves.co.uk/wp-content/uploads/2017/03/corporate_styling.jpg",
-      link: "/personal-shopping-service"
+      link: "/services/personal-shopping"
+    },
+    {
+      title: "Style Evolution Coaching",
+      price: "£300",
+      description: "A comprehensive style transformation program with ongoing support.",
+      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070",
+      link: "/services/style-coaching"
     }
   ]
 
@@ -100,17 +104,36 @@ export default function Gallery() {
                 </div>
               </div>
               <div className="p-6 pt-10 text-center">
+                <div className="mb-2">
+                  <span className="text-2xl font-bold text-purple-600">{service.price}</span>
+                </div>
                 <h3 className="text-xl font-bold mb-3 text-gray-900">{service.title}</h3>
                 <p className="text-gray-600 mb-6 text-sm leading-relaxed">{service.description}</p>
-                <a 
-                  href={service.link} 
-                  className="inline-flex items-center text-purple-600 hover:text-purple-700 font-semibold text-sm transition-colors duration-200"
-                >
-                  Learn More
-                  <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
+                <div className="space-y-3">
+                  <a 
+                    href={service.link} 
+                    className="inline-flex items-center text-purple-600 hover:text-purple-700 font-semibold text-sm transition-colors duration-200"
+                  >
+                    Learn More
+                    <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                  <div className="flex gap-2">
+                    <a 
+                      href="/questionnaire" 
+                      className="flex-1 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-semibold rounded-lg hover:shadow-lg transition-all duration-200"
+                    >
+                      Book Service
+                    </a>
+                    <a 
+                      href="/questionnaire" 
+                      className="flex-1 px-4 py-2 border border-purple-600 text-purple-600 text-sm font-semibold rounded-lg hover:bg-purple-50 transition-all duration-200"
+                    >
+                      Take Quiz
+                    </a>
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}

@@ -57,10 +57,10 @@ export default function ColorAnalysisHero() {
               transition={{ delay: 0.6 }}
             >
               <a
-                href="/questionnaire"
+                href="/services"
                 className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-200"
               >
-                Start Analysis
+                View Services
                 <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -111,12 +111,7 @@ export default function ColorAnalysisHero() {
                   ))}
                 </div>
                 
-                <div className="text-center pt-4">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/30 backdrop-blur-md rounded-full border border-white/20">
-                    <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-pulse"></div>
-                    <span className="text-sm font-medium text-gray-700">AI Analysis Complete</span>
-                  </div>
-                </div>
+
               </div>
             </div>
           </motion.div>

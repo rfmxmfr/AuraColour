@@ -87,16 +87,12 @@ export default function AboutPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <div className="w-80 h-80 bg-gradient-to-br from-purple-100 to-pink-100 rounded-3xl flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-24 h-24 bg-white rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg">
-                    <svg className="w-12 h-12 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <p className="text-gray-600 text-sm">Tania's Photo</p>
-                  <p className="text-gray-400 text-xs mt-2">Coming Soon</p>
-                </div>
+              <div className="w-80 h-80 bg-gradient-to-br from-purple-100 to-pink-100 rounded-3xl overflow-hidden shadow-lg">
+                <img
+                  src="/Tania.jpeg"
+                  alt="Tania Hernando Crespo"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </motion.div>
           </div>
