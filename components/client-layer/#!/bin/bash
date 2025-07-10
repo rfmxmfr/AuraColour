@@ -1,0 +1,61 @@
+#!/bin/bash
+
+set -e
+
+echo "🔍 Checking for existing x64 .NET SDK..."
+
+DOTNET_PATH="/usr/local/share/dotnet/dotnet"
+if [ ! -x "$DOTNET_PATH" ]; then
+    echo "❌ x64 .NET SDK not found at $DOTNET_PATH"
+    echo "➡️  Downloading and installing latest x64 .NET SDK..."
+
+    curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/local/share/dotnet --architecture x64
+else
+    echo "✅ Found x64 .NET SDK at $DOTNET_PATH"
+fi
+
+echo "🔗 Ensuring /usr/local/share/dotnet is in your PATH..."
+
+if ! grep -q '/usr/local/share/dotnet' ~/.zshrc; then
+    echo 'export PATH="/usr/local/share/dotnet:$PATH"' >> ~/.zshrc
+    export PATH="/usr/local/share/dotnet:$PATH"
+    echo "✅ Added to PATH in ~/.zshrc"
+else
+    echo "✅ Already in PATH"
+fi
+
+echo "📝 Configuring VS Code to use the correct dotnet host..."
+
+VSCODE_SETTINGS_DIR="$HOME/Library/Application Support/Code/User"
+SETTINGS_FILE="$VSCODE_SETTINGS_DIR/settings.json"
+
+if [ ! -f "$SETTINGS_FILE" ]; then
+    mkdir -p "$VSCODE_SETTINGS_DIR"
+    echo "{}" > "$SETTINGS_FILE"
+fi
+
+if ! command -v jq &> /dev/null; then
+    echo "jq not found. Installing jq for JSON manipulation..."
+    if command -v brew &> /dev/null; then
+        brew install jq
+    else
+        echo "❌ Homebrew not found. Please install jq manually: https://stedolan.github.io/jq/download/"
+        exit 1
+    fi
+fi
+
+TMP_FILE=$(mktemp)
+jq --arg path "$DOTNET_PATH" '
+    .["dotnetAcquisitionExtension.existingDotnetPath"] = [
+        {
+            "extensionId": "ms-dotnettools.csharp",
+            "path": $path
+        }
+    ]
+' "$SETTINGS_FILE" > "$TMP_FILE" && mv "$TMP_FILE" "$SETTINGS_FILE"
+
+echo "✅ VS Code settings updated."
+
+echo ""
+echo "🎉 Setup complete!"
+echo "👉 Please restart VS Code and your terminal for all changes to take effect."
