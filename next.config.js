@@ -19,7 +19,16 @@ const nextConfig = {
     '192.168.0.79',
     'localhost',
     '127.0.0.1'
-  ]
+  ],
+  // Performance optimizations
+  images: {
+    domains: ['pgguceafqdxtjzisfofk.supabase.co'],
+    formats: ['image/webp', 'image/avif'],
+  },
+  // PWA support
+  experimental: {
+    optimizeCss: true,
+  }
 };
 
 module.exports = nextConfig;
