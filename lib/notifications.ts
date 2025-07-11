@@ -80,3 +80,15 @@ export function handleApiError(error: unknown, fallbackMessage = "An error occur
   showNotification("error", errorMessage)
   return errorMessage
 }
+
+export async function sendClientConfirmation(data: any) {
+  // Placeholder for client confirmation email
+  console.log('Sending client confirmation:', data)
+  return { success: true }
+}
+
+export async function sendAdminAlert(data: any) {
+  // Placeholder for admin alert email
+  console.log('Sending admin alert:', data)
+  return { success: true }
+}

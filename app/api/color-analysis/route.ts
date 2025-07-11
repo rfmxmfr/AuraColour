@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabase/server'
 import { sendColorAnalysisResults, sendAdminAlert } from '@/lib/email-notifications'
 import { handleFormData } from '@/lib/file-upload'
 import OpenAI from 'openai'
-import { generate, gemini15Flash } from '@/lib/genkit'
+// import { generate, gemini15Flash } from '@/lib/genkit'
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -32,19 +32,11 @@ export async function POST(request: NextRequest) {
     let analysis = {}
     let aiProvider = 'none'
     
-    // Try Genkit/Gemini
-    if (process.env.GOOGLE_AI_API_KEY) {
-      try {
-        const genkitResponse = await generate(gemini15Flash, `${prompt}\n\nAnalyze the image at: ${imageUrl}`)
-        analysis = JSON.parse(genkitResponse.text || '{}')
-        aiProvider = 'genkit'
-      } catch (error) {
-        console.error('Genkit failed, trying OpenAI:', error)
-      }
-    }
+    // Genkit disabled - using OpenAI only
+    // TODO: Implement Google AI direct API call
     
-    // Fallback to OpenAI if Genkit failed
-    if (!analysis.season && process.env.OPENAI_API_KEY) {
+    // Use OpenAI for analysis
+    if (process.env.OPENAI_API_KEY) {
       try {
         const openaiResponse = await openai.chat.completions.create({
           model: "gpt-4o-mini",

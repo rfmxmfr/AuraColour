@@ -17,15 +17,20 @@ export default function LoginPage() {
     
     try {
       const supabase = createClient()
+      console.log('Attempting login with:', email)
+      
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password
       })
       
       if (error) {
-        alert('Invalid credentials')
+        console.error('Auth error:', error)
+        alert(`Login failed: ${error.message}`)
         return
       }
+      
+      console.log('Auth success, user ID:', data.user?.id)
       
       // Save login if remember me is checked
       if (rememberMe) {
@@ -35,16 +40,19 @@ export default function LoginPage() {
       }
       
       // Check if user is admin
-      const { data: profile } = await supabase
+      const { data: profile, error: profileError } = await supabase
         .from('profiles')
         .select('role')
         .eq('id', data.user.id)
         .single()
       
+      console.log('Profile data:', profile)
+      console.log('Profile error:', profileError)
+      
       if (profile?.role === 'admin') {
         window.location.href = '/admin'
       } else {
-        alert('Admin access required')
+        alert(`Access denied. Role: ${profile?.role || 'none'}`)
       }
     } catch (error) {
       alert('Login failed')
@@ -80,7 +88,7 @@ export default function LoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 bg-white/50 border border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-4 py-3 bg-white text-black border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-500"
                 placeholder="Enter your email"
                 required
               />
@@ -95,7 +103,7 @@ export default function LoginPage() {
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 pr-12 bg-white/50 border border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-full px-4 py-3 pr-12 bg-white text-black border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-500"
                   placeholder="Enter password"
                   required
                 />
