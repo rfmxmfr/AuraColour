@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
-import { generate, gemini15Flash } from '@/lib/genkit'
+// import { generate, gemini15Flash } from '@/lib/genkit'
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -38,16 +38,9 @@ export async function POST(request: NextRequest) {
       console.error('OpenAI error:', error)
     }
 
-    // Genkit/Gemini Analysis
+    // Genkit/Gemini Analysis (disabled for now)
     let genkitResult = null
-    try {
-      if (process.env.GOOGLE_AI_API_KEY) {
-        const genkitResponse = await generate(gemini15Flash, `${prompt}\n\nAnalyze the image at: ${imageUrl}`)
-        genkitResult = JSON.parse(genkitResponse.text || '{}')
-      }
-    } catch (error) {
-      console.error('Genkit error:', error)
-    }
+    // TODO: Implement Google AI direct API call
 
     return NextResponse.json({
       openai: openaiResult,

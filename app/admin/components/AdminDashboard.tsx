@@ -34,7 +34,10 @@ export default function AdminDashboard() {
     conversionRate: 0,
     orders: [],
     customers: [],
-    services: []
+    services: [],
+    contactSubmissions: [],
+    monthlyStats: [],
+    recentActivity: []
   })
   const [loading, setLoading] = useState(true)
   const [editingReport, setEditingReport] = useState<string | null>(null)
@@ -73,7 +76,10 @@ export default function AdminDashboard() {
         customers: users || [],
         services: [
           { title: '12-Season Color Analysis', description: 'Professional color analysis', price: '£75.00' }
-        ]
+        ],
+        contactSubmissions: [],
+        monthlyStats: [],
+        recentActivity: []
       })
     } catch (error) {
       console.error('Failed to load dashboard data:', error)

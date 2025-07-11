@@ -115,7 +115,7 @@ export default function EnhancedAdminDashboard() {
   }
 
   const generateRecentActivity = (questionnaires: any[], contacts: any[]) => {
-    const activities = []
+    const activities: Array<{type: string, message: string, time: string, icon: string}> = []
     
     questionnaires.slice(0, 5).forEach(q => {
       activities.push({
