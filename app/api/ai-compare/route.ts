@@ -38,9 +38,16 @@ export async function POST(request: NextRequest) {
       console.error('OpenAI error:', error)
     }
 
-    // Genkit/Gemini Analysis (disabled for now)
+    // Genkit/Gemini Analysis (disabled due to build issues)
     let genkitResult = null
-    // TODO: Implement Google AI direct API call
+    // try {
+    //   if (process.env.GOOGLE_AI_API_KEY && generate && gemini15Flash) {
+    //     const genkitResponse = await generate(gemini15Flash, `${prompt}\n\nAnalyze the image at: ${imageUrl}`)
+    //     genkitResult = JSON.parse(genkitResponse.text || '{}')
+    //   }
+    // } catch (error) {
+    //   console.error('Genkit error:', error)
+    // }
 
     return NextResponse.json({
       openai: openaiResult,

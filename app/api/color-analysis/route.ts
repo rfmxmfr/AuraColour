@@ -29,11 +29,19 @@ export async function POST(request: NextRequest) {
     const prompt = "Analyze this person's skin tone, hair color, and eye color to determine their seasonal color palette (Spring, Summer, Autumn, or Winter). Return only a JSON object with: season, confidence (0-100), undertone, and top 5 recommended colors as hex codes."
     
     // Try Genkit first, fallback to OpenAI
-    let analysis = {}
+    let analysis: any = {}
     let aiProvider = 'none'
     
-    // Genkit disabled - using OpenAI only
-    // TODO: Implement Google AI direct API call
+    // Genkit disabled for build compatibility
+    // if (process.env.GOOGLE_AI_API_KEY) {
+    //   try {
+    //     const genkitResponse = await generate(gemini15Flash, `${prompt}\n\nAnalyze the image at: ${imageUrl}`)
+    //     analysis = JSON.parse(genkitResponse.text || '{}')
+    //     aiProvider = 'genkit'
+    //   } catch (error) {
+    //     console.error('Genkit failed, trying OpenAI:', error)
+    //   }
+    // }
     
     // Use OpenAI for analysis
     if (process.env.OPENAI_API_KEY) {

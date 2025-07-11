@@ -1,0 +1,78 @@
+# Page snapshot
+
+```yaml
+- navigation:
+  - link "AuraColor":
+    - /url: /
+  - link "Home":
+    - /url: /
+  - link "Services":
+    - /url: /services
+  - link "About":
+    - /url: /about
+  - link "Contact":
+    - /url: /contact
+- heading "Style Questionnaire" [level=1]
+- paragraph: Discover your perfect color palette in just a few steps
+- text: 1 Skin Tone 2 Hair Color 3 Eye Color 4 Style 5 Photos Step 1 of 5 0% Complete
+- heading "What is your skin tone?" [level=2]
+- radio "Very fair with pink undertones"
+- text: Very fair with pink undertones
+- radio "Fair with neutral undertones"
+- text: Fair with neutral undertones
+- radio "Medium with warm undertones"
+- text: Medium with warm undertones
+- radio "Medium with cool undertones"
+- text: Medium with cool undertones
+- radio "Deep with warm undertones"
+- text: Deep with warm undertones
+- radio "Deep with cool undertones"
+- text: Deep with cool undertones
+- button "Previous" [disabled]
+- button "Next" [disabled]
+- contentinfo:
+  - link "AuraColor":
+    - /url: /
+  - paragraph: Discover the colors that make you look effortlessly radiant with our professional color analysis.
+  - heading "Stay Updated" [level=3]
+  - paragraph: Get style tips and exclusive offers.
+  - textbox "Enter your email"
+  - button "Subscribe"
+  - heading "Services" [level=3]
+  - list:
+    - listitem:
+      - link "Color Analysis":
+        - /url: /color-analysis
+    - listitem:
+      - link "Style Consultation":
+        - /url: /services
+    - listitem:
+      - link "Personal Shopping":
+        - /url: /services
+  - heading "Company" [level=3]
+  - list:
+    - listitem:
+      - link "About":
+        - /url: /about
+    - listitem:
+      - link "Contact":
+        - /url: /contact
+    - listitem:
+      - link "Privacy Policy":
+        - /url: "#"
+  - paragraph: © 2024 AuraColor. All rights reserved.
+  - link:
+    - /url: "#"
+    - img
+  - link:
+    - /url: "#"
+    - img
+  - link:
+    - /url: "#"
+    - img
+- button "Give feedback": 💬
+- region "Notifications alt+T"
+- button "Open Next.js Dev Tools":
+  - img
+- alert
+```

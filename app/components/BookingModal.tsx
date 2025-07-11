@@ -35,13 +35,17 @@ export default function BookingModal({ isOpen, onClose, answers, serviceType }: 
           ...formData,
           answers: answers || {},
           photoUrls: photoUrls,
-          serviceType: serviceType || '12-Season Color Analysis'
+          serviceType: serviceType || '12-Season Color Analysis',
+          success_url: `${window.location.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+          cancel_url: `${window.location.origin}/questionnaire`
         })
       })
 
       const data = await response.json()
 
       if (data.success) {
+        // Store session ID for post-payment processing
+        localStorage.setItem('stripe_session_id', data.session_id)
         window.location.href = data.checkout_url
       } else {
         alert('Booking failed. Please try again.')

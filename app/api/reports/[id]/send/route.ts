@@ -4,15 +4,18 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function POST(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  const params = await context.params
   try {
-    const { id } = await params
     const supabase = await createClient()
     
     const { data: report } = await supabase
       .from('analyst_reports')
       .select('*, questionnaire_submissions(*)')
-      .eq('id', id)
+      .eq('id', params.id)
       .single()
 
     if (!report) {
@@ -32,7 +35,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     await supabase
       .from('analyst_reports')
       .update({ status: 'sent' })
-      .eq('id', id)
+      .eq('id', params.id)
 
     return NextResponse.json({ success: true })
   } catch (error) {

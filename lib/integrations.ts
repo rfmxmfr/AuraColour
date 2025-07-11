@@ -53,3 +53,10 @@ export async function sendSMS(to: string, message: string): Promise<boolean> {
     return false
   }
 }
+
+// Placeholder for push notifications
+export async function sendPushNotification(message: string, userId?: string): Promise<boolean> {
+  console.log('Push notification:', message, userId)
+  // TODO: Implement actual push notification service
+  return true
+}

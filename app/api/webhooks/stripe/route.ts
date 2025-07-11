@@ -4,7 +4,7 @@ import { Resend } from 'resend'
 import { createClient } from '@/lib/supabase/server'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-12-18.acacia'
+  apiVersion: '2025-06-30.basil'
 })
 
 const resend = new Resend(process.env.RESEND_API_KEY)

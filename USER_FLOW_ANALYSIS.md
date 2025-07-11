@@ -4,7 +4,7 @@
 
 ### Primary User Journey: Color Analysis Service
 ```
-Landing Page → Services → Questionnaire → Photo Upload → Booking → Payment → Results
+Landing Page → Services → Questionnaire → Photo Upload → Booking → Payment → Results {cm:2025-07-11}
      ↓            ↓           ↓             ↓           ↓         ↓         ↓
   Hero CTA    Take Quiz   5 Questions   3 Photos   Contact    Stripe   Email
 ```
@@ -107,7 +107,7 @@ Landing → Mini Quiz (2 questions) → Instant Preview → Full Analysis Upsell
 
 ### User Testing Sessions:
 - 5 users per week testing new flows
-- Screen recording and think-aloud protocol
+- Screen recording and think-aloud protocol {cm:2025-07-11}
 - Focus on mobile and desktop experiences
 - Test with different demographics
 

@@ -1,15 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 
-export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function GET(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  const params = await context.params
   try {
-    const { id } = await params
     const supabase = await createClient()
     
     const { data: report } = await supabase
       .from('analyst_reports')
       .select('*')
-      .eq('id', id)
+      .eq('id', params.id)
       .single()
 
     if (!report) {
@@ -36,9 +39,12 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function PUT(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  const params = await context.params
   try {
-    const { id } = await params
     const reportData = await request.json()
     const supabase = await createClient()
 
@@ -52,7 +58,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
         ai_analysis: reportData,
         updated_at: new Date().toISOString()
       })
-      .eq('id', id)
+      .eq('id', params.id)
 
     if (error) throw error
 
