@@ -1,0 +1,39 @@
+{
+  "services": {
+    "colorAnalysis": "Anàlisi de Color",
+    "personalShopping": "Compres Personals",
+    "stylistCoaching": "Assessoria d'Estilista",
+    "virtualWardrobe": "Armari Virtual",
+    "giftVouchers": "Vals de Regal"
+  },
+  "seasons": {
+    "deepWinter": "Hivern Profund",
+    "brightWinter": "Hivern Brillant",
+    "coolWinter": "Hivern Fred",
+    "clearSpring": "Primavera Clara",
+    "warmSpring": "Primavera Càlida",
+    "lightSpring": "Primavera Suau",
+    "coolSummer": "Estiu Fred",
+    "lightSummer": "Estiu Suau",
+    "softSummer": "Estiu Suau",
+    "deepAutumn": "Tardor Profunda",
+    "warmAutumn": "Tardor Càlida",
+    "softAutumn": "Tardor Suau"
+  },
+  "navigation": {
+    "home": "Inici",
+    "services": "Serveis",
+    "about": "Sobre nosaltres",
+    "contact": "Contacte",
+    "book": "Reservar"
+  },
+  "common": {
+    "loading": "Carregant...",
+    "submit": "Enviar",
+    "cancel": "Cancel·lar",
+    "next": "Següent",
+    "previous": "Anterior",
+    "price": "Preu",
+    "currency": "€"
+  }
+}

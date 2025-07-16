@@ -1,0 +1,32 @@
+{
+	"folders": [
+		{
+			"name": "app",
+			"path": "../app"
+		},
+		{
+			"name": "hooks",
+			"path": "../hooks"
+		},
+		{
+			"name": "lib",
+			"path": "."
+		},
+		{
+			"name": "public",
+			"path": "../public"
+		},
+		{
+			"name": "styles",
+			"path": "../styles"
+		},
+		{
+			"name": "components",
+			"path": "../components"
+		},
+		{
+			"path": "../../auracolor-admin"
+		}
+	],
+	"settings": {}
+}

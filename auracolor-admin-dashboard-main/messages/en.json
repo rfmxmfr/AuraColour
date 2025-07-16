@@ -1,0 +1,39 @@
+{
+  "services": {
+    "colorAnalysis": "Color Analysis",
+    "personalShopping": "Personal Shopping",
+    "stylistCoaching": "Stylist Coaching",
+    "virtualWardrobe": "Virtual Wardrobe",
+    "giftVouchers": "Gift Vouchers"
+  },
+  "seasons": {
+    "deepWinter": "Deep Winter",
+    "brightWinter": "Bright Winter",
+    "coolWinter": "Cool Winter",
+    "clearSpring": "Clear Spring",
+    "warmSpring": "Warm Spring",
+    "lightSpring": "Light Spring",
+    "coolSummer": "Cool Summer",
+    "lightSummer": "Light Summer",
+    "softSummer": "Soft Summer",
+    "deepAutumn": "Deep Autumn",
+    "warmAutumn": "Warm Autumn",
+    "softAutumn": "Soft Autumn"
+  },
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "book": "Book Now"
+  },
+  "common": {
+    "loading": "Loading...",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "next": "Next",
+    "previous": "Previous",
+    "price": "Price",
+    "currency": "£"
+  }
+}

@@ -1,0 +1,1 @@
+Every 5 minors changes it need to commit and push it every 2 majors changes a commit push , a test run and deploy.

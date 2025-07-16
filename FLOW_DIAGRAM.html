@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Portfolio - Flow Diagram</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: #0f0f0f; color: #fff; padding: 20px; }
+        .flow-container { max-width: 1600px; margin: 0 auto; }
+        .flow-title { text-align: center; font-size: 3rem; margin-bottom: 40px; color: #F7E7CE; }
+        .flow-section { margin-bottom: 60px; }
+        .section-title { font-size: 2rem; color: #F7E7CE; margin-bottom: 30px; text-align: center; }
+        .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .flow-box { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border: 2px solid #F7E7CE; border-radius: 15px; padding: 25px; text-align: center; position: relative; transition: transform 0.3s; }
+        .flow-box:hover { transform: translateY(-5px); }
+        .flow-icon { font-size: 3rem; margin-bottom: 15px; }
+        .flow-title-box { font-size: 1.3rem; font-weight: bold; color: #F7E7CE; margin-bottom: 10px; }
+        .flow-desc { color: #ccc; line-height: 1.5; }
+        .arrow { text-align: center; font-size: 2rem; color: #F7E7CE; margin: 20px 0; }
+        .user-journey { display: flex; flex-direction: column; gap: 30px; }
+        .journey-step { display: flex; align-items: center; gap: 30px; padding: 25px; background: rgba(247,231,206,0.1); border-radius: 15px; border-left: 5px solid #F7E7CE; }
+        .step-number { background: #F7E7CE; color: #000; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; }
+        .step-content { flex: 1; }
+        .step-title { font-size: 1.4rem; color: #F7E7CE; margin-bottom: 8px; }
+        .step-desc { color: #ccc; }
+        .admin-flow { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; align-items: start; }
+        .admin-sidebar-flow { background: #2c3e50; padding: 25px; border-radius: 15px; }
+        .admin-main-flow { background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; }
+        .data-flow { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .data-box { background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 10px; text-align: center; min-width: 150px; }
+        .flow-arrow { font-size: 2rem; color: #F7E7CE; }
+        .api-endpoints { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .endpoint { background: #1a1a1a; border: 1px solid #F7E7CE; border-radius: 10px; padding: 20px; }
+        .method { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-bottom: 10px; }
+        .get { background: #28a745; color: white; }
+        .post { background: #007bff; color: white; }
+        .put { background: #ffc107; color: black; }
+        .delete { background: #dc3545; color: white; }
+    </style>
+</head>
+<body>
+    <div class="flow-container">
+        <h1 class="flow-title">🔄 Artist Portfolio - Application Flow Diagram</h1>
+        
+        <!-- User Journey Flow -->
+        <div class="flow-section">
+            <h2 class="section-title">👤 User Journey Flow</h2>
+            <div class="user-journey">
+                <div class="journey-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Landing Page Visit</div>
+                        <div class="step-desc">User arrives at homepage, sees hero section with color analysis offer</div>
+                    </div>
+                </div>
+                <div class="journey-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Service Discovery</div>
+                        <div class="step-desc">Browse services: 12-Season Analysis, Virtual Wardrobe, Personal Shopping</div>
+                    </div>
+                </div>
+                <div class="journey-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Questionnaire</div>
+                        <div class="step-desc">Complete style questionnaire with personal preferences and lifestyle</div>
+                    </div>
+                </div>
+                <div class="journey-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Photo Upload</div>
+                        <div class="step-desc">Upload required photos for color analysis (face, hair, wrist)</div>
+                    </div>
+                </div>
+                <div class="journey-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">Analysis Processing</div>
+                        <div class="step-desc">Professional analysts review submission using 12-season system</div>
+                    </div>
+                </div>
+                <div class="journey-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <div class="step-title">Results Delivery</div>
+                        <div class="step-desc">Receive comprehensive color analysis report via email within 48 hours</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Application Architecture -->
+        <div class="flow-section">
+            <h2 class="section-title">🏗️ Application Architecture</h2>
+            <div class="flow-grid">
+                <div class="flow-box">
+                    <div class="flow-icon">🌐</div>
+                    <div class="flow-title-box">Frontend (Next.js)</div>
+                    <div class="flow-desc">React components with Framer Motion animations, Tailwind CSS styling, responsive design</div>
+                </div>
+                <div class="flow-box">
+                    <div class="flow-icon">⚡</div>
+                    <div class="flow-title-box">API Routes</div>
+                    <div class="flow-desc">Next.js API endpoints for authentication, color analysis, services, and admin functions</div>
+                </div>
+                <div class="flow-box">
+                    <div class="flow-icon">🗄️</div>
+                    <div class="flow-title-box">Database</div>
+                    <div class="flow-desc">User data, questionnaire responses, analysis results, appointment scheduling</div>
+                </div>
+                <div class="flow-box">
+                    <div class="flow-icon">🔐</div>
+                    <div class="flow-title-box">Authentication</div>
+                    <div class="flow-desc">User registration, login, admin access control, session management</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Flow -->
+        <div class="flow-section">
+            <h2 class="section-title">📊 Data Flow</h2>
+            <div class="data-flow">
+                <div class="data-box">
+                    <div style="font-size: 1.5rem; margin-bottom: 10px;">📝</div>
+                    <div>User Input</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="data-box">
+                    <div style="font-size: 1.5rem; margin-bottom: 10px;">🔄</div>
+                    <div>API Processing</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="data-box">
+                    <div style="font-size: 1.5rem; margin-bottom: 10px;">💾</div>
+                    <div>Database Storage</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="data-box">
+                    <div style="font-size: 1.5rem; margin-bottom: 10px;">👨‍💼</div>
+                    <div>Admin Review</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="data-box">
+                    <div style="font-size: 1.5rem; margin-bottom: 10px;">📧</div>
+                    <div>Results Delivery</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Endpoints -->
+        <div class="flow-section">
+            <h2 class="section-title">🔌 API Endpoints</h2>
+            <div class="api-endpoints">
+                <div class="endpoint">
+                    <div class="method post">POST</div>
+                    <div style="color: #F7E7CE; font-weight: bold; margin-bottom: 8px;">/api/auth/login</div>
+                    <div style="color: #ccc; font-size: 0.9rem;">User authentication</div>
+                </div>
+                <div class="endpoint">
+                    <div class="method post">POST</div>
+                    <div style="color: #F7E7CE; font-weight: bold; margin-bottom: 8px;">/api/color-analysis</div>
+                    <div style="color: #ccc; font-size: 0.9rem;">Submit color analysis request</div>
+                </div>
+                <div class="endpoint">
+                    <div class="method get">GET</div>
+                    <div style="color: #F7E7CE; font-weight: bold; margin-bottom: 8px;">/api/mini-analysis</div>
+                    <div style="color: #ccc; font-size: 0.9rem;">Quick color assessment</div>
+                </div>
+                <div class="endpoint">
+                    <div class="method post">POST</div>
+                    <div style="color: #F7E7CE; font-weight: bold; margin-bottom: 8px;">/api/personal-shopper</div>
+                    <div style="color: #ccc; font-size: 0.9rem;">Personal shopping service</div>
+                </div>
+                <div class="endpoint">
+                    <div class="method get">GET</div>
+                    <div style="color: #F7E7CE; font-weight: bold; margin-bottom: 8px;">/api/admin/users</div>
+                    <div style="color: #ccc; font-size: 0.9rem;">Admin user management</div>
+                </div>
+                <div class="endpoint">
+                    <div class="method post">POST</div>
+                    <div style="color: #F7E7CE; font-weight: bold; margin-bottom: 8px;">/api/stylist-coaching</div>
+                    <div style="color: #ccc; font-size: 0.9rem;">Style consultation booking</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Flow -->
+        <div class="flow-section">
+            <h2 class="section-title">👨‍💼 Admin Dashboard Flow</h2>
+            <div class="admin-flow">
+                <div class="admin-sidebar-flow">
+                    <h3 style="color: #F7E7CE; margin-bottom: 20px;">Admin Navigation</h3>
+                    <ul style="list-style: none; color: #ccc; line-height: 2;">
+                        <li>📊 Dashboard Overview</li>
+                        <li>👥 User Management</li>
+                        <li>🛍️ Service Management</li>
+                        <li>📅 Appointment Scheduling</li>
+                        <li>🎨 Color Analysis Queue</li>
+                        <li>📈 Analytics & Reports</li>
+                        <li>⚙️ System Settings</li>
+                    </ul>
+                </div>
+                <div class="admin-main-flow">
+                    <h3 style="color: #F7E7CE; margin-bottom: 20px;">Dashboard Features</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <div style="background: rgba(247,231,206,0.1); padding: 15px; border-radius: 8px;">
+                            <div style="color: #F7E7CE; font-weight: bold;">User Statistics</div>
+                            <div style="color: #ccc; font-size: 0.9rem;">Total users: 1,234</div>
+                        </div>
+                        <div style="background: rgba(247,231,206,0.1); padding: 15px; border-radius: 8px;">
+                            <div style="color: #F7E7CE; font-weight: bold;">Active Appointments</div>
+                            <div style="color: #ccc; font-size: 0.9rem;">Scheduled: 56</div>
+                        </div>
+                        <div style="background: rgba(247,231,206,0.1); padding: 15px; border-radius: 8px;">
+                            <div style="color: #F7E7CE; font-weight: bold;">Analysis Queue</div>
+                            <div style="color: #ccc; font-size: 0.9rem;">Pending: 12</div>
+                        </div>
+                        <div style="background: rgba(247,231,206,0.1); padding: 15px; border-radius: 8px;">
+                            <div style="color: #F7E7CE; font-weight: bold;">Completed Analyses</div>
+                            <div style="color: #ccc; font-size: 0.9rem;">Total: 789</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Component Structure -->
+        <div class="flow-section">
+            <h2 class="section-title">🧩 Component Structure</h2>
+            <div class="flow-grid">
+                <div class="flow-box">
+                    <div class="flow-icon">🏠</div>
+                    <div class="flow-title-box">Layout Components</div>
+                    <div class="flow-desc">Navbar, Footer, ThemeProvider, ClientProvider</div>
+                </div>
+                <div class="flow-box">
+                    <div class="flow-icon">🎨</div>
+                    <div class="flow-title-box">Hero Components</div>
+                    <div class="flow-desc">ColorAnalysisHero, ServiceHero, FloatingParticles</div>
+                </div>
+                <div class="flow-box">
+                    <div class="flow-icon">📋</div>
+                    <div class="flow-title-box">Form Components</div>
+                    <div class="flow-desc">ColorUpload, ContactForm, Questionnaire</div>
+                </div>
+                <div class="flow-box">
+                    <div class="flow-icon">🖼️</div>
+                    <div class="flow-title-box">Display Components</div>
+                    <div class="flow-desc">Gallery, Portfolio, ProcessSteps, SeasonResults</div>
+                </div>
+                <div class="flow-box">
+                    <div class="flow-icon">🔧</div>
+                    <div class="flow-title-box">UI Components</div>
+                    <div class="flow-desc">Button, Card, Dialog, Input, Select (Radix UI)</div>
+                </div>
+                <div class="flow-box">
+                    <div class="flow-icon">⚡</div>
+                    <div class="flow-title-box">Animation Components</div>
+                    <div class="flow-desc">MotionWrapper, ParallaxSection, ThemeParticles</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

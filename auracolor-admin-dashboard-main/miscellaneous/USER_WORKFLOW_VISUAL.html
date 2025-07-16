@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraColor User Workflow</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+        .workflow-section { margin: 30px 0; }
+        h1, h2 { color: #333; }
+        .mermaid { background: white; padding: 20px; border-radius: 8px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 AuraColor User Workflow & Architecture</h1>
+        
+        <div class="workflow-section">
+            <h2>System Architecture</h2>
+            <div class="mermaid">
+                graph TB
+                    subgraph "Frontend Layer"
+                        A[Next.js 15 App] --> B[React Components]
+                        B --> C[Tailwind CSS]
+                        B --> D[Radix UI]
+                    end
+                    
+                    subgraph "Authentication"
+                        E[Supabase Auth] --> F[User Sessions]
+                        F --> G[Protected Routes]
+                    end
+                    
+                    subgraph "Core Services"
+                        H[Color Analysis Engine] --> I[Google AI Genkit]
+                        J[Photo Upload] --> K[Supabase Storage]
+                        L[Payment Processing] --> M[Stripe API]
+                    end
+                    
+                    subgraph "Database Layer"
+                        N[Supabase PostgreSQL] --> O[User Profiles]
+                        N --> P[Analysis Results]
+                        N --> Q[Booking System]
+                        N --> R[Payment Records]
+                    end
+                    
+                    A --> E
+                    A --> H
+                    A --> J
+                    A --> L
+                    H --> N
+                    J --> K
+                    L --> N
+            </div>
+        </div>
+
+        <div class="workflow-section">
+            <h2>User Journey Flow</h2>
+            <div class="mermaid">
+                flowchart TD
+                    A[🏠 Landing Page] --> B{User Action}
+                    B -->|Take Quiz| C[📝 Questionnaire]
+                    B -->|Browse Services| D[🛍️ Services Page]
+                    B -->|Contact| E[📧 Contact Form]
+                    
+                    C --> F[Q1: Skin Tone]
+                    F --> G[Q2: Eye Color]
+                    G --> H[Q3: Hair Color]
+                    H --> I[Q4: Style Preference]
+                    I --> J[Q5: Lifestyle]
+                    
+                    J --> K[📸 Photo Upload]
+                    K --> L[Upload 3 Photos]
+                    L --> M{Photos Valid?}
+                    M -->|❌ No| N[Error Message] --> L
+                    M -->|✅ Yes| O[👀 Review]
+                    
+                    O --> P[💳 Payment]
+                    P --> Q[Stripe Checkout]
+                    Q --> R{Payment Success?}
+                    R -->|❌ No| S[Payment Error] --> P
+                    R -->|✅ Yes| T[⏳ Processing]
+                    
+                    T --> U[🤖 AI Analysis]
+                    U --> V[📊 Generate Results]
+                    V --> W[📧 Email Notification]
+                    W --> X[🎨 Results Page]
+                    
+                    D --> Y[Service Details] --> C
+                    E --> Z[✅ Contact Confirmation]
+            </div>
+        </div>
+
+        <div class="workflow-section">
+            <h2>Data Processing Flow</h2>
+            <div class="mermaid">
+                sequenceDiagram
+                    participant U as User
+                    participant F as Frontend
+                    participant A as API
+                    participant AI as AI Engine
+                    participant DB as Database
+                    participant S as Storage
+                    participant P as Payment
+                    
+                    U->>F: Fill Questionnaire
+                    F->>A: Submit Form Data
+                    A->>DB: Store Responses
+                    
+                    U->>F: Upload Photos
+                    F->>S: Store Images
+                    S->>A: Return URLs
+                    
+                    U->>F: Proceed to Payment
+                    F->>P: Create Payment Intent
+                    P->>F: Payment Success
+                    
+                    F->>A: Trigger Analysis
+                    A->>AI: Process Data + Photos
+                    AI->>A: Return Analysis
+                    A->>DB: Store Results
+                    A->>U: Send Email Notification
+            </div>
+        </div>
+
+        <div class="workflow-section">
+            <h2>Component Hierarchy</h2>
+            <div class="mermaid">
+                graph TD
+                    A[App Layout] --> B[Navigation]
+                    A --> C[Main Content]
+                    A --> D[Footer]
+                    
+                    C --> E[Landing Page]
+                    C --> F[Questionnaire]
+                    C --> G[Services]
+                    C --> H[Results]
+                    C --> I[Admin]
+                    
+                    F --> J[Question Cards]
+                    F --> K[Photo Upload]
+                    F --> L[Progress Bar]
+                    F --> M[Payment Form]
+                    
+                    H --> N[Color Palette]
+                    H --> O[Recommendations]
+                    H --> P[Download PDF]
+                    
+                    I --> Q[User Management]
+                    I --> R[Analytics]
+                    I --> S[Settings]
+            </div>
+        </div>
+
+        <div class="workflow-section">
+            <h2>Database Relationships</h2>
+            <div class="mermaid">
+                erDiagram
+                    USERS ||--o{ PROFILES : has
+                    USERS ||--o{ QUESTIONNAIRE_RESPONSES : submits
+                    USERS ||--o{ ANALYSIS_RESULTS : receives
+                    USERS ||--o{ PAYMENTS : makes
+                    
+                    QUESTIONNAIRE_RESPONSES ||--|| ANALYSIS_RESULTS : generates
+                    PAYMENTS ||--|| ANALYSIS_RESULTS : unlocks
+                    
+                    USERS {
+                        uuid id PK
+                        string email
+                        timestamp created_at
+                    }
+                    
+                    PROFILES {
+                        uuid id PK
+                        uuid user_id FK
+                        string full_name
+                        string phone
+                        json preferences
+                    }
+                    
+                    QUESTIONNAIRE_RESPONSES {
+                        uuid id PK
+                        uuid user_id FK
+                        string skin_tone
+                        string eye_color
+                        string hair_color
+                        array photos
+                        timestamp created_at
+                    }
+                    
+                    ANALYSIS_RESULTS {
+                        uuid id PK
+                        uuid user_id FK
+                        uuid questionnaire_id FK
+                        string season_type
+                        json color_palette
+                        json recommendations
+                        float confidence_score
+                        timestamp created_at
+                    }
+                    
+                    PAYMENTS {
+                        uuid id PK
+                        uuid user_id FK
+                        string stripe_payment_id
+                        integer amount
+                        string status
+                        timestamp created_at
+                    }
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+    </script>
+</body>
+</html>

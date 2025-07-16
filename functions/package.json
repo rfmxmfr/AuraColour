@@ -1,0 +1,16 @@
+{
+  "name": "functions",
+  "scripts": {
+    "build": "npm run build:next && npm run build:firebase",
+    "build:next": "cd .. && npm run build",
+    "build:firebase": "cp -r ../.next/standalone ./nextjs && cp -r ../public ./nextjs/public && cp -r ../.next/static ./nextjs/.next/static"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^12.0.0",
+    "firebase-functions": "^5.0.0"
+  }
+}

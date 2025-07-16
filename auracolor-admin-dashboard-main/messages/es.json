@@ -1,0 +1,39 @@
+{
+  "services": {
+    "colorAnalysis": "Análisis de Color",
+    "personalShopping": "Compras Personales",
+    "stylistCoaching": "Asesoría de Estilista",
+    "virtualWardrobe": "Armario Virtual",
+    "giftVouchers": "Vales de Regalo"
+  },
+  "seasons": {
+    "deepWinter": "Invierno Profundo",
+    "brightWinter": "Invierno Brillante",
+    "coolWinter": "Invierno Frío",
+    "clearSpring": "Primavera Clara",
+    "warmSpring": "Primavera Cálida",
+    "lightSpring": "Primavera Suave",
+    "coolSummer": "Verano Frío",
+    "lightSummer": "Verano Suave",
+    "softSummer": "Verano Suave",
+    "deepAutumn": "Otoño Profundo",
+    "warmAutumn": "Otoño Cálido",
+    "softAutumn": "Otoño Suave"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "book": "Reservar"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "price": "Precio",
+    "currency": "€"
+  }
+}

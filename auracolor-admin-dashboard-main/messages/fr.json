@@ -1,0 +1,39 @@
+{
+  "services": {
+    "colorAnalysis": "Analyse de Couleur",
+    "personalShopping": "Shopping Personnel",
+    "stylistCoaching": "Conseil en Stylisme",
+    "virtualWardrobe": "Garde-robe Virtuelle",
+    "giftVouchers": "Bons Cadeaux"
+  },
+  "seasons": {
+    "deepWinter": "Hiver Profond",
+    "brightWinter": "Hiver Brillant",
+    "coolWinter": "Hiver Froid",
+    "clearSpring": "Printemps Clair",
+    "warmSpring": "Printemps Chaud",
+    "lightSpring": "Printemps Doux",
+    "coolSummer": "Été Froid",
+    "lightSummer": "Été Doux",
+    "softSummer": "Été Doux",
+    "deepAutumn": "Automne Profond",
+    "warmAutumn": "Automne Chaud",
+    "softAutumn": "Automne Doux"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "services": "Services",
+    "about": "À propos",
+    "contact": "Contact",
+    "book": "Réserver"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "price": "Prix",
+    "currency": "€"
+  }
+}

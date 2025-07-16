@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Portfolio - UI Mockup</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; background: #0a0a0a; color: #fff; }
+        .mockup-container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .mockup-title { text-align: center; font-size: 2.5rem; margin-bottom: 30px; color: #F7E7CE; }
+        .screen { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-radius: 20px; padding: 20px; margin-bottom: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 15px; margin-bottom: 20px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-link { color: #F7E7CE; text-decoration: none; padding: 8px 16px; border-radius: 20px; transition: all 0.3s; }
+        .nav-link:hover { background: rgba(247,231,206,0.2); }
+        .hero-section { text-align: center; padding: 80px 20px; background: radial-gradient(circle at center, rgba(247,231,206,0.1) 0%, transparent 70%); }
+        .hero-title { font-size: 4rem; font-weight: bold; margin-bottom: 20px; }
+        .gradient-text { background: linear-gradient(45deg, #ff6b9d, #c44569, #6c5ce7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-subtitle { font-size: 1.5rem; color: #ccc; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .cta-button { display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #F7E7CE 0%, #E6C7A6 50%, #D4AF37 100%); color: #000; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.2rem; transition: transform 0.3s; }
+        .cta-button:hover { transform: translateY(-3px); }
+        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; padding: 60px 20px; }
+        .step { text-align: center; padding: 30px; background: rgba(255,255,255,0.05); border-radius: 15px; border: 1px solid rgba(247,231,206,0.2); }
+        .step-number { font-size: 3rem; color: rgba(247,231,206,0.3); font-weight: bold; margin-bottom: 15px; }
+        .step-icon { width: 60px; height: 60px; background: #F7E7CE; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.5rem; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; padding: 40px 20px; }
+        .service-card { background: rgba(255,255,255,0.08); border-radius: 20px; overflow: hidden; transition: transform 0.3s; }
+        .service-card:hover { transform: translateY(-10px); }
+        .service-image { height: 200px; background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; }
+        .service-content { padding: 25px; }
+        .service-price { color: #F7E7CE; font-size: 2rem; font-weight: bold; float: right; }
+        .admin-panel { background: #f8f9fa; color: #333; border-radius: 15px; padding: 20px; }
+        .admin-sidebar { width: 250px; background: #2c3e50; padding: 20px; border-radius: 10px; margin-right: 20px; }
+        .admin-main { flex: 1; background: white; padding: 30px; border-radius: 10px; }
+        .admin-layout { display: flex; }
+        .stat-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 10px; text-align: center; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+    <div class="mockup-container">
+        <h1 class="mockup-title">🎨 Artist Portfolio - UI Interface Mockup</h1>
+        
+        <!-- Main Landing Page -->
+        <div class="screen">
+            <div class="navbar">
+                <div style="font-size: 1.5rem; font-weight: bold; color: #F7E7CE;">Aura Color</div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="#" class="nav-link">Services ▼</a>
+                    <a href="#" class="nav-link">About</a>
+                    <a href="#" class="nav-link">Contact</a>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <span style="color: #ccc;">English ▼</span>
+                    <button style="background: none; border: none; color: #F7E7CE; font-size: 1.2rem;">☀️</button>
+                </div>
+            </div>
+            
+            <div class="hero-section">
+                <h2 style="color: #ccc; font-size: 1.2rem; margin-bottom: 20px;">Professional Color Analysis</h2>
+                <h1 class="hero-title">
+                    Discover Your<br>
+                    <span class="gradient-text">Perfect Colors</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Unlock your personal style with Tania's professional 12-season color analysis. From wardrobe curation to personal shopping, let Aura Color guide your transformation.
+                </p>
+                <a href="#" class="cta-button">✨ Discover Your Color Story <span style="background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 15px; margin-left: 10px; font-size: 0.9rem;">FREE</span></a>
+            </div>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">✓</div>
+                    <h3 style="margin-bottom: 15px; color: #F7E7CE;">Complete Style Questionnaire</h3>
+                    <p style="color: #ccc;">Answer targeted questions about your preferences and lifestyle.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">📷</div>
+                    <h3 style="margin-bottom: 15px; color: #F7E7CE;">Upload Professional Photos</h3>
+                    <p style="color: #ccc;">Submit specific photos for accurate undertone analysis.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">🎨</div>
+                    <h3 style="margin-bottom: 15px; color: #F7E7CE;">Professional Analysis</h3>
+                    <p style="color: #ccc;">Certified analysts determine your seasonal color palette.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <div class="step-icon">📧</div>
+                    <h3 style="margin-bottom: 15px; color: #F7E7CE;">Receive Detailed Results</h3>
+                    <p style="color: #ccc;">Get comprehensive report within 48 hours.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Page -->
+        <div class="screen">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 30px; color: #F7E7CE;">Services Overview</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">12-Season Color Wheel</div>
+                    <div class="service-content">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                            <h3 style="color: #F7E7CE; font-size: 1.5rem;">12-Season Color Analysis</h3>
+                            <div>
+                                <div class="service-price">$149</div>
+                                <div style="color: #ccc; font-size: 0.9rem;">90 minutes</div>
+                            </div>
+                        </div>
+                        <p style="color: #ccc; margin-bottom: 20px;">Discover your perfect color palette with comprehensive seasonal analysis.</p>
+                        <ul style="color: #ccc; margin-bottom: 25px; line-height: 1.6;">
+                            <li>✓ Personal color consultation</li>
+                            <li>✓ Seasonal color palette</li>
+                            <li>✓ Digital color guide</li>
+                            <li>✓ Makeup recommendations</li>
+                        </ul>
+                        <button style="width: 100%; padding: 12px; background: #F7E7CE; color: #000; border: none; border-radius: 25px; font-weight: bold;">Book Consultation</button>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">Virtual Wardrobe</div>
+                    <div class="service-content">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                            <h3 style="color: #F7E7CE; font-size: 1.5rem;">Virtual Wardrobe Curation</h3>
+                            <div>
+                                <div class="service-price">$299</div>
+                                <div style="color: #ccc; font-size: 0.9rem;">2-3 hours</div>
+                            </div>
+                        </div>
+                        <p style="color: #ccc; margin-bottom: 20px;">Transform your existing wardrobe with expert styling.</p>
+                        <ul style="color: #ccc; margin-bottom: 25px; line-height: 1.6;">
+                            <li>✓ Closet audit & organization</li>
+                            <li>✓ Outfit combinations</li>
+                            <li>✓ Gap analysis</li>
+                            <li>✓ Digital lookbook</li>
+                        </ul>
+                        <button style="width: 100%; padding: 12px; background: #F7E7CE; color: #000; border: none; border-radius: 25px; font-weight: bold;">Book Consultation</button>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">Personal Shopping</div>
+                    <div class="service-content">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                            <h3 style="color: #F7E7CE; font-size: 1.5rem;">Personal Shopping Service</h3>
+                            <div>
+                                <div class="service-price">$399</div>
+                                <div style="color: #ccc; font-size: 0.9rem;">Full day</div>
+                            </div>
+                        </div>
+                        <p style="color: #ccc; margin-bottom: 20px;">Curated shopping experience tailored to your style and budget.</p>
+                        <ul style="color: #ccc; margin-bottom: 25px; line-height: 1.6;">
+                            <li>✓ Pre-shopping consultation</li>
+                            <li>✓ Personal shopping session</li>
+                            <li>✓ Styling & fitting</li>
+                            <li>✓ Budget optimization</li>
+                        </ul>
+                        <button style="width: 100%; padding: 12px; background: #F7E7CE; color: #000; border: none; border-radius: 25px; font-weight: bold;">Book Consultation</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div class="screen admin-panel">
+            <h2 style="text-align: center; font-size: 2rem; margin-bottom: 30px; color: #333;">Admin Dashboard</h2>
+            <div class="admin-layout">
+                <div class="admin-sidebar">
+                    <h3 style="color: #F7E7CE; margin-bottom: 20px;">Admin Panel</h3>
+                    <ul style="list-style: none; color: #ccc;">
+                        <li style="padding: 10px 0; border-bottom: 1px solid #34495e;">📊 Dashboard</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #34495e;">👥 Users</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #34495e;">🛍️ Services</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #34495e;">📅 Appointments</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #34495e;">🎨 Color Analysis</li>
+                        <li style="padding: 10px 0;">⚙️ Settings</li>
+                    </ul>
+                </div>
+                <div class="admin-main">
+                    <h1 style="font-size: 2.5rem; margin-bottom: 30px;">Dashboard</h1>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>Total Users</h3>
+                            <p style="font-size: 2.5rem; font-weight: bold; margin-top: 10px;">1,234</p>
+                        </div>
+                        <div class="stat-card" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                            <h3>Appointments</h3>
+                            <p style="font-size: 2.5rem; font-weight: bold; margin-top: 10px;">56</p>
+                        </div>
+                        <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <h3>Color Analyses</h3>
+                            <p style="font-size: 2.5rem; font-weight: bold; margin-top: 10px;">789</p>
+                        </div>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 25px; border-radius: 10px;">
+                        <h3 style="margin-bottom: 20px;">Recent Activity</h3>
+                        <div style="border-bottom: 1px solid #dee2e6; padding: 10px 0; display: flex; justify-content: space-between;">
+                            <span>New user registration</span>
+                            <span style="color: #6c757d;">2 hours ago</span>
+                        </div>
+                        <div style="border-bottom: 1px solid #dee2e6; padding: 10px 0; display: flex; justify-content: space-between;">
+                            <span>Color analysis completed</span>
+                            <span style="color: #6c757d;">4 hours ago</span>
+                        </div>
+                        <div style="padding: 10px 0; display: flex; justify-content: space-between;">
+                            <span>Appointment booked</span>
+                            <span style="color: #6c757d;">6 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
