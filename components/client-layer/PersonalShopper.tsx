@@ -22,7 +22,7 @@ export default function PersonalShopper() {
       const result = await PersonalShopperService.getProducts({ })
       setProducts(result.products)
     } catch (error) {
-      // logger.error(('apos;Failed to load products::'apos;, error)
+      logger.error(('apos;Failed to load products::'apos;, error)
     } finally {
       setLoading(false)
     }
@@ -38,7 +38,7 @@ export default function PersonalShopper() {
       alert(`Order confirmed! Order ID: ${ result.orderId }`)
       setCart([])
     } catch (error) {
-      // logger.error(('apos;Checkout failed::'apos;, error)
+      logger.error(('apos;Checkout failed::'apos;, error)
     }
   }
 

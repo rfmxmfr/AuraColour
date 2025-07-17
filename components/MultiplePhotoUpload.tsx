@@ -85,7 +85,7 @@ export default function MultiplePhotoUpload({
         onUploadComplete(urls)
       }
     } catch (error) {
-      // logger.error(('apos;Upload failed::'apos;, error)
+      logger.error(('apos;Upload failed::'apos;, error)
     } finally {
       setUploading(false)
     }

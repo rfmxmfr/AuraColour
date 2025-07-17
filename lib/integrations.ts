@@ -8,7 +8,7 @@ export async function sendSlackNotification(message: string, webhookUrl: string)
     })
     return response.ok
   } catch (error) {
-    // logger.error('Slack notification failed:', error)
+    logger.error('Slack notification failed:', error)
     return false
   }
 }
@@ -22,7 +22,7 @@ export async function sendDiscordNotification(message: string, webhookUrl: strin
     })
     return response.ok
   } catch (error) {
-    // logger.error('Discord notification failed:', error)
+    logger.error('Discord notification failed:', error)
     return false
   }
 }
@@ -50,7 +50,7 @@ export async function sendSMS(to: string, message: string): Promise<boolean> {
     
     return response.ok
   } catch (error) {
-    // logger.error('SMS failed:', error)
+    logger.error('SMS failed:', error)
     return false
   }
 }

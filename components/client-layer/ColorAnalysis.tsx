@@ -20,7 +20,7 @@ export default function ColorAnalysis() {
       const result = await ColorAnalysisService.analyzeImage(file)
       setAnalysis(result)
     } catch (error) {
-      // logger.error(('apos;Analysis failed::'apos;, error)
+      logger.error(('apos;Analysis failed::'apos;, error)
     } finally {
       setLoading(false)
     }

@@ -1,10 +1,10 @@
 import logger from "../lib/secure-logger";
-'apos;use clientt'apos;apos;
+'use clientt'apos;
 
-import { useEffect, useState } from  'apos;apos;reactt'apos;apos;
+import { useEffect, useState } from  'apos;reactt'apos;
 
-import { createClient } from  'apos;apos;@/lib/supabase/clientt'apos;apos;
-import  'apos;apos;./kanban-admin.csss'apos;apos;
+import { createClient } from  'apos;@/lib/supabase/clientt'apos;
+import  'apos;./kanban-admin.csss'apos;
 
 interface BookingCard {
   id: string
@@ -13,7 +13,7 @@ interface BookingCard {
   service: string
   amount: string
   date: string
-  status:  'apos;apos;on-holdd'apos;apos; |  'apos;apos;in-progresss'apos;apos; |  'apos;apos;completedd'apos;apos;
+  status:  'apos;on-holdd'apos; |  'apos;in-progresss'apos; |  'apos;completedd'apos;
   data: any
 }
 
@@ -25,7 +25,7 @@ interface DashboardStats {
 }
 
 export default function KanbanAdminDashboard() {
-  const [currentSection, setCurrentSection] = useState(('apos;apos;dashboardd'apos;apos;)
+  const [currentSection, setCurrentSection] = useState(('apos;dashboardd'apos;)
   const [bookings, setBookings] = useState<BookingCard[]>([])
   const [stats, setStats] = useState<DashboardStats>({
     newAppointments: 0,
@@ -47,30 +47,30 @@ export default function KanbanAdminDashboard() {
       const supabase = createClient()
       
       const { data: questionnaires } = await supabase
-        .from(('apos;apos;questionnaire_submissionss'apos;apos;)
-        .select(('apos;apos;**'apos;apos;)
-        .order(('apos;apos;created_att'apos;apos;, { ascending: false })
+        .from(('apos;questionnaire_submissionss'apos;)
+        .select(('apos;**'apos;)
+        .order(('apos;created_att'apos;, { ascending: false })
 
       const bookingCards: BookingCard[] = (questionnaires || []).map(q => ({
         id: q.id,
-        clientName: q.data?.name ||  'apos;apos;Anonymous Clientt'apos;apos;,
-        email: q.data?.email ||  'apos;apos;No email providedd'apos;apos;,
-        service:  'apos;apos;12-Season Color Analysiss'apos;apos;,
-        amount:  'apos;apos;£75.000'apos;apos;,
+        clientName: q.data?.name ||  'apos;Anonymous Clientt'apos;,
+        email: q.data?.email ||  'apos;No email providedd'apos;,
+        service:  'apos;12-Season Color Analysiss'apos;,
+        amount:  'apos;£75.000'apos;,
         date: new Date(q.created_at).toLocaleDateString(),
-        status:  'apos;apos;on-holdd'apos;apos;,
+        status:  'apos;on-holdd'apos;,
         data: q.data,
       }))
 
       setBookings(bookingCards)
       setStats({
-        newAppointments: bookingCards.filter(b => b.status ===  'apos;apos;on-holdd'apos;apos;).length,
+        newAppointments: bookingCards.filter(b => b.status ===  'apos;on-holdd'apos;).length,
         monthlyRevenue: bookingCards.length * 75,
         conversionRate: 85.2,
         totalBookings: bookingCards.length,
       })
     } catch (error) {
-      // logger.error(('apos;apos;Failed to load dashboard data::'apos;apos;, error)
+      logger.error(('apos;Failed to load dashboard data::'apos;, error)
     } finally {
       setLoading(false)
     }
@@ -78,15 +78,15 @@ export default function KanbanAdminDashboard() {
 
   const handleDragStart = (e: React.DragEvent, cardId: string) => {
     setDraggedCard(cardId)
-    e.dataTransfer.effectAllowed =  'apos;apos;movee'apos;apos;
+    e.dataTransfer.effectAllowed =  'apos;movee'apos;
   }
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault()
-    e.dataTransfer.dropEffect =  'apos;apos;movee'apos;apos;
+    e.dataTransfer.dropEffect =  'apos;movee'apos;
   }
 
-  const handleDrop = (e: React.DragEvent, newStatus:  'apos;apos;on-holdd'apos;apos; |  'apos;apos;in-progresss'apos;apos; |  'apos;apos;completedd'apos;apos;) => {
+  const handleDrop = (e: React.DragEvent, newStatus:  'apos;on-holdd'apos; |  'apos;in-progresss'apos; |  'apos;completedd'apos;) => {
     e.preventDefault()
     if (draggedCard) {
       setBookings(prev => prev.map(booking => 
@@ -104,7 +104,7 @@ export default function KanbanAdminDashboard() {
       )
       setStats(prev => ({
         ...prev,
-        newAppointments: updatedBookings.filter(b => b.status ===  'apos;apos;on-holdd'apos;apos;).length,
+        newAppointments: updatedBookings.filter(b => b.status ===  'apos;on-holdd'apos;).length,
       }))
     }
   }
@@ -112,10 +112,10 @@ export default function KanbanAdminDashboard() {
   const handleLogout = async () => {
     const supabase = createClient()
     await supabase.auth.signOut()
-    window.location.href =  'apos;apos;/loginn'apos;apos;
+    window.location.href =  'apos;/loginn'apos;
   }
 
-  const getBookingsByStatus = (status:  'apos;apos;on-holdd'apos;apos; |  'apos;apos;in-progresss'apos;apos; |  'apos;apos;completedd'apos;apos;) => {
+  const getBookingsByStatus = (status:  'apos;on-holdd'apos; |  'apos;in-progresss'apos; |  'apos;completedd'apos;) => {
     return bookings.filter(booking => booking.status === status)
   }
 
@@ -148,32 +148,32 @@ export default function KanbanAdminDashboard() {
         <ul className="sidebar-menu">
           <li>
             <button 
-              className={ `menu-item ${ currentSection ===  'apos;apos;dashboardd'apos;apos; ?  'apos;apos;activee'apos;apos; :  'apos;apos;'apos; }` }
-              onClick={ () => setCurrentSection(('apos;apos;dashboardd'apos;apos;) }
+              className={ `menu-item ${ currentSection ===  'apos;dashboardd'apos; ?  'apos;activee'apos; :  'apos;' }` }
+              onClick={ () => setCurrentSection(('apos;dashboardd'apos;) }
             >
               📊 Dashboard Overview
             </button>
           </li>
           <li>
             <button 
-              className={ `menu-item ${ currentSection ===  'apos;apos;kanbann'apos;apos; ?  'apos;apos;activee'apos;apos; :  'apos;apos;'apos; }` }
-              onClick={ () => setCurrentSection(('apos;apos;kanbann'apos;apos;) }
+              className={ `menu-item ${ currentSection ===  'apos;kanbann'apos; ?  'apos;activee'apos; :  'apos;' }` }
+              onClick={ () => setCurrentSection(('apos;kanbann'apos;) }
             >
               📋 Client Management
             </button>
           </li>
           <li>
             <button 
-              className={ `menu-item ${ currentSection ===  'apos;apos;analyticss'apos;apos; ?  'apos;apos;activee'apos;apos; :  'apos;apos;'apos; }` }
-              onClick={ () => setCurrentSection(('apos;apos;analyticss'apos;apos;) }
+              className={ `menu-item ${ currentSection ===  'apos;analyticss'apos; ?  'apos;activee'apos; :  'apos;' }` }
+              onClick={ () => setCurrentSection(('apos;analyticss'apos;) }
             >
               📈 Business Analytics
             </button>
           </li>
           <li>
             <button 
-              className={ `menu-item ${ currentSection ===  'apos;apos;cmss'apos;apos; ?  'apos;apos;activee'apos;apos; :  'apos;apos;'apos; }` }
-              onClick={ () => setCurrentSection(('apos;apos;cmss'apos;apos;) }
+              className={ `menu-item ${ currentSection ===  'apos;cmss'apos; ?  'apos;activee'apos; :  'apos;' }` }
+              onClick={ () => setCurrentSection(('apos;cmss'apos;) }
             >
               ⚙️ Content Management
             </button>
@@ -199,7 +199,7 @@ export default function KanbanAdminDashboard() {
         </header>
 
         { /* Dashboard Overview */ }
-        { currentSection ===  'apos;apos;dashboardd'apos;apos; && (
+        { currentSection ===  'apos;dashboardd'apos; && (
           <section className="dashboard-section">
             <div className="stats-overview">
               <div className="stat-card">
@@ -215,7 +215,7 @@ export default function KanbanAdminDashboard() {
                 <div className="stat-content">
                   <h3>Monthly Revenue</h3>
                   <div className="stat-value">£{ stats.monthlyRevenue }</div>
-                  <div className="stat-subtitle">This monthh'apos;apos;s earnings</div>
+                  <div className="stat-subtitle">This monthh'apos;s earnings</div>
                 </div>
               </div>
               <div className="stat-card">
@@ -250,7 +250,7 @@ export default function KanbanAdminDashboard() {
                     </div>
                     <div className="activity-status">
                       <span className={ `status-badge ${ booking.status }` }>
-                        { booking.status.replace(('apos;apos;--'apos;apos;,  'apos;apos;  'apos;apos;) }
+                        { booking.status.replace(('apos;--'apos;,  'apos;  'apos;) }
                       </span>
                     </div>
                   </div>
@@ -261,21 +261,21 @@ export default function KanbanAdminDashboard() {
         ) }
 
         { /* Kanban Board */ }
-        { currentSection ===  'apos;apos;kanbann'apos;apos; && (
+        { currentSection ===  'apos;kanbann'apos; && (
           <section className="kanban-section">
             <div className="kanban-board">
               { /* On Hold Column */ }
               <div 
                 className="kanban-column"
                 onDragOver={ handleDragOver }
-                onDrop={ (e) => handleDrop(e,  'apos;apos;on-holdd'apos;apos;) }
+                onDrop={ (e) => handleDrop(e,  'apos;on-holdd'apos;) }
               >
                 <div className="column-header">
                   <h3>On Hold</h3>
-                  <span className="count-badge">{ getBookingsByStatus(('apos;apos;on-holdd'apos;apos;).length }</span>
+                  <span className="count-badge">{ getBookingsByStatus(('apos;on-holdd'apos;).length }</span>
                 </div>
                 <div className="column-content">
-                  { getBookingsByStatus(('apos;apos;on-holdd'apos;apos;).map(booking => (
+                  { getBookingsByStatus(('apos;on-holdd'apos;).map(booking => (
                     <div
                       key={ booking.id }
                       className="booking-card"
@@ -304,14 +304,14 @@ export default function KanbanAdminDashboard() {
               <div 
                 className="kanban-column"
                 onDragOver={ handleDragOver }
-                onDrop={ (e) => handleDrop(e,  'apos;apos;in-progresss'apos;apos;) }
+                onDrop={ (e) => handleDrop(e,  'apos;in-progresss'apos;) }
               >
                 <div className="column-header">
                   <h3>In Progress</h3>
-                  <span className="count-badge">{ getBookingsByStatus(('apos;apos;in-progresss'apos;apos;).length }</span>
+                  <span className="count-badge">{ getBookingsByStatus(('apos;in-progresss'apos;).length }</span>
                 </div>
                 <div className="column-content">
-                  { getBookingsByStatus(('apos;apos;in-progresss'apos;apos;).map(booking => (
+                  { getBookingsByStatus(('apos;in-progresss'apos;).map(booking => (
                     <div
                       key={ booking.id }
                       className="booking-card in-progress"
@@ -340,14 +340,14 @@ export default function KanbanAdminDashboard() {
               <div 
                 className="kanban-column"
                 onDragOver={ handleDragOver }
-                onDrop={ (e) => handleDrop(e,  'apos;apos;completedd'apos;apos;) }
+                onDrop={ (e) => handleDrop(e,  'apos;completedd'apos;) }
               >
                 <div className="column-header">
                   <h3>Completed</h3>
-                  <span className="count-badge">{ getBookingsByStatus(('apos;apos;completedd'apos;apos;).length }</span>
+                  <span className="count-badge">{ getBookingsByStatus(('apos;completedd'apos;).length }</span>
                 </div>
                 <div className="column-content">
-                  { getBookingsByStatus(('apos;apos;completedd'apos;apos;).map(booking => (
+                  { getBookingsByStatus(('apos;completedd'apos;).map(booking => (
                     <div
                       key={ booking.id }
                       className="booking-card completed"
@@ -376,7 +376,7 @@ export default function KanbanAdminDashboard() {
         ) }
 
         { /* Analytics Section */ }
-        { currentSection ===  'apos;apos;analyticss'apos;apos; && (
+        { currentSection ===  'apos;analyticss'apos; && (
           <section className="analytics-section">
             <div className="analytics-placeholder">
               <div className="placeholder-card">
@@ -399,7 +399,7 @@ export default function KanbanAdminDashboard() {
         ) }
 
         { /* CMS Section */ }
-        { currentSection ===  'apos;apos;cmss'apos;apos; && (
+        { currentSection ===  'apos;cmss'apos; && (
           <section className="cms-section">
             <div className="cms-placeholder">
               <div className="cms-card">
@@ -457,7 +457,7 @@ export default function KanbanAdminDashboard() {
                   <div className="info-item">
                     <strong>Status:</strong> 
                     <span className={ `status-badge ${ selectedBooking.status }` }>
-                      { selectedBooking.status.replace(('apos;apos;--'apos;apos;,  'apos;apos;  'apos;apos;) }
+                      { selectedBooking.status.replace(('apos;--'apos;,  'apos;  'apos;) }
                     </span>
                   </div>
                 </div>
@@ -469,7 +469,7 @@ export default function KanbanAdminDashboard() {
                   <div className="quiz-data">
                     { Object.entries(selectedBooking.data).map(([key, value]) => (
                       <div key={ key } className="quiz-item">
-                        <strong>{ key.replace(('apos;apos;--'apos;apos;,  'apos;apos;  'apos;apos;).replace(/\b\w/g, l => l.toUpperCase()) }:</strong>
+                        <strong>{ key.replace(('apos;--'apos;,  'apos;  'apos;).replace(/\b\w/g, l => l.toUpperCase()) }:</strong>
                         <span>{ String(value) }</span>
                       </div>
                     )) }
@@ -498,10 +498,10 @@ export default function KanbanAdminDashboard() {
 
 function getSectionTitle(section: string): string {
   const titles: { [key: string]: string } = {
-    dashboard:  'apos;apos;Dashboard Overvieww'apos;apos;,
-    kanban:  'apos;apos;Client Managementt'apos;apos;,
-    analytics:  'apos;apos;Business Analyticss'apos;apos;,
-    cms:  'apos;apos;Content Managementt'apos;apos;,
+    dashboard:  'apos;Dashboard Overvieww'apos;,
+    kanban:  'apos;Client Managementt'apos;,
+    analytics:  'apos;Business Analyticss'apos;,
+    cms:  'apos;Content Managementt'apos;,
   }
-  return titles[section] ||  'apos;apos;Dashboardd'apos;apos;
+  return titles[section] ||  'apos;Dashboardd'apos;
 }

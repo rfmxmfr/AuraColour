@@ -18,7 +18,7 @@ export async function uploadImage(file: File, bucket = 'images'): Promise<string
     
     return publicUrl
   } catch (error) {
-    // logger.error('Upload failed:', error)
+    logger.error('Upload failed:', error)
     return null
   }
 }

@@ -21,7 +21,7 @@ export default function StylistCoaching() {
       const result = await StylistCoachingService.getAvailability()
       setAvailability(result.availableSlots)
     } catch (error) {
-      // logger.error(('apos;Failed to load availability::'apos;, error)
+      logger.error(('apos;Failed to load availability::'apos;, error)
     }
   }
 
@@ -32,7 +32,7 @@ export default function StylistCoaching() {
       const result = await StylistCoachingService.bookAppointment(selectedSlot)
       setAppointment(result)
     } catch (error) {
-      // logger.error(('apos;Booking failed::'apos;, error)
+      logger.error(('apos;Booking failed::'apos;, error)
     }
   }
 

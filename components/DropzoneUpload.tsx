@@ -47,7 +47,7 @@ export default function DropzoneUpload({
       if (onUploadComplete) onUploadComplete(data.urls);
     } catch (error) {
       setUploadError(error instanceof Error ? error.message : "Upload failed");
-      // logger.error("Upload error:", error);
+      logger.error("Upload error:", error);
     } finally {
       setIsUploading(false);
     }

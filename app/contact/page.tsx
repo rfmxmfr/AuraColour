@@ -1,37 +1,37 @@
 "use client"
 
-import { motion } from  'apos;apos;framer-motionn'apos;apos;
-import { useState } from  'apos;apos;reactt'apos;apos;
+import { motion } from  'apos;framer-motionn'apos;
+import { useState } from  'apos;reactt'apos;
 
-import Footer from  'apos;apos;../components/footerr'apos;apos;
-import Navbar from  'apos;apos;../components/navbarr'apos;apos;
+import Footer from  'apos;../components/footerr'apos;
+import Navbar from  'apos;../components/navbarr'apos;
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name:  'apos;apos;'apos;,
-    email:  'apos;apos;'apos;,
-    subject:  'apos;apos;'apos;,
-    message:  'apos;apos;'apos;,
+    name:  'apos;',
+    email:  'apos;',
+    subject:  'apos;',
+    message:  'apos;',
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
     try {
-      const response = await fetch(('apos;apos;/api/contactt'apos;apos;, {
-        method:  'apos;apos;POSTT'apos;apos;,
-        headers: {  'apos;apos;Content-Typee'apos;apos;:  'apos;apos;application/jsonn'apos;apos; },
+      const response = await fetch(('apos;/api/contactt'apos;, {
+        method:  'apos;POSTT'apos;,
+        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
         body: JSON.stringify(formData),
       })
       
       if (response.ok) {
-        alert(('apos;apos;Message sent successfully! We\'apos;ll get back to you soon..'apos;apos;)
-        setFormData({ name:  'apos;apos;'apos;, email:  'apos;apos;'apos;, subject:  'apos;apos;'apos;, message:  'apos;apos;'apos; })
+        alert(('apos;Message sent successfully! We\'ll get back to you soon..'apos;)
+        setFormData({ name:  'apos;', email:  'apos;', subject:  'apos;', message:  'apos;' })
       } else {
-        alert(('apos;apos;Failed to send message. Please try again..'apos;apos;)
+        alert(('apos;Failed to send message. Please try again..'apos;)
       }
     } catch (error) {
-      alert(('apos;apos;Something went wrong. Please try again..'apos;apos;)
+      alert(('apos;Something went wrong. Please try again..'apos;)
     }
   }
 
@@ -65,7 +65,7 @@ export default function ContactPage() {
             animate={ { opacity: 1, y: 0 } }
             transition={ { duration: 0.8, delay: 0.2 } }
           >
-            Ready to discover your perfect colors? Wee'apos;apos;d love to hear from you.
+            Ready to discover your perfect colors? Wee'apos;d love to hear from you.
           </motion.p>
         </div>
       </section>

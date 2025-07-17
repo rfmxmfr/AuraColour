@@ -120,7 +120,7 @@ export default function DemoPage() {
                   amount={ 7500 } 
                   serviceName="12-Season Color Analysis"
                   onSuccess={ (id) => alert(`Payment successful! ID: ${ id }`) }
-                  onError={ (error) => // logger.error(error) }
+                  onError={ (error) => logger.error(error) }
                 />
               </div>
             ) }

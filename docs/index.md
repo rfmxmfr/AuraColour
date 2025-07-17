@@ -12,6 +12,8 @@ Welcome to the AuraColour documentation. This index provides links to all availa
 - [Configuration Guide](CONFIGURATION_GUIDE.md) - Environment and service setup
 - [Project Status](PROJECT_STATUS.md) - Current development status and roadmap
 - [README Updates](README_UPDATES.md) - Suggested updates for the main README
+- [Security Checklist](SECURITY_CHECKLIST.md) - Security best practices and requirements
+- [Security & Performance Checklist](SECURITY_PERFORMANCE_CHECKLIST.md) - Comprehensive security and performance guidelines
 
 ### Additional Resources
 
@@ -29,6 +31,8 @@ Welcome to the AuraColour documentation. This index provides links to all availa
 | Configuration Guide | Complete | July 2023 |
 | Project Status | Complete | July 2023 |
 | README Updates | Complete | July 2023 |
+| Security Checklist | Complete | July 2023 |
+| Security & Performance Checklist | Complete | July 2023 |
 
 ## How to Use This Documentation
 
@@ -37,6 +41,7 @@ Welcome to the AuraColour documentation. This index provides links to all availa
 - **DevOps/SysAdmins**: Refer to the [Configuration Guide](CONFIGURATION_GUIDE.md)
 - **Project Managers**: Check the [Project Status](PROJECT_STATUS.md)
 - **API Integrators**: Use the [API Documentation](API_DOCUMENTATION.md)
+- **Security Team**: Review the [Security Checklist](SECURITY_CHECKLIST.md)
 
 ## Contributing to Documentation
 
