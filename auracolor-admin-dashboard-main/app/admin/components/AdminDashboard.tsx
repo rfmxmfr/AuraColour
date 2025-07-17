@@ -1,9 +1,10 @@
-'use client'
+'use clientt'apos;
 
-import { useEffect, useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
-import ReportEditor from './ReportEditor'
-import './admin.css'
+import { createClient } from  'apos;@/lib/supabase/clientt'apos;
+import { useEffect, useState } from  'apos;reactt'apos;
+
+import ReportEditor from  'apos;./ReportEditorr'apos;
+import  'apos;./admin.csss'apos;
 
 interface DashboardData {
   totalRevenue: number
@@ -26,7 +27,7 @@ interface FilterState {
 }
 
 export default function AdminDashboard() {
-  const [currentSection, setCurrentSection] = useState('dashboard')
+  const [currentSection, setCurrentSection] = useState(('apos;dashboardd'apos;)
   const [dashboardData, setDashboardData] = useState<DashboardData>({
     totalRevenue: 0,
     totalOrders: 0,
@@ -37,7 +38,7 @@ export default function AdminDashboard() {
     services: [],
     contactSubmissions: [],
     monthlyStats: [],
-    recentActivity: []
+    recentActivity: [],
   })
   const [loading, setLoading] = useState(true)
   const [editingReport, setEditingReport] = useState<string | null>(null)
@@ -52,17 +53,17 @@ export default function AdminDashboard() {
       
       // Fetch confirmed bookings only
       const { data: bookings } = await supabase
-        .from('questionnaire_submissions')
-        .select('*')
-        .eq('payment_status', 'confirmed')
-        .order('created_at', { ascending: false })
+        .from(('apos;questionnaire_submissionss'apos;)
+        .select(('apos;**'apos;)
+        .eq(('apos;payment_statuss'apos;,  'apos;confirmedd'apos;)
+        .order(('apos;created_att'apos;, { ascending: false })
         .limit(10)
 
       // Fetch users
       const { data: users } = await supabase
-        .from('profiles')
-        .select('*')
-        .order('created_at', { ascending: false })
+        .from(('apos;profiless'apos;)
+        .select(('apos;**'apos;)
+        .order(('apos;created_att'apos;, { ascending: false })
 
       const totalBookings = bookings?.length || 0
       const totalRevenue = totalBookings * 75
@@ -75,14 +76,14 @@ export default function AdminDashboard() {
         orders: bookings || [],
         customers: users || [],
         services: [
-          { title: '12-Season Color Analysis', description: 'Professional color analysis', price: '£75.00' }
+          { title:  'apos;12-Season Color Analysiss'apos;, description:  'apos;Professional color analysiss'apos;, price:  'apos;£75.000'apos; },
         ],
         contactSubmissions: [],
         monthlyStats: [],
-        recentActivity: []
+        recentActivity: [],
       })
     } catch (error) {
-      console.error('Failed to load dashboard data:', error)
+      // console.error(('apos;Failed to load dashboard data::'apos;, error)
     } finally {
       setLoading(false)
     }
@@ -91,52 +92,52 @@ export default function AdminDashboard() {
   const handleLogout = async () => {
     const supabase = createClient()
     await supabase.auth.signOut()
-    window.location.href = '/login'
+    window.location.href =  'apos;/loginn'apos;
   }
 
   const getServiceAmount = (serviceType: string) => {
     const amounts: { [key: string]: string } = {
-      '12-Season Color Analysis': '75.00',
-      'Virtual Wardrobe Curation': '100.00',
-      'Personal Shopping Service': '150.00',
-      'Style Evolution Coaching': '300.00',
-      'Gift Vouchers': '75.00'
+       'apos;12-Season Color Analysiss'apos;:  'apos;75.000'apos;,
+       'apos;Virtual Wardrobe Curationn'apos;:  'apos;100.000'apos;,
+       'apos;Personal Shopping Servicee'apos;:  'apos;150.000'apos;,
+       'apos;Style Evolution Coachingg'apos;:  'apos;300.000'apos;,
+       'apos;Gift Voucherss'apos;:  'apos;75.000'apos;,
     }
-    return amounts[serviceType] || '75.00'
+    return amounts[serviceType] ||  'apos;75.000'apos;
   }
 
   const generateAnalysis = async (bookingId: string) => {
     try {
-      const response = await fetch('/api/generate-analysis', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ bookingId })
+      const response = await fetch(('apos;/api/generate-analysiss'apos;, {
+        method:  'apos;POSTT'apos;,
+        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+        body: JSON.stringify({ bookingId }),
       })
       
       const data = await response.json()
       
       if (data.success) {
-        alert('Analysis generated successfully!')
+        alert(('apos;Analysis generated successfully!!'apos;)
         loadDashboardData() // Refresh data
       } else {
-        alert('Failed to generate analysis')
+        alert(('apos;Failed to generate analysiss'apos;)
       }
     } catch (error) {
-      alert('Error generating analysis')
+      alert(('apos;Error generating analysiss'apos;)
     }
   }
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600" />
       </div>
     )
   }
 
   return (
     <div className="admin-layout">
-      {/* Sidebar */}
+      { /* Sidebar */ }
       <nav className="sidebar">
         <div className="sidebar-header">
           <h2>🎨 AuraColor</h2>
@@ -145,48 +146,48 @@ export default function AdminDashboard() {
         <ul className="sidebar-menu">
           <li>
             <button 
-              className={`menu-item ${currentSection === 'dashboard' ? 'active' : ''}`}
-              onClick={() => setCurrentSection('dashboard')}
+              className={ `menu-item ${ currentSection ===  'apos;dashboardd'apos; ?  'apos;activee'apos; :  'apos;' }` }
+              onClick={ () => setCurrentSection(('apos;dashboardd'apos;) }
             >
               📈 Dashboard
             </button>
           </li>
           <li>
             <button 
-              className={`menu-item ${currentSection === 'bookings' ? 'active' : ''}`}
-              onClick={() => setCurrentSection('bookings')}
+              className={ `menu-item ${ currentSection ===  'apos;bookingss'apos; ?  'apos;activee'apos; :  'apos;' }` }
+              onClick={ () => setCurrentSection(('apos;bookingss'apos;) }
             >
               🎯 Bookings
             </button>
           </li>
           <li>
             <button 
-              className={`menu-item ${currentSection === 'customers' ? 'active' : ''}`}
-              onClick={() => setCurrentSection('customers')}
+              className={ `menu-item ${ currentSection ===  'apos;customerss'apos; ?  'apos;activee'apos; :  'apos;' }` }
+              onClick={ () => setCurrentSection(('apos;customerss'apos;) }
             >
               👥 Customers
             </button>
           </li>
           <li>
             <button 
-              className={`menu-item ${currentSection === 'services' ? 'active' : ''}`}
-              onClick={() => setCurrentSection('services')}
+              className={ `menu-item ${ currentSection ===  'apos;servicess'apos; ?  'apos;activee'apos; :  'apos;' }` }
+              onClick={ () => setCurrentSection(('apos;servicess'apos;) }
             >
               🎨 Services
             </button>
           </li>
           <li>
             <button 
-              className={`menu-item ${currentSection === 'analytics' ? 'active' : ''}`}
-              onClick={() => setCurrentSection('analytics')}
+              className={ `menu-item ${ currentSection ===  'apos;analyticss'apos; ?  'apos;activee'apos; :  'apos;' }` }
+              onClick={ () => setCurrentSection(('apos;analyticss'apos;) }
             >
               📊 Analytics
             </button>
           </li>
           <li>
             <button 
-              className={`menu-item ${currentSection === 'settings' ? 'active' : ''}`}
-              onClick={() => setCurrentSection('settings')}
+              className={ `menu-item ${ currentSection ===  'apos;settingss'apos; ?  'apos;activee'apos; :  'apos;' }` }
+              onClick={ () => setCurrentSection(('apos;settingss'apos;) }
             >
               ⚙️ Settings
             </button>
@@ -194,13 +195,13 @@ export default function AdminDashboard() {
         </ul>
       </nav>
 
-      {/* Main Content */}
+      { /* Main Content */ }
       <main className="main-content">
-        {/* Header */}
+        { /* Header */ }
         <header className="admin-header">
-          <h1>{getSectionTitle(currentSection)}</h1>
+          <h1>{ getSectionTitle(currentSection) }</h1>
           <div className="header-actions">
-            <button className="btn btn--outline" onClick={handleLogout}>
+            <button className="btn btn--outline" onClick={ handleLogout }>
               🚪 Logout
             </button>
             <div className="user-menu">
@@ -209,8 +210,8 @@ export default function AdminDashboard() {
           </div>
         </header>
 
-        {/* Dashboard Section */}
-        {currentSection === 'dashboard' && (
+        { /* Dashboard Section */ }
+        { currentSection ===  'apos;dashboardd'apos; && (
           <section className="section active">
             <div className="stats-grid">
               <div className="stat-card">
@@ -218,7 +219,7 @@ export default function AdminDashboard() {
                   <h3>Total Revenue</h3>
                   <span className="stat-icon">💰</span>
                 </div>
-                <div className="stat-value">${dashboardData.totalRevenue}</div>
+                <div className="stat-value">${ dashboardData.totalRevenue }</div>
                 <div className="stat-change positive">↗ 46% from last month</div>
               </div>
               <div className="stat-card">
@@ -226,7 +227,7 @@ export default function AdminDashboard() {
                   <h3>Total Orders</h3>
                   <span className="stat-icon">📦</span>
                 </div>
-                <div className="stat-value">{dashboardData.totalOrders}</div>
+                <div className="stat-value">{ dashboardData.totalOrders }</div>
                 <div className="stat-change positive">↗ 66.7% from last month</div>
               </div>
               <div className="stat-card">
@@ -234,7 +235,7 @@ export default function AdminDashboard() {
                   <h3>Active Customers</h3>
                   <span className="stat-icon">👥</span>
                 </div>
-                <div className="stat-value">{dashboardData.activeCustomers}</div>
+                <div className="stat-value">{ dashboardData.activeCustomers }</div>
                 <div className="stat-change positive">↗ 25% growth</div>
               </div>
               <div className="stat-card">
@@ -242,7 +243,7 @@ export default function AdminDashboard() {
                   <h3>Conversion Rate</h3>
                   <span className="stat-icon">📊</span>
                 </div>
-                <div className="stat-value">{dashboardData.conversionRate}%</div>
+                <div className="stat-value">{ dashboardData.conversionRate }%</div>
                 <div className="stat-change positive">↗ 8.2% improvement</div>
               </div>
             </div>
@@ -251,18 +252,18 @@ export default function AdminDashboard() {
               <div className="dashboard-card">
                 <h3>Recent Orders</h3>
                 <div className="order-list">
-                  {dashboardData.orders.slice(0, 5).map((booking, index) => (
-                    <div key={index} className="order-row">
+                  { dashboardData.orders.slice(0, 5).map((booking, index) => (
+                    <div key={ index } className="order-row">
                       <div>
-                        <div className="order-customer">{booking.name || 'Anonymous'}</div>
-                        <div className="order-service">{booking.email || 'No email'}</div>
-                        <div className="order-date">{new Date(booking.created_at).toLocaleDateString()}</div>
+                        <div className="order-customer">{ booking.name ||  'apos;Anonymouss'apos; }</div>
+                        <div className="order-service">{ booking.email ||  'apos;No emaill'apos; }</div>
+                        <div className="order-date">{ new Date(booking.created_at).toLocaleDateString() }</div>
                       </div>
-                      <div style={{ textAlign: 'right' }}>
+                      <div style={ { textAlign:  'apos;rightt'apos; } }>
                         <span className="status status--success">£75.00</span>
                       </div>
                     </div>
-                  ))}
+                  )) }
                 </div>
               </div>
               <div className="dashboard-card">
@@ -284,10 +285,10 @@ export default function AdminDashboard() {
               </div>
             </div>
           </section>
-        )}
+        ) }
 
-        {/* Bookings Section */}
-        {currentSection === 'bookings' && (
+        { /* Bookings Section */ }
+        { currentSection ===  'apos;bookingss'apos; && (
           <section className="section active">
             <div className="section-header">
               <h2>Color Analysis Bookings</h2>
@@ -306,56 +307,56 @@ export default function AdminDashboard() {
                   </tr>
                 </thead>
                 <tbody>
-                  {dashboardData.orders.map((booking, index) => (
-                    <tr key={index}>
-                      <td>{booking.name || 'Anonymous'}</td>
-                      <td>{booking.email || 'No email'}</td>
-                      <td>{booking.service_type || 'Color Analysis'}</td>
-                      <td>£{getServiceAmount(booking.service_type)}</td>
-                      <td>{new Date(booking.created_at).toLocaleDateString()}</td>
+                  { dashboardData.orders.map((booking, index) => (
+                    <tr key={ index }>
+                      <td>{ booking.name ||  'apos;Anonymouss'apos; }</td>
+                      <td>{ booking.email ||  'apos;No emaill'apos; }</td>
+                      <td>{ booking.service_type ||  'apos;Color Analysiss'apos; }</td>
+                      <td>£{ getServiceAmount(booking.service_type) }</td>
+                      <td>{ new Date(booking.created_at).toLocaleDateString() }</td>
                       <td><span className="status status--success">Paid</span></td>
                       <td>
-                        <div style={{ display: 'flex', gap: '4px' }}>
+                        <div style={ { display:  'apos;flexx'apos;, gap:  'apos;4pxx'apos; } }>
                           <button
-                            onClick={() => generateAnalysis(booking.id)}
-                            style={{
-                              background: 'linear-gradient(135deg, rgb(102, 126, 234) 0%, rgb(118, 75, 162) 100%)',
-                              color: 'white',
-                              border: 'none',
-                              padding: '6px 12px',
-                              borderRadius: '4px',
-                              fontSize: '12px',
-                              cursor: 'pointer'
-                            }}
+                            onClick={ () => generateAnalysis(booking.id) }
+                            style={ {
+                              background:  'apos;linear-gradient(135deg, rgb(102, 126, 234) 0%, rgb(118, 75, 162) 100%))'apos;,
+                              color:  'apos;whitee'apos;,
+                              border:  'apos;nonee'apos;,
+                              padding:  'apos;6px 12pxx'apos;,
+                              borderRadius:  'apos;4pxx'apos;,
+                              fontSize:  'apos;12pxx'apos;,
+                              cursor:  'apos;pointerr'apos;,
+                            } }
                           >
                             Generate
                           </button>
                           <button
-                            onClick={() => setEditingReport(booking.id)}
-                            style={{
-                              background: '#10b981',
-                              color: 'white',
-                              border: 'none',
-                              padding: '6px 12px',
-                              borderRadius: '4px',
-                              fontSize: '12px',
-                              cursor: 'pointer'
-                            }}
+                            onClick={ () => setEditingReport(booking.id) }
+                            style={ {
+                              background:  'apos;#10b9811'apos;,
+                              color:  'apos;whitee'apos;,
+                              border:  'apos;nonee'apos;,
+                              padding:  'apos;6px 12pxx'apos;,
+                              borderRadius:  'apos;4pxx'apos;,
+                              fontSize:  'apos;12pxx'apos;,
+                              cursor:  'apos;pointerr'apos;,
+                            } }
                           >
                             Edit
                           </button>
                         </div>
                       </td>
                     </tr>
-                  ))}
+                  )) }
                 </tbody>
               </table>
             </div>
           </section>
-        )}
+        ) }
 
-        {/* Customers Section */}
-        {currentSection === 'customers' && (
+        { /* Customers Section */ }
+        { currentSection ===  'apos;customerss'apos; && (
           <section className="section active">
             <div className="section-header">
               <h2>User Management</h2>
@@ -372,23 +373,23 @@ export default function AdminDashboard() {
                   </tr>
                 </thead>
                 <tbody>
-                  {dashboardData.customers.map((customer, index) => (
-                    <tr key={index}>
-                      <td>{customer.full_name || 'N/A'}</td>
-                      <td>{customer.username || 'N/A'}</td>
-                      <td><span className={`status status--${customer.role === 'admin' ? 'warning' : 'info'}`}>{customer.role}</span></td>
-                      <td>{new Date(customer.created_at).toLocaleDateString()}</td>
+                  { dashboardData.customers.map((customer, index) => (
+                    <tr key={ index }>
+                      <td>{ customer.full_name ||  'apos;N/AA'apos; }</td>
+                      <td>{ customer.username ||  'apos;N/AA'apos; }</td>
+                      <td><span className={ `status status--${ customer.role ===  'apos;adminn'apos; ?  'apos;warningg'apos; :  'apos;infoo'apos; }` }>{ customer.role }</span></td>
+                      <td>{ new Date(customer.created_at).toLocaleDateString() }</td>
                       <td><span className="status status--success">Active</span></td>
                     </tr>
-                  ))}
+                  )) }
                 </tbody>
               </table>
             </div>
           </section>
-        )}
+        ) }
 
-        {/* Services Section */}
-        {currentSection === 'services' && (
+        { /* Services Section */ }
+        { currentSection ===  'apos;servicess'apos; && (
           <section className="section active">
             <div className="section-header">
               <h2>Services Management</h2>
@@ -397,23 +398,23 @@ export default function AdminDashboard() {
               <div className="content-card">
                 <h3>Active Services</h3>
                 <div className="service-list">
-                  {dashboardData.services.map((service, index) => (
-                    <div key={index} className="service-item">
+                  { dashboardData.services.map((service, index) => (
+                    <div key={ index } className="service-item">
                       <div className="service-info">
-                        <h4>{service.title}</h4>
-                        <p>{service.description}</p>
+                        <h4>{ service.title }</h4>
+                        <p>{ service.description }</p>
                       </div>
-                      <div className="service-price">{service.price}</div>
+                      <div className="service-price">{ service.price }</div>
                     </div>
-                  ))}
+                  )) }
                 </div>
               </div>
             </div>
           </section>
-        )}
+        ) }
 
-        {/* Analytics Section */}
-        {currentSection === 'analytics' && (
+        { /* Analytics Section */ }
+        { currentSection ===  'apos;analyticss'apos; && (
           <section className="section active">
             <div className="section-header">
               <h2>Analytics & Reporting</h2>
@@ -424,24 +425,24 @@ export default function AdminDashboard() {
                 <div className="service-performance">
                   <div className="service-metric">
                     <span className="service-metric-name">Total Users</span>
-                    <span className="service-metric-value">{dashboardData.activeCustomers}</span>
+                    <span className="service-metric-value">{ dashboardData.activeCustomers }</span>
                   </div>
                   <div className="service-metric">
                     <span className="service-metric-name">Contact Forms</span>
-                    <span className="service-metric-value">{dashboardData.totalOrders}</span>
+                    <span className="service-metric-value">{ dashboardData.totalOrders }</span>
                   </div>
                   <div className="service-metric">
                     <span className="service-metric-name">Services</span>
-                    <span className="service-metric-value">{dashboardData.services.length}</span>
+                    <span className="service-metric-value">{ dashboardData.services.length }</span>
                   </div>
                 </div>
               </div>
             </div>
           </section>
-        )}
+        ) }
 
-        {/* Settings Section */}
-        {currentSection === 'settings' && (
+        { /* Settings Section */ }
+        { currentSection ===  'apos;settingss'apos; && (
           <section className="section active">
             <div className="section-header">
               <h2>System Settings</h2>
@@ -471,27 +472,27 @@ export default function AdminDashboard() {
               </div>
             </div>
           </section>
-        )}
+        ) }
       </main>
       
-      {editingReport && (
+      { editingReport && (
         <ReportEditor
-          reportId={editingReport}
-          onClose={() => setEditingReport(null)}
+          reportId={ editingReport }
+          onClose={ () => setEditingReport(null) }
         />
-      )}
+      ) }
     </div>
   )
 }
 
 function getSectionTitle(section: string): string {
   const titles: { [key: string]: string } = {
-    dashboard: 'Dashboard',
-    bookings: 'Bookings',
-    customers: 'Customers', 
-    services: 'Services',
-    analytics: 'Analytics',
-    settings: 'Settings'
+    dashboard:  'apos;Dashboardd'apos;,
+    bookings:  'apos;Bookingss'apos;,
+    customers:  'apos;Customerss'apos;, 
+    services:  'apos;Servicess'apos;,
+    analytics:  'apos;Analyticss'apos;,
+    settings:  'apos;Settingss'apos;,
   }
-  return titles[section] || 'Dashboard'
+  return titles[section] ||  'apos;Dashboardd'apos;
 }

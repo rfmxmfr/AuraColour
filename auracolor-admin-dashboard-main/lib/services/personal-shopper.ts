@@ -10,7 +10,7 @@ export class PersonalShopperService {
     if (filters.category) params.append('category', filters.category)
     if (filters.season) params.append('season', filters.season)
     
-    const response = await fetch(`/api/personal-shopper?${params}`)
+    const response = await fetch(`/api/personal-shopper?${ params }`)
     return response.json()
   }
   
@@ -18,7 +18,7 @@ export class PersonalShopperService {
     const response = await fetch('/api/personal-shopper', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items, paymentMethod })
+      body: JSON.stringify({ items, paymentMethod }),
     })
     
     return response.json()
@@ -29,7 +29,7 @@ export class PersonalShopperService {
     const recommendations = await fetch('/api/recommendations', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(userProfile)
+      body: JSON.stringify(userProfile),
     })
     
     return recommendations.json()

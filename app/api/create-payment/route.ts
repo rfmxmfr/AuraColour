@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import Stripe from 'stripe'
-import { createClient } from '@/lib/supabase/server'
 import { Resend } from 'resend'
+import Stripe from 'stripe'
+
+import { createClient } from '@/lib/supabase/server'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-06-30.basil'
+  apiVersion: '2025-06-30.basil',
 })
 
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -12,15 +13,15 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 export async function POST(request: NextRequest) {
   try {
     const { name, email, phone, answers, photoUrls, serviceType } = await request.json()
-    
+
     const servicePrices: { [key: string]: number } = {
       '12-Season Color Analysis': 7500,
       'Virtual Wardrobe Curation': 10000,
       'Personal Shopping Service': 15000,
       'Style Evolution Coaching': 30000,
-      'Gift Vouchers': 7500
+      'Gift Vouchers': 7500,
     }
-    
+
     const price = servicePrices[serviceType] || 7500
     const serviceName = serviceType || '12-Season Color Analysis'
 
@@ -35,7 +36,7 @@ export async function POST(request: NextRequest) {
         photo_urls: photoUrls || [],
         service_type: serviceName,
         payment_status: 'pending',
-        stripe_session_id: ''
+        stripe_session_id: '',
       })
       .select()
       .single()
@@ -47,16 +48,16 @@ export async function POST(request: NextRequest) {
           currency: 'gbp',
           product_data: {
             name: serviceName,
-            description: `Professional ${serviceName.toLowerCase()} service`,
-            images: photoUrls?.length ? [photoUrls[0]] : undefined
+            description: `Professional ${ serviceName.toLowerCase() } service`,
+            images: photoUrls?.length ? [photoUrls[0]] : undefined,
           },
-          unit_amount: price
+          unit_amount: price,
         },
-        quantity: 1
+        quantity: 1,
       }],
       mode: 'payment',
-      success_url: `${request.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${request.headers.get('origin')}/questionnaire`,
+      success_url: `${ request.headers.get('origin') }/success?session_id={ CHECKOUT_SESSION_ID }`,
+      cancel_url: `${ request.headers.get('origin') }/questionnaire`,
       customer_email: email,
       allow_promotion_codes: true,
       billing_address_collection: 'auto',
@@ -64,15 +65,15 @@ export async function POST(request: NextRequest) {
         booking_id: booking?.id || '',
         customer_name: name,
         service_type: serviceName,
-        submission_date: new Date().toISOString()
-      }
+        submission_date: new Date().toISOString(),
+      },
     })
 
     // Service-specific email content
     let serviceDescription = '';
     let serviceTimeline = '24-48 hours';
     let serviceNextSteps = '';
-    
+
     if (serviceName === '12-Season Color Analysis') {
       serviceDescription = 'your personalized color analysis that will help you discover your perfect color palette';
       serviceNextSteps = 'You\'ll receive your detailed color palette, styling guide, and personalized recommendations';
@@ -89,28 +90,28 @@ export async function POST(request: NextRequest) {
       serviceTimeline = '1-2 business days';
       serviceNextSteps = 'Our style coach will contact you to schedule your first session and discuss your transformation plan';
     }
-    
+
     await resend.emails.send({
       from: 'AuraColor <noreply@auracolor.com>',
       to: [email],
-      subject: `Booking Started - Complete Payment for ${serviceName}`,
+      subject: `Booking Started - Complete Payment for ${ serviceName }`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <h2 style="color: #21808D;">Booking Started! 💳</h2>
-          <p>Hi ${name},</p>
-          <p>Thank you for starting your booking for ${serviceDescription}.</p>
-          <p><strong>Service:</strong> ${serviceName}<br/>
-          <strong>Amount:</strong> £${price/100}</p>
+          <p>Hi ${ name },</p>
+          <p>Thank you for starting your booking for ${ serviceDescription }.</p>
+          <p><strong>Service:</strong> ${ serviceName }<br/>
+          <strong>Amount:</strong> £${ price / 100 }</p>
           <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin: 20px 0;">
             <p style="margin: 0; color: #92400e;"><strong>⚠️ Important:</strong> Please complete your payment to confirm your booking. You should be redirected to Stripe checkout automatically.</p>
           </div>
           <p><strong>What happens after payment:</strong><br/>
           • You'll receive a payment confirmation email<br/>
           • Our team will be notified to begin your service<br/>
-          • ${serviceNextSteps} within ${serviceTimeline}</p>
+          • ${ serviceNextSteps } within ${ serviceTimeline }</p>
           <p>Best regards,<br>The AuraColor Team</p>
         </div>
-      `
+      `,
     })
 
     // Update booking with Stripe session ID
@@ -119,18 +120,19 @@ export async function POST(request: NextRequest) {
         .from('questionnaire_submissions')
         .update({ stripe_session_id: session.id })
         .eq('id', booking.id)
+        .select()
     }
 
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       checkout_url: session.url,
-      message: 'Booking confirmation sent. Redirecting to payment...'
+      message: 'Booking confirmation sent. Redirecting to payment...',
     })
 
   } catch (error) {
     return NextResponse.json({
       success: false,
-      error: 'Failed to create payment session'
+      error: 'Failed to create payment session',
     }, { status: 500 })
   }
 }

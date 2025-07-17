@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+/** @type { import('next').NextConfig } */
 const nextConfig = {
   images: {
     domains: [
@@ -6,7 +6,7 @@ const nextConfig = {
       'i0.wp.com',
       'i.pinimg.com',
       'charlotteloves.co.uk',
-      'as2.ftcdn.net'
+      'as2.ftcdn.net',
     ],
   },
   serverExternalPackages: ['sharp', 'canvas'],
@@ -15,7 +15,7 @@ const nextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true,
-  }
+  },
 }
 
 module.exports = nextConfig

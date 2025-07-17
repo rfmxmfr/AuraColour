@@ -4,6 +4,6 @@ export async function GET() {
   return NextResponse.json({
     status: 'working',
     message: 'API endpoint is functional',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   })
 }

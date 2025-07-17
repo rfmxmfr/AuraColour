@@ -1,4 +1,5 @@
 import OpenAI from 'openai'
+
 import { ColorFeatures, findBestSeason } from './rules'
 
 const openai = new OpenAI({
@@ -22,16 +23,16 @@ export async function extractFeaturesFromImage(imageUrl: string): Promise<ColorF
       role: "user",
       content: [{
         type: "text",
-        text: prompt
+        text: prompt,
       }, {
         type: "image_url",
-        image_url: { url: imageUrl }
-      }]
+        image_url: { url: imageUrl },
+      }],
     }],
-    max_tokens: 150
+    max_tokens: 150,
   })
 
-  const content = response.choices[0].message.content || '{}'
+  const content = response.choices[0].message.content || '{ }'
   return JSON.parse(content) as ColorFeatures
 }
 
@@ -44,6 +45,6 @@ export async function analyze12Season(imageUrl: string) {
     confidence: Math.round(result.score),
     features,
     colors: result.colors,
-    category: result.season.split(' ')[1]?.toLowerCase() || 'winter'
+    category: result.season.split(' ')[1]?.toLowerCase() || 'winter',
   }
 }

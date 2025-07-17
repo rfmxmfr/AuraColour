@@ -1,43 +1,44 @@
 "use client"
 
-import { motion } from 'framer-motion'
-import { useState } from 'react'
-import Navbar from '../components/navbar'
-import Footer from '../components/footer'
+import { motion } from  'apos;apos;framer-motionn'apos;apos;
+import { useState } from  'apos;apos;reactt'apos;apos;
+
+import Footer from  'apos;apos;../components/footerr'apos;apos;
+import Navbar from  'apos;apos;../components/navbarr'apos;apos;
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name:  'apos;apos;'apos;,
+    email:  'apos;apos;'apos;,
+    subject:  'apos;apos;'apos;,
+    message:  'apos;apos;'apos;,
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+      const response = await fetch(('apos;apos;/api/contactt'apos;apos;, {
+        method:  'apos;apos;POSTT'apos;apos;,
+        headers: {  'apos;apos;Content-Typee'apos;apos;:  'apos;apos;application/jsonn'apos;apos; },
+        body: JSON.stringify(formData),
       })
       
       if (response.ok) {
-        alert('Message sent successfully! We\'ll get back to you soon.')
-        setFormData({ name: '', email: '', subject: '', message: '' })
+        alert(('apos;apos;Message sent successfully! We\'apos;ll get back to you soon..'apos;apos;)
+        setFormData({ name:  'apos;apos;'apos;, email:  'apos;apos;'apos;, subject:  'apos;apos;'apos;, message:  'apos;apos;'apos; })
       } else {
-        alert('Failed to send message. Please try again.')
+        alert(('apos;apos;Failed to send message. Please try again..'apos;apos;)
       }
     } catch (error) {
-      alert('Something went wrong. Please try again.')
+      alert(('apos;apos;Something went wrong. Please try again..'apos;apos;)
     }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
   }
 
@@ -49,9 +50,9 @@ export default function ContactPage() {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <motion.h1 
             className="text-4xl md:text-5xl font-bold mb-6 text-gray-900"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={ { opacity: 0, y: 20 } }
+            animate={ { opacity: 1, y: 0 } }
+            transition={ { duration: 0.8 } }
           >
             Contact
             <span className="block bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -60,11 +61,11 @@ export default function ContactPage() {
           </motion.h1>
           <motion.p 
             className="text-xl text-gray-600 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={ { opacity: 0, y: 20 } }
+            animate={ { opacity: 1, y: 0 } }
+            transition={ { duration: 0.8, delay: 0.2 } }
           >
-            Ready to discover your perfect colors? We'd love to hear from you.
+            Ready to discover your perfect colors? Wee'apos;apos;d love to hear from you.
           </motion.p>
         </div>
       </section>
@@ -73,13 +74,13 @@ export default function ContactPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              initial={ { opacity: 0, x: -20 } }
+              animate={ { opacity: 1, x: 0 } }
+              transition={ { duration: 0.8 } }
             >
               <div className="bg-white/20 backdrop-blur-xl rounded-3xl shadow-lg p-8 border border-white/30">
                 <h2 className="text-3xl font-bold mb-6 text-gray-900">Get In Touch</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={ handleSubmit } className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
                       Full Name
@@ -88,8 +89,8 @@ export default function ContactPage() {
                       type="text"
                       id="name"
                       name="name"
-                      value={formData.name}
-                      onChange={handleChange}
+                      value={ formData.name }
+                      onChange={ handleChange }
                       required
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
                       placeholder="Your full name"
@@ -104,8 +105,8 @@ export default function ContactPage() {
                       type="email"
                       id="email"
                       name="email"
-                      value={formData.email}
-                      onChange={handleChange}
+                      value={ formData.email }
+                      onChange={ handleChange }
                       required
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
                       placeholder="your.email@example.com"
@@ -119,8 +120,8 @@ export default function ContactPage() {
                     <select
                       id="subject"
                       name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
+                      value={ formData.subject }
+                      onChange={ handleChange }
                       required
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
                     >
@@ -140,10 +141,10 @@ export default function ContactPage() {
                     <textarea
                       id="message"
                       name="message"
-                      value={formData.message}
-                      onChange={handleChange}
+                      value={ formData.message }
+                      onChange={ handleChange }
                       required
-                      rows={5}
+                      rows={ 5 }
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 resize-none"
                       placeholder="Tell us about your style goals and how we can help..."
                     />
@@ -161,9 +162,9 @@ export default function ContactPage() {
             
             <motion.div
               className="space-y-8"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial={ { opacity: 0, x: 20 } }
+              animate={ { opacity: 1, x: 0 } }
+              transition={ { duration: 0.8, delay: 0.2 } }
             >
               <div className="bg-white/20 backdrop-blur-xl rounded-3xl shadow-lg p-8 border border-white/30">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
@@ -171,7 +172,7 @@ export default function ContactPage() {
                   <div className="flex items-center">
                     <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
                       <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                     </div>
                     <div>
@@ -183,7 +184,7 @@ export default function ContactPage() {
                   <div className="flex items-center">
                     <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
                       <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
                     </div>
                     <div>
@@ -195,8 +196,8 @@ export default function ContactPage() {
                   <div className="flex items-center">
                     <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
                       <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     </div>
                     <div>

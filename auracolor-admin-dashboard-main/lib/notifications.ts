@@ -17,55 +17,55 @@ export function showNotification(
   message: string,
   options?: NotificationOptions
 ) {
-  const { title, description, duration = 5000, action } = options || {}
+  const { title, description, duration = 5000, action } = options || { }
   
   switch (type) {
-    case "success":
-      toast.success(title || message, {
-        description: description || (title ? message : undefined),
-        duration,
-        action: action ? {
-          label: action.label,
-          onClick: action.onClick,
-        } : undefined,
-      })
-      break
-    case "error":
-      toast.error(title || message, {
-        description: description || (title ? message : undefined),
-        duration,
-        action: action ? {
-          label: action.label,
-          onClick: action.onClick,
-        } : undefined,
-      })
-      break
-    case "warning":
-      toast.warning(title || message, {
-        description: description || (title ? message : undefined),
-        duration,
-        action: action ? {
-          label: action.label,
-          onClick: action.onClick,
-        } : undefined,
-      })
-      break
-    case "info":
-    default:
-      toast.info(title || message, {
-        description: description || (title ? message : undefined),
-        duration,
-        action: action ? {
-          label: action.label,
-          onClick: action.onClick,
-        } : undefined,
-      })
-      break
+  case "success":
+    toast.success(title || message, {
+      description: description || (title ? message : undefined),
+      duration,
+      action: action ? {
+        label: action.label,
+        onClick: action.onClick,
+      } : undefined,
+    })
+    break
+  case "error":
+    toast.error(title || message, {
+      description: description || (title ? message : undefined),
+      duration,
+      action: action ? {
+        label: action.label,
+        onClick: action.onClick,
+      } : undefined,
+    })
+    break
+  case "warning":
+    toast.warning(title || message, {
+      description: description || (title ? message : undefined),
+      duration,
+      action: action ? {
+        label: action.label,
+        onClick: action.onClick,
+      } : undefined,
+    })
+    break
+  case "info":
+  default:
+    toast.info(title || message, {
+      description: description || (title ? message : undefined),
+      duration,
+      action: action ? {
+        label: action.label,
+        onClick: action.onClick,
+      } : undefined,
+    })
+    break
   }
 }
 
 export function handleApiError(error: unknown, fallbackMessage = "An error occurred") {
-  console.error(error)
+  // console.error(error)
   
   let errorMessage = fallbackMessage
   
@@ -83,13 +83,13 @@ export function handleApiError(error: unknown, fallbackMessage = "An error occur
 
 // Email notification functions for API routes
 export async function sendClientConfirmation(email: string, data: any) {
-  console.log('Sending client confirmation to:', email, data)
+  // console.log('Sending client confirmation to:', email, data)
   // TODO: Implement actual email sending
   return { success: true }
 }
 
 export async function sendAdminAlert(subject: string, data: any) {
-  console.log('Sending admin alert:', subject, data)
+  // console.log('Sending admin alert:', subject, data)
   // TODO: Implement actual admin notification
   return { success: true }
 }

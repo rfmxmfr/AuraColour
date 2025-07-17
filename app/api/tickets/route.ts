@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+
 import { sendAdminAlert } from '@/lib/notifications'
+import { createClient } from '@/lib/supabase/server'
 
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json()
     const supabase = await createClient()
     
-    const ticketNumber = `AC-${Date.now()}`
+    const ticketNumber = `AC-${ Date.now() }`
     
     const { data: ticket, error } = await supabase
       .from('tickets')
@@ -19,7 +20,7 @@ export async function POST(request: NextRequest) {
         status: 'pending',
         priority: data.priority || 'normal',
         image_url: data.image_url,
-        questionnaire_data: data.questionnaire_data
+        questionnaire_data: data.questionnaire_data,
       })
       .select()
       .single()
@@ -29,13 +30,13 @@ export async function POST(request: NextRequest) {
     await sendAdminAlert('New Ticket', {
       email: data.email,
       name: data.name,
-      ticket: ticketNumber
+      ticket: ticketNumber,
     })
 
     return NextResponse.json({
       success: true,
       ticket_number: ticketNumber,
-      ticket_id: ticket.id
+      ticket_id: ticket.id,
     })
   } catch (error) {
     return NextResponse.json({ error: 'Failed to create ticket' }, { status: 500 })

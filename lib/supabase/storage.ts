@@ -1,10 +1,11 @@
+import logger from "../lib/secure-logger";
 import { createClient } from './client'
 
 export async function uploadImage(file: File, bucket: string = 'images'): Promise<string | null> {
   try {
     const supabase = createClient()
     const fileExt = file.name.split('.').pop()
-    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`
+    const fileName = `${ Date.now() }-${ Math.random().toString(36).substring(2) }.${ fileExt }`
     
     const { data, error } = await supabase.storage
       .from(bucket)
@@ -18,7 +19,7 @@ export async function uploadImage(file: File, bucket: string = 'images'): Promis
 
     return publicUrl
   } catch (error) {
-    console.error('Upload failed:', error)
+    // logger.error('Upload failed:', error)
     return null
   }
 }
@@ -35,7 +36,7 @@ export async function deleteImage(url: string, bucket: string = 'images'): Promi
 
     return !error
   } catch (error) {
-    console.error('Delete failed:', error)
+    // logger.error('Delete failed:', error)
     return false
   }
 }

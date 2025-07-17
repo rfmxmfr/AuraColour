@@ -16,7 +16,7 @@ export const SERVICES: ServiceConfig[] = [
     description: 'A service to help clients organize, optimize, and plan their existing wardrobe virtually.',
     features: ['Wardrobe audit', 'Outfit combinations', 'Gap analysis', 'Shopping list'],
     endpoint: '/api/virtual-wardrobe',
-    questionnaire_fields: ['wardrobe_size', 'style_goals', 'budget', 'current_challenges']
+    questionnaire_fields: ['wardrobe_size', 'style_goals', 'budget', 'current_challenges'],
   },
   {
     id: 'personal_shopping',
@@ -25,7 +25,7 @@ export const SERVICES: ServiceConfig[] = [
     description: 'A service providing guided shopping assistance to help clients acquire new clothing and accessories.',
     features: ['Personal shopping session', 'Curated selections', 'Fitting assistance', 'Style coaching'],
     endpoint: '/api/personal-shopping',
-    questionnaire_fields: ['budget', 'shopping_goals', 'preferred_brands', 'size_info', 'style_preferences']
+    questionnaire_fields: ['budget', 'shopping_goals', 'preferred_brands', 'size_info', 'style_preferences'],
   },
   {
     id: 'style_coaching',
@@ -34,7 +34,7 @@ export const SERVICES: ServiceConfig[] = [
     description: 'A comprehensive style transformation program with ongoing support.',
     features: ['Complete style makeover', '3-month support', 'Personal styling sessions', 'Confidence coaching'],
     endpoint: '/api/style-coaching',
-    questionnaire_fields: ['current_style_challenges', 'style_goals', 'lifestyle', 'confidence_level']
+    questionnaire_fields: ['current_style_challenges', 'style_goals', 'lifestyle', 'confidence_level'],
   },
   {
     id: 'gift_vouchers',
@@ -43,8 +43,8 @@ export const SERVICES: ServiceConfig[] = [
     description: 'Give the gift of confidence and style with our flexible gift vouchers.',
     features: ['Flexible redemption', '12-month validity', 'Personal message', 'Digital delivery'],
     endpoint: '/api/gift-vouchers',
-    questionnaire_fields: ['recipient_name', 'recipient_email', 'personal_message', 'amount']
-  }
+    questionnaire_fields: ['recipient_name', 'recipient_email', 'personal_message', 'amount'],
+  },
 ]
 
 export function getServiceById(id: string): ServiceConfig | undefined {

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+
 import { createClient } from '@/lib/supabase/server'
 
 export async function POST(request: NextRequest) {
@@ -32,14 +33,14 @@ export async function POST(request: NextRequest) {
         status: 'redeemed',
         redeemed_at: new Date().toISOString(),
         redeemed_by: customer_email,
-        service_used: service_id
+        service_used: service_id,
       })
       .eq('voucher_code', voucher_code)
     
     return NextResponse.json({
       success: true,
       discount_amount: voucher.amount,
-      message: 'Voucher redeemed successfully'
+      message: 'Voucher redeemed successfully',
     })
   } catch (error) {
     return NextResponse.json({ error: 'Redemption failed' }, { status: 500 })

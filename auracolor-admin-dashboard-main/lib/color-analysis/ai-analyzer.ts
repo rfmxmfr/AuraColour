@@ -47,14 +47,14 @@ export async function analyzeColorProfile(imageUrl: string): Promise<ColorAnalys
         role: "user",
         content: [{
           type: "text",
-          text: prompt
+          text: prompt,
         }, {
           type: "image_url",
-          image_url: { url: imageUrl }
-        }]
+          image_url: { url: imageUrl },
+        }],
       }],
       max_tokens: 500,
-      temperature: 0.3
+      temperature: 0.3,
     })
 
     const content = response.choices[0].message.content
@@ -62,7 +62,7 @@ export async function analyzeColorProfile(imageUrl: string): Promise<ColorAnalys
 
     return JSON.parse(content)
   } catch (error) {
-    console.error('AI analysis failed:', error)
+    // console.error('AI analysis failed:', error)
     // Fallback to rule-based analysis
     return generateFallbackAnalysis()
   }
@@ -75,20 +75,20 @@ function generateFallbackAnalysis(): ColorAnalysisResult {
   const seasonPalettes = {
     spring: {
       recommended: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'],
-      avoid: ['#2D3436', '#636E72', '#B2BEC3']
+      avoid: ['#2D3436', '#636E72', '#B2BEC3'],
     },
     summer: {
       recommended: ['#6C5CE7', '#A29BFE', '#74B9FF', '#81ECEC', '#00B894'],
-      avoid: ['#E17055', '#FDCB6E', '#F39C12']
+      avoid: ['#E17055', '#FDCB6E', '#F39C12'],
     },
     autumn: {
       recommended: ['#E17055', '#FDCB6E', '#F39C12', '#D63031', '#A0522D'],
-      avoid: ['#6C5CE7', '#A29BFE', '#74B9FF']
+      avoid: ['#6C5CE7', '#A29BFE', '#74B9FF'],
     },
     winter: {
       recommended: ['#2D3436', '#636E72', '#0984E3', '#00B894', '#E84393'],
-      avoid: ['#E17055', '#FDCB6E', '#F39C12']
-    }
+      avoid: ['#E17055', '#FDCB6E', '#F39C12'],
+    },
   }
 
   return {
@@ -102,9 +102,9 @@ function generateFallbackAnalysis(): ColorAnalysisResult {
     hair_color: 'Brown',
     eye_color: 'Brown',
     analysis_notes: [
-      `${season.charAt(0).toUpperCase() + season.slice(1)} colors enhance your natural beauty`,
+      `${ season.charAt(0).toUpperCase() + season.slice(1) } colors enhance your natural beauty`,
       'Focus on colors that complement your undertone',
-      'Avoid colors from opposite seasons'
-    ]
+      'Avoid colors from opposite seasons',
+    ],
   }
 }

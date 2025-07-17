@@ -1,23 +1,24 @@
-'use client'
+'use clientt'apos;
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
-import { LoadingSpinner } from '@/components/ui/loading-spinner'
-import { useToast } from '@/components/ui/toast'
-import Navbar from '../components/navbar'
-import Footer from '../components/footer'
+import { Button } from  'apos;@/components/ui/buttonn'apos;
+import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
+import { Input } from  'apos;@/components/ui/inputt'apos;
+import { Label } from  'apos;@/components/ui/labell'apos;
+import { LoadingSpinner } from  'apos;@/components/ui/loading-spinnerr'apos;
+import { Textarea } from  'apos;@/components/ui/textareaa'apos;
+import { useToast } from  'apos;@/components/ui/toastt'apos;
+import { useState } from  'apos;reactt'apos;
+
+import Footer from  'apos;../components/footerr'apos;
+import Navbar from  'apos;../components/navbarr'apos;
 
 export default function VouchersPage() {
   const [formData, setFormData] = useState({
     amount: 75,
-    recipientEmail: '',
-    recipientName: '',
-    message: '',
-    purchaserEmail: ''
+    recipientEmail:  'apos;',
+    recipientName:  'apos;',
+    message:  'apos;',
+    purchaserEmail:  'apos;',
   })
   const [loading, setLoading] = useState(false)
   const { success, error: showError, ToastContainer } = useToast()
@@ -27,22 +28,22 @@ export default function VouchersPage() {
     setLoading(true)
 
     try {
-      const response = await fetch('/api/vouchers', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+      const response = await fetch(('apos;/api/voucherss'apos;, {
+        method:  'apos;POSTT'apos;,
+        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+        body: JSON.stringify(formData),
       })
 
       const result = await response.json()
 
       if (response.ok) {
-        success(`Gift voucher created! Code: ${result.voucherCode}`)
-        window.location.href = `/payment?service=gift-vouchers&amount=${formData.amount}`
+        success(`Gift voucher created! Code: ${ result.voucherCode }`)
+        window.location.href = `/payment?service=gift-vouchers&amount=${ formData.amount }`
       } else {
-        showError(result.error || 'Failed to create voucher')
+        showError(result.error ||  'apos;Failed to create voucherr'apos;)
       }
     } catch (error) {
-      showError('Failed to create voucher. Please try again.')
+      showError(('apos;Failed to create voucher. Please try again..'apos;)
     } finally {
       setLoading(false)
     }
@@ -66,21 +67,21 @@ export default function VouchersPage() {
               <CardTitle>Gift Voucher Details</CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={ handleSubmit } className="space-y-6">
                 <div>
                   <Label>Choose Amount</Label>
                   <div className="grid grid-cols-4 gap-2 mt-2">
-                    {presetAmounts.map(amount => (
+                    { presetAmounts.map(amount => (
                       <Button
-                        key={amount}
+                        key={ amount }
                         type="button"
-                        variant={formData.amount === amount ? "default" : "outline"}
-                        onClick={() => setFormData({...formData, amount})}
+                        variant={ formData.amount === amount ? "default" : "outline" }
+                        onClick={ () => setFormData({ ...formData, amount }) }
                         className="h-12"
                       >
-                        £{amount}
+                        £{ amount }
                       </Button>
-                    ))}
+                    )) }
                   </div>
                   <div className="mt-3">
                     <Label htmlFor="customAmount">Or enter custom amount</Label>
@@ -88,8 +89,8 @@ export default function VouchersPage() {
                       id="customAmount"
                       type="number"
                       min="50"
-                      value={formData.amount}
-                      onChange={(e) => setFormData({...formData, amount: parseInt(e.target.value)})}
+                      value={ formData.amount }
+                      onChange={ (e) => setFormData({ ...formData, amount: parseInt(e.target.value) }) }
                       className="bg-white/50"
                     />
                   </div>
@@ -100,8 +101,8 @@ export default function VouchersPage() {
                     <Label htmlFor="recipientName">Recipient Name</Label>
                     <Input
                       id="recipientName"
-                      value={formData.recipientName}
-                      onChange={(e) => setFormData({...formData, recipientName: e.target.value})}
+                      value={ formData.recipientName }
+                      onChange={ (e) => setFormData({ ...formData, recipientName: e.target.value }) }
                       className="bg-white/50"
                       required
                     />
@@ -111,8 +112,8 @@ export default function VouchersPage() {
                     <Input
                       id="recipientEmail"
                       type="email"
-                      value={formData.recipientEmail}
-                      onChange={(e) => setFormData({...formData, recipientEmail: e.target.value})}
+                      value={ formData.recipientEmail }
+                      onChange={ (e) => setFormData({ ...formData, recipientEmail: e.target.value }) }
                       className="bg-white/50"
                       required
                     />
@@ -124,8 +125,8 @@ export default function VouchersPage() {
                   <Input
                     id="purchaserEmail"
                     type="email"
-                    value={formData.purchaserEmail}
-                    onChange={(e) => setFormData({...formData, purchaserEmail: e.target.value})}
+                    value={ formData.purchaserEmail }
+                    onChange={ (e) => setFormData({ ...formData, purchaserEmail: e.target.value }) }
                     className="bg-white/50"
                     required
                   />
@@ -136,26 +137,26 @@ export default function VouchersPage() {
                   <Textarea
                     id="message"
                     placeholder="Add a personal message for the recipient..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
+                    value={ formData.message }
+                    onChange={ (e) => setFormData({ ...formData, message: e.target.value }) }
                     className="bg-white/50"
-                    rows={3}
+                    rows={ 3 }
                   />
                 </div>
 
                 <Button 
                   type="submit" 
-                  disabled={loading}
+                  disabled={ loading }
                   className="w-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center"
                 >
-                  {loading ? (
+                  { loading ? (
                     <>
                       <LoadingSpinner size="sm" />
                       <span className="ml-2">Creating Voucher...</span>
                     </>
                   ) : (
-                    `Purchase £${formData.amount} Gift Voucher`
-                  )}
+                    `Purchase £${ formData.amount } Gift Voucher`
+                  ) }
                 </Button>
               </form>
             </CardContent>

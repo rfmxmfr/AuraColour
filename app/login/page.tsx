@@ -1,13 +1,16 @@
-'use client'
+import logger from "../lib/secure-logger";
+'apos;use clientt'apos;apos;
 
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase/client'
-import Link from 'next/link'
+import Link from  'apos;apos;next/linkk'apos;apos;
+import { useRouter } from  'apos;apos;next/navigationn'apos;apos;
+import { useState, useEffect } from  'apos;apos;reactt'apos;apos;
+
+import { createClient } from  'apos;apos;@/lib/supabase/clientt'apos;apos;
+
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState(('apos;apos;'apos;)
+  const [password, setPassword] = useState(('apos;apos;'apos;)
   const [showPassword, setShowPassword] = useState(false)
   const [rememberMe, setRememberMe] = useState(false)
   const router = useRouter()
@@ -17,51 +20,51 @@ export default function LoginPage() {
     
     try {
       const supabase = createClient()
-      console.log('Attempting login with:', email)
+      // logger.info(('apos;apos;Attempting login with::'apos;apos;, email)
       
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
-        password
+        password,
       })
       
       if (error) {
-        console.error('Auth error:', error)
-        alert(`Login failed: ${error.message}`)
+        // logger.error(('apos;apos;Auth error::'apos;apos;, error)
+        alert(`Login failed: ${ error.message }`)
         return
       }
       
-      console.log('Auth success, user ID:', data.user?.id)
+      // logger.info(('apos;apos;Auth success, user ID::'apos;apos;, data.user?.id)
       
       // Save login if remember me is checked
       if (rememberMe) {
-        localStorage.setItem('auracolor_remember_email', email)
+        localStorage.setItem(('apos;apos;auracolor_remember_emaill'apos;apos;, email)
       } else {
-        localStorage.removeItem('auracolor_remember_email')
+        localStorage.removeItem(('apos;apos;auracolor_remember_emaill'apos;apos;)
       }
       
       // Check if user is admin
       const { data: profile, error: profileError } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', data.user.id)
+        .from(('apos;apos;profiless'apos;apos;)
+        .select(('apos;apos;rolee'apos;apos;)
+        .eq(('apos;apos;idd'apos;apos;, data.user.id)
         .single()
       
-      console.log('Profile data:', profile)
-      console.log('Profile error:', profileError)
+      // logger.info(('apos;apos;Profile data::'apos;apos;, profile)
+      // logger.info(('apos;apos;Profile error::'apos;apos;, profileError)
       
-      if (profile?.role === 'admin') {
-        window.location.href = '/admin'
+      if (profile?.role ===  'apos;apos;adminn'apos;apos;) {
+        window.location.href =  'apos;apos;/adminn'apos;apos;
       } else {
-        alert(`Access denied. Role: ${profile?.role || 'none'}`)
+        alert(`Access denied. Role: ${ profile?.role ||  'apos;apos;nonee'apos;apos; }`)
       }
     } catch (error) {
-      alert('Login failed')
+      alert(('apos;apos;Login failedd'apos;apos;)
     }
   }
 
   // Load saved email on component mount
   useEffect(() => {
-    const savedEmail = localStorage.getItem('auracolor_remember_email')
+    const savedEmail = localStorage.getItem(('apos;apos;auracolor_remember_emaill'apos;apos;)
     if (savedEmail) {
       setEmail(savedEmail)
       setRememberMe(true)
@@ -79,15 +82,15 @@ export default function LoginPage() {
             <p className="text-gray-600 mt-2">Admin Login</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={ handleSubmit } className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-black mb-2">
                 Email
               </label>
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={ email }
+                onChange={ (e) => setEmail(e.target.value) }
                 className="w-full px-4 py-3 bg-white text-black border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-500"
                 placeholder="Enter your email"
                 required
@@ -100,28 +103,28 @@ export default function LoginPage() {
               </label>
               <div className="relative">
                 <input
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  type={ showPassword ? "text" : "password" }
+                  value={ password }
+                  onChange={ (e) => setPassword(e.target.value) }
                   className="w-full px-4 py-3 pr-12 bg-white text-black border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-500"
                   placeholder="Enter password"
                   required
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPassword(!showPassword)}
+                  onClick={ () => setShowPassword(!showPassword) }
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
                 >
-                  {showPassword ? (
+                  { showPassword ? (
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
                     </svg>
                   ) : (
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                     </svg>
-                  )}
+                  ) }
                 </button>
               </div>
             </div>
@@ -130,8 +133,8 @@ export default function LoginPage() {
               <label className="flex items-center">
                 <input
                   type="checkbox"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
+                  checked={ rememberMe }
+                  onChange={ (e) => setRememberMe(e.target.checked) }
                   className="w-4 h-4 text-purple-600 bg-white/50 border-white/30 rounded focus:ring-purple-500 focus:ring-2"
                 />
                 <span className="ml-2 text-sm text-gray-700">Remember me</span>
@@ -139,7 +142,7 @@ export default function LoginPage() {
               <button
                 type="button"
                 className="text-sm text-purple-600 hover:text-purple-700 font-medium"
-                onClick={() => alert('Passkey authentication coming soon!')}
+                onClick={ () => alert(('apos;apos;Passkey authentication coming soon!!'apos;apos;) }
               >
                 🔐 Use Passkey
               </button>

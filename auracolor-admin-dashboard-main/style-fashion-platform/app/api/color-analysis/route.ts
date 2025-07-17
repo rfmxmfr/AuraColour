@@ -34,39 +34,39 @@ export async function POST(request: NextRequest) {
         role: "user",
         content: [
           { type: "text", text: prompt },
-          { type: "image_url", image_url: { url: imageUrl } }
-        ]
+          { type: "image_url", image_url: { url: imageUrl } },
+        ],
       }],
-      max_tokens: 300
+      max_tokens: 300,
     })
 
     const content = response.choices[0].message.content
     let analysis
 
     try {
-      analysis = JSON.parse(content || '{}')
+      analysis = JSON.parse(content || '{ }')
     } catch {
       // Fallback if JSON parsing fails
       analysis = {
         season: "Cool Winter",
         confidence: 75,
         undertone: "cool",
-        recommended_colors: ["#000080", "#800080", "#008080", "#FF1493", "#4B0082"]
+        recommended_colors: ["#000080", "#800080", "#008080", "#FF1493", "#4B0082"],
       }
     }
 
     // Store analysis result (implement database storage here)
     const result = {
-      id: `analysis_${Date.now()}`,
+      id: `analysis_${ Date.now() }`,
       userId,
       imageUrl,
       ...analysis,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     }
 
     return NextResponse.json(result)
   } catch (error) {
-    console.error('Color analysis failed:', error)
+    // console.error('Color analysis failed:', error)
     return NextResponse.json({ error: 'Analysis failed' }, { status: 500 })
   }
 }

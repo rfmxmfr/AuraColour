@@ -1,7 +1,7 @@
 import OpenAI from 'openai'
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: process.env.OPENAI_API_KEY,
 })
 
 export async function analyzeWithOpenAI(imageUrl: string, questionnaire: any) {
@@ -12,15 +12,15 @@ export async function analyzeWithOpenAI(imageUrl: string, questionnaire: any) {
       content: [
         {
           type: "text",
-          text: `Analyze this person's seasonal color palette. Based on skin tone: ${questionnaire?.skin_tone}, eye color: ${questionnaire?.eye_color}, hair color: ${questionnaire?.hair_color}. Determine their season (Spring/Summer/Autumn/Winter) and provide confidence score.`
+          text: `Analyze this person's seasonal color palette. Based on skin tone: ${ questionnaire?.skin_tone }, eye color: ${ questionnaire?.eye_color }, hair color: ${ questionnaire?.hair_color }. Determine their season (Spring/Summer/Autumn/Winter) and provide confidence score.`,
         },
         {
           type: "image_url",
-          image_url: { url: imageUrl }
-        }
-      ]
+          image_url: { url: imageUrl },
+        },
+      ],
     }],
-    max_tokens: 300
+    max_tokens: 300,
   })
 
   const content = response.choices[0].message.content || ''
@@ -29,7 +29,7 @@ export async function analyzeWithOpenAI(imageUrl: string, questionnaire: any) {
     season: extractSeason(content),
     confidence: 0.85,
     reasoning: content,
-    colors: extractColors(content)
+    colors: extractColors(content),
   }
 }
 

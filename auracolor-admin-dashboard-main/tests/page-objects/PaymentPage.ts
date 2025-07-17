@@ -1,7 +1,7 @@
 import { Page, expect } from '@playwright/test';
 
 export class PaymentPage {
-  constructor(private page: Page) {}
+  constructor(private page: Page) { }
 
   async verifyPaymentPage() {
     await expect(this.page.getByText('Complete Your Purchase')).toBeVisible();

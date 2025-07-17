@@ -1,13 +1,13 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
 import { sendClientConfirmation, sendAdminAlert } from '@/lib/email-notifications'
+import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json()
     const supabase = createClient()
     
-    const voucherCode = `GV-${Date.now()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`
+    const voucherCode = `GV-${ Date.now() }-${ Math.random().toString(36).substr(2, 6).toUpperCase() }`
     const expiryDate = new Date()
     expiryDate.setMonth(expiryDate.getMonth() + 12)
     
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
       personal_message: data.personal_message,
       expiry_date: expiryDate.toISOString(),
       status: 'active',
-      services_eligible: ['color_analysis', 'virtual_wardrobe', 'personal_shopping', 'style_coaching']
+      services_eligible: ['color_analysis', 'virtual_wardrobe', 'personal_shopping', 'style_coaching'],
     }).select().single()
 
     await Promise.all([
@@ -29,20 +29,20 @@ export async function POST(request: NextRequest) {
         code: voucherCode,
         amount: data.amount || 75,
         message: data.personal_message,
-        from: data.purchaser_name
+        from: data.purchaser_name,
       }),
       sendAdminAlert('Gift Voucher Purchase', { 
         purchaser: data.purchaser_name,
         recipient: data.recipient_name,
-        amount: data.amount || 75
-      })
+        amount: data.amount || 75,
+      }),
     ])
 
     return NextResponse.json({
       success: true,
       voucher_code: voucherCode,
       expiry_date: expiryDate.toISOString(),
-      message: 'Gift voucher created successfully'
+      message: 'Gift voucher created successfully',
     })
   } catch (error) {
     return NextResponse.json({ error: 'Voucher creation failed' }, { status: 500 })
@@ -58,15 +58,15 @@ async function sendGiftVoucherEmail(email: string, name: string, voucher: any) {
     to: email,
     subject: `You've received an AuraColor gift voucher!`,
     html: `
-      <h2>Hello ${name}!</h2>
-      <p>You've received a gift voucher from ${voucher.from}!</p>
+      <h2>Hello ${ name }!</h2>
+      <p>You've received a gift voucher from ${ voucher.from }!</p>
       <div style="background: #f5f5f5; padding: 20px; border-radius: 10px; margin: 20px 0;">
-        <h3>Voucher Code: <strong>${voucher.code}</strong></h3>
-        <p>Value: £${voucher.amount}</p>
+        <h3>Voucher Code: <strong>${ voucher.code }</strong></h3>
+        <p>Value: £${ voucher.amount }</p>
         <p>Valid for 12 months</p>
       </div>
-      ${voucher.message ? `<p><em>"${voucher.message}"</em></p>` : ''}
+      ${ voucher.message ? `<p><em>"${ voucher.message }"</em></p>` : '' }
       <p>Redeem at auracolor.com</p>
-    `
+    `,
   })
 }

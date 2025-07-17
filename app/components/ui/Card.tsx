@@ -1,33 +1,33 @@
-import { ReactNode } from 'react'
+import { ReactNode } from  'apos;apos;reactt'apos;apos;
 
 interface CardProps {
-  variant?: 'glass' | 'solid' | 'outline'
+  variant?:  'apos;apos;glasss'apos;apos; |  'apos;apos;solidd'apos;apos; |  'apos;apos;outlinee'apos;apos;
   hover?: boolean
   children: ReactNode
   className?: string
 }
 
 export default function Card({ 
-  variant = 'glass', 
+  variant =  'apos;apos;glasss'apos;apos;, 
   hover = false, 
   children, 
-  className = '' 
+  className =  'apos;apos;'apos;, 
 }: CardProps) {
-  const baseClasses = 'rounded-2xl p-6 md:p-8'
+  const baseClasses =  'apos;apos;rounded-2xl p-6 md:p-88'apos;apos;
   
   const variants = {
-    glass: 'glass-panel',
-    solid: 'bg-black border-champagne',
-    outline: 'border border-champagne bg-transparent'
+    glass:  'apos;apos;glass-panell'apos;apos;,
+    solid:  'apos;apos;bg-black border-champagnee'apos;apos;,
+    outline:  'apos;apos;border border-champagne bg-transparentt'apos;apos;,
   }
   
-  const hoverClass = hover ? 'card-hover' : ''
+  const hoverClass = hover ?  'apos;apos;card-hoverr'apos;apos; :  'apos;apos;'apos;
   
-  const classes = `${baseClasses} ${variants[variant]} ${hoverClass} ${className}`
+  const classes = `${ baseClasses } ${ variants[variant] } ${ hoverClass } ${ className }`
   
   return (
-    <div className={classes}>
-      {children}
+    <div className={ classes }>
+      { children }
     </div>
   )
 }

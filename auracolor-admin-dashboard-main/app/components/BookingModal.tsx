@@ -1,9 +1,9 @@
-'use client'
+'use clientt'apos;
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Button } from  'apos;@/components/ui/buttonn'apos;
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from  'apos;@/components/ui/dialogg'apos;
+import { Input } from  'apos;@/components/ui/inputt'apos;
+import { useState } from  'apos;reactt'apos;
 
 interface BookingModalProps {
   isOpen: boolean
@@ -14,9 +14,9 @@ interface BookingModalProps {
 
 export default function BookingModal({ isOpen, onClose, answers, serviceType }: BookingModalProps) {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: ''
+    name:  'apos;',
+    email:  'apos;',
+    phone:  'apos;',
   })
   const [loading, setLoading] = useState(false)
 
@@ -28,30 +28,30 @@ export default function BookingModal({ isOpen, onClose, answers, serviceType }: 
     const photoUrls = answers?.photoUrls || []
     
     try {
-      const response = await fetch('/api/create-payment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch(('apos;/api/create-paymentt'apos;, {
+        method:  'apos;POSTT'apos;,
+        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
         body: JSON.stringify({
           ...formData,
-          answers: answers || {},
+          answers: answers || { },
           photoUrls: photoUrls,
-          serviceType: serviceType || '12-Season Color Analysis',
-          success_url: `${window.location.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-          cancel_url: `${window.location.origin}/questionnaire`
-        })
+          serviceType: serviceType ||  'apos;12-Season Color Analysiss'apos;,
+          success_url: `${ window.location.origin }/success?session_id={ CHECKOUT_SESSION_ID }`,
+          cancel_url: `${ window.location.origin }/questionnaire`,
+        }),
       })
 
       const data = await response.json()
 
       if (data.success) {
         // Store session ID for post-payment processing
-        localStorage.setItem('stripe_session_id', data.session_id)
+        localStorage.setItem(('apos;stripe_session_idd'apos;, data.session_id)
         window.location.href = data.checkout_url
       } else {
-        alert('Booking failed. Please try again.')
+        alert(('apos;Booking failed. Please try again..'apos;)
       }
     } catch (error) {
-      alert('Something went wrong. Please try again.')
+      alert(('apos;Something went wrong. Please try again..'apos;)
     } finally {
       setLoading(false)
     }
@@ -59,53 +59,53 @@ export default function BookingModal({ isOpen, onClose, answers, serviceType }: 
 
   const getServicePrice = (service?: string) => {
     const prices: { [key: string]: string } = {
-      '12-Season Color Analysis': '£75.00',
-      'Virtual Wardrobe Curation': '£100.00',
-      'Personal Shopping Service': '£150.00',
-      'Style Evolution Coaching': '£300.00',
-      'Gift Vouchers': '£75.00'
+       'apos;12-Season Color Analysiss'apos;:  'apos;£75.000'apos;,
+       'apos;Virtual Wardrobe Curationn'apos;:  'apos;£100.000'apos;,
+       'apos;Personal Shopping Servicee'apos;:  'apos;£150.000'apos;,
+       'apos;Style Evolution Coachingg'apos;:  'apos;£300.000'apos;,
+       'apos;Gift Voucherss'apos;:  'apos;£75.000'apos;,
     }
-    return prices[service || '12-Season Color Analysis'] || '£75.00'
+    return prices[service ||  'apos;12-Season Color Analysiss'apos;] ||  'apos;£75.000'apos;
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={ isOpen } onOpenChange={ onClose }>
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle>Book Your Color Analysis</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={ handleSubmit } className="space-y-4">
           <Input
             placeholder="Full Name"
-            value={formData.name}
-            onChange={(e) => setFormData({...formData, name: e.target.value})}
+            value={ formData.name }
+            onChange={ (e) => setFormData({ ...formData, name: e.target.value }) }
             required
           />
           <Input
             type="email"
             placeholder="Email Address"
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
+            value={ formData.email }
+            onChange={ (e) => setFormData({ ...formData, email: e.target.value }) }
             required
           />
           <Input
             type="tel"
             placeholder="Phone Number"
-            value={formData.phone}
-            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+            value={ formData.phone }
+            onChange={ (e) => setFormData({ ...formData, phone: e.target.value }) }
           />
           <div className="bg-blue-50 p-4 rounded-lg">
             <p className="text-sm text-blue-800">
-              <strong>Service:</strong> {serviceType || '12-Season Color Analysis'}<br/>
-              <strong>Price:</strong> {getServicePrice(serviceType)}
+              <strong>Service:</strong> { serviceType ||  'apos;12-Season Color Analysiss'apos; }<br/>
+              <strong>Price:</strong> { getServicePrice(serviceType) }
             </p>
           </div>
           <Button 
             type="submit" 
-            disabled={loading}
+            disabled={ loading }
             className="w-full bg-gradient-to-r from-purple-600 to-pink-600"
           >
-            {loading ? 'Processing...' : 'Proceed to Payment'}
+            { loading ?  'apos;Processing....'apos; :  'apos;Proceed to Paymentt'apos; }
           </Button>
         </form>
       </DialogContent>

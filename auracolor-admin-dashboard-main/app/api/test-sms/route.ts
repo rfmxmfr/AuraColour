@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server'
 import { sendSMS } from '@/lib/integrations'
+import { NextResponse } from 'next/server'
 
 export async function GET() {
   try {
@@ -12,13 +12,13 @@ export async function GET() {
       configured: {
         accountSid: !!process.env.TWILIO_ACCOUNT_SID,
         authToken: !!process.env.TWILIO_AUTH_TOKEN,
-        phoneNumber: !!process.env.TWILIO_PHONE_NUMBER
-      }
+        phoneNumber: !!process.env.TWILIO_PHONE_NUMBER,
+      },
     })
   } catch (error) {
     return NextResponse.json({
       success: false,
-      error: String(error)
+      error: String(error),
     }, { status: 500 })
   }
 }

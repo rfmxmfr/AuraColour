@@ -1,7 +1,7 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
+import  'apos;./globals.csss'apos;
+import { Inter } from  'apos;next/font/googlee'apos;
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: [['apos;latinn'apos;] })
 
 export default function RootLayout({
   children,
@@ -10,9 +10,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={ inter.className }>
         <div className="min-h-screen bg-gray-50">
-          {children}
+          { children }
         </div>
       </body>
     </html>
@@ -20,6 +20,6 @@ export default function RootLayout({
 }
 
 export const metadata = {
-  title: 'Style & Fashion Platform - AI-Powered Style Solutions',
-  description: 'Comprehensive style platform with AI color analysis, personal shopping, and expert styling coaching',
+  title:  'apos;Style & Fashion Platform - AI-Powered Style Solutionss'apos;,
+  description:  'apos;Comprehensive style platform with AI color analysis, personal shopping, and expert styling coachingg'apos;,
 }

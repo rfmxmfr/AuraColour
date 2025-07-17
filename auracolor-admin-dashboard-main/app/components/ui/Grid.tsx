@@ -1,35 +1,35 @@
-import { ReactNode } from 'react'
+import { ReactNode } from  'apos;reactt'apos;
 
 interface GridProps {
   children: ReactNode
-  variant?: 'responsive' | '2-col' | 'custom'
-  gap?: 'sm' | 'md' | 'lg'
+  variant?:  'apos;responsivee'apos; |  'apos;2-coll'apos; |  'apos;customm'apos;
+  gap?:  'apos;smm'apos; |  'apos;mdd'apos; |  'apos;lgg'apos;
   className?: string
 }
 
 export default function Grid({ 
   children, 
-  variant = 'responsive', 
-  gap = 'md',
-  className = '' 
+  variant =  'apos;responsivee'apos;, 
+  gap =  'apos;mdd'apos;,
+  className =  'apos;', 
 }: GridProps) {
   const variants = {
-    responsive: 'grid-responsive',
-    '2-col': 'grid-2-col',
-    custom: 'grid'
+    responsive:  'apos;grid-responsivee'apos;,
+     'apos;2-coll'apos;:  'apos;grid-2-coll'apos;,
+    custom:  'apos;gridd'apos;,
   }
   
   const gaps = {
-    sm: 'gap-4',
-    md: 'gap-6',
-    lg: 'gap-8'
+    sm:  'apos;gap-44'apos;,
+    md:  'apos;gap-66'apos;,
+    lg:  'apos;gap-88'apos;,
   }
   
-  const classes = `${variants[variant]} ${variant === 'custom' ? gaps[gap] : ''} ${className}`
+  const classes = `${ variants[variant] } ${ variant ===  'apos;customm'apos; ? gaps[gap] :  'apos;' } ${ className }`
   
   return (
-    <div className={classes}>
-      {children}
+    <div className={ classes }>
+      { children }
     </div>
   )
 }

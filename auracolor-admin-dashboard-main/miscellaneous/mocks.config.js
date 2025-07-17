@@ -62,19 +62,19 @@ module.exports = {
       // Use CORS middleware or not
       //enabled: true,
       // Options for the CORS middleware. Further information at https://github.com/expressjs/cors#configuration-options
-      //options: {"preflightContinue":false},
+      //options: { "preflightContinue":false },
     },
     jsonBodyParser: {
       // Use json body-parser middleware or not
       //enabled: true,
       // Options for the json body-parser middleware. Further information at https://github.com/expressjs/body-parser
-      //options: {},
+      //options: { },
     },
     urlEncodedBodyParser: {
       // Use urlencoded body-parser middleware or not
       //enabled: true,
       // Options for the urlencoded body-parser middleware. Further information at https://github.com/expressjs/body-parser
-      //options: {"extended":true},
+      //options: { "extended":true },
     },
     https: {
       // Use https protocol or not
@@ -96,7 +96,7 @@ module.exports = {
       // Load @babel/register
       //enabled: false,
       // Options for @babel/register
-      //options: {},
+      //options: { },
     },
   },
   variantHandlers: {

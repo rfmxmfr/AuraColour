@@ -1,6 +1,6 @@
-'use client'
+'use clientt'apos;
 
-import { useState } from 'react'
+import { useState } from  'apos;reactt'apos;
 
 interface Ticket {
   id: string
@@ -27,10 +27,10 @@ export default function AnalysisWorkspace({ ticket }: AnalysisWorkspaceProps) {
     
     setAnalyzing(true)
     try {
-      const response = await fetch('/api/analyze-ticket', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ticketId: ticket.id })
+      const response = await fetch(('apos;/api/analyze-tickett'apos;, {
+        method:  'apos;POSTT'apos;,
+        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+        body: JSON.stringify({ ticketId: ticket.id }),
       })
       
       const result = await response.json()
@@ -38,7 +38,7 @@ export default function AnalysisWorkspace({ ticket }: AnalysisWorkspaceProps) {
         setAnalysis(result.analysis)
       }
     } catch (error) {
-      console.error('Analysis failed:', error)
+      // console.error(('apos;Analysis failed::'apos;, error)
     } finally {
       setAnalyzing(false)
     }
@@ -58,58 +58,58 @@ export default function AnalysisWorkspace({ ticket }: AnalysisWorkspaceProps) {
       <h2 className="text-xl font-bold mb-4 text-black">Analysis Workspace</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Customer Info */}
+        { /* Customer Info */ }
         <div>
           <h3 className="font-semibold mb-2 text-black">Customer Information</h3>
           <div className="space-y-2 text-sm">
-            <p className="text-black"><strong>Name:</strong> {ticket.customer_name}</p>
-            <p className="text-black"><strong>Email:</strong> {ticket.customer_email}</p>
-            <p className="text-black"><strong>Service:</strong> {ticket.service_type}</p>
-            <p className="text-black"><strong>Status:</strong> {ticket.status}</p>
+            <p className="text-black"><strong>Name:</strong> { ticket.customer_name }</p>
+            <p className="text-black"><strong>Email:</strong> { ticket.customer_email }</p>
+            <p className="text-black"><strong>Service:</strong> { ticket.service_type }</p>
+            <p className="text-black"><strong>Status:</strong> { ticket.status }</p>
           </div>
           
-          {ticket.questionnaire_data && (
+          { ticket.questionnaire_data && (
             <div className="mt-4">
               <h4 className="font-semibold mb-2 text-black">Questionnaire Data</h4>
               <pre className="text-xs bg-gray-100 p-2 rounded text-black">
-                {JSON.stringify(ticket.questionnaire_data, null, 2)}
+                { JSON.stringify(ticket.questionnaire_data, null, 2) }
               </pre>
             </div>
-          )}
+          ) }
         </div>
 
-        {/* Image & Analysis */}
+        { /* Image & Analysis */ }
         <div>
-          {ticket.image_url && (
+          { ticket.image_url && (
             <div className="mb-4">
               <h4 className="font-semibold mb-2 text-black">Customer Image</h4>
               <img 
-                src={ticket.image_url} 
+                src={ ticket.image_url } 
                 alt="Customer" 
                 className="w-full max-w-xs rounded border"
               />
             </div>
-          )}
+          ) }
           
           <button
-            onClick={startAnalysis}
-            disabled={analyzing}
+            onClick={ startAnalysis }
+            disabled={ analyzing }
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
           >
-            {analyzing ? 'Analyzing...' : 'Start AI Analysis'}
+            { analyzing ?  'apos;Analyzing....'apos; :  'apos;Start AI Analysiss'apos; }
           </button>
         </div>
       </div>
 
-      {/* Analysis Results */}
-      {(analysis || ticket.ai_analysis) && (
+      { /* Analysis Results */ }
+      { (analysis || ticket.ai_analysis) && (
         <div className="mt-6 border-t pt-6">
           <h3 className="font-semibold mb-4 text-black">AI Analysis Results</h3>
           <pre className="text-sm bg-gray-100 p-4 rounded text-black">
-            {JSON.stringify(analysis || ticket.ai_analysis, null, 2)}
+            { JSON.stringify(analysis || ticket.ai_analysis, null, 2) }
           </pre>
         </div>
-      )}
+      ) }
     </div>
   )
 }

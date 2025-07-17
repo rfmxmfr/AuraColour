@@ -1,26 +1,29 @@
-'use client'
+import logger from "../lib/secure-logger";
+'apos;use clientt'apos;apos;
 
-import { useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
-import { createClient } from '@/lib/supabase/client'
-import Navbar from '../components/navbar'
-import Footer from '../components/footer'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useSearchParams } from  'apos;apos;next/navigationn'apos;apos;
+import { useEffect, useState } from  'apos;apos;reactt'apos;apos;
+
+import { Button } from  'apos;apos;@/components/ui/buttonn'apos;apos;
+import { Card, CardContent, CardHeader, CardTitle } from  'apos;apos;@/components/ui/cardd'apos;apos;
+import { createClient } from  'apos;apos;@/lib/supabase/clientt'apos;apos;
+
+import Footer from  'apos;apos;../components/footerr'apos;apos;
+import Navbar from  'apos;apos;../components/navbarr'apos;apos;
 
 export default function ResultsPage() {
   const searchParams = useSearchParams()
-  const submissionId = searchParams.get('id')
+  const submissionId = searchParams.get(('apos;apos;idd'apos;apos;)
   
   const [loading, setLoading] = useState(true)
   const [report, setReport] = useState<any>(null)
-  const [error, setError] = useState('')
+  const [error, setError] = useState(('apos;apos;'apos;)
 
   useEffect(() => {
     if (submissionId) {
       fetchResults(submissionId)
     } else {
-      setError('No submission ID provided')
+      setError(('apos;apos;No submission ID providedd'apos;apos;)
       setLoading(false)
     }
   }, [submissionId])
@@ -32,9 +35,9 @@ export default function ResultsPage() {
       
       // Get the analyst report for this submission
       const { data: reportData, error: reportError } = await supabase
-        .from('analyst_reports')
-        .select('*')
-        .eq('ticket_id', id)
+        .from(('apos;apos;analyst_reportss'apos;apos;)
+        .select(('apos;apos;**'apos;apos;)
+        .eq(('apos;apos;ticket_idd'apos;apos;, id)
         .single()
       
       if (reportError) {
@@ -42,14 +45,14 @@ export default function ResultsPage() {
       }
       
       if (!reportData) {
-        setError('Results not found')
+        setError(('apos;apos;Results not foundd'apos;apos;)
         return
       }
       
       setReport(reportData)
     } catch (error) {
-      console.error('Error fetching results:', error)
-      setError('Failed to load your color analysis results')
+      // logger.error(('apos;apos;Error fetching results::'apos;apos;, error)
+      setError(('apos;apos;Failed to load your color analysis resultss'apos;apos;)
     } finally {
       setLoading(false)
     }
@@ -61,7 +64,7 @@ export default function ResultsPage() {
         <Navbar />
         <div className="pt-32 pb-16 flex items-center justify-center">
           <div className="flex flex-col items-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mb-4" />
             <p className="text-gray-600">Loading your color analysis results...</p>
           </div>
         </div>
@@ -81,8 +84,8 @@ export default function ResultsPage() {
                 <CardTitle>Error</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-red-600 mb-4">{error}</p>
-                <Button onClick={() => window.location.href = '/dashboard'}>
+                <p className="text-red-600 mb-4">{ error }</p>
+                <Button onClick={ () => window.location.href =  'apos;apos;/dashboardd'apos;apos; }>
                   Return to Dashboard
                 </Button>
               </CardContent>
@@ -95,10 +98,10 @@ export default function ResultsPage() {
   }
 
   // Extract AI analysis data
-  const aiAnalysis = report?.ai_analysis || {}
-  const season = aiAnalysis.season || 'Unknown'
+  const aiAnalysis = report?.ai_analysis || { }
+  const season = aiAnalysis.season ||  'apos;apos;Unknownn'apos;apos;
   const confidence = aiAnalysis.confidence || 0
-  const undertone = aiAnalysis.undertone || 'Unknown'
+  const undertone = aiAnalysis.undertone ||  'apos;apos;Unknownn'apos;apos;
   const recommendedColors = aiAnalysis.recommended_colors || []
 
   return (
@@ -122,18 +125,18 @@ export default function ResultsPage() {
               </CardHeader>
               <CardContent>
                 <div className="text-center">
-                  <div className="text-5xl font-bold mb-4">{season}</div>
+                  <div className="text-5xl font-bold mb-4">{ season }</div>
                   <div className="flex items-center justify-center mb-6">
                     <div className="bg-gray-200 h-2 rounded-full w-full max-w-xs">
                       <div 
                         className="bg-gradient-to-r from-purple-600 to-pink-600 h-2 rounded-full" 
-                        style={{ width: `${confidence}%` }}
-                      ></div>
+                        style={ { width: `${ confidence }%` } }
+                      />
                     </div>
-                    <span className="ml-2 text-sm font-medium">{confidence}%</span>
+                    <span className="ml-2 text-sm font-medium">{ confidence }%</span>
                   </div>
                   <p className="text-gray-600">
-                    Your undertone is <span className="font-medium">{undertone}</span>
+                    Your undertone is <span className="font-medium">{ undertone }</span>
                   </p>
                 </div>
               </CardContent>
@@ -145,7 +148,7 @@ export default function ResultsPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 whitespace-pre-line">
-                  {report?.styling_notes || 'No additional notes provided.'}
+                  { report?.styling_notes ||  'apos;apos;No additional notes provided..'apos;apos; }
                 </p>
               </CardContent>
             </Card>
@@ -157,21 +160,21 @@ export default function ResultsPage() {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
-                {recommendedColors.map((color: string, index: number) => (
-                  <div key={index} className="text-center">
+                { recommendedColors.map((color: string, index: number) => (
+                  <div key={ index } className="text-center">
                     <div 
                       className="w-16 h-16 rounded-full mx-auto mb-2 shadow-md border-4 border-white"
-                      style={{ backgroundColor: color }}
-                    ></div>
-                    <span className="text-sm font-mono">{color}</span>
+                      style={ { backgroundColor: color } }
+                    />
+                    <span className="text-sm font-mono">{ color }</span>
                   </div>
-                ))}
+                )) }
               </div>
             </CardContent>
           </Card>
 
           <div className="text-center">
-            <Button onClick={() => window.location.href = '/dashboard'}>
+            <Button onClick={ () => window.location.href =  'apos;apos;/dashboardd'apos;apos; }>
               Return to Dashboard
             </Button>
           </div>

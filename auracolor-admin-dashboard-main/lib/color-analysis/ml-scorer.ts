@@ -1,5 +1,5 @@
-import { EnhancedColorFeatures } from './vision-enhanced'
 import { SeasonRule } from './rules'
+import { EnhancedColorFeatures } from './vision-enhanced'
 
 interface MLWeights {
   skinTone: { [key: string]: number }
@@ -31,26 +31,26 @@ export class MLColorScorer {
   private getTrainedWeights(): MLWeights {
     return {
       skinTone: {
-        light: 0.8, medium: 0.6, dark: 0.4
+        light: 0.8, medium: 0.6, dark: 0.4,
       },
       undertone: {
-        warm: 0.9, cool: 0.8, neutral: 0.5
+        warm: 0.9, cool: 0.8, neutral: 0.5,
       },
       hairColor: {
-        blonde: 0.7, brown: 0.8, black: 0.9, red: 0.85, gray: 0.6
+        blonde: 0.7, brown: 0.8, black: 0.9, red: 0.85, gray: 0.6,
       },
       eyeColor: {
-        blue: 0.8, green: 0.75, brown: 0.9, hazel: 0.7, gray: 0.6
+        blue: 0.8, green: 0.75, brown: 0.9, hazel: 0.7, gray: 0.6,
       },
       contrast: {
-        low: 0.4, medium: 0.7, high: 0.9
+        low: 0.4, medium: 0.7, high: 0.9,
       },
       saturation: {
-        muted: 0.5, clear: 0.9, soft: 0.6
+        muted: 0.5, clear: 0.9, soft: 0.6,
       },
       temperature: {
-        warm: 0.85, cool: 0.8, neutral: 0.5
-      }
+        warm: 0.85, cool: 0.8, neutral: 0.5,
+      },
     }
   }
 
@@ -95,7 +95,7 @@ export class MLColorScorer {
       eyeColor: this.encodeFeature(features.eyeColor.primary, ['blue', 'green', 'brown', 'hazel', 'gray']),
       contrast: this.encodeFeature(features.contrast.level, ['low', 'medium', 'high']),
       saturation: this.encodeFeature(features.saturation.preference, ['muted', 'clear', 'soft']),
-      temperature: this.encodeFeature(features.colorHarmony.temperature, ['warm', 'cool', 'neutral'])
+      temperature: this.encodeFeature(features.colorHarmony.temperature, ['warm', 'cool', 'neutral']),
     }
   }
 
@@ -107,7 +107,7 @@ export class MLColorScorer {
       eyeColor: rule.weights.eyeColor || 'brown',
       contrast: rule.weights.contrast || 'medium',
       saturation: rule.weights.saturation || 'clear',
-      temperature: rule.category === 'spring' || rule.category === 'autumn' ? 'warm' : 'cool'
+      temperature: rule.category === 'spring' || rule.category === 'autumn' ? 'warm' : 'cool',
     }
 
     return {
@@ -117,7 +117,7 @@ export class MLColorScorer {
       eyeColor: this.encodeFeature(ruleFeatures.eyeColor, ['blue', 'green', 'brown', 'hazel', 'gray']),
       contrast: this.encodeFeature(ruleFeatures.contrast, ['low', 'medium', 'high']),
       saturation: this.encodeFeature(ruleFeatures.saturation, ['muted', 'clear', 'soft']),
-      temperature: this.encodeFeature(ruleFeatures.temperature, ['warm', 'cool', 'neutral'])
+      temperature: this.encodeFeature(ruleFeatures.temperature, ['warm', 'cool', 'neutral']),
     }
   }
 
@@ -150,7 +150,7 @@ export class MLColorScorer {
       eyeColor: 0.15,
       contrast: 0.20,
       saturation: 0.15,
-      temperature: 0.25
+      temperature: 0.25,
     }
 
     const confidenceBoosts = {
@@ -160,7 +160,7 @@ export class MLColorScorer {
       eyeColor: features.eyeColor.clarity,
       contrast: features.contrast.score,
       saturation: features.saturation.tolerance,
-      temperature: features.imageQuality.colorAccuracy
+      temperature: features.imageQuality.colorAccuracy,
     }
 
     const baseWeight = baseWeights[category as keyof typeof baseWeights] || 0.1
@@ -176,7 +176,7 @@ export class MLColorScorer {
       features.undertone.confidence,
       features.skinTone.undertoneStrength,
       features.hairColor.naturalness,
-      features.eyeColor.clarity
+      features.eyeColor.clarity,
     ]
 
     const avgConfidence = factors.reduce((sum, factor) => sum + factor, 0) / factors.length

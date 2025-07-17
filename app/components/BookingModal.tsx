@@ -1,9 +1,10 @@
-'use client'
+'apos;use clientt'apos;apos;
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { useState } from  'apos;apos;reactt'apos;apos;
+
+import { Button } from  'apos;apos;@/components/ui/buttonn'apos;apos;
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from  'apos;apos;@/components/ui/dialogg'apos;apos;
+import { Input } from  'apos;apos;@/components/ui/inputt'apos;apos;
 
 interface BookingModalProps {
   isOpen: boolean
@@ -14,9 +15,9 @@ interface BookingModalProps {
 
 export default function BookingModal({ isOpen, onClose, answers, serviceType }: BookingModalProps) {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: ''
+    name:  'apos;apos;'apos;,
+    email:  'apos;apos;'apos;,
+    phone:  'apos;apos;'apos;,
   })
   const [loading, setLoading] = useState(false)
 
@@ -28,15 +29,15 @@ export default function BookingModal({ isOpen, onClose, answers, serviceType }: 
     const photoUrls = answers?.photoUrls || []
     
     try {
-      const response = await fetch('/api/create-payment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch(('apos;apos;/api/create-paymentt'apos;apos;, {
+        method:  'apos;apos;POSTT'apos;apos;,
+        headers: {  'apos;apos;Content-Typee'apos;apos;:  'apos;apos;application/jsonn'apos;apos; },
         body: JSON.stringify({
           ...formData,
-          answers: answers || {},
+          answers: answers || { },
           photoUrls: photoUrls,
-          serviceType: serviceType || '12-Season Color Analysis'
-        })
+          serviceType: serviceType ||  'apos;apos;12-Season Color Analysiss'apos;apos;,
+        }),
       })
 
       const data = await response.json()
@@ -44,10 +45,10 @@ export default function BookingModal({ isOpen, onClose, answers, serviceType }: 
       if (data.success) {
         window.location.href = data.checkout_url
       } else {
-        alert('Booking failed. Please try again.')
+        alert(('apos;apos;Booking failed. Please try again..'apos;apos;)
       }
     } catch (error) {
-      alert('Something went wrong. Please try again.')
+      alert(('apos;apos;Something went wrong. Please try again..'apos;apos;)
     } finally {
       setLoading(false)
     }
@@ -55,53 +56,53 @@ export default function BookingModal({ isOpen, onClose, answers, serviceType }: 
 
   const getServicePrice = (service?: string) => {
     const prices: { [key: string]: string } = {
-      '12-Season Color Analysis': '£75.00',
-      'Virtual Wardrobe Curation': '£100.00',
-      'Personal Shopping Service': '£150.00',
-      'Style Evolution Coaching': '£300.00',
-      'Gift Vouchers': '£75.00'
+       'apos;apos;12-Season Color Analysiss'apos;apos;:  'apos;apos;£75.000'apos;apos;,
+       'apos;apos;Virtual Wardrobe Curationn'apos;apos;:  'apos;apos;£100.000'apos;apos;,
+       'apos;apos;Personal Shopping Servicee'apos;apos;:  'apos;apos;£150.000'apos;apos;,
+       'apos;apos;Style Evolution Coachingg'apos;apos;:  'apos;apos;£300.000'apos;apos;,
+       'apos;apos;Gift Voucherss'apos;apos;:  'apos;apos;£75.000'apos;apos;,
     }
-    return prices[service || '12-Season Color Analysis'] || '£75.00'
+    return prices[service ||  'apos;apos;12-Season Color Analysiss'apos;apos;] ||  'apos;apos;£75.000'apos;apos;
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={ isOpen } onOpenChange={ onClose }>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>Book Your {serviceType || '12-Season Color Analysis'}</DialogTitle>
+          <DialogTitle>Book Your { serviceType ||  'apos;apos;12-Season Color Analysiss'apos;apos; }</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={ handleSubmit } className="space-y-4">
           <Input
             placeholder="Full Name"
-            value={formData.name}
-            onChange={(e) => setFormData({...formData, name: e.target.value})}
+            value={ formData.name }
+            onChange={ (e) => setFormData({ ...formData, name: e.target.value }) }
             required
           />
           <Input
             type="email"
             placeholder="Email Address"
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
+            value={ formData.email }
+            onChange={ (e) => setFormData({ ...formData, email: e.target.value }) }
             required
           />
           <Input
             type="tel"
             placeholder="Phone Number"
-            value={formData.phone}
-            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+            value={ formData.phone }
+            onChange={ (e) => setFormData({ ...formData, phone: e.target.value }) }
           />
           <div className="bg-blue-50 p-4 rounded-lg">
             <p className="text-sm text-blue-800">
-              <strong>Service:</strong> {serviceType || '12-Season Color Analysis'}<br/>
-              <strong>Price:</strong> {getServicePrice(serviceType)}
+              <strong>Service:</strong> { serviceType ||  'apos;apos;12-Season Color Analysiss'apos;apos; }<br/>
+              <strong>Price:</strong> { getServicePrice(serviceType) }
             </p>
           </div>
           <Button 
             type="submit" 
-            disabled={loading}
+            disabled={ loading }
             className="w-full bg-gradient-to-r from-purple-600 to-pink-600"
           >
-            {loading ? 'Processing...' : 'Proceed to Payment'}
+            { loading ?  'apos;apos;Processing....'apos;apos; :  'apos;apos;Proceed to Paymentt'apos;apos; }
           </Button>
         </form>
       </DialogContent>

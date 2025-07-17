@@ -1,11 +1,11 @@
 "use client"
 
-import React, { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { LoadingSpinner, LoadingState, ErrorMessage, TrustSignals } from "@/components/ui/quick-wins"
-import { Progress } from "@/components/ui/progress"
 import ProgressIndicator from "@/app/components/ProgressIndicator"
+import { Button } from "@/components/ui/button"
+import { Progress } from "@/components/ui/progress"
+import { LoadingSpinner, LoadingState, ErrorMessage, TrustSignals } from "@/components/ui/quick-wins"
 import { showNotification } from "@/lib/notifications"
+import React, { useState } from "react"
 
 export default function QuickWinsDemo() {
   const [isLoading, setIsLoading] = useState(false)
@@ -43,24 +43,24 @@ export default function QuickWinsDemo() {
         <div className="space-y-8">
           <div>
             <h3 className="text-lg font-medium mb-4">Simple Progress Bar</h3>
-            <Progress value={progress} className="w-full" />
-            <p className="text-sm text-muted-foreground mt-2">{progress}% Complete</p>
+            <Progress value={ progress } className="w-full" />
+            <p className="text-sm text-muted-foreground mt-2">{ progress }% Complete</p>
           </div>
           
           <div>
             <h3 className="text-lg font-medium mb-4">Step Progress Indicator</h3>
             <ProgressIndicator 
-              currentStep={Math.floor(progress / 25)} 
-              totalSteps={4} 
-              stepLabels={["Details", "Upload", "Review", "Submit"]} 
+              currentStep={ Math.floor(progress / 25) } 
+              totalSteps={ 4 } 
+              stepLabels={ ["Details", "Upload", "Review", "Submit"] } 
             />
           </div>
           
           <div className="flex gap-4">
-            <Button onClick={handleLoadingDemo} disabled={isLoading}>
+            <Button onClick={ handleLoadingDemo } disabled={ isLoading }>
               Start Progress Demo
             </Button>
-            <Button variant="outline" onClick={() => setProgress(0)} disabled={isLoading}>
+            <Button variant="outline" onClick={ () => setProgress(0) } disabled={ isLoading }>
               Reset
             </Button>
           </div>
@@ -83,10 +83,10 @@ export default function QuickWinsDemo() {
           <div className="space-y-4">
             <h3 className="text-lg font-medium">Loading Buttons</h3>
             <div className="flex flex-col gap-4">
-              <Button isLoading={true} loadingText="Loading...">
+              <Button isLoading={ true } loadingText="Loading...">
                 Submit
               </Button>
-              <Button variant="outline" isLoading={true}>
+              <Button variant="outline" isLoading={ true }>
                 Processing
               </Button>
             </div>
@@ -113,60 +113,60 @@ export default function QuickWinsDemo() {
           <div className="flex flex-wrap gap-4">
             <Button 
               variant="outline" 
-              onClick={() => setShowError(!showError)}
+              onClick={ () => setShowError(!showError) }
             >
-              {showError ? "Hide" : "Show"} Error Message
+              { showError ? "Hide" : "Show" } Error Message
             </Button>
             
             <Button
               variant="destructive"
-              onClick={() => showNotification("error", "Something went wrong", {
+              onClick={ () => showNotification("error", "Something went wrong", {
                 title: "Error",
                 description: "Unable to process your request. Please try again later.",
                 action: {
                   label: "Retry",
                   onClick: () => showNotification("info", "Retrying..."),
                 },
-              })}
+              }) }
             >
               Show Error Toast
             </Button>
             
             <Button
               variant="outline"
-              onClick={() => showNotification("warning", "Warning", {
+              onClick={ () => showNotification("warning", "Warning", {
                 description: "Your session will expire soon. Please save your work.",
-              })}
+              }) }
             >
               Show Warning Toast
             </Button>
             
             <Button
               variant="secondary"
-              onClick={() => showNotification("success", "Success", {
+              onClick={ () => showNotification("success", "Success", {
                 description: "Your changes have been saved successfully.",
-              })}
+              }) }
             >
               Show Success Toast
             </Button>
           </div>
           
-          {showError && (
+          { showError && (
             <div className="space-y-4">
               <ErrorMessage 
                 title="Connection Error" 
                 message="Unable to connect to the server. Please check your internet connection and try again."
-                onDismiss={() => setShowError(false)}
+                onDismiss={ () => setShowError(false) }
               />
               
               <ErrorMessage 
                 title="Warning" 
                 message="Your session will expire in 5 minutes. Please save your work."
                 variant="warning"
-                dismissable={false}
+                dismissable={ false }
               />
             </div>
-          )}
+          ) }
         </div>
       </section>
 
@@ -188,23 +188,23 @@ export default function QuickWinsDemo() {
             <h3 className="text-lg font-medium mb-4">Banner Trust Signals</h3>
             <TrustSignals 
               variant="banner" 
-              signals={[
+              signals={ [
                 {
                   icon: <span className="text-xl">🔒</span>,
                   title: "Secure Checkout",
-                  description: "Your payment information is encrypted"
+                  description: "Your payment information is encrypted",
                 },
                 {
                   icon: <span className="text-xl">⭐</span>,
                   title: "Trusted by 1000+ Clients",
-                  description: "Join our satisfied customers"
+                  description: "Join our satisfied customers",
                 },
                 {
                   icon: <span className="text-xl">🛡️</span>,
                   title: "Money-Back Guarantee",
-                  description: "30-day satisfaction guarantee"
-                }
-              ]}
+                  description: "30-day satisfaction guarantee",
+                },
+              ] }
             />
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+
 import { PRODUCT_CATALOG, getProductsBySeason, getProductsByCategory, searchProducts, getRecommendedProducts } from '@/lib/product-catalog'
 
 export async function GET(request: NextRequest) {
@@ -30,11 +31,11 @@ export async function GET(request: NextRequest) {
         season,
         category,
         search,
-        recommended: !!recommended
-      }
+        recommended: !!recommended,
+      },
     })
   } catch (error) {
-    console.error('Products API error:', error)
+    // console.error('Products API error:', error)
     return NextResponse.json({ error: 'Failed to fetch products' }, { status: 500 })
   }
 }

@@ -11,7 +11,7 @@ class TestRunner {
   }
 
   describe(name, fn) {
-    console.log(`\n📋 ${name}`);
+    // console.log(`\n📋 ${ name }`);
     fn();
   }
 
@@ -23,43 +23,43 @@ class TestRunner {
     return {
       toBe: (expected) => {
         if (actual !== expected) {
-          throw new Error(`Expected ${expected}, got ${actual}`);
+          throw new Error(`Expected ${ expected }, got ${ actual }`);
         }
       },
       toEqual: (expected) => {
         if (JSON.stringify(actual) !== JSON.stringify(expected)) {
-          throw new Error(`Expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`);
+          throw new Error(`Expected ${ JSON.stringify(expected) }, got ${ JSON.stringify(actual) }`);
         }
       },
       toBeTruthy: () => {
         if (!actual) {
-          throw new Error(`Expected truthy value, got ${actual}`);
+          throw new Error(`Expected truthy value, got ${ actual }`);
         }
       },
       toBeFalsy: () => {
         if (actual) {
-          throw new Error(`Expected falsy value, got ${actual}`);
+          throw new Error(`Expected falsy value, got ${ actual }`);
         }
-      }
+      },
     };
   }
 
   async run() {
-    console.log('🚀 Running tests...\n');
+    // console.log('🚀 Running tests...\n');
     
     for (const test of this.tests) {
       try {
         await test.fn();
-        console.log(`✅ ${test.name}`);
+        // console.log(`✅ ${ test.name }`);
         this.passed++;
       } catch (error) {
-        console.log(`❌ ${test.name}`);
-        console.log(`   ${error.message}`);
+        // console.log(`❌ ${ test.name }`);
+        // console.log(`   ${ error.message }`);
         this.failed++;
       }
     }
 
-    console.log(`\n📊 Results: ${this.passed} passed, ${this.failed} failed`);
+    // console.log(`\n📊 Results: ${ this.passed } passed, ${ this.failed } failed`);
     return this.failed === 0;
   }
 }
@@ -77,7 +77,7 @@ if (require.main === module) {
     require(path.resolve(testFile));
     runner.run().then(success => process.exit(success ? 0 : 1));
   } else {
-    console.log('Usage: node test-runner.js <test-file>');
+    // console.log('Usage: node test-runner.js <test-file>');
   }
 }
 

@@ -1,10 +1,10 @@
-/** @type {import('next').NextConfig} */
+/** @type { import('next').NextConfig } */
 const nextConfig = {
   images: {
     domains: [
       'images.unsplash.com',
       'i0.wp.com',
-      'i.pinimg.com'
+      'i.pinimg.com',
     ],
   },
   eslint: {
@@ -12,7 +12,7 @@ const nextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true,
-  }
+  },
 }
 
 module.exports = nextConfig

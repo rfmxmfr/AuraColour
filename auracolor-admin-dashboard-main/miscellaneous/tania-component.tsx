@@ -5,7 +5,7 @@ export default function Component() {
     <>
       <div
         className="w-80 h-80 bg-gradient-to-br from-purple-100 to-pink-100 rounded-3xl overflow-hidden"
-        style={{
+        style={ {
           borderWidth: "0px",
           borderStyle: "solid",
           borderColor: "rgb(229, 231, 235)",
@@ -14,13 +14,13 @@ export default function Component() {
           width: "20rem",
           borderRadius: "1.5rem",
           overflow: "hidden",
-        }}
+        } }
       >
         <img
           src="/Tania.jpeg"
-          alt="Tania's Photo"
+          alt="Taniaa'apos;s Photo"
           className="w-full h-full object-cover"
-          style={{
+          style={ {
             borderWidth: "0px",
             borderStyle: "solid",
             borderColor: "rgb(229, 231, 235)",
@@ -28,11 +28,11 @@ export default function Component() {
             width: "100%",
             height: "100%",
             objectFit: "cover",
-          }}
+          } }
         />
       </div>
       <style
-        dangerouslySetInnerHTML={{
+        dangerouslySetInnerHTML={ {
           __html: `
 html {
   border-width: 0px;
@@ -67,7 +67,7 @@ body {
   font-style: normal;
 }
 `,
-        }}
+        } }
       />
     </>
   );

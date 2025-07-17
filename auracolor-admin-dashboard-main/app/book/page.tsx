@@ -1,33 +1,34 @@
-'use client'
+'use clientt'apos;
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import Link from 'next/link'
-import Navbar from '../components/navbar'
-import Footer from '../components/footer'
+import { Button } from  'apos;@/components/ui/buttonn'apos;
+import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
+import { Input } from  'apos;@/components/ui/inputt'apos;
+import { Label } from  'apos;@/components/ui/labell'apos;
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from  'apos;@/components/ui/selectt'apos;
+import { Textarea } from  'apos;@/components/ui/textareaa'apos;
+import Link from  'apos;next/linkk'apos;
+import { useState } from  'apos;reactt'apos;
+
+import Footer from  'apos;../components/footerr'apos;
+import Navbar from  'apos;../components/navbarr'apos;
 
 export default function BookingPage() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    preferredDate: '',
-    message: ''
+    name:  'apos;',
+    email:  'apos;',
+    phone:  'apos;',
+    service:  'apos;',
+    preferredDate:  'apos;',
+    message:  'apos;',
   })
   const [loading, setLoading] = useState(false)
 
   const services = [
-    { id: 'color-analysis', name: '12-Season Color Analysis', price: '£75' },
-    { id: 'virtual-wardrobe', name: 'Virtual Wardrobe Curation', price: '£100' },
-    { id: 'personal-shopping', name: 'Personal Shopping Service', price: '£150' },
-    { id: 'style-coaching', name: 'Style Evolution Coaching', price: '£300' },
-    { id: 'gift-vouchers', name: 'Gift Vouchers', price: 'From £75' }
+    { id:  'apos;color-analysiss'apos;, name:  'apos;12-Season Color Analysiss'apos;, price:  'apos;£755'apos; },
+    { id:  'apos;virtual-wardrobee'apos;, name:  'apos;Virtual Wardrobe Curationn'apos;, price:  'apos;£1000'apos; },
+    { id:  'apos;personal-shoppingg'apos;, name:  'apos;Personal Shopping Servicee'apos;, price:  'apos;£1500'apos; },
+    { id:  'apos;style-coachingg'apos;, name:  'apos;Style Evolution Coachingg'apos;, price:  'apos;£3000'apos; },
+    { id:  'apos;gift-voucherss'apos;, name:  'apos;Gift Voucherss'apos;, price:  'apos;From £755'apos; },
   ]
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -35,22 +36,22 @@ export default function BookingPage() {
     setLoading(true)
     
     try {
-      const response = await fetch('/api/bookings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+      const response = await fetch(('apos;/api/bookingss'apos;, {
+        method:  'apos;POSTT'apos;,
+        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+        body: JSON.stringify(formData),
       })
       
       const result = await response.json()
       
       if (response.ok) {
-        alert(`Booking successful! Reference: ${result.booking_number}`)
-        window.location.href = '/success?booking=completed'
+        alert(`Booking successful! Reference: ${ result.booking_number }`)
+        window.location.href =  'apos;/success?booking=completedd'apos;
       } else {
-        alert(`Booking failed: ${result.error}`)
+        alert(`Booking failed: ${ result.error }`)
       }
     } catch (error) {
-      alert('Booking failed. Please try again.')
+      alert(('apos;Booking failed. Please try again..'apos;)
     } finally {
       setLoading(false)
     }
@@ -73,19 +74,19 @@ export default function BookingPage() {
               <CardTitle className="text-2xl text-gray-900">Service Booking</CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={ handleSubmit } className="space-y-6">
                 <div>
                   <Label htmlFor="service" className="text-gray-700 font-semibold">Select Service</Label>
-                  <Select onValueChange={(value) => setFormData({...formData, service: value})}>
+                  <Select onValueChange={ (value) => setFormData({ ...formData, service: value }) }>
                     <SelectTrigger className="bg-white/50">
                       <SelectValue placeholder="Choose a service" />
                     </SelectTrigger>
                     <SelectContent>
-                      {services.map((service) => (
-                        <SelectItem key={service.id} value={service.id}>
-                          {service.name} - {service.price}
+                      { services.map((service) => (
+                        <SelectItem key={ service.id } value={ service.id }>
+                          { service.name } - { service.price }
                         </SelectItem>
-                      ))}
+                      )) }
                     </SelectContent>
                   </Select>
                 </div>
@@ -96,8 +97,8 @@ export default function BookingPage() {
                     <Input
                       id="name"
                       className="bg-white/50"
-                      value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      value={ formData.name }
+                      onChange={ (e) => setFormData({ ...formData, name: e.target.value }) }
                       required
                     />
                   </div>
@@ -107,8 +108,8 @@ export default function BookingPage() {
                       id="email"
                       type="email"
                       className="bg-white/50"
-                      value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      value={ formData.email }
+                      onChange={ (e) => setFormData({ ...formData, email: e.target.value }) }
                       required
                     />
                   </div>
@@ -120,8 +121,8 @@ export default function BookingPage() {
                     <Input
                       id="phone"
                       className="bg-white/50"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      value={ formData.phone }
+                      onChange={ (e) => setFormData({ ...formData, phone: e.target.value }) }
                     />
                   </div>
                   <div>
@@ -130,8 +131,8 @@ export default function BookingPage() {
                       id="date"
                       type="date"
                       className="bg-white/50"
-                      value={formData.preferredDate}
-                      onChange={(e) => setFormData({...formData, preferredDate: e.target.value})}
+                      value={ formData.preferredDate }
+                      onChange={ (e) => setFormData({ ...formData, preferredDate: e.target.value }) }
                     />
                   </div>
                 </div>
@@ -142,8 +143,8 @@ export default function BookingPage() {
                     id="message"
                     className="bg-white/50"
                     placeholder="Tell us about your style goals or any specific requirements..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
+                    value={ formData.message }
+                    onChange={ (e) => setFormData({ ...formData, message: e.target.value }) }
                   />
                 </div>
 

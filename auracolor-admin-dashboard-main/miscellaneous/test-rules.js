@@ -2,7 +2,7 @@
 const { findBestSeason, calculateSeasonScore, SEASON_RULES } = require('./lib/color-analysis/rules.ts')
 
 function testColorAnalysisRules() {
-  console.log('🎨 Testing 12-Season Color Analysis Rules...\n')
+  // console.log('🎨 Testing 12-Season Color Analysis Rules...\n')
   
   // Test cases with expected results
   const testCases = [
@@ -14,9 +14,9 @@ function testColorAnalysisRules() {
         hairColor: 'blonde',
         eyeColor: 'blue',
         contrast: 'low',
-        saturation: 'clear'
+        saturation: 'clear',
       },
-      expected: 'Light Spring'
+      expected: 'Light Spring',
     },
     {
       name: 'Deep Winter',
@@ -26,9 +26,9 @@ function testColorAnalysisRules() {
         hairColor: 'black',
         eyeColor: 'brown',
         contrast: 'high',
-        saturation: 'clear'
+        saturation: 'clear',
       },
-      expected: 'Deep Winter'
+      expected: 'Deep Winter',
     },
     {
       name: 'Warm Autumn',
@@ -38,26 +38,26 @@ function testColorAnalysisRules() {
         hairColor: 'red',
         eyeColor: 'hazel',
         contrast: 'medium',
-        saturation: 'muted'
+        saturation: 'muted',
       },
-      expected: 'Warm Autumn'
-    }
+      expected: 'Warm Autumn',
+    },
   ]
   
   testCases.forEach(testCase => {
     const result = findBestSeason(testCase.features)
     const match = result.season === testCase.expected
     
-    console.log(`${match ? '✅' : '❌'} ${testCase.name}:`)
-    console.log(`  Input: ${JSON.stringify(testCase.features)}`)
-    console.log(`  Expected: ${testCase.expected}`)
-    console.log(`  Got: ${result.season} (${result.score}% confidence)`)
-    console.log(`  Colors: ${result.colors.slice(0, 3).join(', ')}...\n`)
+    // console.log(`${ match ? '✅' : '❌' } ${ testCase.name }:`)
+    // console.log(`  Input: ${ JSON.stringify(testCase.features) }`)
+    // console.log(`  Expected: ${ testCase.expected }`)
+    // console.log(`  Got: ${ result.season } (${ result.score }% confidence)`)
+    // console.log(`  Colors: ${ result.colors.slice(0, 3).join(', ') }...\n`)
   })
   
-  console.log(`📊 Available Seasons: ${SEASON_RULES.length}`)
-  console.log('Categories:', [...new Set(SEASON_RULES.map(r => r.category))].join(', '))
-  console.log('Subtypes:', [...new Set(SEASON_RULES.map(r => r.subtype))].join(', '))
+  // console.log(`📊 Available Seasons: ${ SEASON_RULES.length }`)
+  // console.log('Categories:', [...new Set(SEASON_RULES.map(r => r.category))].join(', '))
+  // console.log('Subtypes:', [...new Set(SEASON_RULES.map(r => r.subtype))].join(', '))
 }
 
 // Test without requiring server
@@ -67,13 +67,13 @@ try {
   const rulesContent = fs.readFileSync('./lib/color-analysis/rules.ts', 'utf8')
   
   // Extract and evaluate the rules (simplified)
-  console.log('✅ Rules file exists and is readable')
-  console.log('📁 File size:', rulesContent.length, 'characters')
-  console.log('🔍 Contains SEASON_RULES:', rulesContent.includes('SEASON_RULES'))
-  console.log('🔍 Contains findBestSeason:', rulesContent.includes('findBestSeason'))
+  // console.log('✅ Rules file exists and is readable')
+  // console.log('📁 File size:', rulesContent.length, 'characters')
+  // console.log('🔍 Contains SEASON_RULES:', rulesContent.includes('SEASON_RULES'))
+  // console.log('🔍 Contains findBestSeason:', rulesContent.includes('findBestSeason'))
   
 } catch (error) {
-  console.error('❌ Rules test failed:', error.message)
+  // console.error('❌ Rules test failed:', error.message)
 }
 
-console.log('\n🏁 Rules Test Complete')
+// console.log('\n🏁 Rules Test Complete')

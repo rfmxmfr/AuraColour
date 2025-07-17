@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-let contentStore: any[] = [
+const contentStore: any[] = [
   {
     id: '1',
     type: 'service',
     title: '12-Season Color Analysis',
     content: 'Professional color analysis service that determines your optimal color palette.',
     status: 'published',
-    lastModified: new Date().toISOString()
-  }
+    lastModified: new Date().toISOString(),
+  },
 ]
 
 export async function GET() {
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
     const newContent = {
       ...content,
       id: Date.now().toString(),
-      lastModified: new Date().toISOString()
+      lastModified: new Date().toISOString(),
     }
     
     contentStore.push(newContent)
@@ -42,7 +42,7 @@ export async function PUT(request: NextRequest) {
     
     contentStore[index] = {
       ...content,
-      lastModified: new Date().toISOString()
+      lastModified: new Date().toISOString(),
     }
     
     return NextResponse.json(contentStore[index])

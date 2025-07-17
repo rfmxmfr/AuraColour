@@ -1,5 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
+
 import { colorAnalyzer } from '@/lib/ml/color-analyzer'
 import { ImageProcessor } from '@/lib/ml/image-processor'
 
@@ -42,7 +43,7 @@ export async function POST(request: NextRequest) {
       confidence: analysisResult.confidence,
       colors: analysisResult.colors,
       undertone: analysisResult.undertone,
-      status: 'completed'
+      status: 'completed',
     })
     
     return NextResponse.json({
@@ -52,11 +53,11 @@ export async function POST(request: NextRequest) {
       confidence: analysisResult.confidence,
       colors: analysisResult.colors,
       undertone: analysisResult.undertone,
-      status: 'completed'
+      status: 'completed',
     })
 
   } catch (error) {
-    console.error('ML Analysis error:', error)
+    // console.error('ML Analysis error:', error)
     return NextResponse.json({ error: 'Analysis failed' }, { status: 500 })
   }
 }

@@ -37,14 +37,14 @@ export function generateAvailableSlots(): TimeSlot[] {
     
     // Generate slots from 9 AM to 5 PM
     for (let hour = 9; hour < 17; hour++) {
-      const timeStr = `${hour.toString().padStart(2, '0')}:00`
+      const timeStr = `${ hour.toString().padStart(2, '0') }:00`
       
       slots.push({
-        id: `${dateStr}-${timeStr}`,
+        id: `${ dateStr }-${ timeStr }`,
         date: dateStr,
         time: timeStr,
         available: Math.random() > 0.3, // 70% availability
-        duration: 60
+        duration: 60,
       })
     }
   }
@@ -63,7 +63,7 @@ export function getAvailableSlots(date?: string): TimeSlot[] {
 }
 
 export function formatAppointmentTime(date: string, time: string): string {
-  const appointmentDate = new Date(`${date}T${time}:00`)
+  const appointmentDate = new Date(`${ date }T${ time }:00`)
   return appointmentDate.toLocaleString('en-US', {
     weekday: 'long',
     year: 'numeric',
@@ -71,14 +71,14 @@ export function formatAppointmentTime(date: string, time: string): string {
     day: 'numeric',
     hour: 'numeric',
     minute: '2-digit',
-    hour12: true
+    hour12: true,
   })
 }
 
 export function generateMeetingUrl(): string {
   // In production, integrate with Zoom, Google Meet, or similar
   const meetingId = Math.random().toString(36).substring(2, 15)
-  return `https://meet.auracolor.com/room/${meetingId}`
+  return `https://meet.auracolor.com/room/${ meetingId }`
 }
 
 export const STYLIST_SERVICES = {
@@ -86,24 +86,24 @@ export const STYLIST_SERVICES = {
     name: 'Color Consultation',
     duration: 60,
     price: 149,
-    description: 'Personal color analysis and styling advice'
+    description: 'Personal color analysis and styling advice',
   },
   wardrobe_review: {
     name: 'Wardrobe Review',
     duration: 90,
     price: 199,
-    description: 'Complete wardrobe assessment and recommendations'
+    description: 'Complete wardrobe assessment and recommendations',
   },
   shopping_session: {
     name: 'Personal Shopping Session',
     duration: 120,
     price: 299,
-    description: 'Guided shopping experience with expert stylist'
+    description: 'Guided shopping experience with expert stylist',
   },
   style_makeover: {
     name: 'Complete Style Makeover',
     duration: 180,
     price: 499,
-    description: 'Comprehensive style transformation package'
-  }
+    description: 'Comprehensive style transformation package',
+  },
 }

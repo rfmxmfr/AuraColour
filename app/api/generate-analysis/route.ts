@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+
 import { createClient } from '@/lib/supabase/server'
 
 export async function POST(request: NextRequest) {
@@ -22,17 +23,17 @@ export async function POST(request: NextRequest) {
     const serviceType = booking.service_type || '12-Season Color Analysis';
     
     switch(serviceType) {
-      case 'Virtual Wardrobe Curation':
-        analysis = generateWardrobeAnalysis(booking.answers, booking.data);
-        break;
-      case 'Personal Shopping Service':
-        analysis = generateShoppingAnalysis(booking.answers, booking.data);
-        break;
-      case 'Style Evolution Coaching':
-        analysis = generateStyleEvolutionAnalysis(booking.answers, booking.data);
-        break;
-      default: // 12-Season Color Analysis
-        analysis = generateColorAnalysis(booking.answers);
+    case 'Virtual Wardrobe Curation':
+      analysis = generateWardrobeAnalysis(booking.answers, booking.data);
+      break;
+    case 'Personal Shopping Service':
+      analysis = generateShoppingAnalysis(booking.answers, booking.data);
+      break;
+    case 'Style Evolution Coaching':
+      analysis = generateStyleEvolutionAnalysis(booking.answers, booking.data);
+      break;
+    default: // 12-Season Color Analysis
+      analysis = generateColorAnalysis(booking.answers);
     }
 
     // Create appropriate record based on service type
@@ -48,7 +49,7 @@ export async function POST(request: NextRequest) {
           styling_notes: analysis.notes,
           confidence_score: analysis.confidence,
           ai_analysis: analysis,
-          status: 'draft'
+          status: 'draft',
         })
         .select()
         .single();
@@ -64,7 +65,7 @@ export async function POST(request: NextRequest) {
           gap_analysis: analysis.gapAnalysis || [],
           shopping_recommendations: analysis.recommendedAdditions || [],
           ai_analysis: analysis,
-          status: 'pending'
+          status: 'pending',
         })
         .select()
         .single();
@@ -79,7 +80,7 @@ export async function POST(request: NextRequest) {
           curated_items: analysis.statementPieces || [],
           purchase_recommendations: analysis.versatileBasics || [],
           ai_analysis: analysis,
-          status: 'scheduled'
+          status: 'scheduled',
         })
         .select()
         .single();
@@ -95,10 +96,10 @@ export async function POST(request: NextRequest) {
           progress_tracking: {
             transformationPotential: analysis.transformationPotential,
             recommendedDirection: analysis.recommendedDirection,
-            keyPieces: analysis.keyPiecesToAcquire
+            keyPieces: analysis.keyPiecesToAcquire,
           },
           ai_analysis: analysis,
-          status: 'enrolled'
+          status: 'enrolled',
         })
         .select()
         .single();
@@ -114,8 +115,8 @@ export async function POST(request: NextRequest) {
           season: analysis.season,
           confidence: analysis.confidence,
           colors: analysis.colors,
-          notes: analysis.notes
-        }
+          notes: analysis.notes,
+        },
       });
     } else if (serviceType === 'Virtual Wardrobe Curation') {
       return NextResponse.json({
@@ -126,8 +127,8 @@ export async function POST(request: NextRequest) {
           versatility_score: analysis.versatilityScore,
           organization_level: analysis.organizationLevel,
           gap_analysis: analysis.gapAnalysis,
-          recommended_additions: analysis.recommendedAdditions
-        }
+          recommended_additions: analysis.recommendedAdditions,
+        },
       });
     } else if (serviceType === 'Personal Shopping Service') {
       return NextResponse.json({
@@ -138,8 +139,8 @@ export async function POST(request: NextRequest) {
           color_preferences: analysis.colorPreferences,
           recommended_brands: analysis.recommendedBrands,
           statement_pieces: analysis.statementPieces,
-          versatile_basics: analysis.versatileBasics
-        }
+          versatile_basics: analysis.versatileBasics,
+        },
       });
     } else { // Style Evolution Coaching
       return NextResponse.json({
@@ -150,8 +151,8 @@ export async function POST(request: NextRequest) {
           transformation_potential: analysis.transformationPotential,
           recommended_direction: analysis.recommendedDirection,
           key_pieces_to_acquire: analysis.keyPiecesToAcquire,
-          confidence_boosters: analysis.confidenceBoosters
-        }
+          confidence_boosters: analysis.confidenceBoosters,
+        },
       });
     }
 
@@ -209,20 +210,20 @@ function generateColorAnalysis(answers: any) {
     makeupTips,
     wardrobeTips,
     shoppingGuide,
-    personalMessage: `Your ${season} coloring is absolutely beautiful! These carefully selected colors will enhance your natural radiance and make you feel confident and stylish.`,
-    notes: `Based on ${skin} skin tone, ${hair} hair, and ${eyes} eyes, you are a ${season}. This season complements your natural coloring with ${undertone} undertones.`,
-    description: `You are a ${season} with ${undertone} undertones. This means you look best in ${season === 'Spring' || season === 'Autumn' ? 'warm' : 'cool'} colors that ${season === 'Winter' ? 'are bold and dramatic' : season === 'Summer' ? 'are soft and muted' : season === 'Spring' ? 'are bright and clear' : 'are rich and warm'}.`,
-    topColors: colors
+    personalMessage: `Your ${ season } coloring is absolutely beautiful! These carefully selected colors will enhance your natural radiance and make you feel confident and stylish.`,
+    notes: `Based on ${ skin } skin tone, ${ hair } hair, and ${ eyes } eyes, you are a ${ season }. This season complements your natural coloring with ${ undertone } undertones.`,
+    description: `You are a ${ season } with ${ undertone } undertones. This means you look best in ${ season === 'Spring' || season === 'Autumn' ? 'warm' : 'cool' } colors that ${ season === 'Winter' ? 'are bold and dramatic' : season === 'Summer' ? 'are soft and muted' : season === 'Spring' ? 'are bright and clear' : 'are rich and warm' }.`,
+    topColors: colors,
   }
 }
 
 function generateWardrobeAnalysis(answers: any, data: any) {
   const { 'wardrobe-size': wardrobeSize, 'wardrobe-refresh': wardrobeRefresh, 'frequent-items': frequentItems } = answers;
-  const { specificItems, missingColors, styleInspiration } = data || {};
+  const { specificItems, missingColors, styleInspiration } = data || { };
   
   // Determine dominant style based on style preference and frequent items
   const stylePreference = answers['style-preference'] || 'Classic and timeless';
-  let dominantStyle = stylePreference;
+  const dominantStyle = stylePreference;
   
   // Calculate versatility score based on wardrobe size and refresh frequency
   let versatilityScore = 70; // Default
@@ -258,7 +259,7 @@ function generateWardrobeAnalysis(answers: any, data: any) {
   
   // Add missing colors if specified
   if (missingColors && missingColors.length > 0) {
-    gapAnalysis.push(`Items in ${missingColors} to add color variety`);
+    gapAnalysis.push(`Items in ${ missingColors } to add color variety`);
   }
   
   // Generate recommended additions
@@ -267,7 +268,7 @@ function generateWardrobeAnalysis(answers: any, data: any) {
     'Statement accessories to elevate basic outfits',
     'Versatile layering pieces for multiple seasons',
     'Quality basics that can be dressed up or down',
-    'Signature pieces that reflect your personal style'
+    'Signature pieces that reflect your personal style',
   ];
   
   // Generate outfit combinations
@@ -276,7 +277,7 @@ function generateWardrobeAnalysis(answers: any, data: any) {
     'Midi Dress + Cardigan + Flats',
     'Tailored Pants + Silk Blouse + Heels',
     'Skirt + Sweater + Knee-high Boots',
-    'Jeans + Button-down Shirt + Loafers'
+    'Jeans + Button-down Shirt + Loafers',
   ];
   
   return {
@@ -286,17 +287,17 @@ function generateWardrobeAnalysis(answers: any, data: any) {
     gapAnalysis,
     recommendedAdditions,
     outfitCombinations,
-    description: `Your wardrobe analysis shows a ${dominantStyle.toLowerCase()} style with a versatility score of ${versatilityScore}/100 and organization level of ${organizationLevel}/100. We've identified key gaps and recommended additions to optimize your wardrobe.`
+    description: `Your wardrobe analysis shows a ${ dominantStyle.toLowerCase() } style with a versatility score of ${ versatilityScore }/100 and organization level of ${ organizationLevel }/100. We've identified key gaps and recommended additions to optimize your wardrobe.`,
   };
 }
 
 function generateShoppingAnalysis(answers: any, data: any) {
   const { budget, 'shopping-goals': shoppingGoals } = answers;
-  const { wardrobeGaps, materialPreferences, silhouettePreferences, avoidStyles } = data || {};
+  const { wardrobeGaps, materialPreferences, silhouettePreferences, avoidStyles } = data || { };
   
   // Determine style profile based on style preference and shopping goals
   const stylePreference = answers['style-preference'] || 'Classic and timeless';
-  const styleProfile = `${stylePreference} with a focus on ${shoppingGoals?.toLowerCase() || 'wardrobe essentials'}`;
+  const styleProfile = `${ stylePreference } with a focus on ${ shoppingGoals?.toLowerCase() || 'wardrobe essentials' }`;
   
   // Generate color preferences based on skin tone and style preference
   const skinTone = answers['skin-tone'] || 'Medium with warm undertones';
@@ -344,7 +345,7 @@ function generateShoppingAnalysis(answers: any, data: any) {
     'Well-fitting dark jeans',
     'Black ankle boots',
     'Cashmere sweater',
-    'Tailored blazer'
+    'Tailored blazer',
   ];
   
   // Calculate shopping priority score
@@ -362,17 +363,17 @@ function generateShoppingAnalysis(answers: any, data: any) {
     statementPieces,
     versatileBasics,
     shoppingPriorityScore,
-    description: `Your shopping profile shows a ${styleProfile} with a shopping priority score of ${shoppingPriorityScore}/100. We've curated recommendations tailored to your budget of ${budget} and style preferences.`
+    description: `Your shopping profile shows a ${ styleProfile } with a shopping priority score of ${ shoppingPriorityScore }/100. We've curated recommendations tailored to your budget of ${ budget } and style preferences.`,
   };
 }
 
 function generateStyleEvolutionAnalysis(answers: any, data: any) {
   const { 'style-challenges': styleChallenges, 'transformation-goals': transformationGoals, 'feeling-dressed': feelingDressed } = answers;
-  const { occupation, contextConsiderations } = data || {};
+  const { occupation, contextConsiderations } = data || { };
   
   // Determine current style assessment
   const stylePreference = answers['style-preference'] || 'Classic and timeless';
-  const currentStyleAssessment = `Your current style is primarily ${stylePreference.toLowerCase()}, with challenges related to ${styleChallenges?.toLowerCase() || 'confidence and consistency'}.`;
+  const currentStyleAssessment = `Your current style is primarily ${ stylePreference.toLowerCase() }, with challenges related to ${ styleChallenges?.toLowerCase() || 'confidence and consistency' }.`;
   
   // Calculate transformation potential
   let transformationPotential = 80; // Default
@@ -419,7 +420,7 @@ function generateStyleEvolutionAnalysis(answers: any, data: any) {
     'Outdated trend pieces',
     'Uncomfortable shoes',
     'Low-quality fabrics',
-    'Items that don\'t make you feel confident'
+    'Items that don\'t make you feel confident',
   ];
   
   // Generate confidence boosters
@@ -428,7 +429,7 @@ function generateStyleEvolutionAnalysis(answers: any, data: any) {
     'Create outfit formulas for easy daily styling',
     'Add one signature accessory to define your look',
     'Focus on fit and fabric quality over quantity',
-    'Develop a color palette that enhances your natural coloring'
+    'Develop a color palette that enhances your natural coloring',
   ];
   
   return {
@@ -438,6 +439,6 @@ function generateStyleEvolutionAnalysis(answers: any, data: any) {
     keyPiecesToAcquire,
     itemsToPhaseOut,
     confidenceBoosters,
-    description: `Your style evolution assessment shows ${transformationPotential}% transformation potential. We recommend focusing on a ${recommendedDirection.split(':')[0]} direction to achieve your goals of ${transformationGoals?.toLowerCase() || 'improved style confidence'}.`
+    description: `Your style evolution assessment shows ${ transformationPotential }% transformation potential. We recommend focusing on a ${ recommendedDirection.split(':')[0] } direction to achieve your goals of ${ transformationGoals?.toLowerCase() || 'improved style confidence' }.`,
   };
 }

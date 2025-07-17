@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { ServicesPage } from './page-objects/ServicesPage';
-import { QuestionnairePage } from './page-objects/QuestionnairePage';
+
 import { PaymentPage } from './page-objects/PaymentPage';
+import { QuestionnairePage } from './page-objects/QuestionnairePage';
 import { ResultsPage } from './page-objects/ResultsPage';
+import { ServicesPage } from './page-objects/ServicesPage';
 
 /**
  * Complete Customer Journey Test using Page Object Model

@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       updated: data?.length || 0,
-      message: `${data?.length || 0} tickets updated successfully`
+      message: `${ data?.length || 0 } tickets updated successfully`,
     })
   } catch (error: any) {
     return NextResponse.json(

@@ -9,7 +9,7 @@ export default function Component() {
         defaultValue=""
         required
         placeholder="Enter your email"
-        style={{
+        style={ {
           color: "#000000",
           width: "100%",
           borderRadius: "0.75rem",
@@ -20,7 +20,7 @@ export default function Component() {
           paddingRight: "1rem",
           paddingTop: "0.75rem",
           paddingBottom: "0.75rem",
-        }}
+        } }
       />
       
       <div className="relative">
@@ -30,7 +30,7 @@ export default function Component() {
           defaultValue=""
           required
           placeholder="Enter password"
-          style={{
+          style={ {
             color: "#000000",
             width: "100%",
             borderRadius: "0.75rem",
@@ -41,7 +41,7 @@ export default function Component() {
             paddingTop: "0.75rem",
             paddingBottom: "0.75rem",
             paddingRight: "3rem",
-          }}
+          } }
         />
         <button
           className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"

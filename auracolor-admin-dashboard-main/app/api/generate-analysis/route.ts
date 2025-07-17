@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
         styling_notes: analysis.notes,
         confidence_score: analysis.confidence,
         ai_analysis: analysis,
-        status: 'draft'
+        status: 'draft',
       })
       .select()
       .single()
@@ -40,8 +40,8 @@ export async function POST(request: NextRequest) {
         season: analysis.season,
         confidence: analysis.confidence,
         colors: analysis.colors,
-        notes: analysis.notes
-      }
+        notes: analysis.notes,
+      },
     })
 
   } catch (error) {
@@ -98,7 +98,7 @@ function generateColorAnalysis(answers: any) {
     makeupTips,
     wardrobeTips,
     shoppingGuide,
-    personalMessage: `Your ${season} coloring is absolutely beautiful! These carefully selected colors will enhance your natural radiance and make you feel confident and stylish.`,
-    notes: `Based on ${skin} skin tone, ${hair} hair, and ${eyes} eyes, you are a ${season}. This season complements your natural coloring with ${undertone} undertones.`
+    personalMessage: `Your ${ season } coloring is absolutely beautiful! These carefully selected colors will enhance your natural radiance and make you feel confident and stylish.`,
+    notes: `Based on ${ skin } skin tone, ${ hair } hair, and ${ eyes } eyes, you are a ${ season }. This season complements your natural coloring with ${ undertone } undertones.`,
   }
 }

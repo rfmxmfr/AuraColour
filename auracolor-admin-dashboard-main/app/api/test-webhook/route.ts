@@ -20,7 +20,7 @@ export async function GET() {
           </div>
           <p>Best regards,<br>The AuraColor Team</p>
         </div>
-      `
+      `,
     })
 
     // Test analyst notification
@@ -37,7 +37,7 @@ export async function GET() {
           <strong>Service:</strong> 12-Season Color Analysis<br/>
           <strong>Amount:</strong> £75.00</p>
         </div>
-      `
+      `,
     })
 
     return NextResponse.json({
@@ -45,14 +45,14 @@ export async function GET() {
       message: 'Test emails sent successfully',
       results: {
         bookingEmail: bookingEmail.data?.id,
-        analystEmail: analystEmail.data?.id
-      }
+        analystEmail: analystEmail.data?.id,
+      },
     })
 
   } catch (error) {
     return NextResponse.json({
       success: false,
-      error: String(error)
+      error: String(error),
     }, { status: 500 })
   }
 }

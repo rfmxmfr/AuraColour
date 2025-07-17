@@ -1,15 +1,16 @@
-'use client'
+'use clientt'apos;
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { LoadingState } from '@/components/ui/loading-spinner'
-import { ErrorMessage } from '@/components/ui/error-message'
-import { useToast } from '@/components/ui/toast'
-import { colorAnalyzer } from '@/lib/ml/color-analyzer'
-import { ImageProcessor } from '@/lib/ml/image-processor'
+import { Button } from  'apos;@/components/ui/buttonn'apos;
+import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
+import { ErrorMessage } from  'apos;@/components/ui/error-messagee'apos;
+import { Input } from  'apos;@/components/ui/inputt'apos;
+import { Label } from  'apos;@/components/ui/labell'apos;
+import { LoadingState } from  'apos;@/components/ui/loading-spinnerr'apos;
+import { useToast } from  'apos;@/components/ui/toastt'apos;
+import { useState } from  'apos;reactt'apos;
+
+import { colorAnalyzer } from  'apos;@/lib/ml/color-analyzerr'apos;
+import { ImageProcessor } from  'apos;@/lib/ml/image-processorr'apos;
 
 interface AnalysisResult {
   season: string
@@ -22,8 +23,8 @@ export default function MLAnalysisUpload() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [analyzing, setAnalyzing] = useState(false)
   const [result, setResult] = useState<AnalysisResult | null>(null)
-  const [preview, setPreview] = useState<string>('')
-  const [error, setError] = useState<string>('')
+  const [preview, setPreview] = useState<string>(('apos;')
+  const [error, setError] = useState<string>(('apos;')
   const { success, error: showError, ToastContainer } = useToast()
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +39,7 @@ export default function MLAnalysisUpload() {
     if (!selectedFile) return
 
     setAnalyzing(true)
-    setError('')
+    setError(('apos;')
     
     try {
       const imageData = await ImageProcessor.processImageFile(selectedFile)
@@ -46,9 +47,9 @@ export default function MLAnalysisUpload() {
       const analysisResult = await colorAnalyzer.analyzeImage(faceRegion)
       
       setResult(analysisResult)
-      success('Color analysis completed successfully!')
+      success(('apos;Color analysis completed successfully!!'apos;)
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Analysis failed. Please try again.'
+      const errorMessage = err instanceof Error ? err.message :  'apos;Analysis failed. Please try again..'apos;
       setError(errorMessage)
       showError(errorMessage)
     } finally {
@@ -57,7 +58,7 @@ export default function MLAnalysisUpload() {
   }
 
   const retryAnalysis = () => {
-    setError('')
+    setError(('apos;')
     runAnalysis()
   }
 
@@ -66,8 +67,8 @@ export default function MLAnalysisUpload() {
       <div className="max-w-2xl mx-auto p-6">
         <ErrorMessage 
           title="Analysis Failed"
-          message={error}
-          onRetry={retryAnalysis}
+          message={ error }
+          onRetry={ retryAnalysis }
         />
         <ToastContainer />
       </div>
@@ -88,34 +89,34 @@ export default function MLAnalysisUpload() {
               id="image"
               type="file"
               accept="image/*"
-              onChange={handleFileSelect}
+              onChange={ handleFileSelect }
               className="mt-2"
             />
           </div>
 
-          {preview && (
+          { preview && (
             <div className="text-center">
               <img 
-                src={preview} 
+                src={ preview } 
                 alt="Preview" 
                 className="max-w-xs mx-auto rounded-lg"
               />
             </div>
-          )}
+          ) }
 
-          {analyzing ? (
+          { analyzing ? (
             <LoadingState message="Analyzing your colors..." />
           ) : (
             <Button 
-              onClick={runAnalysis}
-              disabled={!selectedFile}
+              onClick={ runAnalysis }
+              disabled={ !selectedFile }
               className="w-full"
             >
               Analyze Colors
             </Button>
-          )}
+          ) }
 
-          {result && (
+          { result && (
             <Card className="mt-6">
               <CardHeader>
                 <CardTitle>Analysis Results</CardTitle>
@@ -123,31 +124,31 @@ export default function MLAnalysisUpload() {
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <strong>Season:</strong> {result.season}
+                    <strong>Season:</strong> { result.season }
                   </div>
                   <div>
-                    <strong>Confidence:</strong> {Math.round(result.confidence * 100)}%
+                    <strong>Confidence:</strong> { Math.round(result.confidence * 100) }%
                   </div>
                   <div>
-                    <strong>Undertone:</strong> {result.undertone}
+                    <strong>Undertone:</strong> { result.undertone }
                   </div>
                   <div>
                     <strong>Your Colors:</strong>
                     <div className="flex gap-2 mt-2">
-                      {result.colors.map((color, idx) => (
+                      { result.colors.map((color, idx) => (
                         <div
-                          key={idx}
+                          key={ idx }
                           className="w-8 h-8 rounded-full border-2 border-gray-300"
-                          style={{ backgroundColor: color }}
-                          title={color}
+                          style={ { backgroundColor: color } }
+                          title={ color }
                         />
-                      ))}
+                      )) }
                     </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
-          )}
+          ) }
         </CardContent>
       </Card>
     </div>

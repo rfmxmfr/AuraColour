@@ -1,4 +1,4 @@
-'use client'
+'use clientt'apos;
 
 interface Ticket {
   id: string
@@ -21,37 +21,37 @@ export default function TicketQueue({ tickets, onSelectTicket, selectedTicket }:
     <div className="bg-white rounded-lg shadow p-6">
       <h2 className="text-xl font-bold mb-4 text-black">Ticket Queue</h2>
       <div className="space-y-2">
-        {tickets.map((ticket) => (
+        { tickets.map((ticket) => (
           <div
-            key={ticket.id}
-            className={`p-4 border rounded cursor-pointer transition-colors ${
+            key={ ticket.id }
+            className={ `p-4 border rounded cursor-pointer transition-colors ${
               selectedTicket?.id === ticket.id 
-                ? 'bg-blue-100 border-blue-500' 
-                : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
-            }`}
-            onClick={() => onSelectTicket(ticket)}
+                ?  'apos;bg-blue-100 border-blue-5000'apos; 
+                :  'apos;bg-gray-50 border-gray-200 hover:bg-gray-1000'apos;
+            }` }
+            onClick={ () => onSelectTicket(ticket) }
           >
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="font-semibold text-black">{ticket.ticket_number}</h3>
-                <p className="text-sm text-gray-600">{ticket.customer_name}</p>
-                <p className="text-xs text-gray-500">{ticket.service_type}</p>
+                <h3 className="font-semibold text-black">{ ticket.ticket_number }</h3>
+                <p className="text-sm text-gray-600">{ ticket.customer_name }</p>
+                <p className="text-xs text-gray-500">{ ticket.service_type }</p>
               </div>
               <div className="text-right">
-                <span className={`px-2 py-1 rounded text-xs ${
-                  ticket.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                  ticket.status === 'analyzed' ? 'bg-green-100 text-green-800' :
-                  'bg-gray-100 text-gray-800'
-                }`}>
-                  {ticket.status}
+                <span className={ `px-2 py-1 rounded text-xs ${
+                  ticket.status ===  'apos;pendingg'apos; ?  'apos;bg-yellow-100 text-yellow-8000'apos; :
+                    ticket.status ===  'apos;analyzedd'apos; ?  'apos;bg-green-100 text-green-8000'apos; :
+                       'apos;bg-gray-100 text-gray-8000'apos;
+                }` }>
+                  { ticket.status }
                 </span>
                 <p className="text-xs text-gray-500 mt-1">
-                  {new Date(ticket.created_at).toLocaleDateString()}
+                  { new Date(ticket.created_at).toLocaleDateString() }
                 </p>
               </div>
             </div>
           </div>
-        ))}
+        )) }
       </div>
     </div>
   )

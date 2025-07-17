@@ -13,9 +13,9 @@ export async function analyzeWithGoogleAI(imageUrl: string) {
     {
       inlineData: {
         data: Buffer.from(imageBuffer).toString('base64'),
-        mimeType: "image/jpeg"
-      }
-    }
+        mimeType: "image/jpeg",
+      },
+    },
   ])
 
   const text = result.response.text()
@@ -24,7 +24,7 @@ export async function analyzeWithGoogleAI(imageUrl: string) {
     season: extractSeason(text),
     dominant_colors: ["#8B4513", "#DEB887", "#F5DEB3"],
     confidence: 0.82,
-    analysis: text
+    analysis: text,
   }
 }
 

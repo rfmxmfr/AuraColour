@@ -1,6 +1,6 @@
-import MLAnalysisUpload from '../components/MLAnalysisUpload'
-import Navbar from '../components/navbar'
-import Footer from '../components/footer'
+import Footer from  'apos;../components/footerr'apos;
+import MLAnalysisUpload from  'apos;../components/MLAnalysisUploadd'apos;
+import Navbar from  'apos;../components/navbarr'apos;
 
 export default function MLTestPage() {
   return (

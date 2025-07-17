@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+
 import { uploadImage } from '@/lib/file-upload'
 
 export async function POST(request: NextRequest) {

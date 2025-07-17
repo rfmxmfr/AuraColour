@@ -10,7 +10,7 @@ export const emailTemplates = {
         </div>
         
         <div style="padding: 40px 30px;">
-          <h2 style="color: #1a202c; margin: 0 0 20px 0; font-size: 24px;">Hi ${name}!</h2>
+          <h2 style="color: #1a202c; margin: 0 0 20px 0; font-size: 24px;">Hi ${ name }!</h2>
           
           <p style="color: #4a5568; line-height: 1.6; margin: 0 0 20px 0;">
             Thank you for reaching out to AuraColor! We've received your message and will get back to you within 24 hours.
@@ -26,7 +26,7 @@ export const emailTemplates = {
           </div>
           
           <div style="text-align: center; margin: 40px 0;">
-            <a href="${process.env.NEXT_PUBLIC_BASE_URL}/questionnaire" 
+            <a href="${ process.env.NEXT_PUBLIC_BASE_URL }/questionnaire" 
                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; font-weight: 600; display: inline-block;">
               Take Free Quiz
             </a>
@@ -46,47 +46,47 @@ export const emailTemplates = {
           </p>
         </div>
       </div>
-    `
+    `,
   }),
 
   // Color analysis results
   colorResults: (name: string, results: any) => ({
-    subject: `Your AuraColor Analysis Results are Ready! ${results.season ? `You're a ${results.season}!` : ''} 🎨`,
+    subject: `Your AuraColor Analysis Results are Ready! ${ results.season ? `You're a ${ results.season }!` : '' } 🎨`,
     html: `
       <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
         <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 20px; text-align: center;">
           <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 700;">🎨 Your Color Analysis</h1>
-          <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 16px;">Personalized Results for ${name}</p>
+          <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 16px;">Personalized Results for ${ name }</p>
         </div>
         
         <div style="padding: 40px 30px;">
           <div style="text-align: center; margin-bottom: 40px;">
             <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 15px; display: inline-block; margin-bottom: 20px;">
-              <h2 style="margin: 0; font-size: 32px; font-weight: 700;">${results.season || 'Your Season'}</h2>
-              <p style="margin: 10px 0 0 0; opacity: 0.9;">Confidence: ${results.confidence || '85'}%</p>
+              <h2 style="margin: 0; font-size: 32px; font-weight: 700;">${ results.season || 'Your Season' }</h2>
+              <p style="margin: 10px 0 0 0; opacity: 0.9;">Confidence: ${ results.confidence || '85' }%</p>
             </div>
           </div>
           
           <div style="background: #f8fafc; padding: 25px; border-radius: 12px; margin: 30px 0;">
             <h3 style="color: #1a202c; margin: 0 0 15px 0; font-size: 20px;">Your Perfect Colors</h3>
             <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px; margin: 20px 0;">
-              ${results.topColors ? results.topColors.map((color: string) => `
+              ${ results.topColors ? results.topColors.map((color: string) => `
                 <div style="text-align: center;">
-                  <div style="width: 60px; height: 60px; background: ${color}; border-radius: 50%; margin: 0 auto 8px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
-                  <div style="font-size: 12px; color: #4a5568; font-weight: 500;">${color}</div>
+                  <div style="width: 60px; height: 60px; background: ${ color }; border-radius: 50%; margin: 0 auto 8px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
+                  <div style="font-size: 12px; color: #4a5568; font-weight: 500;">${ color }</div>
                 </div>
               `).join('') : `
                 <div style="text-align: center; color: #64748b;">
                   <p>Your personalized color palette will be revealed in your full analysis!</p>
                 </div>
-              `}
+              ` }
             </div>
           </div>
           
           <div style="background: #fff5f5; border: 1px solid #fed7d7; padding: 25px; border-radius: 12px; margin: 30px 0;">
             <h3 style="color: #c53030; margin: 0 0 15px 0; font-size: 18px;">🎯 What This Means for You</h3>
             <p style="color: #4a5568; line-height: 1.6; margin: 0;">
-              ${results.description || 'Your color season determines which colors will make you look radiant, confident, and naturally beautiful. These colors complement your natural undertones and enhance your best features.'}
+              ${ results.description || 'Your color season determines which colors will make you look radiant, confident, and naturally beautiful. These colors complement your natural undertones and enhance your best features.' }
             </p>
           </div>
           
@@ -105,11 +105,11 @@ export const emailTemplates = {
           </div>
           
           <div style="text-align: center; margin: 40px 0;">
-            <a href="${process.env.NEXT_PUBLIC_BASE_URL}/services" 
+            <a href="${ process.env.NEXT_PUBLIC_BASE_URL }/services" 
                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; font-weight: 600; display: inline-block; margin-right: 15px;">
               View Services
             </a>
-            <a href="${process.env.NEXT_PUBLIC_BASE_URL}/contact" 
+            <a href="${ process.env.NEXT_PUBLIC_BASE_URL }/contact" 
                style="background: white; color: #667eea; padding: 15px 30px; text-decoration: none; border-radius: 25px; font-weight: 600; display: inline-block; border: 2px solid #667eea;">
               Book Consultation
             </a>
@@ -138,26 +138,26 @@ export const emailTemplates = {
           </p>
         </div>
       </div>
-    `
+    `,
   }),
 
   // Booking confirmation
   bookingConfirmation: (name: string, service: string, amount: string, date: string) => ({
-    subject: `Booking Confirmed! Your ${service} is scheduled 🎉`,
+    subject: `Booking Confirmed! Your ${ service } is scheduled 🎉`,
     html: `
       <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
         <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 40px 20px; text-align: center;">
           <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 700;">🎉 Booking Confirmed!</h1>
-          <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 16px;">We can't wait to work with you, ${name}!</p>
+          <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 16px;">We can't wait to work with you, ${ name }!</p>
         </div>
         
         <div style="padding: 40px 30px;">
           <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 25px; border-radius: 12px; margin: 0 0 30px 0;">
             <h3 style="color: #065f46; margin: 0 0 20px 0; font-size: 20px;">📋 Booking Details</h3>
             <div style="color: #374151; line-height: 1.8;">
-              <p style="margin: 0 0 10px 0;"><strong>Service:</strong> ${service}</p>
-              <p style="margin: 0 0 10px 0;"><strong>Amount:</strong> ${amount}</p>
-              <p style="margin: 0 0 10px 0;"><strong>Date:</strong> ${date}</p>
+              <p style="margin: 0 0 10px 0;"><strong>Service:</strong> ${ service }</p>
+              <p style="margin: 0 0 10px 0;"><strong>Amount:</strong> ${ amount }</p>
+              <p style="margin: 0 0 10px 0;"><strong>Date:</strong> ${ date }</p>
               <p style="margin: 0 0 10px 0;"><strong>Status:</strong> <span style="color: #059669; font-weight: 600;">Confirmed</span></p>
             </div>
           </div>
@@ -204,7 +204,7 @@ export const emailTemplates = {
           </p>
         </div>
       </div>
-    `
+    `,
   }),
 
   // Welcome/Newsletter signup
@@ -218,7 +218,7 @@ export const emailTemplates = {
         </div>
         
         <div style="padding: 40px 30px;">
-          <h2 style="color: #1a202c; margin: 0 0 20px 0; font-size: 24px;">Hi ${name}! 👋</h2>
+          <h2 style="color: #1a202c; margin: 0 0 20px 0; font-size: 24px;">Hi ${ name }! 👋</h2>
           
           <p style="color: #4a5568; line-height: 1.6; margin: 0 0 25px 0;">
             Welcome to the AuraColor family! I'm Tania, and I'm thrilled you've joined us on this colorful journey of self-discovery and style transformation.
@@ -237,12 +237,12 @@ export const emailTemplates = {
           
           <div style="text-align: center; margin: 40px 0;">
             <p style="color: #4a5568; margin: 0 0 20px 0; font-size: 18px;">Ready to discover your perfect colors?</p>
-            <a href="${process.env.NEXT_PUBLIC_BASE_URL}/questionnaire" 
+            <a href="${ process.env.NEXT_PUBLIC_BASE_URL }/questionnaire" 
                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; font-weight: 600; display: inline-block; margin-bottom: 15px;">
               Take Free Color Quiz
             </a>
             <br>
-            <a href="${process.env.NEXT_PUBLIC_BASE_URL}/services" 
+            <a href="${ process.env.NEXT_PUBLIC_BASE_URL }/services" 
                style="color: #667eea; text-decoration: none; font-weight: 500;">
               Or browse our services →
             </a>
@@ -278,6 +278,6 @@ export const emailTemplates = {
           </p>
         </div>
       </div>
-    `
-  })
+    `,
+  }),
 }

@@ -24,7 +24,7 @@ export const PRODUCT_CATALOG: Product[] = [
     colors: ['#FF6B6B', '#FF7F7F'],
     seasons: ['spring'],
     description: 'Elegant silk blouse in spring coral',
-    in_stock: true
+    in_stock: true,
   },
   {
     id: 'spring-dress-1',
@@ -36,7 +36,7 @@ export const PRODUCT_CATALOG: Product[] = [
     colors: ['#4ECDC4', '#96CEB4'],
     seasons: ['spring'],
     description: 'Flowy wrap dress in fresh mint',
-    in_stock: true
+    in_stock: true,
   },
   // Summer Products
   {
@@ -49,7 +49,7 @@ export const PRODUCT_CATALOG: Product[] = [
     colors: ['#A29BFE', '#6C5CE7'],
     seasons: ['summer'],
     description: 'Soft linen top in summer lavender',
-    in_stock: true
+    in_stock: true,
   },
   {
     id: 'summer-pants-1',
@@ -61,7 +61,7 @@ export const PRODUCT_CATALOG: Product[] = [
     colors: ['#74B9FF', '#81ECEC'],
     seasons: ['summer'],
     description: 'Tailored trousers in soft blue',
-    in_stock: true
+    in_stock: true,
   },
   // Autumn Products
   {
@@ -74,7 +74,7 @@ export const PRODUCT_CATALOG: Product[] = [
     colors: ['#E17055', '#D63031'],
     seasons: ['autumn'],
     description: 'Luxurious cashmere in autumn rust',
-    in_stock: true
+    in_stock: true,
   },
   {
     id: 'autumn-coat-1',
@@ -86,7 +86,7 @@ export const PRODUCT_CATALOG: Product[] = [
     colors: ['#FDCB6E', '#F39C12'],
     seasons: ['autumn'],
     description: 'Classic wool coat in warm camel',
-    in_stock: true
+    in_stock: true,
   },
   // Winter Products
   {
@@ -99,7 +99,7 @@ export const PRODUCT_CATALOG: Product[] = [
     colors: ['#2D3436', '#0984E3'],
     seasons: ['winter'],
     description: 'Sharp tailored blazer in winter navy',
-    in_stock: true
+    in_stock: true,
   },
   {
     id: 'winter-dress-1',
@@ -111,8 +111,8 @@ export const PRODUCT_CATALOG: Product[] = [
     colors: ['#00B894', '#E84393'],
     seasons: ['winter'],
     description: 'Elegant dress in jewel-tone emerald',
-    in_stock: true
-  }
+    in_stock: true,
+  },
 ]
 
 export function getProductsBySeason(season: string): Product[] {

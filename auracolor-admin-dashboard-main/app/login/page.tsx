@@ -1,22 +1,22 @@
-'use client'
+'use clientt'apos;
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase/client'
-import Link from 'next/link'
+import { createClient } from  'apos;@/lib/supabase/clientt'apos;
+import Link from  'apos;next/linkk'apos;
+import { useRouter } from  'apos;next/navigationn'apos;
+import { useState } from  'apos;reactt'apos;
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState(('apos;')
+  const [password, setPassword] = useState(('apos;')
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const [error, setError] = useState(('apos;')
   const router = useRouter()
   const supabase = createClient()
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    setError('')
+    setError(('apos;')
 
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
@@ -30,11 +30,11 @@ export default function LoginPage() {
       }
 
       if (data.user) {
-        router.push('/admin')
+        router.push(('apos;/adminn'apos;)
         router.refresh()
       }
     } catch (err) {
-      setError('An unexpected error occurred')
+      setError(('apos;An unexpected error occurredd'apos;)
     } finally {
       setLoading(false)
     }
@@ -44,16 +44,16 @@ export default function LoginPage() {
     <>
       <div
         className="limiter"
-        style={{
+        style={ {
           padding: "0px",
           boxSizing: "border-box",
           margin: "0px auto",
           width: "100%",
-        }}
+        } }
       >
         <div
           className="container-login100"
-          style={{
+          style={ {
             margin: "0px",
             boxSizing: "border-box",
             padding: "15px",
@@ -64,11 +64,11 @@ export default function LoginPage() {
             flexWrap: "wrap",
             justifyContent: "center",
             alignItems: "center",
-          }}
+          } }
         >
           <div
             className="wrap-login100"
-            style={{
+            style={ {
               margin: "0px",
               boxSizing: "border-box",
               background: "rgb(255, 255, 255)",
@@ -77,21 +77,21 @@ export default function LoginPage() {
               padding: "77px 55px 33px",
               width: "390px",
               boxShadow: "rgba(0, 0, 0, 0.1) 0px 5px 10px 0px",
-            }}
+            } }
           >
             <form
               className="login100-form validate-form"
-              onSubmit={handleLogin}
-              style={{
+              onSubmit={ handleLogin }
+              style={ {
                 margin: "0px",
                 padding: "0px",
                 boxSizing: "border-box",
                 width: "100%",
-              }}
+              } }
             >
               <span
                 className="login100-form-title p-b-26"
-                style={{
+                style={ {
                   margin: "0px",
                   padding: "0px",
                   boxSizing: "border-box",
@@ -102,13 +102,13 @@ export default function LoginPage() {
                   color: "rgb(51, 51, 51)",
                   lineHeight: 1.2,
                   textAlign: "center",
-                }}
+                } }
               >
-                {"Welcome"}
+                { "Welcome" }
               </span>
               <span
                 className="login100-form-title p-b-48"
-                style={{
+                style={ {
                   margin: "0px",
                   padding: "0px",
                   boxSizing: "border-box",
@@ -119,25 +119,25 @@ export default function LoginPage() {
                   color: "rgb(51, 51, 51)",
                   lineHeight: 1.2,
                   textAlign: "center",
-                }}
+                } }
               >
-                <span style={{ fontSize: "60px" }}>🎨</span>
+                <span style={ { fontSize: "60px" } }>🎨</span>
               </span>
               
-              {error && (
-                <div style={{
+              { error && (
+                <div style={ {
                   color: "red",
                   textAlign: "center",
                   marginBottom: "20px",
-                  fontSize: "14px"
-                }}>
-                  {error}
+                  fontSize: "14px",
+                } }>
+                  { error }
                 </div>
-              )}
+              ) }
               
               <div
                 className="wrap-input100 validate-input"
-                style={{
+                style={ {
                   margin: "0px",
                   padding: "0px",
                   boxSizing: "border-box",
@@ -145,17 +145,17 @@ export default function LoginPage() {
                   width: "100%",
                   marginBottom: "37px",
                   position: "relative",
-                }}
+                } }
               >
                 <input
                   className="input100"
                   name="email"
                   type="email"
                   placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={ email }
+                  onChange={ (e) => setEmail(e.target.value) }
                   required
-                  style={{
+                  style={ {
                     boxSizing: "border-box",
                     touchAction: "manipulation",
                     margin: "0px",
@@ -171,12 +171,12 @@ export default function LoginPage() {
                     display: "block",
                     width: "100%",
                     height: "45px",
-                  }}
+                  } }
                 />
               </div>
               <div
                 className="wrap-input100 validate-input"
-                style={{
+                style={ {
                   margin: "0px",
                   padding: "0px",
                   boxSizing: "border-box",
@@ -184,17 +184,17 @@ export default function LoginPage() {
                   width: "100%",
                   marginBottom: "37px",
                   position: "relative",
-                }}
+                } }
               >
                 <input
                   className="input100"
                   name="password"
                   type="password"
                   placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={ password }
+                  onChange={ (e) => setPassword(e.target.value) }
                   required
-                  style={{
+                  style={ {
                     boxSizing: "border-box",
                     touchAction: "manipulation",
                     margin: "0px",
@@ -210,12 +210,12 @@ export default function LoginPage() {
                     display: "block",
                     width: "100%",
                     height: "45px",
-                  }}
+                  } }
                 />
               </div>
               <div
                 className="container-login100-form-btn"
-                style={{
+                style={ {
                   margin: "0px",
                   padding: "0px",
                   boxSizing: "border-box",
@@ -223,11 +223,11 @@ export default function LoginPage() {
                   flexWrap: "wrap",
                   justifyContent: "center",
                   paddingTop: "13px",
-                }}
+                } }
               >
                 <div
                   className="wrap-login100-form-btn"
-                  style={{
+                  style={ {
                     padding: "0px",
                     boxSizing: "border-box",
                     borderRadius: "25px",
@@ -237,11 +237,11 @@ export default function LoginPage() {
                     display: "block",
                     position: "relative",
                     zIndex: 1,
-                  }}
+                  } }
                 >
                   <div
                     className="login100-form-bgbtn"
-                    style={{
+                    style={ {
                       margin: "0px",
                       padding: "0px",
                       boxSizing: "border-box",
@@ -254,13 +254,13 @@ export default function LoginPage() {
                       height: "100%",
                       top: "0px",
                       left: "-100%",
-                    }}
+                    } }
                   />
                   <button
                     className="login100-form-btn"
                     type="submit"
-                    disabled={loading}
-                    style={{
+                    disabled={ loading }
+                    style={ {
                       boxSizing: "border-box",
                       touchAction: "manipulation",
                       margin: "0px",
@@ -281,25 +281,25 @@ export default function LoginPage() {
                       height: "50px",
                       outline: "none",
                       cursor: "pointer",
-                    }}
+                    } }
                   >
-                    {loading ? "Signing in..." : "Login"}
+                    { loading ? "Signing in..." : "Login" }
                   </button>
                 </div>
               </div>
               <div
                 className="text-center p-t-115"
-                style={{
+                style={ {
                   margin: "0px",
                   padding: "0px",
                   boxSizing: "border-box",
                   paddingTop: "115px",
                   textAlign: "center",
-                }}
+                } }
               >
                 <span
                   className="txt1"
-                  style={{
+                  style={ {
                     margin: "0px",
                     padding: "0px",
                     boxSizing: "border-box",
@@ -307,14 +307,14 @@ export default function LoginPage() {
                     fontSize: "13px",
                     color: "rgb(102, 102, 102)",
                     lineHeight: 1.5,
-                  }}
+                  } }
                 >
-                  {"Don't have an account?"}
+                  { "Donn'apos;t have an account?" }
                 </span>
                 <Link
                   className="txt2"
                   href="/auth/signup"
-                  style={{
+                  style={ {
                     padding: "0px",
                     boxSizing: "border-box",
                     textDecoration: "none",
@@ -327,9 +327,9 @@ export default function LoginPage() {
                     color: "rgb(51, 51, 51)",
                     lineHeight: 1.5,
                     marginLeft: "5px",
-                  }}
+                  } }
                 >
-                  {"Sign Up"}
+                  { "Sign Up" }
                 </Link>
               </div>
             </form>
@@ -337,7 +337,7 @@ export default function LoginPage() {
         </div>
       </div>
       <style
-        dangerouslySetInnerHTML={{
+        dangerouslySetInnerHTML={ {
           __html: `
 html {
   margin: 0px;
@@ -363,7 +363,7 @@ body {
   font-family: Poppins-Regular, sans-serif;
 }
 `,
-        }}
+        } }
       />
     </>
   )

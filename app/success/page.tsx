@@ -1,17 +1,19 @@
-'use client'
+'apos;use clientt'apos;apos;
 
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
-import { useSearchParams } from 'next/navigation'
-import Navbar from '../components/navbar'
-import Footer from '../components/footer'
-import { createClient } from '@/lib/supabase/client'
+import { motion } from  'apos;apos;framer-motionn'apos;apos;
+import { useSearchParams } from  'apos;apos;next/navigationn'apos;apos;
+import { useEffect, useState } from  'apos;apos;reactt'apos;apos;
+
+import { createClient } from  'apos;apos;@/lib/supabase/clientt'apos;apos;
+
+import Footer from  'apos;apos;../components/footerr'apos;apos;
+import Navbar from  'apos;apos;../components/navbarr'apos;apos;
 
 export default function SuccessPage() {
   const searchParams = useSearchParams()
-  const sessionId = searchParams.get('session_id')
-  const [serviceType, setServiceType] = useState('12-Season Color Analysis')
-  const [timeframe, setTimeframe] = useState('24-48 hours')
+  const sessionId = searchParams.get(('apos;apos;session_idd'apos;apos;)
+  const [serviceType, setServiceType] = useState(('apos;apos;12-Season Color Analysiss'apos;apos;)
+  const [timeframe, setTimeframe] = useState(('apos;apos;24-48 hourss'apos;apos;)
   
   useEffect(() => {
     const fetchBookingDetails = async () => {
@@ -19,23 +21,23 @@ export default function SuccessPage() {
       
       const supabase = createClient()
       const { data } = await supabase
-        .from('questionnaire_submissions')
-        .select('service_type')
-        .eq('stripe_session_id', sessionId)
+        .from(('apos;apos;questionnaire_submissionss'apos;apos;)
+        .select(('apos;apos;service_typee'apos;apos;)
+        .eq(('apos;apos;stripe_session_idd'apos;apos;, sessionId)
         .single()
       
       if (data?.service_type) {
         setServiceType(data.service_type)
         
         // Set timeframe based on service type
-        if (data.service_type === 'Virtual Wardrobe Curation') {
-          setTimeframe('3-5 business days')
-        } else if (data.service_type === 'Personal Shopping Service') {
-          setTimeframe('5-7 business days')
-        } else if (data.service_type === 'Style Evolution Coaching') {
-          setTimeframe('1-2 business days')
+        if (data.service_type ===  'apos;apos;Virtual Wardrobe Curationn'apos;apos;) {
+          setTimeframe(('apos;apos;3-5 business dayss'apos;apos;)
+        } else if (data.service_type ===  'apos;apos;Personal Shopping Servicee'apos;apos;) {
+          setTimeframe(('apos;apos;5-7 business dayss'apos;apos;)
+        } else if (data.service_type ===  'apos;apos;Style Evolution Coachingg'apos;apos;) {
+          setTimeframe(('apos;apos;1-2 business dayss'apos;apos;)
         } else {
-          setTimeframe('24-48 hours')
+          setTimeframe(('apos;apos;24-48 hourss'apos;apos;)
         }
       }
     }
@@ -49,45 +51,45 @@ export default function SuccessPage() {
         <div className="max-w-2xl mx-auto px-6 text-center">
           <motion.div
             className="bg-white rounded-3xl shadow-lg p-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={ { opacity: 0, y: 20 } }
+            animate={ { opacity: 1, y: 0 } }
+            transition={ { duration: 0.8 } }
           >
             <div className="text-6xl mb-6">✅</div>
             <h1 className="text-3xl font-bold text-gray-900 mb-4">
               Payment Successful!
             </h1>
             <p className="text-gray-600 mb-6">
-              Thank you for your purchase. Your {serviceType.toLowerCase()} will be processed within {timeframe}.
+              Thank you for your purchase. Your { serviceType.toLowerCase() } will be processed within { timeframe }.
             </p>
             <div className="bg-green-50 p-4 rounded-lg mb-6">
               <p className="text-green-800 text-sm">
-                <strong>What's Next:</strong><br/>
-                {serviceType === '12-Season Color Analysis' ? (
+                <strong>Whatt'apos;apos;s Next:</strong><br/>
+                { serviceType ===  'apos;apos;12-Season Color Analysiss'apos;apos; ? (
                   <>
-                    • You'll receive your detailed color analysis via email<br/>
+                    • Youu'apos;apos;ll receive your detailed color analysis via email<br/>
                     • Our team will review your photos and questionnaire<br/>
-                    • Expect your color palette and recommendations within {timeframe}
+                    • Expect your color palette and recommendations within { timeframe }
                   </>
-                ) : serviceType === 'Virtual Wardrobe Curation' ? (
+                ) : serviceType ===  'apos;apos;Virtual Wardrobe Curationn'apos;apos; ? (
                   <>
                     • Our wardrobe specialists will analyze your photos<br/>
-                    • You'll receive a comprehensive wardrobe audit<br/>
-                    • Expect outfit combinations and shopping recommendations within {timeframe}
+                    • Youu'apos;apos;ll receive a comprehensive wardrobe audit<br/>
+                    • Expect outfit combinations and shopping recommendations within { timeframe }
                   </>
-                ) : serviceType === 'Personal Shopping Service' ? (
+                ) : serviceType ===  'apos;apos;Personal Shopping Servicee'apos;apos; ? (
                   <>
                     • A personal shopper will contact you to discuss your needs<br/>
-                    • We'll curate a selection based on your preferences<br/>
-                    • Expect your personalized shopping session within {timeframe}
+                    • Wee'apos;apos;ll curate a selection based on your preferences<br/>
+                    • Expect your personalized shopping session within { timeframe }
                   </>
                 ) : (
                   <>
                     • Your style coach will contact you to schedule your first session<br/>
-                    • We'll create your personalized transformation plan<br/>
-                    • Expect your first coaching session within {timeframe}
+                    • Wee'apos;apos;ll create your personalized transformation plan<br/>
+                    • Expect your first coaching session within { timeframe }
                   </>
-                )}
+                ) }
               </p>
             </div>
             <a

@@ -7,11 +7,10 @@ export interface UserState {
   isAuthenticated: boolean;
 }
 
-export interface ColorAnalysisResult {
+export interface AnalysisResult {
   // Common fields
   ticket_number?: string;
   ticket_id?: string;
-  ai_provider?: string;
   
   // Color Analysis fields
   season?: string;
@@ -53,7 +52,7 @@ export interface QuestionnaireState {
   eyeColor?: string;
   stylePreference?: string;
   photoUrls?: string[];
-  allAnswers?: {[key: string]: any};
+  allAnswers?: { [key: string]: any };
   completed: boolean;
 }
 
@@ -69,11 +68,11 @@ export interface ServiceState {
 }
 
 export const userAtom = atom<UserState>({ isAuthenticated: false });
-export const colorAnalysisAtom = atom<ColorAnalysisResult | null>(null);
+export const analysisResultAtom = atom<AnalysisResult | null>(null);
 export const questionnaireAtom = atom<QuestionnaireState>({ completed: false });
 export const uiAtom = atom<UIState>({ isMenuOpen: false, isDarkMode: false, activeStep: 0 });
-export const serviceAtom = atom<ServiceState>({});
+export const serviceAtom = atom<ServiceState>({ });
 
 // Derived atoms
 export const isQuestionnaireCompletedAtom = atom((get) => get(questionnaireAtom).completed);
-export const hasAnalysisResultsAtom = atom((get) => get(colorAnalysisAtom) !== null);
+export const hasAnalysisResultsAtom = atom((get) => get(analysisResultAtom) !== null);

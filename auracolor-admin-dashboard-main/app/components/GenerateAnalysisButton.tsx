@@ -1,6 +1,6 @@
-'use client'
+'use clientt'apos;
 
-import { useState } from 'react'
+import { useState } from  'apos;reactt'apos;
 
 interface GenerateAnalysisButtonProps {
   bookingId: string
@@ -13,10 +13,10 @@ export default function GenerateAnalysisButton({ bookingId, onAnalysisGenerated 
   const handleGenerate = async () => {
     setLoading(true)
     try {
-      const response = await fetch('/api/generate-analysis', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ bookingId })
+      const response = await fetch(('apos;/api/generate-analysiss'apos;, {
+        method:  'apos;POSTT'apos;,
+        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+        body: JSON.stringify({ bookingId }),
       })
 
       const data = await response.json()
@@ -24,10 +24,10 @@ export default function GenerateAnalysisButton({ bookingId, onAnalysisGenerated 
       if (data.success) {
         onAnalysisGenerated(data.report)
       } else {
-        alert('Failed to generate analysis')
+        alert(('apos;Failed to generate analysiss'apos;)
       }
     } catch (error) {
-      alert('Error generating analysis')
+      alert(('apos;Error generating analysiss'apos;)
     } finally {
       setLoading(false)
     }
@@ -35,10 +35,10 @@ export default function GenerateAnalysisButton({ bookingId, onAnalysisGenerated 
 
   return (
     <button
-      onClick={handleGenerate}
-      disabled={loading}
+      onClick={ handleGenerate }
+      disabled={ loading }
       className="generate-btn"
-      style={{
+      style={ {
         borderWidth: "0px",
         borderStyle: "solid",
         borderColor: "rgb(229, 231, 235)",
@@ -50,7 +50,7 @@ export default function GenerateAnalysisButton({ bookingId, onAnalysisGenerated 
         lineHeight: "inherit",
         textTransform: "none",
         appearance: "button",
-        fontFamily: 'Inter, "Century Gothic", sans-serif',
+        fontFamily:  'apos;Inter, "Century Gothic", sans-seriff'apos;,
         letterSpacing: "0.02em",
         background: "linear-gradient(135deg, rgb(102, 126, 234) 0%, rgb(118, 75, 162) 100%)",
         border: "none",
@@ -64,10 +64,10 @@ export default function GenerateAnalysisButton({ bookingId, onAnalysisGenerated 
         cursor: loading ? "not-allowed" : "pointer",
         marginTop: "1rem",
         textAlign: "center",
-        opacity: loading ? 0.7 : 1
-      }}
+        opacity: loading ? 0.7 : 1,
+      } }
     >
-      {loading ? 'Generating...' : 'Generate Analysis'}
+      { loading ?  'apos;Generating....'apos; :  'apos;Generate Analysiss'apos; }
     </button>
   )
 }

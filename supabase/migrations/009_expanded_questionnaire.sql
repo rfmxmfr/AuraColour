@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS wardrobe_audits (
   gap_analysis JSONB DEFAULT '[]',
   shopping_recommendations JSONB DEFAULT '[]',
   status VARCHAR(50) DEFAULT 'pending',
-  ai_analysis JSONB DEFAULT '{}',
+  analysis_data JSONB DEFAULT '{}',
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS shopping_sessions (
   fitting_notes TEXT DEFAULT '',
   purchase_recommendations JSONB DEFAULT '[]',
   status VARCHAR(50) DEFAULT 'scheduled',
-  ai_analysis JSONB DEFAULT '{}',
+  analysis_data JSONB DEFAULT '{}',
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS coaching_programs (
   confidence_coaching BOOLEAN DEFAULT true,
   progress_tracking JSONB DEFAULT '{}',
   status VARCHAR(50) DEFAULT 'enrolled',
-  ai_analysis JSONB DEFAULT '{}',
+  analysis_data JSONB DEFAULT '{}',
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );

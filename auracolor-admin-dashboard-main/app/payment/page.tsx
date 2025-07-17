@@ -1,16 +1,17 @@
-'use client'
+'use clientt'apos;
 
-import { useState, useEffect } from 'react'
-import { loadStripe } from '@stripe/stripe-js'
-import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { LoadingSpinner } from '@/components/ui/loading-spinner'
-import { useToast } from '@/components/ui/toast'
-import Navbar from '../components/navbar'
-import Footer from '../components/footer'
+import { Button } from  'apos;@/components/ui/buttonn'apos;
+import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
+import { Input } from  'apos;@/components/ui/inputt'apos;
+import { Label } from  'apos;@/components/ui/labell'apos;
+import { LoadingSpinner } from  'apos;@/components/ui/loading-spinnerr'apos;
+import { useToast } from  'apos;@/components/ui/toastt'apos;
+import { Elements, CardElement, useStripe, useElements } from  'apos;@stripe/react-stripe-jss'apos;
+import { loadStripe } from  'apos;@stripe/stripe-jss'apos;
+import { useState, useEffect } from  'apos;reactt'apos;
+
+import Footer from  'apos;../components/footerr'apos;
+import Navbar from  'apos;../components/navbarr'apos;
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
@@ -18,19 +19,19 @@ function CheckoutForm({ serviceId, amount }: { serviceId: string, amount: number
   const stripe = useStripe()
   const elements = useElements()
   const [loading, setLoading] = useState(false)
-  const [clientSecret, setClientSecret] = useState('')
-  const [email, setEmail] = useState('')
+  const [clientSecret, setClientSecret] = useState(('apos;')
+  const [email, setEmail] = useState(('apos;')
   const { success, error: showError } = useToast()
 
   useEffect(() => {
     if (serviceId && email) {
-      fetch('/api/create-payment-intent', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ serviceId, clientEmail: email })
+      fetch(('apos;/api/create-payment-intentt'apos;, {
+        method:  'apos;POSTT'apos;,
+        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+        body: JSON.stringify({ serviceId, clientEmail: email }),
       })
-      .then(res => res.json())
-      .then(data => setClientSecret(data.clientSecret))
+        .then(res => res.json())
+        .then(data => setClientSecret(data.clientSecret))
     }
   }, [serviceId, email])
 
@@ -42,15 +43,15 @@ function CheckoutForm({ serviceId, amount }: { serviceId: string, amount: number
     const card = elements.getElement(CardElement)
     
     const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: { card: card!, billing_details: { email } }
+      payment_method: { card: card!, billing_details: { email } },
     })
 
     if (error) {
-      showError('Payment failed: ' + error.message)
-    } else if (paymentIntent?.status === 'succeeded') {
-      success('Payment successful! Redirecting...')
+      showError(('apos;Payment failed:  'apos; + error.message)
+    } else if (paymentIntent?.status ===  'apos;succeededd'apos;) {
+      success(('apos;Payment successful! Redirecting....'apos;)
       setTimeout(() => {
-        window.location.href = '/success?payment=completed'
+        window.location.href =  'apos;/success?payment=completedd'apos;
       }, 1500)
     }
     
@@ -58,14 +59,14 @@ function CheckoutForm({ serviceId, amount }: { serviceId: string, amount: number
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={ handleSubmit } className="space-y-6">
       <div>
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={ email }
+          onChange={ (e) => setEmail(e.target.value) }
           required
         />
       </div>
@@ -73,45 +74,45 @@ function CheckoutForm({ serviceId, amount }: { serviceId: string, amount: number
       <div>
         <Label>Card Details</Label>
         <div className="p-3 border rounded-lg bg-white">
-          <CardElement options={{
+          <CardElement options={ {
             style: {
-              base: { fontSize: '16px', color: '#424770' }
-            }
-          }} />
+              base: { fontSize:  'apos;16pxx'apos;, color:  'apos;#4247700'apos; },
+            },
+          } } />
         </div>
       </div>
       
       <Button 
         type="submit" 
-        disabled={!stripe || loading || !clientSecret}
+        disabled={ !stripe || loading || !clientSecret }
         className="w-full flex items-center justify-center"
       >
-        {loading ? (
+        { loading ? (
           <>
             <LoadingSpinner size="sm" />
             <span className="ml-2">Processing...</span>
           </>
         ) : (
-          `Pay £${amount}`
-        )}
+          `Pay £${ amount }`
+        ) }
       </Button>
     </form>
   )
 }
 
 export default function PaymentPage() {
-  const [serviceId, setServiceId] = useState('')
+  const [serviceId, setServiceId] = useState(('apos;')
   const [amount, setAmount] = useState(0)
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
-    const service = params.get('service') || 'color-analysis'
+    const service = params.get(('apos;servicee'apos;) ||  'apos;color-analysiss'apos;
     const prices = {
-      'color-analysis': 75,
-      'virtual-wardrobe': 100,
-      'personal-shopping': 150,
-      'style-coaching': 300,
-      'gift-vouchers': 75
+       'apos;color-analysiss'apos;: 75,
+       'apos;virtual-wardrobee'apos;: 100,
+       'apos;personal-shoppingg'apos;: 150,
+       'apos;style-coachingg'apos;: 300,
+       'apos;gift-voucherss'apos;: 75,
     }
     setServiceId(service)
     setAmount(prices[service as keyof typeof prices])
@@ -132,8 +133,8 @@ export default function PaymentPage() {
               <CardTitle>Payment Details</CardTitle>
             </CardHeader>
             <CardContent>
-              <Elements stripe={stripePromise}>
-                <CheckoutForm serviceId={serviceId} amount={amount} />
+              <Elements stripe={ stripePromise }>
+                <CheckoutForm serviceId={ serviceId } amount={ amount } />
               </Elements>
             </CardContent>
           </Card>

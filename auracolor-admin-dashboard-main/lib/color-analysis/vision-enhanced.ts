@@ -109,22 +109,22 @@ Focus on: undertone detection, contrast levels, color temperature, and image qua
       role: "user",
       content: [{
         type: "text",
-        text: prompt
+        text: prompt,
       }, {
         type: "image_url",
-        image_url: { url: imageUrl }
-      }]
+        image_url: { url: imageUrl },
+      }],
     }],
     max_tokens: 500,
-    temperature: 0.1
+    temperature: 0.1,
   })
 
-  const content = response.choices[0].message.content || '{}'
+  const content = response.choices[0].message.content || '{ }'
   
   try {
     return JSON.parse(content) as EnhancedColorFeatures
   } catch (error) {
-    console.error('Failed to parse enhanced features:', error)
+    // console.error('Failed to parse enhanced features:', error)
     throw new Error('Invalid feature extraction response')
   }
 }
@@ -146,7 +146,7 @@ export async function analyzeMultipleImages(imageUrls: string[]): Promise<Consol
       ...features,
       confidence: features.imageQuality.colorAccuracy * 0.8,
       imageCount: 1,
-      consistency: 1.0
+      consistency: 1.0,
     }
   }
 
@@ -155,7 +155,7 @@ export async function analyzeMultipleImages(imageUrls: string[]): Promise<Consol
       try {
         return await extractEnhancedFeatures(url)
       } catch (error) {
-        console.warn(`Failed to analyze image ${index}:`, error)
+        console.warn(`Failed to analyze image ${ index }:`, error)
         return null
       }
     })
@@ -183,7 +183,7 @@ function consolidateFeatures(analyses: EnhancedColorFeatures[]): ConsolidatedFea
     const counts = values.reduce((acc, val) => {
       acc[val] = (acc[val] || 0) + 1
       return acc
-    }, {} as Record<string, number>)
+    }, { } as Record<string, number>)
     return Object.entries(counts).sort(([,a], [,b]) => b - a)[0][0]
   }
 
@@ -195,49 +195,49 @@ function consolidateFeatures(analyses: EnhancedColorFeatures[]): ConsolidatedFea
       base: getMode(analyses.map(a => a.skinTone.base)) as any,
       hex: analyses[0].skinTone.hex, // Use first valid hex
       clarity: getMode(analyses.map(a => a.skinTone.clarity)) as any,
-      undertoneStrength: avgScore(analyses.map(a => a.skinTone.undertoneStrength))
+      undertoneStrength: avgScore(analyses.map(a => a.skinTone.undertoneStrength)),
     },
     undertone: {
       primary: getMode(analyses.map(a => a.undertone.primary)) as any,
       secondary: getMode(analyses.map(a => a.undertone.secondary)) as any,
-      confidence: avgScore(analyses.map(a => a.undertone.confidence))
+      confidence: avgScore(analyses.map(a => a.undertone.confidence)),
     },
     hairColor: {
       base: getMode(analyses.map(a => a.hairColor.base)) as any,
       hex: analyses[0].hairColor.hex,
       depth: getMode(analyses.map(a => a.hairColor.depth)) as any,
-      naturalness: avgScore(analyses.map(a => a.hairColor.naturalness))
+      naturalness: avgScore(analyses.map(a => a.hairColor.naturalness)),
     },
     eyeColor: {
       primary: getMode(analyses.map(a => a.eyeColor.primary)) as any,
       hex: analyses[0].eyeColor.hex,
       intensity: getMode(analyses.map(a => a.eyeColor.intensity)) as any,
-      clarity: avgScore(analyses.map(a => a.eyeColor.clarity))
+      clarity: avgScore(analyses.map(a => a.eyeColor.clarity)),
     },
     contrast: {
       level: getMode(analyses.map(a => a.contrast.level)) as any,
       score: avgScore(analyses.map(a => a.contrast.score)),
       hairSkinContrast: avgScore(analyses.map(a => a.contrast.hairSkinContrast)),
-      eyeSkinContrast: avgScore(analyses.map(a => a.contrast.eyeSkinContrast))
+      eyeSkinContrast: avgScore(analyses.map(a => a.contrast.eyeSkinContrast)),
     },
     saturation: {
       preference: getMode(analyses.map(a => a.saturation.preference)) as any,
       tolerance: avgScore(analyses.map(a => a.saturation.tolerance)),
-      skinSaturation: avgScore(analyses.map(a => a.saturation.skinSaturation))
+      skinSaturation: avgScore(analyses.map(a => a.saturation.skinSaturation)),
     },
     colorHarmony: {
       temperature: getMode(analyses.map(a => a.colorHarmony.temperature)) as any,
       chroma: getMode(analyses.map(a => a.colorHarmony.chroma)) as any,
-      dominantUndertone: getMode(analyses.map(a => a.colorHarmony.dominantUndertone))
+      dominantUndertone: getMode(analyses.map(a => a.colorHarmony.dominantUndertone)),
     },
     imageQuality: {
       lighting: getMode(analyses.map(a => a.imageQuality.lighting)) as any,
       clarity: avgScore(analyses.map(a => a.imageQuality.clarity)),
-      colorAccuracy: avgScore(analyses.map(a => a.imageQuality.colorAccuracy))
+      colorAccuracy: avgScore(analyses.map(a => a.imageQuality.colorAccuracy)),
     },
     confidence: Math.min(0.95, avgScore(analyses.map(a => a.imageQuality.colorAccuracy)) * consistency),
     imageCount: analyses.length,
-    consistency
+    consistency,
   }
 }
 

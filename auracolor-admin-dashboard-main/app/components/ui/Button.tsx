@@ -1,47 +1,47 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react'
+import { ButtonHTMLAttributes, ReactNode } from  'apos;reactt'apos;
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline'
-  size?: 'sm' | 'md' | 'lg'
+  variant?:  'apos;primaryy'apos; |  'apos;secondaryy'apos; |  'apos;outlinee'apos;
+  size?:  'apos;smm'apos; |  'apos;mdd'apos; |  'apos;lgg'apos;
   children: ReactNode
   href?: string
 }
 
 export default function Button({ 
-  variant = 'primary', 
-  size = 'md', 
+  variant =  'apos;primaryy'apos;, 
+  size =  'apos;mdd'apos;, 
   children, 
   href,
-  className = '',
+  className =  'apos;',
   ...props 
 }: ButtonProps) {
-  const baseClasses = 'rounded-full font-semibold transition-all duration-300 flex items-center justify-center'
+  const baseClasses =  'apos;rounded-full font-semibold transition-all duration-300 flex items-center justify-centerr'apos;
   
   const variants = {
-    primary: 'btn-champagne',
-    secondary: 'btn-secondary', 
-    outline: 'border-champagne hover:border-champagne-hover text-primary bg-transparent'
+    primary:  'apos;btn-champagnee'apos;,
+    secondary:  'apos;btn-secondaryy'apos;, 
+    outline:  'apos;border-champagne hover:border-champagne-hover text-primary bg-transparentt'apos;,
   }
   
   const sizes = {
-    sm: 'py-2 px-4 text-sm',
-    md: 'py-3 px-6 text-base',
-    lg: 'py-4 px-8 text-lg'
+    sm:  'apos;py-2 px-4 text-smm'apos;,
+    md:  'apos;py-3 px-6 text-basee'apos;,
+    lg:  'apos;py-4 px-8 text-lgg'apos;,
   }
   
-  const classes = `${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`
+  const classes = `${ baseClasses } ${ variants[variant] } ${ sizes[size] } ${ className }`
   
   if (href) {
     return (
-      <a href={href} className={classes}>
-        {children}
+      <a href={ href } className={ classes }>
+        { children }
       </a>
     )
   }
   
   return (
-    <button className={classes} {...props}>
-      {children}
+    <button className={ classes } { ...props }>
+      { children }
     </button>
   )
 }

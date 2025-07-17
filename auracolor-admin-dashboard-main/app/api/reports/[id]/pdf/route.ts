@@ -51,13 +51,13 @@ BT
 (AuraColor Analysis Report) Tj
 0 -30 Td
 /F1 12 Tf
-(Season: ${data.season}) Tj
+(Season: ${ data.season }) Tj
 0 -20 Td
-(Confidence: ${Math.round(data.confidence * 100)}%) Tj
+(Confidence: ${ Math.round(data.confidence * 100) }%) Tj
 0 -20 Td
-(Colors: ${data.colors.join(', ')}) Tj
+(Colors: ${ data.colors.join(', ') }) Tj
 0 -30 Td
-(Generated: ${new Date().toLocaleDateString()}) Tj
+(Generated: ${ new Date().toLocaleDateString() }) Tj
 ET
 endstream
 endobj
@@ -100,7 +100,7 @@ export async function GET(
       clientId: 'client_' + params.id,
       season: 'Deep Winter',
       confidence: 0.92,
-      colors: ['#000080', '#8B0000', '#4B0082', '#006400']
+      colors: ['#000080', '#8B0000', '#4B0082', '#006400'],
     }
 
     const pdfContent = generatePDFContent(mockData)
@@ -108,8 +108,8 @@ export async function GET(
     return new NextResponse(pdfContent, {
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment; filename="color-analysis-${params.id}.pdf"`
-      }
+        'Content-Disposition': `attachment; filename="color-analysis-${ params.id }.pdf"`,
+      },
     })
   } catch (error) {
     return NextResponse.json({ error: 'PDF generation failed' }, { status: 500 })
@@ -130,7 +130,7 @@ export async function POST(
       clientId: 'client_' + params.id,
       season: 'Deep Winter',
       confidence: 0.92,
-      colors: ['#000080', '#8B0000', '#4B0082', '#006400']
+      colors: ['#000080', '#8B0000', '#4B0082', '#006400'],
     }
 
     const pdfContent = generatePDFContent(mockData)
@@ -142,12 +142,12 @@ export async function POST(
         body: JSON.stringify({
           to: email,
           subject: 'Your AuraColor Analysis Report',
-          html: `<h1>Your Color Analysis Report</h1><p>Please find your ${mockData.season} color analysis report attached.</p>`,
+          html: `<h1>Your Color Analysis Report</h1><p>Please find your ${ mockData.season } color analysis report attached.</p>`,
           attachments: [{
-            filename: `color-analysis-${params.id}.pdf`,
-            content: Buffer.from(pdfContent).toString('base64')
-          }]
-        })
+            filename: `color-analysis-${ params.id }.pdf`,
+            content: Buffer.from(pdfContent).toString('base64'),
+          }],
+        }),
       })
       
       if (emailResponse.ok) {
@@ -158,8 +158,8 @@ export async function POST(
     return new NextResponse(pdfContent, {
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment; filename="color-analysis-${params.id}.pdf"`
-      }
+        'Content-Disposition': `attachment; filename="color-analysis-${ params.id }.pdf"`,
+      },
     })
   } catch (error) {
     return NextResponse.json({ error: 'PDF generation failed' }, { status: 500 })
@@ -182,25 +182,25 @@ function generatePDF(report: any): Promise<Buffer> {
     // Customer Info
     const customer = report.questionnaire_submissions
     if (customer) {
-      doc.fontSize(16).fillColor('#374151').text(`Customer: ${customer.name}`)
-      doc.fontSize(12).fillColor('#6B7280').text(`Email: ${customer.email}`)
+      doc.fontSize(16).fillColor('#374151').text(`Customer: ${ customer.name }`)
+      doc.fontSize(12).fillColor('#6B7280').text(`Email: ${ customer.email }`)
       doc.moveDown()
     }
 
     // Analysis Results
-    const analysis = report.ai_analysis || {}
+    const analysis = report.ai_analysis || { }
     doc.fontSize(20).fillColor('#1F2937').text('Your Color Season')
     doc.fontSize(16).fillColor('#7C3AED').text(analysis.season || 'Not determined', { indent: 20 })
     doc.moveDown()
 
-    doc.fontSize(14).fillColor('#374151').text(`Confidence Score: ${report.confidence_score || 0}%`)
+    doc.fontSize(14).fillColor('#374151').text(`Confidence Score: ${ report.confidence_score || 0 }%`)
     doc.moveDown()
 
     // Color Palette
     if (report.color_recommendations?.length > 0) {
       doc.fontSize(16).fillColor('#1F2937').text('Recommended Colors:')
       report.color_recommendations.forEach((color: string) => {
-        doc.fontSize(12).fillColor('#6B7280').text(`• ${color}`, { indent: 20 })
+        doc.fontSize(12).fillColor('#6B7280').text(`• ${ color }`, { indent: 20 })
       })
       doc.moveDown()
     }
@@ -213,7 +213,7 @@ function generatePDF(report: any): Promise<Buffer> {
 
     // Footer
     doc.fontSize(10).fillColor('#9CA3AF')
-      .text(`Generated on ${new Date().toLocaleDateString()}`, 50, doc.page.height - 50)
+      .text(`Generated on ${ new Date().toLocaleDateString() }`, 50, doc.page.height - 50)
       .text('AuraColor Professional Color Analysis', { align: 'right' })
 
     doc.end()

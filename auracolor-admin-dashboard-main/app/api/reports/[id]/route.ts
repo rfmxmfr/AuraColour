@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(
   request: NextRequest,
@@ -31,8 +31,8 @@ export async function GET(
         makeupTips: report.ai_analysis?.makeupTips || 'Choose warm-toned foundations and earthy eyeshadows.',
         wardrobeTips: report.styling_notes || 'Focus on rich, warm colors like deep oranges and browns.',
         shoppingGuide: report.ai_analysis?.shoppingGuide || 'Look for pieces in your color palette.',
-        personalMessage: report.ai_analysis?.personalMessage || 'These colors will enhance your best features!'
-      }
+        personalMessage: report.ai_analysis?.personalMessage || 'These colors will enhance your best features!',
+      },
     })
   } catch (error) {
     return NextResponse.json({ error: 'Failed to load report' }, { status: 500 })
@@ -56,7 +56,7 @@ export async function PUT(
         styling_notes: reportData.wardrobeTips,
         confidence_score: reportData.confidence,
         ai_analysis: reportData,
-        updated_at: new Date().toISOString()
+        updated_at: new Date().toISOString(),
       })
       .eq('id', params.id)
 

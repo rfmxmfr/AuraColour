@@ -1,4 +1,4 @@
-'use client'
+'apos;use clientt'apos;apos;
 
 import { useEffect, useRef } from "react"
 
@@ -53,7 +53,7 @@ export default function FloatingParticles({ particleCount = 30, opacity = 0.3 }:
 
       draw() {
         if (!ctx) return
-        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`
+        ctx.fillStyle = `rgba(255, 255, 255, ${ opacity })`
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         ctx.fill()
@@ -88,7 +88,7 @@ export default function FloatingParticles({ particleCount = 30, opacity = 0.3 }:
 
   return (
     <canvas 
-      ref={canvasRef} 
+      ref={ canvasRef } 
       className="absolute inset-0 w-full h-full pointer-events-none"
     />
   )

@@ -1,9 +1,10 @@
 import "@/styles/globals.css"
+import { SpeedInsights } from  'apos;@vercel/speed-insights/nextt'apos;
 import { Inter } from "next/font/google"
 import type React from "react" // Import React
-import I18nProvider from "./components/I18nProvider"
 import { Toaster } from "sonner"
-import { SpeedInsights } from '@vercel/speed-insights/next'
+
+import I18nProvider from "./components/I18nProvider"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -17,9 +18,9 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
-      <body className={inter.className}>
+      <body className={ inter.className }>
         <I18nProvider>
-          {children}
+          { children }
           <Toaster position="top-right" richColors closeButton />
           <SpeedInsights />
         </I18nProvider>
@@ -29,5 +30,5 @@ export default function RootLayout({
 }
 
 export const metadata = {
-      generator: 'v0.dev'
-    };
+  generator:  'apos;v0.devv'apos;,
+};

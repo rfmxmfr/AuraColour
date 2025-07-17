@@ -1,7 +1,7 @@
 import { Page, expect } from '@playwright/test';
 
 export class ServicesPage {
-  constructor(private page: Page) {}
+  constructor(private page: Page) { }
 
   async goto() {
     await this.page.goto('/services');

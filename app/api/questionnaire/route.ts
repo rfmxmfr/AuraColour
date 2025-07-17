@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+
 import { sendClientConfirmation } from '@/lib/email-notifications'
 import { handleFormData } from '@/lib/file-upload'
+import { createClient } from '@/lib/supabase/server'
 
 export async function POST(request: NextRequest) {
   try {
@@ -36,7 +37,7 @@ export async function POST(request: NextRequest) {
             frequentItems: data.allAnswers?.['frequent-items'],
             specificItems: data.allAnswers?.['specific-items'],
             missingColors: data.allAnswers?.['missing-colors'],
-            styleInspiration: data.allAnswers?.['style-inspiration']
+            styleInspiration: data.allAnswers?.['style-inspiration'],
           }),
           ...(data.serviceType === 'Personal Shopping Service' && {
             budget: data.allAnswers?.['budget'],
@@ -45,7 +46,7 @@ export async function POST(request: NextRequest) {
             wardrobeGaps: data.allAnswers?.['wardrobe-gaps'],
             materialPreferences: data.allAnswers?.['material-preferences'],
             silhouettePreferences: data.allAnswers?.['silhouette-preferences'],
-            avoidStyles: data.allAnswers?.['avoid-styles']
+            avoidStyles: data.allAnswers?.['avoid-styles'],
           }),
           ...(data.serviceType === 'Style Evolution Coaching' && {
             occupation: data.allAnswers?.['occupation'],
@@ -54,9 +55,9 @@ export async function POST(request: NextRequest) {
             transformationGoals: data.allAnswers?.['transformation-goals'],
             transformationGoalsOther: data.allAnswers?.['transformation-goals-other'],
             feelingDressed: data.allAnswers?.['feeling-dressed'],
-            contextConsiderations: data.allAnswers?.['context-considerations']
-          })
-        }
+            contextConsiderations: data.allAnswers?.['context-considerations'],
+          }),
+        },
       })
       .select()
       .single()
@@ -66,12 +67,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ 
       success: true, 
       message: 'Questionnaire submitted successfully',
-      id: questionnaire.id 
+      id: questionnaire.id, 
     })
   } catch (error) {
     return NextResponse.json({ 
       success: false, 
-      error: 'Failed to submit questionnaire' 
+      error: 'Failed to submit questionnaire', 
     }, { status: 500 })
   }
 }

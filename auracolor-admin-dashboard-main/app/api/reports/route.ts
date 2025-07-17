@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
         styling_notes: data.styling_notes,
         confidence_score: data.confidence_score,
         status: 'draft',
-        ai_analysis: data.ai_analysis
+        ai_analysis: data.ai_analysis,
       })
       .select()
       .single()
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      report_id: report.id
+      report_id: report.id,
     })
   } catch (error) {
     return NextResponse.json({ error: 'Failed to create report' }, { status: 500 })
@@ -45,7 +45,7 @@ export async function PUT(request: NextRequest) {
         styling_notes: data.styling_notes,
         confidence_score: data.confidence_score,
         status: data.status,
-        updated_at: new Date().toISOString()
+        updated_at: new Date().toISOString(),
       })
       .eq('id', data.report_id)
       .select()
@@ -55,7 +55,7 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      report
+      report,
     })
   } catch (error) {
     return NextResponse.json({ error: 'Failed to update report' }, { status: 500 })

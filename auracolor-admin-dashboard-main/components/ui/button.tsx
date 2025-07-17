@@ -1,8 +1,8 @@
-import * as React from "react"
+import { cn } from "@/lib/utils"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react"
 
-import { cn } from "@/lib/utils"
 import { LoadingSpinner } from "./loading-spinner"
 
 const buttonVariants = cva(
@@ -47,19 +47,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button"
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        disabled={isLoading || props.disabled}
-        {...props}
+        className={ cn(buttonVariants({ variant, size, className })) }
+        ref={ ref }
+        disabled={ isLoading || props.disabled }
+        { ...props }
       >
-        {isLoading ? (
+        { isLoading ? (
           <>
-            <LoadingSpinner size="sm" variant={variant === "default" ? "primary" : "default"} />
-            {loadingText || children}
+            <LoadingSpinner size="sm" variant={ variant === "default" ? "primary" : "default" } />
+            { loadingText || children }
           </>
         ) : (
           children
-        )}
+        ) }
       </Comp>
     )
   }

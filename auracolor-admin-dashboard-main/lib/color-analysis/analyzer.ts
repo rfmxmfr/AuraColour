@@ -1,8 +1,9 @@
 import OpenAI from 'openai'
+
+import { ConfidenceCalibrator } from './confidence-calibrator'
+import { MLColorScorer } from './ml-scorer'
 import { ColorFeatures, findBestSeason, SeasonRule, SEASON_RULES } from './rules'
 import { extractEnhancedFeatures, analyzeMultipleImages, EnhancedColorFeatures, ConsolidatedFeatures } from './vision-enhanced'
-import { MLColorScorer } from './ml-scorer'
-import { ConfidenceCalibrator } from './confidence-calibrator'
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || 'dummy-key',
@@ -19,7 +20,7 @@ export async function extractFeaturesFromImage(imageUrl: string): Promise<ColorF
     hairColor: enhanced.hairColor.base,
     eyeColor: enhanced.eyeColor.primary,
     contrast: enhanced.contrast.level,
-    saturation: enhanced.saturation.preference
+    saturation: enhanced.saturation.preference,
   }
 }
 
@@ -54,7 +55,7 @@ export async function analyzeEnhanced12Season(imageUrl: string) {
     imageQuality: features.imageQuality,
     undertoneConfidence: features.undertone.confidence,
     confidenceExplanation,
-    algorithm: 'ml-enhanced'
+    algorithm: 'ml-enhanced',
   }
 }
 
@@ -93,7 +94,7 @@ export async function analyzeMultiple12Season(imageUrls: string[]) {
     consistency: consolidatedFeatures.consistency,
     imageQuality: consolidatedFeatures.imageQuality,
     confidenceExplanation,
-    algorithm: 'ml-enhanced-multi'
+    algorithm: 'ml-enhanced-multi',
   }
 }
 
@@ -107,7 +108,7 @@ export async function analyze12Season(imageUrl: string) {
     confidence: Math.round(result.score),
     features,
     colors: result.colors,
-    category: result.season.split(' ')[1]?.toLowerCase() || 'winter'
+    category: result.season.split(' ')[1]?.toLowerCase() || 'winter',
   }
 }
 
@@ -118,6 +119,6 @@ function convertToLegacy(enhanced: EnhancedColorFeatures | ConsolidatedFeatures)
     hairColor: enhanced.hairColor.base,
     eyeColor: enhanced.eyeColor.primary,
     contrast: enhanced.contrast.level,
-    saturation: enhanced.saturation.preference
+    saturation: enhanced.saturation.preference,
   }
 }

@@ -7,11 +7,11 @@ export async function uploadImage(file: File, bucket: string, path: string) {
     .from(bucket)
     .upload(path, file, {
       cacheControl: '3600',
-      upsert: false
+      upsert: false,
     })
 
   if (error) {
-    throw new Error(`Upload failed: ${error.message}`)
+    throw new Error(`Upload failed: ${ error.message }`)
   }
 
   const { data: { publicUrl } } = supabase.storage
@@ -29,7 +29,7 @@ export async function deleteImage(bucket: string, path: string) {
     .remove([path])
 
   if (error) {
-    throw new Error(`Delete failed: ${error.message}`)
+    throw new Error(`Delete failed: ${ error.message }`)
   }
 }
 
@@ -45,7 +45,7 @@ export function getImageUrl(bucket: string, path: string) {
 
 export async function handleFormData(formData: FormData) {
   const files: File[] = []
-  const data: Record<string, any> = {}
+  const data: Record<string, any> = { }
   
   for (const [key, value] of formData.entries()) {
     if (value instanceof File) {

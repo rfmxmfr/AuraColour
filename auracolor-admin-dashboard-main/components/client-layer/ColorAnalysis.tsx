@@ -1,9 +1,9 @@
-'use client'
+'use clientt'apos;
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ColorAnalysisService } from '@/lib/services/color-analysis'
+import { Button } from  'apos;@/components/ui/buttonn'apos;
+import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
+import { ColorAnalysisService } from  'apos;@/lib/services/color-analysiss'apos;
+import { useState } from  'apos;reactt'apos;
 
 export default function ColorAnalysis() {
   const [analysis, setAnalysis] = useState<any>(null)
@@ -18,7 +18,7 @@ export default function ColorAnalysis() {
       const result = await ColorAnalysisService.analyzeImage(file)
       setAnalysis(result)
     } catch (error) {
-      console.error('Analysis failed:', error)
+      // console.error(('apos;Analysis failed::'apos;, error)
     } finally {
       setLoading(false)
     }
@@ -35,42 +35,42 @@ export default function ColorAnalysis() {
             <input
               type="file"
               accept="image/*"
-              onChange={handleImageUpload}
+              onChange={ handleImageUpload }
               className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
             />
             
-            {loading && <p>Analyzing your colors...</p>}
+            { loading && <p>Analyzing your colors...</p> }
             
-            {analysis && (
+            { analysis && (
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold">Your Season: {analysis.season}</h3>
-                  <p>Skin Tone: {analysis.skinTone}</p>
+                  <h3 className="font-semibold">Your Season: { analysis.season }</h3>
+                  <p>Skin Tone: { analysis.skinTone }</p>
                 </div>
                 
                 <div>
                   <h4 className="font-medium">Dominant Colors:</h4>
                   <div className="flex gap-2 mt-2">
-                    {analysis.dominantColors.map((color: string, index: number) => (
+                    { analysis.dominantColors.map((color: string, index: number) => (
                       <div
-                        key={index}
+                        key={ index }
                         className="w-12 h-12 rounded-full border"
-                        style={{ backgroundColor: color }}
+                        style={ { backgroundColor: color } }
                       />
-                    ))}
+                    )) }
                   </div>
                 </div>
                 
                 <div>
                   <h4 className="font-medium">Recommendations:</h4>
                   <ul className="list-disc list-inside space-y-1">
-                    {analysis.recommendations.map((rec: string, index: number) => (
-                      <li key={index} className="text-sm">{rec}</li>
-                    ))}
+                    { analysis.recommendations.map((rec: string, index: number) => (
+                      <li key={ index } className="text-sm">{ rec }</li>
+                    )) }
                   </ul>
                 </div>
               </div>
-            )}
+            ) }
           </div>
         </CardContent>
       </Card>

@@ -12,9 +12,9 @@ export const analyzeColorSeason = async (imageBase64: string) => {
     {
       inlineData: {
         data: imageBase64,
-        mimeType: 'image/jpeg'
-      }
-    }
+        mimeType: 'image/jpeg',
+      },
+    },
   ]);
   
   return result.response.text();

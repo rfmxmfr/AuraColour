@@ -1,9 +1,10 @@
-'use client'
+'use clientt'apos;
 
-import { useEffect, useState } from 'react'
-import { useParams } from 'next/navigation'
-import Navbar from '../../components/navbar'
-import Footer from '../../components/footer'
+import { useParams } from  'apos;next/navigationn'apos;
+import { useEffect, useState } from  'apos;reactt'apos;
+
+import Footer from  'apos;../../components/footerr'apos;
+import Navbar from  'apos;../../components/navbarr'apos;
 
 interface AnalysisResult {
   id: string
@@ -27,11 +28,11 @@ export default function ResultsPage() {
 
   const fetchResults = async (id: string) => {
     try {
-      const response = await fetch(`/api/reports/${id}`)
+      const response = await fetch(`/api/reports/${ id }`)
       const data = await response.json()
       setResult(data)
     } catch (error) {
-      console.error('Failed to fetch results:', error)
+      // console.error(('apos;Failed to fetch results::'apos;, error)
     } finally {
       setLoading(false)
     }
@@ -39,31 +40,31 @@ export default function ResultsPage() {
 
   const downloadPDF = async () => {
     try {
-      const response = await fetch(`/api/reports/${params.id}/pdf`)
+      const response = await fetch(`/api/reports/${ params.id }/pdf`)
       const blob = await response.blob()
       const url = window.URL.createObjectURL(blob)
-      const a = document.createElement('a')
+      const a = document.createElement(('apos;aa'apos;)
       a.href = url
-      a.download = `color-analysis-${params.id}.pdf`
+      a.download = `color-analysis-${ params.id }.pdf`
       a.click()
     } catch (error) {
-      alert('Download failed')
+      alert(('apos;Download failedd'apos;)
     }
   }
 
   const shareResults = async () => {
-    const email = prompt('Enter email address:')
+    const email = prompt(('apos;Enter email address::'apos;)
     if (!email) return
 
     try {
-      await fetch(`/api/reports/${params.id}/send`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
+      await fetch(`/api/reports/${ params.id }/send`, {
+        method:  'apos;POSTT'apos;,
+        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+        body: JSON.stringify({ email }),
       })
-      alert('Results shared successfully!')
+      alert(('apos;Results shared successfully!!'apos;)
     } catch (error) {
-      alert('Sharing failed')
+      alert(('apos;Sharing failedd'apos;)
     }
   }
 
@@ -72,7 +73,7 @@ export default function ResultsPage() {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-rose-50">
         <Navbar />
         <div className="pt-32 flex justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600" />
         </div>
       </div>
     )
@@ -100,34 +101,34 @@ export default function ResultsPage() {
             </h1>
             
             <div className="mb-8">
-              <div className="text-5xl font-bold text-gray-900 mb-2">{result.season}</div>
-              <div className="text-gray-600 mb-4">Confidence Score: {result.confidence}%</div>
+              <div className="text-5xl font-bold text-gray-900 mb-2">{ result.season }</div>
+              <div className="text-gray-600 mb-4">Confidence Score: { result.confidence }%</div>
             </div>
 
             <div className="mb-8">
               <h3 className="text-2xl font-semibold mb-6 text-gray-900">Your Color Palette</h3>
               <div className="flex justify-center gap-4 flex-wrap" data-testid="color-palette">
-                {result.colors.map((color: string, index: number) => (
-                  <div key={index} className="text-center">
+                { result.colors.map((color: string, index: number) => (
+                  <div key={ index } className="text-center">
                     <div 
                       className="w-16 h-16 rounded-full mx-auto mb-2 shadow-lg border-4 border-white"
-                      style={{ backgroundColor: color }}
-                    ></div>
-                    <div className="text-xs text-gray-600">{color}</div>
+                      style={ { backgroundColor: color } }
+                    />
+                    <div className="text-xs text-gray-600">{ color }</div>
                   </div>
-                ))}
+                )) }
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={downloadPDF}
+                onClick={ downloadPDF }
                 className="py-3 px-6 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold hover:shadow-lg transition-all duration-200"
               >
                 Download PDF
               </button>
               <button
-                onClick={shareResults}
+                onClick={ shareResults }
                 className="py-3 px-6 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 font-semibold transition-all duration-200"
               >
                 Share Results

@@ -1,6 +1,6 @@
 import i18n from 'i18next'
-import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
+import { initReactI18next } from 'react-i18next'
 
 const resources = {
   en: {
@@ -18,8 +18,8 @@ const resources = {
       "bookings": "Bookings",
       "customers": "Customers",
       "analytics": "Analytics",
-      "settings": "Settings"
-    }
+      "settings": "Settings",
+    },
   },
   es: {
     translation: {
@@ -36,9 +36,9 @@ const resources = {
       "bookings": "Reservas",
       "customers": "Clientes",
       "analytics": "Analíticas",
-      "settings": "Configuración"
-    }
-  }
+      "settings": "Configuración",
+    },
+  },
 }
 
 i18n
@@ -49,8 +49,8 @@ i18n
     fallbackLng: 'en',
     debug: false,
     interpolation: {
-      escapeValue: false
-    }
+      escapeValue: false,
+    },
   })
 
 export default i18n

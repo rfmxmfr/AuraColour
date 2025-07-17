@@ -1,8 +1,10 @@
 "use client"
 
-import * as React from "react"
 import { AlertCircle, XCircle } from "lucide-react"
+import * as React from "react"
+
 import { cn } from "@/lib/utils"
+
 import { Button } from "./button"
 
 interface ErrorMessageProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -33,34 +35,34 @@ export function ErrorMessage({
 
   return (
     <div
-      className={cn(
+      className={ cn(
         "flex items-start gap-3 rounded-md p-4",
         variant === "error" ? "bg-destructive/15 text-destructive" : "bg-amber-100 text-amber-800",
         className
-      )}
+      ) }
       role="alert"
-      {...props}
+      { ...props }
     >
-      {variant === "error" ? (
+      { variant === "error" ? (
         <XCircle className="h-5 w-5 shrink-0" />
       ) : (
         <AlertCircle className="h-5 w-5 shrink-0" />
-      )}
+      ) }
       <div className="flex-1">
-        {title && <h5 className="font-medium">{title}</h5>}
-        <p className="text-sm">{message}</p>
+        { title && <h5 className="font-medium">{ title }</h5> }
+        <p className="text-sm">{ message }</p>
       </div>
-      {dismissable && (
+      { dismissable && (
         <Button
           variant="ghost"
           size="sm"
           className="h-auto p-0 hover:bg-transparent"
-          onClick={handleDismiss}
+          onClick={ handleDismiss }
         >
           <span className="sr-only">Dismiss</span>
           <XCircle className="h-4 w-4" />
         </Button>
-      )}
+      ) }
     </div>
   )
 }

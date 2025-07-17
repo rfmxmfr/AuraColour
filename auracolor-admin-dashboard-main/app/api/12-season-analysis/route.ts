@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
 import { analyze12Season } from '@/lib/color-analysis/analyzer'
 import { sendColorAnalysisResults, sendAdminAlert } from '@/lib/email-notifications'
+import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     const analysis = await analyze12Season(imageUrl)
     const supabase = createClient()
     
-    const ticketNumber = `12S-${Date.now()}`
+    const ticketNumber = `12S-${ Date.now() }`
     const { data: ticket } = await supabase.from('tickets').insert({
       ticket_number: ticketNumber,
       customer_email: email || 'anonymous@auracolor.com',
@@ -23,18 +23,18 @@ export async function POST(request: NextRequest) {
       service_type: '12_season_analysis',
       status: 'completed',
       image_url: imageUrl,
-      questionnaire_data: { ...questionnaire, features: analysis.features }
+      questionnaire_data: { ...questionnaire, features: analysis.features },
     }).select().single()
     
     if (ticket) {
       await supabase.from('analyst_reports').insert({
         ticket_id: ticket.id,
-        season_analysis: `12-Season Analysis: ${analysis.season}`,
+        season_analysis: `12-Season Analysis: ${ analysis.season }`,
         color_recommendations: analysis.colors,
-        styling_notes: `Features: ${JSON.stringify(analysis.features)}. Category: ${analysis.category}`,
+        styling_notes: `Features: ${ JSON.stringify(analysis.features) }. Category: ${ analysis.category }`,
         confidence_score: analysis.confidence,
         status: 'completed',
-        ai_analysis: analysis
+        ai_analysis: analysis,
       })
     }
     
@@ -46,24 +46,24 @@ export async function POST(request: NextRequest) {
         confidence: analysis.confidence,
         undertone: analysis.features.undertone,
         recommended_colors: analysis.colors,
-        analysis_data: analysis
+        analysis_data: analysis,
       })
     }
     
     if (email && name) {
       await Promise.all([
         sendColorAnalysisResults(email, name, analysis),
-        sendAdminAlert('12-Season Analysis', { email, name, season: analysis.season })
+        sendAdminAlert('12-Season Analysis', { email, name, season: analysis.season }),
       ])
     }
     
     return NextResponse.json({
       ...analysis,
       ticket_number: ticketNumber,
-      ticket_id: ticket?.id
+      ticket_id: ticket?.id,
     })
   } catch (error) {
-    console.error('12-season analysis failed:', error)
+    // console.error('12-season analysis failed:', error)
     return NextResponse.json({ error: 'Analysis failed' }, { status: 500 })
   }
 }

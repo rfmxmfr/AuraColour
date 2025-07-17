@@ -1,5 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
+
 import { getAvailableSlots, generateMeetingUrl, STYLIST_SERVICES } from '@/lib/calendar-integration'
 
 export async function GET(request: NextRequest) {
@@ -11,10 +12,10 @@ export async function GET(request: NextRequest) {
     
     return NextResponse.json({
       slots,
-      services: STYLIST_SERVICES
+      services: STYLIST_SERVICES,
     })
   } catch (error) {
-    console.error('Get appointments error:', error)
+    // console.error('Get appointments error:', error)
     return NextResponse.json({ error: 'Failed to fetch appointments' }, { status: 500 })
   }
 }
@@ -42,19 +43,19 @@ export async function POST(request: NextRequest) {
       .insert({
         user_id: user.id,
         stylist_id: '00000000-0000-0000-0000-000000000000', // Default stylist
-        appointment_date: `${date}T${time}:00`,
+        appointment_date: `${ date }T${ time }:00`,
         duration_minutes: service.duration,
         service_type,
         status: 'scheduled',
         notes,
         meeting_url: meetingUrl,
-        price: service.price
+        price: service.price,
       })
       .select()
       .single()
 
     if (error) {
-      console.error('Appointment creation error:', error)
+      // console.error('Appointment creation error:', error)
       return NextResponse.json({ error: 'Failed to book appointment' }, { status: 500 })
     }
 
@@ -62,10 +63,10 @@ export async function POST(request: NextRequest) {
       appointment,
       service,
       meeting_url: meetingUrl,
-      message: 'Appointment booked successfully'
+      message: 'Appointment booked successfully',
     })
   } catch (error) {
-    console.error('Book appointment error:', error)
+    // console.error('Book appointment error:', error)
     return NextResponse.json({ error: 'Failed to book appointment' }, { status: 500 })
   }
 }

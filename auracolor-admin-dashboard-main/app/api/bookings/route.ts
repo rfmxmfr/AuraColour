@@ -11,12 +11,12 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const bookingNumber = `BK-${Date.now()}`
+    const bookingNumber = `BK-${ Date.now() }`
     
     return NextResponse.json({
       success: true,
       booking_number: bookingNumber,
-      message: 'Booking received successfully'
+      message: 'Booking received successfully',
     })
     
   } catch (error: any) {

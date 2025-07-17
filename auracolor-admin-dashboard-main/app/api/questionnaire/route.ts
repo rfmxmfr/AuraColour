@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
 import { sendClientConfirmation } from '@/lib/email-notifications'
 import { handleFormData } from '@/lib/file-upload'
+import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
         session_id: data.session_id || crypto.randomUUID(),
         answers: data.answers,
         photo_urls: data.photoUrls || [],
-        results: data.results
+        results: data.results,
       })
       .select()
       .single()
@@ -32,12 +32,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ 
       success: true, 
       message: 'Questionnaire submitted successfully',
-      id: questionnaire.id 
+      id: questionnaire.id, 
     })
   } catch (error) {
     return NextResponse.json({ 
       success: false, 
-      error: 'Failed to submit questionnaire' 
+      error: 'Failed to submit questionnaire', 
     }, { status: 500 })
   }
 }

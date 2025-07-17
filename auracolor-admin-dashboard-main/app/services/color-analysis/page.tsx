@@ -1,8 +1,9 @@
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import Link from 'next/link'
-import Navbar from '../../components/navbar'
-import Footer from '../../components/footer'
+import { Button } from  'apos;@/components/ui/buttonn'apos;
+import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
+import Link from  'apos;next/linkk'apos;
+
+import Footer from  'apos;../../components/footerr'apos;
+import Navbar from  'apos;../../components/navbarr'apos;
 
 export default function ColorAnalysisPage() {
   return (
@@ -67,7 +68,7 @@ export default function ColorAnalysisPage() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-2">What will I receive?</h4>
-                  <p className="text-gray-600 text-sm">You'll get a digital palette, a style guide with outfit inspiration, and personalized shopping recommendations.</p>
+                  <p className="text-gray-600 text-sm">Youu'apos;ll get a digital palette, a style guide with outfit inspiration, and personalized shopping recommendations.</p>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-2">Do I need to upload a photo?</h4>

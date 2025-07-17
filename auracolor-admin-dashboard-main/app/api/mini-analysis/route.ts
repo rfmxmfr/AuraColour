@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
 import { sendAdminAlert } from '@/lib/notifications'
+import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,30 +16,30 @@ export async function POST(request: NextRequest) {
       .from('questionnaire_submissions')
       .insert({
         answers,
-        results: analysis
+        results: analysis,
       })
 
     if (error) {
-      console.error('Database error:', error)
+      // console.error('Database error:', error)
     }
 
     // Send admin notification if email provided
     if (answers.newsletter) {
       await sendAdminAlert('Mini Analysis', {
         email: answers.newsletter,
-        season: analysis.season
+        season: analysis.season,
       })
     }
 
     return NextResponse.json(analysis)
   } catch (error) {
-    console.error('Mini analysis error:', error)
+    // console.error('Mini analysis error:', error)
     return NextResponse.json({ 
       error: 'Analysis failed',
       season: 'Spring',
       confidence: 75,
       description: 'Based on your responses, you appear to have Spring characteristics.',
-      topColors: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7']
+      topColors: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'],
     }, { status: 200 }) // Return fallback analysis
   }
 }
@@ -100,20 +100,20 @@ function analyzeAnswers(answers: any) {
   const seasonData = {
     Spring: {
       description: 'You have warm, bright characteristics that shine in clear, vibrant colors. Your natural coloring has a fresh, youthful quality.',
-      topColors: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7']
+      topColors: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'],
     },
     Summer: {
       description: 'You have cool, soft characteristics that look best in muted, gentle colors. Your natural coloring has an elegant, refined quality.',
-      topColors: ['#B8A9C9', '#87CEEB', '#F0E68C', '#DDA0DD', '#98FB98']
+      topColors: ['#B8A9C9', '#87CEEB', '#F0E68C', '#DDA0DD', '#98FB98'],
     },
     Autumn: {
       description: 'You have warm, rich characteristics that glow in deep, earthy colors. Your natural coloring has a sophisticated, grounded quality.',
-      topColors: ['#CD853F', '#A0522D', '#8B4513', '#DAA520', '#B22222']
+      topColors: ['#CD853F', '#A0522D', '#8B4513', '#DAA520', '#B22222'],
     },
     Winter: {
       description: 'You have cool, dramatic characteristics that shine in bold, clear colors. Your natural coloring has a striking, confident quality.',
-      topColors: ['#000080', '#DC143C', '#4B0082', '#008B8B', '#2F4F4F']
-    }
+      topColors: ['#000080', '#DC143C', '#4B0082', '#008B8B', '#2F4F4F'],
+    },
   }
 
   return {
@@ -121,6 +121,6 @@ function analyzeAnswers(answers: any) {
     confidence,
     description: seasonData[season as keyof typeof seasonData].description,
     topColors: seasonData[season as keyof typeof seasonData].topColors,
-    scores
+    scores,
   }
 }

@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { NextResponse } from 'next/server'
 
 export async function GET() {
   try {
@@ -15,13 +15,13 @@ export async function GET() {
       status: 'success', 
       message: 'API and database working',
       timestamp: new Date().toISOString(),
-      connected: !error
+      connected: !error,
     })
   } catch (error) {
     return NextResponse.json({ 
       status: 'error', 
       message: 'Backend error',
-      error: 'Database connection failed'
+      error: 'Database connection failed',
     }, { status: 500 })
   }
 }

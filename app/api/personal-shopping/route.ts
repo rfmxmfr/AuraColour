@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+
 import { sendClientConfirmation, sendAdminAlert } from '@/lib/email-notifications'
 import { handleFormData } from '@/lib/file-upload'
+import { createClient } from '@/lib/supabase/server'
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,7 +16,7 @@ export async function POST(request: NextRequest) {
     }
 
     const supabase = await createClient()
-    const ticketNumber = `PS-${Date.now()}`
+    const ticketNumber = `PS-${ Date.now() }`
     
     const { data: ticket } = await supabase.from('tickets').insert({
       ticket_number: ticketNumber,
@@ -29,8 +30,8 @@ export async function POST(request: NextRequest) {
         preferred_brands: data.preferred_brands,
         size_info: data.size_info,
         style_preferences: data.style_preferences,
-        occasion_needs: data.occasion_needs
-      }
+        occasion_needs: data.occasion_needs,
+      },
     }).select().single()
 
     if (ticket) {
@@ -41,7 +42,7 @@ export async function POST(request: NextRequest) {
         curated_items: [],
         fitting_notes: '',
         purchase_recommendations: [],
-        status: 'scheduled'
+        status: 'scheduled',
       })
     }
 
@@ -50,14 +51,14 @@ export async function POST(request: NextRequest) {
       sendAdminAlert('Personal Shopping Service', { 
         email: data.email, 
         name: data.name, 
-        budget: data.budget 
-      })
+        budget: data.budget, 
+      }),
     ])
 
     return NextResponse.json({
       success: true,
       ticket_number: ticketNumber,
-      message: 'Personal shopping session booked successfully'
+      message: 'Personal shopping session booked successfully',
     })
   } catch (error) {
     return NextResponse.json({ error: 'Service booking failed' }, { status: 500 })

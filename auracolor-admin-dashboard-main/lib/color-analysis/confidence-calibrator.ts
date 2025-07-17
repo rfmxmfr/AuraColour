@@ -27,7 +27,7 @@ export class ConfidenceCalibrator {
       featureClarity: this.assessFeatureClarity(features),
       seasonAmbiguity: this.assessSeasonAmbiguity(rawScore),
       consistencyScore: this.getConsistencyScore(features),
-      undertoneStrength: features.undertone.confidence
+      undertoneStrength: features.undertone.confidence,
     }
   }
 
@@ -36,7 +36,7 @@ export class ConfidenceCalibrator {
     
     // Lighting quality score
     const lightingScore = lighting === 'natural' ? 1.0 : 
-                         lighting === 'mixed' ? 0.7 : 0.5
+      lighting === 'mixed' ? 0.7 : 0.5
 
     // Combined quality score
     return (lightingScore * 0.3 + clarity * 0.4 + colorAccuracy * 0.3)
@@ -49,7 +49,7 @@ export class ConfidenceCalibrator {
       features.hairColor.naturalness,
       features.eyeColor.clarity,
       features.contrast.score,
-      features.saturation.tolerance
+      features.saturation.tolerance,
     ]
 
     return clarityScores.reduce((sum, score) => sum + score, 0) / clarityScores.length
@@ -113,7 +113,7 @@ export class ConfidenceCalibrator {
       featureClarity,
       seasonAmbiguity,
       consistencyScore,
-      undertoneStrength
+      undertoneStrength,
     } = factors
 
     // Weighted combination of factors
@@ -187,6 +187,6 @@ export class ConfidenceCalibrator {
       return "Analysis completed with standard confidence"
     }
     
-    return `High confidence due to: ${explanations.join(", ")}`
+    return `High confidence due to: ${ explanations.join(", ") }`
   }
 }

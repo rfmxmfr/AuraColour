@@ -13,11 +13,11 @@ module.exports = [
             season: "Autumn",
             confidence: 85,
             undertone: "warm",
-            recommended_colors: ["#8B4513", "#CD853F", "#D2691E", "#A0522D", "#DEB887"]
-          }
-        }
-      }
-    ]
+            recommended_colors: ["#8B4513", "#CD853F", "#D2691E", "#A0522D", "#DEB887"],
+          },
+        },
+      },
+    ],
   },
   {
     id: "full-color-test",
@@ -35,11 +35,11 @@ module.exports = [
               season: "Autumn",
               confidence: 85,
               undertone: "warm",
-              recommended_colors: ["#8B4513", "#CD853F", "#D2691E", "#A0522D", "#DEB887"]
-            }
-          }
-        }
-      }
-    ]
-  }
+              recommended_colors: ["#8B4513", "#CD853F", "#D2691E", "#A0522D", "#DEB887"],
+            },
+          },
+        },
+      },
+    ],
+  },
 ]

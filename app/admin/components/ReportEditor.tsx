@@ -1,9 +1,10 @@
-'use client'
+'apos;use clientt'apos;apos;
 
-import { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+import { useState, useEffect } from  'apos;apos;reactt'apos;apos;
+
+import { Button } from  'apos;apos;@/components/ui/buttonn'apos;apos;
+import { Input } from  'apos;apos;@/components/ui/inputt'apos;apos;
+import { Textarea } from  'apos;apos;@/components/ui/textareaa'apos;apos;
 
 interface ReportEditorProps {
   reportId: string
@@ -12,16 +13,16 @@ interface ReportEditorProps {
 
 export default function ReportEditor({ reportId, onClose }: ReportEditorProps) {
   const [report, setReport] = useState({
-    customerName: '',
-    season: '',
+    customerName:  'apos;apos;'apos;,
+    season:  'apos;apos;'apos;,
     confidence: 85,
-    undertone: '',
-    bestColors: ['#8B4513', '#CD853F', '#D2691E', '#A0522D', '#DEB887'],
-    avoidColors: ['#FF69B4', '#00FFFF', '#FFFF00'],
-    makeupTips: '',
-    wardrobeTips: '',
-    shoppingGuide: '',
-    personalMessage: ''
+    undertone:  'apos;apos;'apos;,
+    bestColors: [['apos;apos;#8B45133'apos;apos;,  'apos;apos;#CD853FF'apos;apos;,  'apos;apos;#D2691EE'apos;apos;,  'apos;apos;#A0522DD'apos;apos;,  'apos;apos;#DEB8877'apos;apos;],
+    avoidColors: [['apos;apos;#FF69B44'apos;apos;,  'apos;apos;#00FFFFF'apos;apos;,  'apos;apos;#FFFF000'apos;apos;],
+    makeupTips:  'apos;apos;'apos;,
+    wardrobeTips:  'apos;apos;'apos;,
+    shoppingGuide:  'apos;apos;'apos;,
+    personalMessage:  'apos;apos;'apos;,
   })
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export default function ReportEditor({ reportId, onClose }: ReportEditorProps) {
 
   const loadReport = async () => {
     // Load existing report data
-    const response = await fetch(`/api/reports/${reportId}`)
+    const response = await fetch(`/api/reports/${ reportId }`)
     const data = await response.json()
     if (data.success) {
       setReport(data.report)
@@ -38,24 +39,24 @@ export default function ReportEditor({ reportId, onClose }: ReportEditorProps) {
   }
 
   const saveReport = async () => {
-    const response = await fetch(`/api/reports/${reportId}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(report)
+    const response = await fetch(`/api/reports/${ reportId }`, {
+      method:  'apos;apos;PUTT'apos;apos;,
+      headers: {  'apos;apos;Content-Typee'apos;apos;:  'apos;apos;application/jsonn'apos;apos; },
+      body: JSON.stringify(report),
     })
     
     if (response.ok) {
-      alert('Report saved successfully!')
+      alert(('apos;apos;Report saved successfully!!'apos;apos;)
     }
   }
 
   const sendReport = async () => {
-    const response = await fetch(`/api/reports/${reportId}/send`, {
-      method: 'POST'
+    const response = await fetch(`/api/reports/${ reportId }/send`, {
+      method:  'apos;apos;POSTT'apos;apos;,
     })
     
     if (response.ok) {
-      alert('Report sent to customer!')
+      alert(('apos;apos;Report sent to customer!!'apos;apos;)
       onClose()
     }
   }
@@ -68,20 +69,20 @@ export default function ReportEditor({ reportId, onClose }: ReportEditorProps) {
         </div>
         
         <div className="p-6 space-y-6">
-          {/* Header Section */}
+          { /* Header Section */ }
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium mb-2">Customer Name</label>
               <Input
-                value={report.customerName}
-                onChange={(e) => setReport({...report, customerName: e.target.value})}
+                value={ report.customerName }
+                onChange={ (e) => setReport({ ...report, customerName: e.target.value }) }
               />
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">Color Season</label>
               <select
-                value={report.season}
-                onChange={(e) => setReport({...report, season: e.target.value})}
+                value={ report.season }
+                onChange={ (e) => setReport({ ...report, season: e.target.value }) }
                 className="w-full p-2 border rounded"
               >
                 <option value="Spring">Spring</option>
@@ -92,61 +93,61 @@ export default function ReportEditor({ reportId, onClose }: ReportEditorProps) {
             </div>
           </div>
 
-          {/* Color Palette Section */}
+          { /* Color Palette Section */ }
           <div>
             <label className="block text-sm font-medium mb-2">Best Colors (Hex Codes)</label>
             <div className="grid grid-cols-5 gap-2">
-              {report.bestColors.map((color, index) => (
-                <div key={index} className="flex items-center space-x-2">
+              { report.bestColors.map((color, index) => (
+                <div key={ index } className="flex items-center space-x-2">
                   <div
                     className="w-8 h-8 rounded border"
-                    style={{ backgroundColor: color }}
-                  ></div>
+                    style={ { backgroundColor: color } }
+                  />
                   <Input
-                    value={color}
-                    onChange={(e) => {
+                    value={ color }
+                    onChange={ (e) => {
                       const newColors = [...report.bestColors]
                       newColors[index] = e.target.value
-                      setReport({...report, bestColors: newColors})
-                    }}
+                      setReport({ ...report, bestColors: newColors })
+                    } }
                     className="text-xs"
                   />
                 </div>
-              ))}
+              )) }
             </div>
           </div>
 
-          {/* Avoid Colors */}
+          { /* Avoid Colors */ }
           <div>
             <label className="block text-sm font-medium mb-2">Colors to Avoid</label>
             <div className="grid grid-cols-3 gap-2">
-              {report.avoidColors.map((color, index) => (
-                <div key={index} className="flex items-center space-x-2">
+              { report.avoidColors.map((color, index) => (
+                <div key={ index } className="flex items-center space-x-2">
                   <div
                     className="w-8 h-8 rounded border"
-                    style={{ backgroundColor: color }}
-                  ></div>
+                    style={ { backgroundColor: color } }
+                  />
                   <Input
-                    value={color}
-                    onChange={(e) => {
+                    value={ color }
+                    onChange={ (e) => {
                       const newColors = [...report.avoidColors]
                       newColors[index] = e.target.value
-                      setReport({...report, avoidColors: newColors})
-                    }}
+                      setReport({ ...report, avoidColors: newColors })
+                    } }
                     className="text-xs"
                   />
                 </div>
-              ))}
+              )) }
             </div>
           </div>
 
-          {/* Text Sections */}
+          { /* Text Sections */ }
           <div>
             <label className="block text-sm font-medium mb-2">Makeup Tips</label>
             <Textarea
-              value={report.makeupTips}
-              onChange={(e) => setReport({...report, makeupTips: e.target.value})}
-              rows={3}
+              value={ report.makeupTips }
+              onChange={ (e) => setReport({ ...report, makeupTips: e.target.value }) }
+              rows={ 3 }
               placeholder="Foundation, lipstick, eyeshadow recommendations..."
             />
           </div>
@@ -154,9 +155,9 @@ export default function ReportEditor({ reportId, onClose }: ReportEditorProps) {
           <div>
             <label className="block text-sm font-medium mb-2">Wardrobe Tips</label>
             <Textarea
-              value={report.wardrobeTips}
-              onChange={(e) => setReport({...report, wardrobeTips: e.target.value})}
-              rows={3}
+              value={ report.wardrobeTips }
+              onChange={ (e) => setReport({ ...report, wardrobeTips: e.target.value }) }
+              rows={ 3 }
               placeholder="Clothing colors, patterns, styling advice..."
             />
           </div>
@@ -164,9 +165,9 @@ export default function ReportEditor({ reportId, onClose }: ReportEditorProps) {
           <div>
             <label className="block text-sm font-medium mb-2">Shopping Guide</label>
             <Textarea
-              value={report.shoppingGuide}
-              onChange={(e) => setReport({...report, shoppingGuide: e.target.value})}
-              rows={3}
+              value={ report.shoppingGuide }
+              onChange={ (e) => setReport({ ...report, shoppingGuide: e.target.value }) }
+              rows={ 3 }
               placeholder="Where to shop, specific items to look for..."
             />
           </div>
@@ -174,24 +175,24 @@ export default function ReportEditor({ reportId, onClose }: ReportEditorProps) {
           <div>
             <label className="block text-sm font-medium mb-2">Personal Message</label>
             <Textarea
-              value={report.personalMessage}
-              onChange={(e) => setReport({...report, personalMessage: e.target.value})}
-              rows={2}
+              value={ report.personalMessage }
+              onChange={ (e) => setReport({ ...report, personalMessage: e.target.value }) }
+              rows={ 2 }
               placeholder="Personal note from the analyst..."
             />
           </div>
         </div>
 
-        {/* Actions */}
+        { /* Actions */ }
         <div className="p-6 border-t flex justify-between">
-          <Button variant="outline" onClick={onClose}>
+          <Button variant="outline" onClick={ onClose }>
             Cancel
           </Button>
           <div className="space-x-2">
-            <Button onClick={saveReport}>
+            <Button onClick={ saveReport }>
               Save Draft
             </Button>
-            <Button onClick={sendReport} className="bg-green-600 hover:bg-green-700">
+            <Button onClick={ sendReport } className="bg-green-600 hover:bg-green-700">
               Send to Customer
             </Button>
           </div>

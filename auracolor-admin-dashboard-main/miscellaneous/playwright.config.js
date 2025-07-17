@@ -8,7 +8,7 @@ module.exports = defineConfig({
   testDir: './tests',
   timeout: 60000,
   expect: {
-    timeout: 10000
+    timeout: 10000,
   },
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
@@ -19,7 +19,7 @@ module.exports = defineConfig({
     baseURL: process.env.BASE_URL || 'http://localhost:3000',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    video: 'on-first-retry'
+    video: 'on-first-retry',
   },
   projects: [
     {
@@ -29,7 +29,7 @@ module.exports = defineConfig({
     {
       name: 'mobile',
       use: { ...devices['iPhone 13'] },
-    }
+    },
   ],
   webServer: {
     command: 'npm run dev',

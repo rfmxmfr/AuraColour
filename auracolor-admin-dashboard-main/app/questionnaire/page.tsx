@@ -1,17 +1,18 @@
 "use client"
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import Navbar from '../components/navbar'
-import Footer from '../components/footer'
-import BookingModal from '../components/BookingModal'
-import MultiplePhotoUpload from '@/components/MultiplePhotoUpload'
-import ProgressIndicator from '../components/ProgressIndicator'
-import FeedbackWidget from '../components/FeedbackWidget'
+import MultiplePhotoUpload from  'apos;@/components/MultiplePhotoUploadd'apos;
+import { motion } from  'apos;framer-motionn'apos;
+import { useState } from  'apos;reactt'apos;
+
+import BookingModal from  'apos;../components/BookingModall'apos;
+import FeedbackWidget from  'apos;../components/FeedbackWidgett'apos;
+import Footer from  'apos;../components/footerr'apos;
+import Navbar from  'apos;../components/navbarr'apos;
+import ProgressIndicator from  'apos;../components/ProgressIndicatorr'apos;
 
 export default function QuestionnairePage() {
   const [currentStep, setCurrentStep] = useState(0)
-  const [answers, setAnswers] = useState<{[key: string]: any}>({})
+  const [answers, setAnswers] = useState<{ [key: string]: any }>({ })
   const [photoUrls, setPhotoUrls] = useState<string[]>([])
   const [showResults, setShowResults] = useState(false)
   const [analysisResults, setAnalysisResults] = useState<any>(null)
@@ -19,64 +20,64 @@ export default function QuestionnairePage() {
 
   const questions = [
     {
-      id: 'skin-tone',
-      title: 'What is your skin tone?',
-      type: 'radio',
+      id:  'apos;skin-tonee'apos;,
+      title:  'apos;What is your skin tone??'apos;,
+      type:  'apos;radioo'apos;,
       options: [
-        'Very fair with pink undertones',
-        'Fair with neutral undertones', 
-        'Medium with warm undertones',
-        'Medium with cool undertones',
-        'Deep with warm undertones',
-        'Deep with cool undertones'
-      ]
+         'apos;Very fair with pink undertoness'apos;,
+         'apos;Fair with neutral undertoness'apos;, 
+         'apos;Medium with warm undertoness'apos;,
+         'apos;Medium with cool undertoness'apos;,
+         'apos;Deep with warm undertoness'apos;,
+         'apos;Deep with cool undertoness'apos;,
+      ],
     },
     {
-      id: 'hair-color',
-      title: 'What is your natural hair color?',
-      type: 'radio',
+      id:  'apos;hair-colorr'apos;,
+      title:  'apos;What is your natural hair color??'apos;,
+      type:  'apos;radioo'apos;,
       options: [
-        'Platinum blonde',
-        'Golden blonde',
-        'Light brown',
-        'Medium brown',
-        'Dark brown',
-        'Black',
-        'Red/Auburn',
-        'Gray/Silver'
-      ]
+         'apos;Platinum blondee'apos;,
+         'apos;Golden blondee'apos;,
+         'apos;Light brownn'apos;,
+         'apos;Medium brownn'apos;,
+         'apos;Dark brownn'apos;,
+         'apos;Blackk'apos;,
+         'apos;Red/Auburnn'apos;,
+         'apos;Gray/Silverr'apos;,
+      ],
     },
     {
-      id: 'eye-color',
-      title: 'What is your eye color?',
-      type: 'radio',
+      id:  'apos;eye-colorr'apos;,
+      title:  'apos;What is your eye color??'apos;,
+      type:  'apos;radioo'apos;,
       options: [
-        'Blue',
-        'Green',
-        'Brown',
-        'Hazel',
-        'Gray',
-        'Amber'
-      ]
+         'apos;Bluee'apos;,
+         'apos;Greenn'apos;,
+         'apos;Brownn'apos;,
+         'apos;Hazell'apos;,
+         'apos;Grayy'apos;,
+         'apos;Amberr'apos;,
+      ],
     },
     {
-      id: 'style-preference',
-      title: 'What is your preferred style?',
-      type: 'radio',
+      id:  'apos;style-preferencee'apos;,
+      title:  'apos;What is your preferred style??'apos;,
+      type:  'apos;radioo'apos;,
       options: [
-        'Classic and timeless',
-        'Modern and trendy',
-        'Bohemian and relaxed',
-        'Professional and polished',
-        'Edgy and bold',
-        'Romantic and feminine'
-      ]
+         'apos;Classic and timelesss'apos;,
+         'apos;Modern and trendyy'apos;,
+         'apos;Bohemian and relaxedd'apos;,
+         'apos;Professional and polishedd'apos;,
+         'apos;Edgy and boldd'apos;,
+         'apos;Romantic and femininee'apos;,
+      ],
     },
     {
-      id: 'photos',
-      title: 'Upload Your Photos',
-      type: 'upload',
-      description: 'Please upload 3 photos: face with hair pulled back, face with hair down, and wrist showing veins'
+      id:  'apos;photoss'apos;,
+      title:  'apos;Upload Your Photoss'apos;,
+      type:  'apos;uploadd'apos;,
+      description:  'apos;Please upload 3 photos: face with hair pulled back, face with hair down, and wrist showing veinss'apos;,
     },
 
   ]
@@ -99,22 +100,22 @@ export default function QuestionnairePage() {
 
   const submitQuestionnaire = async () => {
     try {
-      const response = await fetch('/api/questionnaire', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch(('apos;/api/questionnairee'apos;, {
+        method:  'apos;POSTT'apos;,
+        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
         body: JSON.stringify({
           answers,
           photoUrls,
-          completedAt: new Date().toISOString()
-        })
+          completedAt: new Date().toISOString(),
+        }),
       })
       
       if (response.ok) {
         const result = await response.json()
-        console.log('Questionnaire saved:', result.id)
+        // console.log(('apos;Questionnaire saved::'apos;, result.id)
       }
     } catch (error) {
-      console.error('Failed to save questionnaire:', error)
+      // console.error(('apos;Failed to save questionnaire::'apos;, error)
     }
     
     setShowBookingModal(true)
@@ -131,30 +132,30 @@ export default function QuestionnairePage() {
           <div className="max-w-4xl mx-auto px-6">
             <motion.div
               className="bg-white rounded-3xl shadow-lg p-8 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              initial={ { opacity: 0, y: 20 } }
+              animate={ { opacity: 1, y: 0 } }
+              transition={ { duration: 0.8 } }
             >
               <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Your Mini Color Analysis</h1>
               
               <div className="mb-8">
-                <div className="text-5xl font-bold text-gray-900 mb-2">{analysisResults.season}</div>
-                <div className="text-gray-600 mb-4">Confidence: {analysisResults.confidence}%</div>
-                <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto">{analysisResults.description}</p>
+                <div className="text-5xl font-bold text-gray-900 mb-2">{ analysisResults.season }</div>
+                <div className="text-gray-600 mb-4">Confidence: { analysisResults.confidence }%</div>
+                <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto">{ analysisResults.description }</p>
               </div>
 
               <div className="mb-8">
                 <h3 className="text-2xl font-semibold mb-6 text-gray-900">Your Top Colors</h3>
                 <div className="flex justify-center gap-6">
-                  {analysisResults.topColors.map((color: string, index: number) => (
-                    <div key={index} className="text-center">
+                  { analysisResults.topColors.map((color: string, index: number) => (
+                    <div key={ index } className="text-center">
                       <div 
                         className="w-20 h-20 rounded-full mx-auto mb-3 shadow-lg border-4 border-white"
-                        style={{ backgroundColor: color }}
-                      ></div>
-                      <div className="text-sm text-gray-600 font-medium">{color}</div>
+                        style={ { backgroundColor: color } }
+                      />
+                      <div className="text-sm text-gray-600 font-medium">{ color }</div>
                     </div>
-                  ))}
+                  )) }
                 </div>
               </div>
 
@@ -193,9 +194,9 @@ export default function QuestionnairePage() {
         <div className="max-w-4xl mx-auto px-4 md:px-6">
           <motion.div
             className="bg-white/20 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-lg p-4 md:p-8 border border-white/30"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={ { opacity: 0, y: 20 } }
+            animate={ { opacity: 1, y: 0 } }
+            transition={ { duration: 0.8 } }
           >
             <div className="mb-4 md:mb-8">
               <div className="text-center mb-4 md:mb-6">
@@ -203,78 +204,78 @@ export default function QuestionnairePage() {
                 <p className="text-sm md:text-base text-gray-600 mt-2">Discover your perfect color palette in just a few steps</p>
               </div>
               <ProgressIndicator 
-                currentStep={currentStep}
-                totalSteps={questions.length}
-                stepLabels={['Skin Tone', 'Hair Color', 'Eye Color', 'Style', 'Photos']}
+                currentStep={ currentStep }
+                totalSteps={ questions.length }
+                stepLabels={ [['apos;Skin Tonee'apos;,  'apos;Hair Colorr'apos;,  'apos;Eye Colorr'apos;,  'apos;Stylee'apos;,  'apos;Photoss'apos;] }
               />
             </div>
 
             <div className="mb-4 md:mb-8">
-              <h2 className="text-xl md:text-2xl font-semibold mb-3 md:mb-6 text-gray-900">{currentQuestion.title}</h2>
-              {currentQuestion.description && (
-                <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-6">{currentQuestion.description}</p>
-              )}
+              <h2 className="text-xl md:text-2xl font-semibold mb-3 md:mb-6 text-gray-900">{ currentQuestion.title }</h2>
+              { currentQuestion.description && (
+                <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-6">{ currentQuestion.description }</p>
+              ) }
               
-              {currentQuestion.type === 'upload' ? (
+              { currentQuestion.type ===  'apos;uploadd'apos; ? (
                 <MultiplePhotoUpload 
-                  onFilesChange={(files) => handleAnswer(currentQuestion.id, files)}
-                  onUploadComplete={(urls) => {
+                  onFilesChange={ (files) => handleAnswer(currentQuestion.id, files) }
+                  onUploadComplete={ (urls) => {
                     setPhotoUrls(urls)
                     // Store the URLs in answers as well
-                    handleAnswer('photoUrls', urls)
-                  }}
-                  maxPhotos={3}
+                    handleAnswer(('apos;photoUrlss'apos;, urls)
+                  } }
+                  maxPhotos={ 3 }
                   required
                 />
 
               ) : (
                 <div className="space-y-2 md:space-y-3">
-                  {currentQuestion.options?.map((option, index) => (
+                  { currentQuestion.options?.map((option, index) => (
                     <label
-                      key={index}
+                      key={ index }
                       className="flex items-center p-3 md:p-4 rounded-lg md:rounded-xl border border-white/30 hover:border-purple-300 hover:bg-white/40 cursor-pointer transition-all duration-200 backdrop-blur-sm"
                     >
                       <input
                         type="radio"
-                        name={currentQuestion.id}
-                        value={option}
-                        checked={answers[currentQuestion.id] === option}
-                        onChange={(e) => handleAnswer(currentQuestion.id, e.target.value)}
+                        name={ currentQuestion.id }
+                        value={ option }
+                        checked={ answers[currentQuestion.id] === option }
+                        onChange={ (e) => handleAnswer(currentQuestion.id, e.target.value) }
                         className="mr-3 md:mr-4 text-purple-600 focus:ring-purple-500"
                       />
-                      <span className="text-sm md:text-base text-gray-900">{option}</span>
+                      <span className="text-sm md:text-base text-gray-900">{ option }</span>
                     </label>
-                  ))}
+                  )) }
                 </div>
-              )}
+              ) }
             </div>
 
             <div className="flex justify-between items-center">
               <button
-                onClick={prevStep}
-                disabled={currentStep === 0}
+                onClick={ prevStep }
+                disabled={ currentStep === 0 }
                 className="py-2 md:py-3 px-4 md:px-6 text-sm md:text-base rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold"
               >
                 Previous
               </button>
               
-              {currentStep === questions.length - 1 ? (
+              { currentStep === questions.length - 1 ? (
                 <button
-                  onClick={submitQuestionnaire}
-                  disabled={!answers[currentQuestion.id]}
+                  onClick={ submitQuestionnaire }
+                  disabled={ !answers[currentQuestion.id] }
                   className="py-2 md:py-4 px-5 md:px-8 text-sm md:text-base rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                 >
                   Book Your Analysis
                 </button>
               ) : (
                 <button
-                  onClick={nextStep}
-                  disabled={!answers[currentQuestion.id]}
+                  onClick={ nextStep }
+                  disabled={ !answers[currentQuestion.id] }
                   className="py-2 md:py-3 px-4 md:px-6 text-sm md:text-base rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                 >
                   Next
                 </button>
-              )}
+              ) }
             </div>
           </motion.div>
         </div>
@@ -282,9 +283,9 @@ export default function QuestionnairePage() {
 
       <Footer />
       <BookingModal 
-        isOpen={showBookingModal}
-        onClose={() => setShowBookingModal(false)}
-        answers={answers}
+        isOpen={ showBookingModal }
+        onClose={ () => setShowBookingModal(false) }
+        answers={ answers }
       />
       <FeedbackWidget page="questionnaire" />
     </div>

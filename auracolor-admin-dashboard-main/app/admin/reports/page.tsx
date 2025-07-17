@@ -1,7 +1,7 @@
-'use client'
+'use clientt'apos;
 
-import { useEffect, useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
+import { createClient } from  'apos;@/lib/supabase/clientt'apos;
+import { useEffect, useState } from  'apos;reactt'apos;
 
 interface Report {
   id: string
@@ -27,16 +27,16 @@ export default function AdminReportsPage() {
     try {
       const supabase = createClient()
       const { data } = await supabase
-        .from('analyst_reports')
+        .from(('apos;analyst_reportss'apos;)
         .select(`
           *,
           questionnaire_submissions(name, email)
         `)
-        .order('created_at', { ascending: false })
+        .order(('apos;created_att'apos;, { ascending: false })
 
       setReports(data || [])
     } catch (error) {
-      console.error('Failed to load reports:', error)
+      // console.error(('apos;Failed to load reports::'apos;, error)
     } finally {
       setLoading(false)
     }
@@ -44,21 +44,21 @@ export default function AdminReportsPage() {
 
   const sendReport = async (reportId: string, email: string) => {
     try {
-      await fetch(`/api/reports/${reportId}/send`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
+      await fetch(`/api/reports/${ reportId }/send`, {
+        method:  'apos;POSTT'apos;,
+        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+        body: JSON.stringify({ email }),
       })
-      alert('Report sent successfully!')
+      alert(('apos;Report sent successfully!!'apos;)
     } catch (error) {
-      alert('Failed to send report')
+      alert(('apos;Failed to send reportt'apos;)
     }
   }
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600" />
       </div>
     )
   }
@@ -93,52 +93,52 @@ export default function AdminReportsPage() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {reports.map((report) => (
-                <tr key={report.id}>
+              { reports.map((report) => (
+                <tr key={ report.id }>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div>
                       <div className="text-sm font-medium text-gray-900">
-                        {report.questionnaire_submissions?.name || 'Unknown'}
+                        { report.questionnaire_submissions?.name ||  'apos;Unknownn'apos; }
                       </div>
                       <div className="text-sm text-gray-500">
-                        {report.questionnaire_submissions?.email}
+                        { report.questionnaire_submissions?.email }
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {report.season_analysis}
+                    { report.season_analysis }
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {report.confidence_score}%
+                    { report.confidence_score }%
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                      report.status === 'completed' 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-yellow-100 text-yellow-800'
-                    }`}>
-                      {report.status}
+                    <span className={ `inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                      report.status ===  'apos;completedd'apos; 
+                        ?  'apos;bg-green-100 text-green-8000'apos; 
+                        :  'apos;bg-yellow-100 text-yellow-8000'apos;
+                    }` }>
+                      { report.status }
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {new Date(report.created_at).toLocaleDateString()}
+                    { new Date(report.created_at).toLocaleDateString() }
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
                     <a
-                      href={`/results/${report.id}`}
+                      href={ `/results/${ report.id }` }
                       className="text-blue-600 hover:text-blue-900"
                     >
                       View
                     </a>
                     <button
-                      onClick={() => sendReport(report.id, report.questionnaire_submissions?.email)}
+                      onClick={ () => sendReport(report.id, report.questionnaire_submissions?.email) }
                       className="text-green-600 hover:text-green-900"
                     >
                       Send
                     </button>
                   </td>
                 </tr>
-              ))}
+              )) }
             </tbody>
           </table>
         </div>

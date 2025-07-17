@@ -4,7 +4,7 @@ export class StylistCoachingService {
     const response = await fetch('/api/stylist-coaching', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'get-availability' })
+      body: JSON.stringify({ action: 'get-availability' }),
     })
     
     return response.json()
@@ -17,8 +17,8 @@ export class StylistCoachingService {
       body: JSON.stringify({ 
         action: 'book-appointment',
         datetime,
-        notes
-      })
+        notes,
+      }),
     })
     
     return response.json()
@@ -27,21 +27,21 @@ export class StylistCoachingService {
   static async startVideoCall(appointmentId: string) {
     // Initialize WebRTC connection
     return {
-      meetingLink: `https://meet.style-app.com/room/${appointmentId}`,
-      roomId: appointmentId
+      meetingLink: `https://meet.style-app.com/room/${ appointmentId }`,
+      roomId: appointmentId,
     }
   }
   
   static async getStyleAdvice(photos: File[], preferences: any) {
     const formData = new FormData()
     photos.forEach((photo, index) => {
-      formData.append(`photo_${index}`, photo)
+      formData.append(`photo_${ index }`, photo)
     })
     formData.append('preferences', JSON.stringify(preferences))
     
     const response = await fetch('/api/style-advice', {
       method: 'POST',
-      body: formData
+      body: formData,
     })
     
     return response.json()

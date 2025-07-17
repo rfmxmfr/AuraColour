@@ -25,28 +25,28 @@ export async function POST(request: NextRequest) {
           role: "user",
           content: [{
             type: "text",
-            text: prompt
+            text: prompt,
           }, {
             type: "image_url",
-            image_url: { url: imageUrl }
-          }]
+            image_url: { url: imageUrl },
+          }],
         }],
-        max_tokens: 300
+        max_tokens: 300,
       })
-      openaiResult = JSON.parse(openaiResponse.choices[0].message.content || '{}')
+      openaiResult = JSON.parse(openaiResponse.choices[0].message.content || '{ }')
     } catch (error) {
-      console.error('OpenAI error:', error)
+      // console.error('OpenAI error:', error)
     }
 
     // Genkit/Gemini Analysis (disabled due to build issues)
-    let genkitResult = null
+    const genkitResult = null
     // try {
     //   if (process.env.GOOGLE_AI_API_KEY && generate && gemini15Flash) {
-    //     const genkitResponse = await generate(gemini15Flash, `${prompt}\n\nAnalyze the image at: ${imageUrl}`)
-    //     genkitResult = JSON.parse(genkitResponse.text || '{}')
+    //     const genkitResponse = await generate(gemini15Flash, `${ prompt }\n\nAnalyze the image at: ${ imageUrl }`)
+    //     genkitResult = JSON.parse(genkitResponse.text || '{ }')
     //   }
     // } catch (error) {
-    //   console.error('Genkit error:', error)
+    //   // console.error('Genkit error:', error)
     // }
 
     return NextResponse.json({
@@ -55,8 +55,8 @@ export async function POST(request: NextRequest) {
       comparison: {
         both_available: !!(openaiResult && genkitResult),
         openai_configured: !!process.env.OPENAI_API_KEY,
-        genkit_configured: !!process.env.GOOGLE_AI_API_KEY
-      }
+        genkit_configured: !!process.env.GOOGLE_AI_API_KEY,
+      },
     })
   } catch (error) {
     return NextResponse.json({ error: 'Analysis failed' }, { status: 500 })

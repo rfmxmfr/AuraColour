@@ -1,3 +1,4 @@
+import logger from "../lib/secure-logger";
 import { NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
 // import { generate, gemini15Flash } from '@/lib/genkit'
@@ -25,21 +26,21 @@ export async function POST(request: NextRequest) {
           role: "user",
           content: [{
             type: "text",
-            text: prompt
+            text: prompt,
           }, {
             type: "image_url",
-            image_url: { url: imageUrl }
-          }]
+            image_url: { url: imageUrl },
+          }],
         }],
-        max_tokens: 300
+        max_tokens: 300,
       })
-      openaiResult = JSON.parse(openaiResponse.choices[0].message.content || '{}')
+      openaiResult = JSON.parse(openaiResponse.choices[0].message.content || '{ }')
     } catch (error) {
-      console.error('OpenAI error:', error)
+      // logger.error('OpenAI error:', error)
     }
 
     // Genkit/Gemini Analysis (disabled for now)
-    let genkitResult = null
+    const genkitResult = null
     // TODO: Implement Google AI direct API call
 
     return NextResponse.json({
@@ -48,8 +49,8 @@ export async function POST(request: NextRequest) {
       comparison: {
         both_available: !!(openaiResult && genkitResult),
         openai_configured: !!process.env.OPENAI_API_KEY,
-        genkit_configured: !!process.env.GOOGLE_AI_API_KEY
-      }
+        genkit_configured: !!process.env.GOOGLE_AI_API_KEY,
+      },
     })
   } catch (error) {
     return NextResponse.json({ error: 'Analysis failed' }, { status: 500 })

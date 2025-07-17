@@ -12,18 +12,18 @@ export async function POST(request: NextRequest) {
       to,
       subject,
       html,
-      attachments
+      attachments,
     })
 
     if (error) {
-      console.error('Email send error:', error)
+      // console.error('Email send error:', error)
       return NextResponse.json({ error: 'Failed to send email' }, { status: 500 })
     }
 
     return NextResponse.json({ success: true, id: data?.id })
 
   } catch (error) {
-    console.error('Email API error:', error)
+    // console.error('Email API error:', error)
     return NextResponse.json({ error: 'Email service error' }, { status: 500 })
   }
 }

@@ -1,5 +1,7 @@
 import { toast } from "sonner"
 
+import { secureLogger } from "./secure-logger"
+
 type NotificationType = "success" | "error" | "warning" | "info"
 
 interface NotificationOptions {
@@ -17,55 +19,55 @@ export function showNotification(
   message: string,
   options?: NotificationOptions
 ) {
-  const { title, description, duration = 5000, action } = options || {}
+  const { title, description, duration = 5000, action } = options || { }
   
   switch (type) {
-    case "success":
-      toast.success(title || message, {
-        description: description || (title ? message : undefined),
-        duration,
-        action: action ? {
-          label: action.label,
-          onClick: action.onClick,
-        } : undefined,
-      })
-      break
-    case "error":
-      toast.error(title || message, {
-        description: description || (title ? message : undefined),
-        duration,
-        action: action ? {
-          label: action.label,
-          onClick: action.onClick,
-        } : undefined,
-      })
-      break
-    case "warning":
-      toast.warning(title || message, {
-        description: description || (title ? message : undefined),
-        duration,
-        action: action ? {
-          label: action.label,
-          onClick: action.onClick,
-        } : undefined,
-      })
-      break
-    case "info":
-    default:
-      toast.info(title || message, {
-        description: description || (title ? message : undefined),
-        duration,
-        action: action ? {
-          label: action.label,
-          onClick: action.onClick,
-        } : undefined,
-      })
-      break
+  case "success":
+    toast.success(title || message, {
+      description: description || (title ? message : undefined),
+      duration,
+      action: action ? {
+        label: action.label,
+        onClick: action.onClick,
+      } : undefined,
+    })
+    break
+  case "error":
+    toast.error(title || message, {
+      description: description || (title ? message : undefined),
+      duration,
+      action: action ? {
+        label: action.label,
+        onClick: action.onClick,
+      } : undefined,
+    })
+    break
+  case "warning":
+    toast.warning(title || message, {
+      description: description || (title ? message : undefined),
+      duration,
+      action: action ? {
+        label: action.label,
+        onClick: action.onClick,
+      } : undefined,
+    })
+    break
+  case "info":
+  default:
+    toast.info(title || message, {
+      description: description || (title ? message : undefined),
+      duration,
+      action: action ? {
+        label: action.label,
+        onClick: action.onClick,
+      } : undefined,
+    })
+    break
   }
 }
 
 export function handleApiError(error: unknown, fallbackMessage = "An error occurred") {
-  console.error(error)
+  secureLogger.error("API error:", error)
   
   let errorMessage = fallbackMessage
   
@@ -83,12 +85,12 @@ export function handleApiError(error: unknown, fallbackMessage = "An error occur
 
 export async function sendClientConfirmation(email: string, name: string) {
   // Placeholder for client confirmation email
-  console.log('Sending client confirmation to:', email, name)
+  secureLogger.log('Sending client confirmation to:', email, name)
   return { success: true }
 }
 
 export async function sendAdminAlert(subject: string, data: any) {
   // Placeholder for admin alert email
-  console.log('Sending admin alert:', subject, data)
+  secureLogger.log('Sending admin alert:', subject, data)
   return { success: true }
 }

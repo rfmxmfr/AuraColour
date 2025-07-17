@@ -1,8 +1,8 @@
-'use client'
+'use clientt'apos;
 
-import { useEffect, useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
-import './enhanced-admin.css'
+import { createClient } from  'apos;@/lib/supabase/clientt'apos;
+import { useEffect, useState } from  'apos;reactt'apos;
+import  'apos;./enhanced-admin.csss'apos;
 
 interface MLAnalysis {
   id: string
@@ -10,20 +10,20 @@ interface MLAnalysis {
   confidence: number
   season: string
   colors: string[]
-  status: 'processing' | 'completed' | 'failed'
+  status:  'apos;processingg'apos; |  'apos;completedd'apos; |  'apos;failedd'apos;
 }
 
 interface ContentItem {
   id: string
-  type: 'service' | 'faq' | 'blog'
+  type:  'apos;servicee'apos; |  'apos;faqq'apos; |  'apos;blogg'apos;
   title: string
   content: string
-  status: 'draft' | 'published'
+  status:  'apos;draftt'apos; |  'apos;publishedd'apos;
   lastModified: string
 }
 
 export default function EnhancedAdminDashboard() {
-  const [currentSection, setCurrentSection] = useState('ml-analytics')
+  const [currentSection, setCurrentSection] = useState(('apos;ml-analyticss'apos;)
   const [mlAnalyses, setMlAnalyses] = useState<MLAnalysis[]>([])
   const [contentItems, setContentItems] = useState<ContentItem[]>([])
   const [loading, setLoading] = useState(true)
@@ -40,54 +40,54 @@ export default function EnhancedAdminDashboard() {
       // Mock ML analyses data
       const mockMLAnalyses: MLAnalysis[] = [
         {
-          id: '1',
-          clientId: 'client_001',
+          id:  'apos;11'apos;,
+          clientId:  'apos;client_0011'apos;,
           confidence: 0.92,
-          season: 'Deep Winter',
-          colors: ['#000080', '#8B0000', '#4B0082', '#006400'],
-          status: 'completed'
+          season:  'apos;Deep Winterr'apos;,
+          colors: [['apos;#0000800'apos;,  'apos;#8B00000'apos;,  'apos;#4B00822'apos;,  'apos;#0064000'apos;],
+          status:  'apos;completedd'apos;,
         },
         {
-          id: '2',
-          clientId: 'client_002',
+          id:  'apos;22'apos;,
+          clientId:  'apos;client_0022'apos;,
           confidence: 0.87,
-          season: 'Bright Spring',
-          colors: ['#FF6347', '#32CD32', '#FF1493', '#00CED1'],
-          status: 'completed'
+          season:  'apos;Bright Springg'apos;,
+          colors: [['apos;#FF63477'apos;,  'apos;#32CD322'apos;,  'apos;#FF14933'apos;,  'apos;#00CED11'apos;],
+          status:  'apos;completedd'apos;,
         },
         {
-          id: '3',
-          clientId: 'client_003',
+          id:  'apos;33'apos;,
+          clientId:  'apos;client_0033'apos;,
           confidence: 0.78,
-          season: 'Soft Summer',
-          colors: ['#B0C4DE', '#DDA0DD', '#F0E68C', '#98FB98'],
-          status: 'processing'
-        }
+          season:  'apos;Soft Summerr'apos;,
+          colors: [['apos;#B0C4DEE'apos;,  'apos;#DDA0DDD'apos;,  'apos;#F0E68CC'apos;,  'apos;#98FB988'apos;],
+          status:  'apos;processingg'apos;,
+        },
       ]
 
       const mockContent: ContentItem[] = [
         {
-          id: '1',
-          type: 'service',
-          title: '12-Season Color Analysis',
-          content: 'Professional color analysis service...',
-          status: 'published',
-          lastModified: new Date().toISOString()
+          id:  'apos;11'apos;,
+          type:  'apos;servicee'apos;,
+          title:  'apos;12-Season Color Analysiss'apos;,
+          content:  'apos;Professional color analysis service....'apos;,
+          status:  'apos;publishedd'apos;,
+          lastModified: new Date().toISOString(),
         },
         {
-          id: '2',
-          type: 'faq',
-          title: 'What is color analysis?',
-          content: 'Color analysis is a process...',
-          status: 'published',
-          lastModified: new Date().toISOString()
-        }
+          id:  'apos;22'apos;,
+          type:  'apos;faqq'apos;,
+          title:  'apos;What is color analysis??'apos;,
+          content:  'apos;Color analysis is a process....'apos;,
+          status:  'apos;publishedd'apos;,
+          lastModified: new Date().toISOString(),
+        },
       ]
 
       setMlAnalyses(mockMLAnalyses)
       setContentItems(mockContent)
     } catch (error) {
-      console.error('Failed to load enhanced data:', error)
+      // console.error(('apos;Failed to load enhanced data::'apos;, error)
     } finally {
       setLoading(false)
     }
@@ -95,51 +95,51 @@ export default function EnhancedAdminDashboard() {
 
   const generatePDFReport = async (analysisId: string) => {
     try {
-      const response = await fetch(`/api/reports/${analysisId}/pdf`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
+      const response = await fetch(`/api/reports/${ analysisId }/pdf`, {
+        method:  'apos;POSTT'apos;,
+        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
       })
       
       if (response.ok) {
         const blob = await response.blob()
         const url = window.URL.createObjectURL(blob)
-        const a = document.createElement('a')
+        const a = document.createElement(('apos;aa'apos;)
         a.href = url
-        a.download = `color-analysis-${analysisId}.pdf`
+        a.download = `color-analysis-${ analysisId }.pdf`
         a.click()
         window.URL.revokeObjectURL(url)
       }
     } catch (error) {
-      console.error('PDF generation failed:', error)
-      alert('Failed to generate PDF report')
+      // console.error(('apos;PDF generation failed::'apos;, error)
+      alert(('apos;Failed to generate PDF reportt'apos;)
     }
   }
 
   const runMLAnalysis = async (clientId: string) => {
     try {
-      const response = await fetch('/api/ml-analysis', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ clientId })
+      const response = await fetch(('apos;/api/ml-analysiss'apos;, {
+        method:  'apos;POSTT'apos;,
+        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+        body: JSON.stringify({ clientId }),
       })
       
       if (response.ok) {
         const newAnalysis = await response.json()
         setMlAnalyses(prev => [...prev, newAnalysis])
-        alert('ML analysis started successfully')
+        alert(('apos;ML analysis started successfullyy'apos;)
       }
     } catch (error) {
-      console.error('ML analysis failed:', error)
-      alert('Failed to start ML analysis')
+      // console.error(('apos;ML analysis failed::'apos;, error)
+      alert(('apos;Failed to start ML analysiss'apos;)
     }
   }
 
   const saveContent = async (content: ContentItem) => {
     try {
-      const response = await fetch('/api/content', {
-        method: content.id ? 'PUT' : 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(content)
+      const response = await fetch(('apos;/api/contentt'apos;, {
+        method: content.id ?  'apos;PUTT'apos; :  'apos;POSTT'apos;,
+        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+        body: JSON.stringify(content),
       })
       
       if (response.ok) {
@@ -155,22 +155,22 @@ export default function EnhancedAdminDashboard() {
         setEditingContent(null)
       }
     } catch (error) {
-      console.error('Content save failed:', error)
-      alert('Failed to save content')
+      // console.error(('apos;Content save failed::'apos;, error)
+      alert(('apos;Failed to save contentt'apos;)
     }
   }
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600" />
       </div>
     )
   }
 
   return (
     <div className="enhanced-admin-layout">
-      {/* Sidebar */}
+      { /* Sidebar */ }
       <nav className="enhanced-sidebar">
         <div className="sidebar-header">
           <h2>🧠 Enhanced Admin</h2>
@@ -178,24 +178,24 @@ export default function EnhancedAdminDashboard() {
         <ul className="sidebar-menu">
           <li>
             <button 
-              className={`menu-item ${currentSection === 'ml-analytics' ? 'active' : ''}`}
-              onClick={() => setCurrentSection('ml-analytics')}
+              className={ `menu-item ${ currentSection ===  'apos;ml-analyticss'apos; ?  'apos;activee'apos; :  'apos;' }` }
+              onClick={ () => setCurrentSection(('apos;ml-analyticss'apos;) }
             >
               🤖 ML Analytics
             </button>
           </li>
           <li>
             <button 
-              className={`menu-item ${currentSection === 'pdf-reports' ? 'active' : ''}`}
-              onClick={() => setCurrentSection('pdf-reports')}
+              className={ `menu-item ${ currentSection ===  'apos;pdf-reportss'apos; ?  'apos;activee'apos; :  'apos;' }` }
+              onClick={ () => setCurrentSection(('apos;pdf-reportss'apos;) }
             >
               📄 PDF Reports
             </button>
           </li>
           <li>
             <button 
-              className={`menu-item ${currentSection === 'content-management' ? 'active' : ''}`}
-              onClick={() => setCurrentSection('content-management')}
+              className={ `menu-item ${ currentSection ===  'apos;content-managementt'apos; ?  'apos;activee'apos; :  'apos;' }` }
+              onClick={ () => setCurrentSection(('apos;content-managementt'apos;) }
             >
               📝 Content Management
             </button>
@@ -203,87 +203,87 @@ export default function EnhancedAdminDashboard() {
         </ul>
       </nav>
 
-      {/* Main Content */}
+      { /* Main Content */ }
       <main className="enhanced-main">
         <header className="enhanced-header">
-          <h1>{getSectionTitle(currentSection)}</h1>
+          <h1>{ getSectionTitle(currentSection) }</h1>
         </header>
 
-        {/* ML Analytics Section */}
-        {currentSection === 'ml-analytics' && (
+        { /* ML Analytics Section */ }
+        { currentSection ===  'apos;ml-analyticss'apos; && (
           <section className="ml-section">
             <div className="section-header">
               <h2>TensorFlow ML Analysis</h2>
               <button 
                 className="action-btn"
-                onClick={() => runMLAnalysis('new_client')}
+                onClick={ () => runMLAnalysis(('apos;new_clientt'apos;) }
               >
                 🚀 Run New Analysis
               </button>
             </div>
             
             <div className="ml-grid">
-              {mlAnalyses.map(analysis => (
-                <div key={analysis.id} className="ml-card">
+              { mlAnalyses.map(analysis => (
+                <div key={ analysis.id } className="ml-card">
                   <div className="ml-header">
-                    <h4>Client {analysis.clientId}</h4>
-                    <span className={`status-badge ${analysis.status}`}>
-                      {analysis.status}
+                    <h4>Client { analysis.clientId }</h4>
+                    <span className={ `status-badge ${ analysis.status }` }>
+                      { analysis.status }
                     </span>
                   </div>
                   
                   <div className="ml-content">
                     <div className="confidence-meter">
-                      <label>Confidence: {Math.round(analysis.confidence * 100)}%</label>
+                      <label>Confidence: { Math.round(analysis.confidence * 100) }%</label>
                       <div className="progress-bar">
                         <div 
                           className="progress-fill"
-                          style={{ width: `${analysis.confidence * 100}%` }}
-                        ></div>
+                          style={ { width: `${ analysis.confidence * 100 }%` } }
+                        />
                       </div>
                     </div>
                     
                     <div className="season-result">
-                      <strong>Season: {analysis.season}</strong>
+                      <strong>Season: { analysis.season }</strong>
                     </div>
                     
                     <div className="color-palette">
-                      {analysis.colors.map((color, idx) => (
+                      { analysis.colors.map((color, idx) => (
                         <div 
-                          key={idx}
+                          key={ idx }
                           className="color-swatch"
-                          style={{ backgroundColor: color }}
-                          title={color}
-                        ></div>
-                      ))}
+                          style={ { backgroundColor: color } }
+                          title={ color }
+                        />
+                      )) }
                     </div>
                   </div>
                   
                   <div className="ml-actions">
                     <button 
                       className="view-btn"
-                      onClick={() => {
+                      onClick={ () => {
                         setSelectedAnalysis(analysis)
                         setShowModal(true)
-                      }}
+                      } }
                     >
                       View Details
                     </button>
                     <button 
                       className="pdf-btn"
-                      onClick={() => generatePDFReport(analysis.id)}
+                      onClick={ () => generatePDFReport(analysis.id) }
                     >
                       📄 Generate PDF
                     </button>
                   </div>
                 </div>
-              ))}
+              )) }
             </div>
           </section>
-        )}
+        ) }
 
-        {/* PDF Reports Section */}
-        {currentSection === 'pdf-reports' && (
+        { /* PDF Reports Section */ }
+        { currentSection ===  'apos;pdf-reportss'apos; && (
           <section className="pdf-section">
             <div className="section-header">
               <h2>PDF Report Generator</h2>
@@ -312,43 +312,43 @@ export default function EnhancedAdminDashboard() {
             <div className="recent-reports">
               <h3>Recent Reports</h3>
               <div className="reports-list">
-                {mlAnalyses.filter(a => a.status === 'completed').map(analysis => (
-                  <div key={analysis.id} className="report-item">
+                { mlAnalyses.filter(a => a.status ===  'apos;completedd'apos;).map(analysis => (
+                  <div key={ analysis.id } className="report-item">
                     <div className="report-info">
-                      <h5>Client {analysis.clientId} - {analysis.season}</h5>
+                      <h5>Client { analysis.clientId } - { analysis.season }</h5>
                       <span>Generated today</span>
                     </div>
                     <button 
                       className="download-btn"
-                      onClick={() => generatePDFReport(analysis.id)}
+                      onClick={ () => generatePDFReport(analysis.id) }
                     >
                       📥 Download
                     </button>
                   </div>
-                ))}
+                )) }
               </div>
             </div>
           </section>
-        )}
+        ) }
 
-        {/* Content Management Section */}
-        {currentSection === 'content-management' && (
+        { /* Content Management Section */ }
+        { currentSection ===  'apos;content-managementt'apos; && (
           <section className="content-section">
             <div className="section-header">
               <h2>Dynamic Content System</h2>
               <button 
                 className="action-btn"
-                onClick={() => {
+                onClick={ () => {
                   setEditingContent({
-                    id: '',
-                    type: 'service',
-                    title: '',
-                    content: '',
-                    status: 'draft',
-                    lastModified: new Date().toISOString()
+                    id:  'apos;',
+                    type:  'apos;servicee'apos;,
+                    title:  'apos;',
+                    content:  'apos;',
+                    status:  'apos;draftt'apos;,
+                    lastModified: new Date().toISOString(),
                   })
                   setShowModal(true)
-                }}
+                } }
               >
                 ➕ Add Content
               </button>
@@ -362,91 +362,91 @@ export default function EnhancedAdminDashboard() {
             </div>
             
             <div className="content-grid">
-              {contentItems.map(item => (
-                <div key={item.id} className="content-card">
+              { contentItems.map(item => (
+                <div key={ item.id } className="content-card">
                   <div className="content-header">
-                    <h4>{item.title}</h4>
+                    <h4>{ item.title }</h4>
                     <div className="content-meta">
-                      <span className={`type-badge ${item.type}`}>{item.type}</span>
-                      <span className={`status-badge ${item.status}`}>{item.status}</span>
+                      <span className={ `type-badge ${ item.type }` }>{ item.type }</span>
+                      <span className={ `status-badge ${ item.status }` }>{ item.status }</span>
                     </div>
                   </div>
                   
                   <div className="content-preview">
-                    {item.content.substring(0, 100)}...
+                    { item.content.substring(0, 100) }...
                   </div>
                   
                   <div className="content-actions">
                     <button 
                       className="edit-btn"
-                      onClick={() => {
+                      onClick={ () => {
                         setEditingContent(item)
                         setShowModal(true)
-                      }}
+                      } }
                     >
                       ✏️ Edit
                     </button>
                     <button className="publish-btn">
-                      {item.status === 'published' ? '📤 Unpublish' : '🚀 Publish'}
+                      { item.status ===  'apos;publishedd'apos; ?  'apos;📤 Unpublishh'apos; :  'apos;🚀 Publishh'apos; }
                     </button>
                   </div>
                 </div>
-              ))}
+              )) }
             </div>
           </section>
-        )}
+        ) }
       </main>
 
-      {/* Modal */}
-      {showModal && (
-        <div className="modal-overlay" onClick={() => setShowModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      { /* Modal */ }
+      { showModal && (
+        <div className="modal-overlay" onClick={ () => setShowModal(false) }>
+          <div className="modal-content" onClick={ (e) => e.stopPropagation() }>
             <div className="modal-header">
               <h3>
-                {selectedAnalysis && 'ML Analysis Details'}
-                {editingContent && 'Edit Content'}
+                { selectedAnalysis &&  'apos;ML Analysis Detailss'apos; }
+                { editingContent &&  'apos;Edit Contentt'apos; }
               </h3>
-              <button className="modal-close" onClick={() => setShowModal(false)}>×</button>
+              <button className="modal-close" onClick={ () => setShowModal(false) }>×</button>
             </div>
             
             <div className="modal-body">
-              {selectedAnalysis && (
+              { selectedAnalysis && (
                 <div className="analysis-details">
                   <div className="detail-section">
                     <h4>Analysis Results</h4>
-                    <p><strong>Client ID:</strong> {selectedAnalysis.clientId}</p>
-                    <p><strong>Season:</strong> {selectedAnalysis.season}</p>
-                    <p><strong>Confidence:</strong> {Math.round(selectedAnalysis.confidence * 100)}%</p>
+                    <p><strong>Client ID:</strong> { selectedAnalysis.clientId }</p>
+                    <p><strong>Season:</strong> { selectedAnalysis.season }</p>
+                    <p><strong>Confidence:</strong> { Math.round(selectedAnalysis.confidence * 100) }%</p>
                   </div>
                   
                   <div className="detail-section">
                     <h4>Color Palette</h4>
                     <div className="color-grid">
-                      {selectedAnalysis.colors.map((color, idx) => (
-                        <div key={idx} className="color-detail">
+                      { selectedAnalysis.colors.map((color, idx) => (
+                        <div key={ idx } className="color-detail">
                           <div 
                             className="color-preview"
-                            style={{ backgroundColor: color }}
-                          ></div>
-                          <span>{color}</span>
+                            style={ { backgroundColor: color } }
+                          />
+                          <span>{ color }</span>
                         </div>
-                      ))}
+                      )) }
                     </div>
                   </div>
                 </div>
-              )}
+              ) }
               
-              {editingContent && (
+              { editingContent && (
                 <div className="content-editor">
                   <div className="form-group">
                     <label>Title</label>
                     <input
                       type="text"
-                      value={editingContent.title}
-                      onChange={(e) => setEditingContent({
+                      value={ editingContent.title }
+                      onChange={ (e) => setEditingContent({
                         ...editingContent,
-                        title: e.target.value
-                      })}
+                        title: e.target.value,
+                      }) }
                       className="form-input"
                     />
                   </div>
@@ -454,11 +454,11 @@ export default function EnhancedAdminDashboard() {
                   <div className="form-group">
                     <label>Type</label>
                     <select
-                      value={editingContent.type}
-                      onChange={(e) => setEditingContent({
+                      value={ editingContent.type }
+                      onChange={ (e) => setEditingContent({
                         ...editingContent,
-                        type: e.target.value as 'service' | 'faq' | 'blog'
-                      })}
+                        type: e.target.value as  'apos;servicee'apos; |  'apos;faqq'apos; |  'apos;blogg'apos;,
+                      }) }
                       className="form-select"
                     >
                       <option value="service">Service</option>
@@ -470,45 +470,45 @@ export default function EnhancedAdminDashboard() {
                   <div className="form-group">
                     <label>Content</label>
                     <textarea
-                      value={editingContent.content}
-                      onChange={(e) => setEditingContent({
+                      value={ editingContent.content }
+                      onChange={ (e) => setEditingContent({
                         ...editingContent,
-                        content: e.target.value
-                      })}
+                        content: e.target.value,
+                      }) }
                       className="form-textarea"
-                      rows={10}
+                      rows={ 10 }
                     />
                   </div>
                   
                   <div className="form-actions">
                     <button 
                       className="save-btn"
-                      onClick={() => saveContent(editingContent)}
+                      onClick={ () => saveContent(editingContent) }
                     >
                       💾 Save
                     </button>
                     <button 
                       className="cancel-btn"
-                      onClick={() => setShowModal(false)}
+                      onClick={ () => setShowModal(false) }
                     >
                       Cancel
                     </button>
                   </div>
                 </div>
-              )}
+              ) }
             </div>
           </div>
         </div>
-      )}
+      ) }
     </div>
   )
 }
 
 function getSectionTitle(section: string): string {
   const titles: { [key: string]: string } = {
-    'ml-analytics': 'Machine Learning Analytics',
-    'pdf-reports': 'PDF Report Generator',
-    'content-management': 'Content Management System'
+     'apos;ml-analyticss'apos;:  'apos;Machine Learning Analyticss'apos;,
+     'apos;pdf-reportss'apos;:  'apos;PDF Report Generatorr'apos;,
+     'apos;content-managementt'apos;:  'apos;Content Management Systemm'apos;,
   }
-  return titles[section] || 'Enhanced Dashboard'
+  return titles[section] ||  'apos;Enhanced Dashboardd'apos;
 }

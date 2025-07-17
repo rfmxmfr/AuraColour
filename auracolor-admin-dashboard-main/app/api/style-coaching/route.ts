@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
 import { sendClientConfirmation, sendAdminAlert } from '@/lib/email-notifications'
 import { handleFormData } from '@/lib/file-upload'
+import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     }
 
     const supabase = createClient()
-    const ticketNumber = `SC-${Date.now()}`
+    const ticketNumber = `SC-${ Date.now() }`
     
     const { data: ticket } = await supabase.from('tickets').insert({
       ticket_number: ticketNumber,
@@ -29,8 +29,8 @@ export async function POST(request: NextRequest) {
         lifestyle: data.lifestyle,
         confidence_level: data.confidence_level,
         transformation_areas: data.transformation_areas,
-        commitment_level: data.commitment_level
-      }
+        commitment_level: data.commitment_level,
+      },
     }).select().single()
 
     if (ticket) {
@@ -41,8 +41,8 @@ export async function POST(request: NextRequest) {
         sessions_included: 6,
         makeover_included: true,
         confidence_coaching: true,
-        progress_tracking: {},
-        status: 'enrolled'
+        progress_tracking: { },
+        status: 'enrolled',
       })
     }
 
@@ -51,14 +51,14 @@ export async function POST(request: NextRequest) {
       sendAdminAlert('Style Evolution Coaching', { 
         email: data.email, 
         name: data.name, 
-        program: '3-Month Style Evolution' 
-      })
+        program: '3-Month Style Evolution', 
+      }),
     ])
 
     return NextResponse.json({
       success: true,
       ticket_number: ticketNumber,
-      message: 'Style coaching program enrollment successful'
+      message: 'Style coaching program enrollment successful',
     })
   } catch (error) {
     return NextResponse.json({ error: 'Service booking failed' }, { status: 500 })

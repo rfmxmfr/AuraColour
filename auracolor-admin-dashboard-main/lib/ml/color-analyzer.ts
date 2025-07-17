@@ -14,7 +14,7 @@ class ColorAnalyzer {
     'Deep Winter': ['#000080', '#8B0000', '#4B0082', '#006400'],
     'Bright Spring': ['#FF6347', '#32CD32', '#FF1493', '#00CED1'],
     'Soft Summer': ['#B0C4DE', '#DDA0DD', '#F0E68C', '#98FB98'],
-    'True Autumn': ['#8B4513', '#CD853F', '#DAA520', '#B22222']
+    'True Autumn': ['#8B4513', '#CD853F', '#DAA520', '#B22222'],
   }
 
   async loadModel(): Promise<void> {
@@ -23,17 +23,17 @@ class ColorAnalyzer {
         layers: [
           tf.layers.dense({ inputShape: [9], units: 16, activation: 'relu' }),
           tf.layers.dense({ units: 8, activation: 'relu' }),
-          tf.layers.dense({ units: 4, activation: 'softmax' })
-        ]
+          tf.layers.dense({ units: 4, activation: 'softmax' }),
+        ],
       })
       
       this.model.compile({
         optimizer: 'adam',
         loss: 'categoricalCrossentropy',
-        metrics: ['accuracy']
+        metrics: ['accuracy'],
       })
     } catch (error) {
-      console.error('Model loading failed:', error)
+      // console.error('Model loading failed:', error)
     }
   }
 
@@ -81,7 +81,7 @@ class ColorAnalyzer {
         season,
         confidence,
         colors: this.seasonColors[season as keyof typeof this.seasonColors],
-        undertone
+        undertone,
       }
     } finally {
       inputTensor.dispose()

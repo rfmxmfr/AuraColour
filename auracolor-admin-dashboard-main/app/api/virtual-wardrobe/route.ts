@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
 import { sendClientConfirmation, sendAdminAlert } from '@/lib/email-notifications'
 import { handleFormData } from '@/lib/file-upload'
+import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     }
 
     const supabase = createClient()
-    const ticketNumber = `VW-${Date.now()}`
+    const ticketNumber = `VW-${ Date.now() }`
     
     const { data: ticket } = await supabase.from('tickets').insert({
       ticket_number: ticketNumber,
@@ -28,8 +28,8 @@ export async function POST(request: NextRequest) {
         style_goals: data.style_goals,
         budget: data.budget,
         current_challenges: data.current_challenges,
-        wardrobe_photos: data.imageUrl ? [data.imageUrl] : []
-      }
+        wardrobe_photos: data.imageUrl ? [data.imageUrl] : [],
+      },
     }).select().single()
 
     if (ticket) {
@@ -38,9 +38,9 @@ export async function POST(request: NextRequest) {
         audit_type: 'virtual_curation',
         wardrobe_items: [],
         outfit_combinations: [],
-        gap_analysis: {},
+        gap_analysis: { },
         shopping_recommendations: [],
-        status: 'pending'
+        status: 'pending',
       })
     }
 
@@ -49,14 +49,14 @@ export async function POST(request: NextRequest) {
       sendAdminAlert('Virtual Wardrobe Service', { 
         email: data.email, 
         name: data.name, 
-        service: 'Virtual Wardrobe Curation' 
-      })
+        service: 'Virtual Wardrobe Curation', 
+      }),
     ])
 
     return NextResponse.json({
       success: true,
       ticket_number: ticketNumber,
-      message: 'Virtual wardrobe service booked successfully'
+      message: 'Virtual wardrobe service booked successfully',
     })
   } catch (error) {
     return NextResponse.json({ error: 'Service booking failed' }, { status: 500 })

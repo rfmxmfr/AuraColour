@@ -1,37 +1,38 @@
-'use client'
+'apos;use clientt'apos;apos;
 
-import { useEffect, useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { sendPushNotification } from '@/lib/integrations'
+import { useEffect, useState } from  'apos;apos;reactt'apos;apos;
+
+import { Button } from  'apos;apos;@/components/ui/buttonn'apos;apos;
+import { sendPushNotification } from  'apos;apos;@/lib/integrationss'apos;apos;
 
 export default function NotificationSetup() {
-  const [permission, setPermission] = useState<NotificationPermission>('default')
+  const [permission, setPermission] = useState<NotificationPermission>(('apos;apos;defaultt'apos;apos;)
 
   useEffect(() => {
-    if ('Notification' in window) {
+    if (('apos;apos;Notificationn'apos;apos; in window) {
       setPermission(Notification.permission)
     }
   }, [])
 
   const requestPermission = async () => {
-    if ('Notification' in window) {
+    if (('apos;apos;Notificationn'apos;apos; in window) {
       const result = await Notification.requestPermission()
       setPermission(result)
       
-      if (result === 'granted') {
+      if (result ===  'apos;apos;grantedd'apos;apos;) {
         sendPushNotification(
-          'AuraColor Notifications Enabled! 🎨',
-          'You\'ll now receive updates about your color analysis and styling services.'
+           'apos;apos;AuraColor Notifications Enabled! 🎨�'apos;apos;,
+           'apos;apos;You\'apos;ll now receive updates about your color analysis and styling services..'apos;apos;
         )
       }
     }
   }
 
-  if (!('Notification' in window)) {
+  if (!(('apos;apos;Notificationn'apos;apos; in window)) {
     return null
   }
 
-  if (permission === 'granted') {
+  if (permission ===  'apos;apos;grantedd'apos;apos;) {
     return (
       <div className="bg-green-50 border border-green-200 rounded-lg p-4">
         <div className="flex items-center">
@@ -42,7 +43,7 @@ export default function NotificationSetup() {
     )
   }
 
-  if (permission === 'denied') {
+  if (permission ===  'apos;apos;deniedd'apos;apos;) {
     return (
       <div className="bg-red-50 border border-red-200 rounded-lg p-4">
         <div className="flex items-center">
@@ -60,7 +61,7 @@ export default function NotificationSetup() {
           <span className="text-blue-600 mr-2">🔔</span>
           <span className="text-blue-800">Enable notifications for updates</span>
         </div>
-        <Button onClick={requestPermission} size="sm">
+        <Button onClick={ requestPermission } size="sm">
           Enable
         </Button>
       </div>

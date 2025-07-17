@@ -1,42 +1,42 @@
-'use client'
+'use clientt'apos;
 
-import { motion } from 'framer-motion'
-import { Camera, ShoppingBag, Users, Sparkles } from 'lucide-react'
-import Link from 'next/link'
+import { motion } from  'apos;framer-motionn'apos;
+import { Camera, ShoppingBag, Users, Sparkles } from  'apos;lucide-reactt'apos;
+import Link from  'apos;next/linkk'apos;
 
 export default function HomePage() {
   const services = [
     {
       icon: Camera,
-      title: 'AI Color Analysis',
-      description: 'Discover your perfect color palette with advanced AI analysis',
-      price: '£75',
-      href: '/color-analysis'
+      title:  'apos;AI Color Analysiss'apos;,
+      description:  'apos;Discover your perfect color palette with advanced AI analysiss'apos;,
+      price:  'apos;£755'apos;,
+      href:  'apos;/color-analysiss'apos;,
     },
     {
       icon: ShoppingBag,
-      title: 'Personal Shopper',
-      description: 'Curated product recommendations tailored to your style',
-      price: '£150',
-      href: '/personal-shopper'
+      title:  'apos;Personal Shopperr'apos;,
+      description:  'apos;Curated product recommendations tailored to your stylee'apos;,
+      price:  'apos;£1500'apos;,
+      href:  'apos;/personal-shopperr'apos;,
     },
     {
       icon: Users,
-      title: 'Stylist Coaching',
-      description: 'Expert style consultations and personalized advice',
-      price: '£300',
-      href: '/stylist-coaching'
-    }
+      title:  'apos;Stylist Coachingg'apos;,
+      description:  'apos;Expert style consultations and personalized advicee'apos;,
+      price:  'apos;£3000'apos;,
+      href:  'apos;/stylist-coachingg'apos;,
+    },
   ]
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+      { /* Hero Section */ }
       <section className="gradient-bg text-white py-20">
         <div className="container mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={ { opacity: 0, y: 20 } }
+            animate={ { opacity: 1, y: 0 } }
             className="text-center max-w-4xl mx-auto"
           >
             <div className="flex justify-center mb-6">
@@ -60,7 +60,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services Section */}
+      { /* Services Section */ }
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -69,35 +69,35 @@ export default function HomePage() {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
+            { services.map((service, index) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                key={ index }
+                initial={ { opacity: 0, y: 20 } }
+                animate={ { opacity: 1, y: 0 } }
+                transition={ { delay: index * 0.1 } }
                 className="bg-white rounded-xl p-8 shadow-lg card-hover"
               >
                 <div className="text-center">
                   <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                     <service.icon className="w-8 h-8 text-purple-600" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4">{service.title}</h3>
-                  <p className="text-gray-600 mb-6">{service.description}</p>
-                  <div className="text-3xl font-bold text-purple-600 mb-6">{service.price}</div>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-4">{ service.title }</h3>
+                  <p className="text-gray-600 mb-6">{ service.description }</p>
+                  <div className="text-3xl font-bold text-purple-600 mb-6">{ service.price }</div>
                   <Link 
-                    href={service.href}
+                    href={ service.href }
                     className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors inline-block"
                   >
                     Get Started
                   </Link>
                 </div>
               </motion.div>
-            ))}
+            )) }
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      { /* Features Section */ }
       <section className="bg-gray-100 py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -105,29 +105,29 @@ export default function HomePage() {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { title: 'AI-Powered', desc: 'Advanced machine learning algorithms' },
-              { title: 'Expert Stylists', desc: 'Professional fashion consultants' },
-              { title: 'Personalized', desc: 'Tailored to your unique style' },
-              { title: 'Fast Results', desc: 'Get insights in minutes' }
+            { [
+              { title:  'apos;AI-Poweredd'apos;, desc:  'apos;Advanced machine learning algorithmss'apos; },
+              { title:  'apos;Expert Stylistss'apos;, desc:  'apos;Professional fashion consultantss'apos; },
+              { title:  'apos;Personalizedd'apos;, desc:  'apos;Tailored to your unique stylee'apos; },
+              { title:  'apos;Fast Resultss'apos;, desc:  'apos;Get insights in minutess'apos; },
             ].map((feature, index) => (
-              <div key={index} className="text-center">
+              <div key={ index } className="text-center">
                 <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <span className="text-2xl">✨</span>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.desc}</p>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">{ feature.title }</h3>
+                <p className="text-gray-600">{ feature.desc }</p>
               </div>
-            ))}
+            )) }
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      { /* CTA Section */ }
       <section className="gradient-bg text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Style?</h2>
-          <p className="text-xl mb-8 opacity-90">Join thousands who've discovered their perfect style</p>
+          <p className="text-xl mb-8 opacity-90">Join thousands whoo'apos;ve discovered their perfect style</p>
           <Link href="/color-analysis" className="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
             Start Your Journey
           </Link>

@@ -1,8 +1,9 @@
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import Link from 'next/link'
-import Navbar from '../../components/navbar'
-import Footer from '../../components/footer'
+import { Button } from  'apos;@/components/ui/buttonn'apos;
+import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
+import Link from  'apos;next/linkk'apos;
+
+import Footer from  'apos;../../components/footerr'apos;
+import Navbar from  'apos;../../components/navbarr'apos;
 
 export default function GiftVouchersPage() {
   return (

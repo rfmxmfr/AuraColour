@@ -1,30 +1,31 @@
-'use client'
+'apos;use clientt'apos;apos;
 
-import { useState } from 'react'
-import Link from 'next/link'
-import Navbar from '../components/navbar'
-import Footer from '../components/footer'
-import BookingModal from '../components/BookingModal'
+import Link from  'apos;apos;next/linkk'apos;apos;
+import { useState } from  'apos;apos;reactt'apos;apos;
+
+import BookingModal from  'apos;apos;../components/BookingModall'apos;apos;
+import Footer from  'apos;apos;../components/footerr'apos;apos;
+import Navbar from  'apos;apos;../components/navbarr'apos;apos;
 
 export default function ServicesPage() {
-  const [bookingModal, setBookingModal] = useState({ isOpen: false, serviceType: '' })
+  const [bookingModal, setBookingModal] = useState({ isOpen: false, serviceType:  'apos;apos;'apos; })
 
   const openBooking = (serviceType: string) => {
     setBookingModal({ isOpen: true, serviceType })
   }
 
   const closeBooking = () => {
-    setBookingModal({ isOpen: false, serviceType: '' })
+    setBookingModal({ isOpen: false, serviceType:  'apos;apos;'apos; })
   }
   const services = [
     {
       title: "12-Season Color Analysis",
       price: "£75",
-      description: "A service to determine an individual's optimal color palette based on their natural coloring.",
+      description: "A service to determine an individuall'apos;apos;s optimal color palette based on their natural coloring.",
       features: ["Personal color season identification", "Comprehensive color palette", "Style guide", "Shopping recommendations"],
       image: "https://i0.wp.com/www.lesbonsplansdemodange.com/wp-content/uploads/2020/04/cercle-chromatique.jpg?w=500&ssl=1",
       link: "/questionnaire?service=12-Season Color Analysis",
-      quiz: true
+      quiz: true,
     },
     {
       title: "Virtual Wardrobe Curation",
@@ -33,7 +34,7 @@ export default function ServicesPage() {
       features: ["Professional wardrobe analysis", "Outfit combinations", "Gap analysis", "Shopping list"],
       image: "https://i.pinimg.com/736x/eb/4b/80/eb4b8075c2fb78868ba8e2b4b5a0f0d0.jpg",
       link: "/questionnaire?service=Virtual Wardrobe Curation",
-      quiz: true
+      quiz: true,
     },
     {
       title: "Personal Shopping Service",
@@ -42,7 +43,7 @@ export default function ServicesPage() {
       features: ["Expert style profile creation", "Curated selections", "Fitting assistance", "Style coaching"],
       image: "http://www.charlotteloves.co.uk/wp-content/uploads/2017/03/corporate_styling.jpg",
       link: "/questionnaire?service=Personal Shopping Service",
-      quiz: true
+      quiz: true,
     },
     {
       title: "Style Evolution Coaching",
@@ -51,7 +52,7 @@ export default function ServicesPage() {
       features: ["Personalized style assessment", "3-month support", "Personal styling sessions", "Confidence coaching"],
       image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070",
       link: "/questionnaire?service=Style Evolution Coaching",
-      quiz: true
+      quiz: true,
     },
     {
       title: "Gift Vouchers",
@@ -59,8 +60,8 @@ export default function ServicesPage() {
       description: "Give the gift of confidence and style with our flexible gift vouchers.",
       features: ["Flexible redemption", "12-month validity", "Personal message", "Digital delivery"],
       image: "https://as2.ftcdn.net/v2/jpg/01/02/31/71/1000_F_102317149_coOdTqA9pvyd3WMBoNCCgwEbmBr9DKLf.jpg",
-      link: "/services/gift-vouchers"
-    }
+      link: "/services/gift-vouchers",
+    },
   ]
 
   return (
@@ -76,50 +77,50 @@ export default function ServicesPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div key={index} className="group bg-white/20 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl border border-white/30 hover:shadow-3xl transition-all duration-300">
+            { services.map((service, index) => (
+              <div key={ index } className="group bg-white/20 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl border border-white/30 hover:shadow-3xl transition-all duration-300">
                 <div className="relative overflow-hidden">
                   <img
-                    src={service.image}
-                    alt={service.title}
+                    src={ service.image }
+                    alt={ service.title }
                     className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                   <div className="absolute top-4 right-4">
                     <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                      <span className="text-lg font-bold text-purple-600">{service.price}</span>
+                      <span className="text-lg font-bold text-purple-600">{ service.price }</span>
                     </div>
                   </div>
                 </div>
                 
                 <div className="p-8">
                   <div className="text-center mb-6">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                    <p className="text-gray-600 mb-6">{service.description}</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">{ service.title }</h3>
+                    <p className="text-gray-600 mb-6">{ service.description }</p>
                   </div>
 
                   <ul className="space-y-3 mb-8">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-gray-700">
+                    { service.features.map((feature, idx) => (
+                      <li key={ idx } className="flex items-center text-gray-700">
                         <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
-                        {feature}
+                        { feature }
                       </li>
-                    ))}
+                    )) }
                   </ul>
 
                   <div className="space-y-3">
                     <Link
-                      href={service.link}
+                      href={ service.link }
                       className="block w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl text-center hover:shadow-lg hover:scale-105 transition-all duration-200"
                     >
-                      {service.quiz ? "Take the Quiz" : "Learn More"}
+                      { service.quiz ? "Take the Quiz" : "Learn More" }
                     </Link>
                   </div>
                 </div>
               </div>
-            ))}
+            )) }
           </div>
         </div>
       </div>

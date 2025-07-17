@@ -1,12 +1,6 @@
-'use client'
+import logger from "../lib/secure-logger";
+'apos;use clientt'apos;apos;
 
-import { useState, useEffect } from 'react'
-import { createClient } from '@/lib/supabase/client'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { 
   BarChart, 
   CalendarDays, 
@@ -17,34 +11,42 @@ import {
   MessageSquare, 
   Search, 
   Settings, 
-  Users 
-} from 'lucide-react'
+  Users, 
+} from  'apos;apos;lucide-reactt'apos;apos;
+import { useState, useEffect } from  'apos;apos;reactt'apos;apos;
+
+import { Badge } from  'apos;apos;@/components/ui/badgee'apos;apos;
+import { Button } from  'apos;apos;@/components/ui/buttonn'apos;apos;
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  'apos;apos;@/components/ui/cardd'apos;apos;
+import { Input } from  'apos;apos;@/components/ui/inputt'apos;apos;
+import { Tabs, TabsContent, TabsList, TabsTrigger } from  'apos;apos;@/components/ui/tabss'apos;apos;
+import { createClient } from  'apos;apos;@/lib/supabase/clientt'apos;apos;
 
 // Define status types
-type StatusType = 'draft' | 'payment_pending' | 'paid' | 'in_analysis' | 'complete' | 'follow_up' | string;
+type StatusType =  'apos;apos;draftt'apos;apos; |  'apos;apos;payment_pendingg'apos;apos; |  'apos;apos;paidd'apos;apos; |  'apos;apos;in_analysiss'apos;apos; |  'apos;apos;completee'apos;apos; |  'apos;apos;follow_upp'apos;apos; | string;
 
 // Status mapping for visual representation
 const statusColors: Record<StatusType, string> = {
-  'draft': 'bg-gray-200 text-gray-800',
-  'payment_pending': 'bg-yellow-100 text-yellow-800',
-  'paid': 'bg-blue-100 text-blue-800',
-  'in_analysis': 'bg-purple-100 text-purple-800',
-  'complete': 'bg-green-100 text-green-800',
-  'follow_up': 'bg-pink-100 text-pink-800'
+   'apos;apos;draftt'apos;apos;:  'apos;apos;bg-gray-200 text-gray-8000'apos;apos;,
+   'apos;apos;payment_pendingg'apos;apos;:  'apos;apos;bg-yellow-100 text-yellow-8000'apos;apos;,
+   'apos;apos;paidd'apos;apos;:  'apos;apos;bg-blue-100 text-blue-8000'apos;apos;,
+   'apos;apos;in_analysiss'apos;apos;:  'apos;apos;bg-purple-100 text-purple-8000'apos;apos;,
+   'apos;apos;completee'apos;apos;:  'apos;apos;bg-green-100 text-green-8000'apos;apos;,
+   'apos;apos;follow_upp'apos;apos;:  'apos;apos;bg-pink-100 text-pink-8000'apos;apos;,
 }
 
 // Admin status mapping
 const adminStatusLabels: Record<StatusType, string> = {
-  'draft': 'New submission',
-  'payment_pending': 'Awaiting payment',
-  'paid': 'Assign to analyst',
-  'in_analysis': 'Processing',
-  'complete': 'Delivered',
-  'follow_up': 'Review requested'
+   'apos;apos;draftt'apos;apos;:  'apos;apos;New submissionn'apos;apos;,
+   'apos;apos;payment_pendingg'apos;apos;:  'apos;apos;Awaiting paymentt'apos;apos;,
+   'apos;apos;paidd'apos;apos;:  'apos;apos;Assign to analystt'apos;apos;,
+   'apos;apos;in_analysiss'apos;apos;:  'apos;apos;Processingg'apos;apos;,
+   'apos;apos;completee'apos;apos;:  'apos;apos;Deliveredd'apos;apos;,
+   'apos;apos;follow_upp'apos;apos;:  'apos;apos;Review requestedd'apos;apos;,
 }
 
 export default function CRMDashboard() {
-  const [activeTab, setActiveTab] = useState('front-desk')
+  const [activeTab, setActiveTab] = useState(('apos;apos;front-deskk'apos;apos;)
   interface Submission {
     id: string;
     name?: string;
@@ -68,13 +70,13 @@ export default function CRMDashboard() {
   const [submissions, setSubmissions] = useState<Submission[]>([])
   const [users, setUsers] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
-  const [searchTerm, setSearchTerm] = useState('')
-  const [statusFilter, setStatusFilter] = useState('all')
+  const [searchTerm, setSearchTerm] = useState(('apos;apos;'apos;)
+  const [statusFilter, setStatusFilter] = useState(('apos;apos;alll'apos;apos;)
   const [analytics, setAnalytics] = useState({
     totalSales: 0,
     completionRate: 0,
-    avgTurnaround: '0',
-    customerSatisfaction: 0
+    avgTurnaround:  'apos;apos;00'apos;apos;,
+    customerSatisfaction: 0,
   })
 
   useEffect(() => {
@@ -88,18 +90,18 @@ export default function CRMDashboard() {
       
       // Fetch submissions
       const { data: submissionsData } = await supabase
-        .from('questionnaire_submissions')
-        .select('*, profiles(*)')
-        .order('created_at', { ascending: false })
+        .from(('apos;apos;questionnaire_submissionss'apos;apos;)
+        .select(('apos;apos;*, profiles(*))'apos;apos;)
+        .order(('apos;apos;created_att'apos;apos;, { ascending: false })
       
       // Fetch users
       const { data: usersData } = await supabase
-        .from('profiles')
-        .select('*')
-        .order('created_at', { ascending: false })
+        .from(('apos;apos;profiless'apos;apos;)
+        .select(('apos;apos;**'apos;apos;)
+        .order(('apos;apos;created_att'apos;apos;, { ascending: false })
       
       // Calculate analytics
-      const completedSubmissions = submissionsData?.filter(s => s.status === 'complete') || []
+      const completedSubmissions = submissionsData?.filter(s => s.status ===  'apos;apos;completee'apos;apos;) || []
       const totalRevenue = submissionsData?.reduce((sum, item) => sum + (item.payment_amount || 0), 0) || 0
       
       setSubmissions(submissionsData || [])
@@ -107,28 +109,28 @@ export default function CRMDashboard() {
       setAnalytics({
         totalSales: totalRevenue / 100, // Convert from cents to currency
         completionRate: submissionsData?.length ? (completedSubmissions.length / submissionsData.length) * 100 : 0,
-        avgTurnaround: '36', // Placeholder - would calculate from timestamps
-        customerSatisfaction: 4.8 // Placeholder - would calculate from feedback
+        avgTurnaround:  'apos;apos;366'apos;apos;, // Placeholder - would calculate from timestamps
+        customerSatisfaction: 4.8, // Placeholder - would calculate from feedback
       })
     } catch (error) {
-      console.error('Error fetching data:', error)
+      // logger.error(('apos;apos;Error fetching data::'apos;apos;, error)
     } finally {
       setLoading(false)
     }
   }
 
   const filteredSubmissions = submissions.filter(submission => {
-    const matchesSearch = searchTerm === '' || 
+    const matchesSearch = searchTerm ===  'apos;apos;'apos; || 
       submission.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       submission.email?.toLowerCase().includes(searchTerm.toLowerCase())
     
-    const matchesStatus = statusFilter === 'all' || submission.status === statusFilter
+    const matchesStatus = statusFilter ===  'apos;apos;alll'apos;apos; || submission.status === statusFilter
     
     return matchesSearch && matchesStatus
   })
 
   const filteredUsers = users.filter(user => 
-    searchTerm === '' || 
+    searchTerm ===  'apos;apos;'apos; || 
     user.full_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.email?.toLowerCase().includes(searchTerm.toLowerCase())
   )
@@ -155,7 +157,7 @@ export default function CRMDashboard() {
             <CardTitle className="text-sm font-medium text-muted-foreground">Total Sales</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">£{analytics.totalSales.toFixed(2)}</div>
+            <div className="text-2xl font-bold">£{ analytics.totalSales.toFixed(2) }</div>
           </CardContent>
         </Card>
         <Card>
@@ -163,7 +165,7 @@ export default function CRMDashboard() {
             <CardTitle className="text-sm font-medium text-muted-foreground">Completion Rate</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{analytics.completionRate.toFixed(1)}%</div>
+            <div className="text-2xl font-bold">{ analytics.completionRate.toFixed(1) }%</div>
           </CardContent>
         </Card>
         <Card>
@@ -171,7 +173,7 @@ export default function CRMDashboard() {
             <CardTitle className="text-sm font-medium text-muted-foreground">Avg. Turnaround</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{analytics.avgTurnaround} hours</div>
+            <div className="text-2xl font-bold">{ analytics.avgTurnaround } hours</div>
           </CardContent>
         </Card>
         <Card>
@@ -179,12 +181,12 @@ export default function CRMDashboard() {
             <CardTitle className="text-sm font-medium text-muted-foreground">Customer Satisfaction</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{analytics.customerSatisfaction.toFixed(1)}/5.0</div>
+            <div className="text-2xl font-bold">{ analytics.customerSatisfaction.toFixed(1) }/5.0</div>
           </CardContent>
         </Card>
       </div>
 
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1">
+      <Tabs value={ activeTab } onValueChange={ setActiveTab } className="flex-1">
         <TabsList className="grid grid-cols-5 mb-6">
           <TabsTrigger value="front-desk">
             <Inbox className="mr-2 h-4 w-4" />
@@ -216,16 +218,16 @@ export default function CRMDashboard() {
                 <Input
                   placeholder="Search submissions..."
                   className="pl-8 w-[250px]"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  value={ searchTerm }
+                  onChange={ (e) => setSearchTerm(e.target.value) }
                 />
               </div>
               <div className="flex items-center gap-2">
                 <Filter className="h-4 w-4 text-muted-foreground" />
                 <select 
                   className="border rounded px-2 py-1 text-sm"
-                  value={statusFilter}
-                  onChange={(e) => setStatusFilter(e.target.value)}
+                  value={ statusFilter }
+                  onChange={ (e) => setStatusFilter(e.target.value) }
                 >
                   <option value="all">All Status</option>
                   <option value="draft">New submissions</option>
@@ -252,42 +254,42 @@ export default function CRMDashboard() {
               <div className="col-span-1">Actions</div>
             </div>
             
-            {loading ? (
+            { loading ? (
               <div className="p-8 text-center">Loading submissions...</div>
             ) : filteredSubmissions.length === 0 ? (
               <div className="p-8 text-center">No submissions found</div>
             ) : (
               filteredSubmissions.map((submission) => (
-                <div key={submission.id} className="grid grid-cols-12 gap-4 p-4 border-b hover:bg-gray-50">
-                  <div className="col-span-1 font-mono text-sm">{submission.id.substring(0, 8)}</div>
+                <div key={ submission.id } className="grid grid-cols-12 gap-4 p-4 border-b hover:bg-gray-50">
+                  <div className="col-span-1 font-mono text-sm">{ submission.id.substring(0, 8) }</div>
                   <div className="col-span-2">
-                    <div className="font-medium">{submission.name || 'Anonymous'}</div>
-                    <div className="text-sm text-gray-500">{submission.email || 'No email'}</div>
+                    <div className="font-medium">{ submission.name ||  'apos;apos;Anonymouss'apos;apos; }</div>
+                    <div className="text-sm text-gray-500">{ submission.email ||  'apos;apos;No emaill'apos;apos; }</div>
                   </div>
-                  <div className="col-span-2">{submission.service_type || '12-Season Analysis'}</div>
+                  <div className="col-span-2">{ submission.service_type ||  'apos;apos;12-Season Analysiss'apos;apos; }</div>
                   <div className="col-span-2">
-                    <Badge className={statusColors[submission.status || 'draft']}>
-                      {adminStatusLabels[submission.status || 'draft']}
+                    <Badge className={ statusColors[submission.status ||  'apos;apos;draftt'apos;apos;] }>
+                      { adminStatusLabels[submission.status ||  'apos;apos;draftt'apos;apos;] }
                     </Badge>
                   </div>
                   <div className="col-span-2">
-                    {submission.payment_status === 'completed' ? (
-                      <span className="text-green-600 font-medium">£{((submission.payment_amount || 0) / 100).toFixed(2)}</span>
-                    ) : submission.payment_status === 'pending' ? (
+                    { submission.payment_status ===  'apos;apos;completedd'apos;apos; ? (
+                      <span className="text-green-600 font-medium">£{ ((submission.payment_amount || 0) / 100).toFixed(2) }</span>
+                    ) : submission.payment_status ===  'apos;apos;pendingg'apos;apos; ? (
                       <span className="text-yellow-600 font-medium">Pending</span>
                     ) : (
                       <span className="text-red-600 font-medium">Not paid</span>
-                    )}
+                    ) }
                   </div>
                   <div className="col-span-2 text-sm text-gray-500">
-                    {new Date(submission.created_at).toLocaleDateString()}
+                    { new Date(submission.created_at).toLocaleDateString() }
                   </div>
                   <div className="col-span-1">
                     <Button variant="outline" size="sm">View</Button>
                   </div>
                 </div>
               ))
-            )}
+            ) }
           </div>
         </TabsContent>
 
@@ -298,8 +300,8 @@ export default function CRMDashboard() {
               <Input
                 placeholder="Search users..."
                 className="pl-8 w-[250px]"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                value={ searchTerm }
+                onChange={ (e) => setSearchTerm(e.target.value) }
               />
             </div>
             <Button>
@@ -317,26 +319,26 @@ export default function CRMDashboard() {
               <div className="col-span-2">Actions</div>
             </div>
             
-            {loading ? (
+            { loading ? (
               <div className="p-8 text-center">Loading users...</div>
             ) : filteredUsers.length === 0 ? (
               <div className="p-8 text-center">No users found</div>
             ) : (
               filteredUsers.map((user) => (
-                <div key={user.id} className="grid grid-cols-12 gap-4 p-4 border-b hover:bg-gray-50">
-                  <div className="col-span-1 font-mono text-sm">{user.id.substring(0, 8)}</div>
+                <div key={ user.id } className="grid grid-cols-12 gap-4 p-4 border-b hover:bg-gray-50">
+                  <div className="col-span-1 font-mono text-sm">{ user.id.substring(0, 8) }</div>
                   <div className="col-span-3">
-                    <div className="font-medium">{user.full_name || 'Unnamed User'}</div>
-                    <div className="text-sm text-gray-500">{user.email || 'No email'}</div>
+                    <div className="font-medium">{ user.full_name ||  'apos;apos;Unnamed Userr'apos;apos; }</div>
+                    <div className="text-sm text-gray-500">{ user.email ||  'apos;apos;No emaill'apos;apos; }</div>
                   </div>
-                  <div className="col-span-2 capitalize">{user.role || 'user'}</div>
+                  <div className="col-span-2 capitalize">{ user.role ||  'apos;apos;userr'apos;apos; }</div>
                   <div className="col-span-2">
                     <Badge className="bg-green-100 text-green-800">
                       Active
                     </Badge>
                   </div>
                   <div className="col-span-2 text-sm text-gray-500">
-                    {new Date(user.created_at).toLocaleDateString()}
+                    { new Date(user.created_at).toLocaleDateString() }
                   </div>
                   <div className="col-span-2 flex gap-2">
                     <Button variant="outline" size="sm">View</Button>
@@ -344,7 +346,7 @@ export default function CRMDashboard() {
                   </div>
                 </div>
               ))
-            )}
+            ) }
           </div>
         </TabsContent>
 
@@ -369,7 +371,7 @@ export default function CRMDashboard() {
                 <CardDescription>Awaiting assignment</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{submissions.filter(s => s.status === 'paid').length}</div>
+                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'apos;apos;paidd'apos;apos;).length }</div>
               </CardContent>
             </Card>
             <Card>
@@ -378,7 +380,7 @@ export default function CRMDashboard() {
                 <CardDescription>Currently being analyzed</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{submissions.filter(s => s.status === 'in_analysis').length}</div>
+                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'apos;apos;in_analysiss'apos;apos;).length }</div>
               </CardContent>
             </Card>
             <Card>
@@ -387,7 +389,7 @@ export default function CRMDashboard() {
                 <CardDescription>Ready for delivery</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{submissions.filter(s => s.status === 'complete').length}</div>
+                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'apos;apos;completee'apos;apos;).length }</div>
               </CardContent>
             </Card>
             <Card>
@@ -396,7 +398,7 @@ export default function CRMDashboard() {
                 <CardDescription>Requires attention</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{submissions.filter(s => s.status === 'follow_up').length}</div>
+                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'apos;apos;follow_upp'apos;apos;).length }</div>
               </CardContent>
             </Card>
           </div>
@@ -404,23 +406,23 @@ export default function CRMDashboard() {
           <div className="bg-white rounded-md shadow p-4">
             <h3 className="text-lg font-medium mb-4">Kanban Board</h3>
             <div className="grid grid-cols-4 gap-4">
-              {['New', 'Assigned', 'In Progress', 'Delivered'].map((column) => (
-                <div key={column} className="bg-gray-50 rounded-md p-3">
-                  <div className="font-medium mb-3">{column}</div>
+              { [['apos;apos;Neww'apos;apos;,  'apos;apos;Assignedd'apos;apos;,  'apos;apos;In Progresss'apos;apos;,  'apos;apos;Deliveredd'apos;apos;].map((column) => (
+                <div key={ column } className="bg-gray-50 rounded-md p-3">
+                  <div className="font-medium mb-3">{ column }</div>
                   
-                  {/* Placeholder cards */}
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="bg-white p-3 rounded shadow-sm mb-2">
-                      <div className="font-medium">Order #{Math.floor(Math.random() * 1000)}</div>
+                  { /* Placeholder cards */ }
+                  { [1, 2, 3].map((i) => (
+                    <div key={ i } className="bg-white p-3 rounded shadow-sm mb-2">
+                      <div className="font-medium">Order #{ Math.floor(Math.random() * 1000) }</div>
                       <div className="text-sm text-gray-500">Customer Name</div>
                       <div className="flex justify-between items-center mt-2">
                         <Badge className="bg-blue-100 text-blue-800">12-Season</Badge>
                         <Button variant="ghost" size="sm">View</Button>
                       </div>
                     </div>
-                  ))}
+                  )) }
                 </div>
-              ))}
+              )) }
             </div>
           </div>
         </TabsContent>
@@ -441,15 +443,15 @@ export default function CRMDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="flex items-center justify-between border-b pb-3">
+                  { [1, 2, 3].map((i) => (
+                    <div key={ i } className="flex items-center justify-between border-b pb-3">
                       <div>
-                        <div className="font-medium">Customer #{Math.floor(Math.random() * 1000)}</div>
+                        <div className="font-medium">Customer #{ Math.floor(Math.random() * 1000) }</div>
                         <div className="text-sm text-gray-500">12-Season Analysis</div>
                       </div>
                       <Button size="sm">Assign</Button>
                     </div>
-                  ))}
+                  )) }
                 </div>
               </CardContent>
             </Card>
@@ -461,15 +463,15 @@ export default function CRMDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {[1, 2].map((i) => (
-                    <div key={i} className="flex items-center justify-between border-b pb-3">
+                  { [1, 2].map((i) => (
+                    <div key={ i } className="flex items-center justify-between border-b pb-3">
                       <div>
-                        <div className="font-medium">Customer #{Math.floor(Math.random() * 1000)}</div>
+                        <div className="font-medium">Customer #{ Math.floor(Math.random() * 1000) }</div>
                         <div className="text-sm text-gray-500">In Progress • 2 hours ago</div>
                       </div>
                       <Button size="sm" variant="outline">Continue</Button>
                     </div>
-                  ))}
+                  )) }
                 </div>
               </CardContent>
             </Card>
@@ -482,13 +484,13 @@ export default function CRMDashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="flex items-center justify-between border-b pb-3">
+                { [1, 2, 3].map((i) => (
+                  <div key={ i } className="flex items-center justify-between border-b pb-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gray-200"></div>
+                      <div className="w-10 h-10 rounded-full bg-gray-200" />
                       <div>
-                        <div className="font-medium">Customer #{Math.floor(Math.random() * 1000)}</div>
-                        <div className="text-sm text-gray-500">Completed • {i} day{i > 1 ? 's' : ''} ago</div>
+                        <div className="font-medium">Customer #{ Math.floor(Math.random() * 1000) }</div>
+                        <div className="text-sm text-gray-500">Completed • { i } day{ i > 1 ?  'apos;apos;ss'apos;apos; :  'apos;apos;'apos; } ago</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -496,7 +498,7 @@ export default function CRMDashboard() {
                       <Button size="sm" variant="outline">View</Button>
                     </div>
                   </div>
-                ))}
+                )) }
               </div>
             </CardContent>
           </Card>

@@ -6,7 +6,7 @@ export class ColorAnalysisService {
     
     const response = await fetch('/api/color-analysis', {
       method: 'POST',
-      body: formData
+      body: formData,
     })
     
     return response.json()
@@ -16,20 +16,20 @@ export class ColorAnalysisService {
     const recommendations = {
       spring: {
         colors: ['coral', 'peach', 'warm yellow', 'light green'],
-        avoid: ['black', 'cool blues', 'deep purples']
+        avoid: ['black', 'cool blues', 'deep purples'],
       },
       summer: {
         colors: ['soft pink', 'lavender', 'cool blue', 'mint green'],
-        avoid: ['orange', 'warm yellows', 'bright reds']
+        avoid: ['orange', 'warm yellows', 'bright reds'],
       },
       autumn: {
         colors: ['rust', 'deep orange', 'olive green', 'warm brown'],
-        avoid: ['bright pink', 'cool blues', 'icy colors']
+        avoid: ['bright pink', 'cool blues', 'icy colors'],
       },
       winter: {
         colors: ['true red', 'royal blue', 'emerald green', 'pure white'],
-        avoid: ['muted colors', 'warm yellows', 'peach']
-      }
+        avoid: ['muted colors', 'warm yellows', 'peach'],
+      },
     }
     
     return recommendations[season as keyof typeof recommendations]

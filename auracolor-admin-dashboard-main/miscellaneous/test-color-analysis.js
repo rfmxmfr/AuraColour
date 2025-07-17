@@ -1,7 +1,8 @@
 const fs = require('fs')
 const path = require('path')
-const { FormData } = require('formdata-node')
+
 const { Blob } = require('fetch-blob')
+const { FormData } = require('formdata-node')
 
 async function testColorAnalysis() {
   try {
@@ -9,7 +10,7 @@ async function testColorAnalysis() {
     const testImagePath = path.join(__dirname, 'public', 'placeholder-user.jpg')
     
     if (!fs.existsSync(testImagePath)) {
-      console.log('Test image not found, skipping test')
+      // console.log('Test image not found, skipping test')
       return
     }
 
@@ -20,19 +21,19 @@ async function testColorAnalysis() {
 
     const response = await fetch('http://localhost:3000/api/color-analysis', {
       method: 'POST',
-      body: formData
+      body: formData,
     })
 
     const result = await response.json()
-    console.log('Color Analysis Result:', result)
+    // console.log('Color Analysis Result:', result)
     
     if (result.season) {
-      console.log('✅ AI Color Analysis working correctly')
+      // console.log('✅ AI Color Analysis working correctly')
     } else {
-      console.log('❌ AI Color Analysis failed')
+      // console.log('❌ AI Color Analysis failed')
     }
   } catch (error) {
-    console.error('Test failed:', error.message)
+    // console.error('Test failed:', error.message)
   }
 }
 

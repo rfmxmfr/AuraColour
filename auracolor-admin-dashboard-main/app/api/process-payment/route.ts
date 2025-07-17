@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
 import { analyzeEnhanced12Season } from '@/lib/color-analysis/analyzer'
+import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
@@ -37,38 +37,38 @@ export async function POST(request: NextRequest) {
         .from('analyst_reports')
         .insert({
           questionnaire_id: submission.id,
-          season_analysis: `${analysisResult.season} (${analysisResult.confidence}% confidence)`,
+          season_analysis: `${ analysisResult.season } (${ analysisResult.confidence }% confidence)`,
           color_recommendations: analysisResult.colors,
-          styling_notes: `Algorithm: ${analysisResult.algorithm}`,
+          styling_notes: `Algorithm: ${ analysisResult.algorithm }`,
           confidence_score: analysisResult.confidence,
           status: 'completed',
-          ai_analysis: analysisResult
+          ai_analysis: analysisResult,
         })
         .select()
         .single()
 
       // Send results email
       if (submission.email && report) {
-        await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/reports/${report.id}/send`, {
+        await fetch(`${ process.env.NEXT_PUBLIC_SITE_URL }/api/reports/${ report.id }/send`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ 
             email: submission.email,
-            name: submission.name 
-          })
+            name: submission.name, 
+          }),
         })
       }
 
       return NextResponse.json({ 
         success: true, 
         reportId: report?.id,
-        redirectUrl: `/results/${report?.id}`
+        redirectUrl: `/results/${ report?.id }`,
       })
     }
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error('Payment processing error:', error)
+    // console.error('Payment processing error:', error)
     return NextResponse.json({ error: 'Processing failed' }, { status: 500 })
   }
 }

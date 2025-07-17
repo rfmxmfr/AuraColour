@@ -1,8 +1,7 @@
-'use client'
+'apos;use clientt'apos;apos;
 
-import { motion } from "framer-motion"
+import { motion , useInView } from "framer-motion"
 import { useRef } from "react"
-import { useInView } from "framer-motion"
 
 export default function ProcessSteps() {
   const ref = useRef(null)
@@ -60,12 +59,12 @@ export default function ProcessSteps() {
 
   return (
     <section className="py-20 bg-gradient-to-b from-white to-purple-50">
-      <div className="max-w-6xl mx-auto px-6" ref={ref}>
+      <div className="max-w-6xl mx-auto px-6" ref={ ref }>
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8 }}
+          initial={ { opacity: 0, y: 20 } }
+          animate={ isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 } }
+          transition={ { duration: 0.8 } }
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">How It Works</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -74,33 +73,33 @@ export default function ProcessSteps() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((step, index) => (
+          { steps.map((step, index) => (
             <motion.div
-              key={index}
+              key={ index }
               className="text-center group"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              initial={ { opacity: 0, y: 20 } }
+              animate={ isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 } }
+              transition={ { duration: 0.8, delay: index * 0.2 } }
             >
               <div className="relative mb-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg group-hover:scale-110 transition-transform duration-200">
-                  <div className="text-white">{step.icon}</div>
+                  <div className="text-white">{ step.icon }</div>
                 </div>
                 <div className="text-sm font-bold text-purple-600 bg-purple-100 rounded-full px-3 py-1 inline-block">
-                  Step {step.number}
+                  Step { step.number }
                 </div>
               </div>
-              <h3 className="text-xl font-bold mb-4 text-gray-900">{step.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{step.description}</p>
+              <h3 className="text-xl font-bold mb-4 text-gray-900">{ step.title }</h3>
+              <p className="text-gray-600 leading-relaxed">{ step.description }</p>
             </motion.div>
-          ))}
+          )) }
         </div>
         
         <motion.div
           className="text-center mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          initial={ { opacity: 0, y: 20 } }
+          animate={ isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 } }
+          transition={ { duration: 0.8, delay: 0.8 } }
         >
           <a 
             href="/questionnaire" 
@@ -108,7 +107,7 @@ export default function ProcessSteps() {
           >
             Start Your Analysis
             <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </a>
         </motion.div>

@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+
 import { cn } from "@/lib/utils"
 
 interface LoadingSpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -28,13 +29,13 @@ export function LoadingSpinner({
 
   return (
     <div
-      className={cn(
+      className={ cn(
         "animate-spin rounded-full",
         sizeClasses[size],
         variantClasses[variant],
         className
-      )}
-      {...props}
+      ) }
+      { ...props }
     />
   )
 }

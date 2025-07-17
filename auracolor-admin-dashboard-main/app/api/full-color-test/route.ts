@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
 import { emailTemplates } from '@/lib/email-templates'
+import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -12,7 +12,7 @@ const testQuestionnaire = {
   eyeColor: 'Brown',
   style: 'Professional and polished',
   email: 'test@example.com',
-  name: 'Test User'
+  name: 'Test User',
 }
 
 // Color analysis algorithm
@@ -46,7 +46,7 @@ function analyzeColors(answers: any) {
     confidence,
     undertone,
     recommended_colors: recommendedColors,
-    description: `You are a ${season}! This means you look best in ${undertone} tones that complement your natural coloring.`
+    description: `You are a ${ season }! This means you look best in ${ undertone } tones that complement your natural coloring.`,
   }
 }
 
@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
     if (!email) {
       return NextResponse.json({ 
         success: false, 
-        error: 'Email is required' 
+        error: 'Email is required', 
       }, { status: 400 })
     }
 
@@ -73,13 +73,13 @@ export async function POST(request: NextRequest) {
         answers: testQuestionnaire,
         results,
         email,
-        name
+        name,
       })
       .select()
       .single()
 
     if (dbError) {
-      console.error('Database error:', dbError)
+      // console.error('Database error:', dbError)
     }
 
     // Send email with results
@@ -89,14 +89,14 @@ export async function POST(request: NextRequest) {
       from: 'AuraColor <noreply@auracolor.com>',
       to: [email],
       subject: emailTemplate.subject,
-      html: emailTemplate.html
+      html: emailTemplate.html,
     })
 
     if (emailError) {
-      console.error('Email error:', emailError)
+      // console.error('Email error:', emailError)
       return NextResponse.json({
         success: false,
-        error: 'Failed to send email'
+        error: 'Failed to send email',
       }, { status: 500 })
     }
 
@@ -105,14 +105,14 @@ export async function POST(request: NextRequest) {
       message: 'Full color analysis test sent to email successfully',
       results,
       emailId: emailData?.id,
-      submissionId: submission?.id
+      submissionId: submission?.id,
     })
 
   } catch (error) {
-    console.error('Full color test error:', error)
+    // console.error('Full color test error:', error)
     return NextResponse.json({
       success: false,
-      error: 'Failed to process full color test'
+      error: 'Failed to process full color test',
     }, { status: 500 })
   }
 }
@@ -122,6 +122,6 @@ export async function GET() {
     message: 'Full Color Analysis Test API',
     description: 'POST to this endpoint with email to receive complete color analysis questionnaire results',
     testData: testQuestionnaire,
-    sampleResults: analyzeColors(testQuestionnaire)
+    sampleResults: analyzeColors(testQuestionnaire),
   })
 }

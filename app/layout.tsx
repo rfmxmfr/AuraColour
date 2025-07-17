@@ -1,8 +1,9 @@
 import "@/styles/globals.css"
 import { Inter } from "next/font/google"
 import type React from "react" // Import React
-import I18nProvider from "./components/I18nProvider"
 import { Toaster } from "sonner"
+
+import I18nProvider from "./components/I18nProvider"
 import { Providers } from "./providers"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -17,10 +18,10 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
-      <body className={inter.className}>
+      <body className={ inter.className }>
         <Providers>
           <I18nProvider>
-            {children}
+            { children }
             <Toaster position="top-right" richColors closeButton />
           </I18nProvider>
         </Providers>
@@ -30,5 +31,5 @@ export default function RootLayout({
 }
 
 export const metadata = {
-      generator: 'v0.dev'
-    };
+  generator:  'apos;apos;v0.devv'apos;apos;,
+};

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+
 import { startAnalysis } from '@/lib/ai-analysis/analyzer'
 
 export async function POST(request: NextRequest) {
@@ -14,7 +15,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       analysis,
-      message: 'AI analysis completed'
+      message: 'AI analysis completed',
     })
   } catch (error: any) {
     return NextResponse.json(

@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 function generateVoucherCode(): string {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
         owner_email: recipientEmail,
         purchaser_email: purchaserEmail,
         message: message || '',
-        expiry_date: expiryDate.toISOString()
+        expiry_date: expiryDate.toISOString(),
       })
       .select()
       .single()
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
       success: true,
       voucherCode,
       amount,
-      expiryDate: expiryDate.toISOString()
+      expiryDate: expiryDate.toISOString(),
     })
 
   } catch (error: any) {
@@ -93,11 +93,11 @@ export async function GET(request: NextRequest) {
       code: voucher.code,
       balance: voucher.balance / 100,
       status: voucher.status,
-      expiryDate: voucher.expiry_date
+      expiryDate: voucher.expiry_date,
     })
 
   } catch (error) {
-    console.error('Voucher lookup error:', error)
+    // console.error('Voucher lookup error:', error)
     return NextResponse.json(
       { error: 'Failed to lookup voucher' },
       { status: 500 }

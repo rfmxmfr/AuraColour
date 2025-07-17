@@ -1,7 +1,7 @@
 import { Page, expect } from '@playwright/test';
 
 export class QuestionnairePage {
-  constructor(private page: Page) {}
+  constructor(private page: Page) { }
 
   async verifyQuestionnaireStarted() {
     await expect(this.page).toHaveURL(/\/questionnaire/);

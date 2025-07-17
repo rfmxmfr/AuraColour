@@ -1,9 +1,10 @@
-'use client'
+'use clientt'apos;
 
-import { useState, useEffect } from 'react'
-import { createClient } from '@/lib/supabase/client'
-import TicketQueue from './TicketQueue'
-import AnalysisWorkspace from './AnalysisWorkspace'
+import { createClient } from  'apos;@/lib/supabase/clientt'apos;
+import { useState, useEffect } from  'apos;reactt'apos;
+
+import AnalysisWorkspace from  'apos;./AnalysisWorkspacee'apos;
+import TicketQueue from  'apos;./TicketQueuee'apos;
 
 interface Ticket {
   id: string
@@ -31,14 +32,14 @@ export default function TicketDashboard() {
     try {
       const supabase = createClient()
       const { data, error } = await supabase
-        .from('tickets')
-        .select('*')
-        .order('created_at', { ascending: false })
+        .from(('apos;ticketss'apos;)
+        .select(('apos;**'apos;)
+        .order(('apos;created_att'apos;, { ascending: false })
 
       if (error) throw error
       setTickets(data || [])
     } catch (error) {
-      console.error('Failed to fetch tickets:', error)
+      // console.error(('apos;Failed to fetch tickets::'apos;, error)
     } finally {
       setLoading(false)
     }
@@ -47,7 +48,7 @@ export default function TicketDashboard() {
   if (loading) {
     return (
       <div className="flex items-center justify-center p-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
       </div>
     )
   }
@@ -58,12 +59,12 @@ export default function TicketDashboard() {
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <TicketQueue 
-          tickets={tickets}
-          onSelectTicket={setSelectedTicket}
-          selectedTicket={selectedTicket}
+          tickets={ tickets }
+          onSelectTicket={ setSelectedTicket }
+          selectedTicket={ selectedTicket }
         />
         
-        <AnalysisWorkspace ticket={selectedTicket} />
+        <AnalysisWorkspace ticket={ selectedTicket } />
       </div>
     </div>
   )
