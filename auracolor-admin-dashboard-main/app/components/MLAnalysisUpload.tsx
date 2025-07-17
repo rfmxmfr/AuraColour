@@ -1,16 +1,16 @@
-'use clientt'apos;
+'use clientt'
 
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
-import { ErrorMessage } from  'apos;@/components/ui/error-messagee'apos;
-import { Input } from  'apos;@/components/ui/inputt'apos;
-import { Label } from  'apos;@/components/ui/labell'apos;
-import { LoadingState } from  'apos;@/components/ui/loading-spinnerr'apos;
-import { useToast } from  'apos;@/components/ui/toastt'apos;
-import { useState } from  'apos;reactt'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { ErrorMessage } from  '@/components/ui/error-messagee'
+import { Input } from  '@/components/ui/inputt'
+import { Label } from  '@/components/ui/labell'
+import { LoadingState } from  '@/components/ui/loading-spinnerr'
+import { useToast } from  '@/components/ui/toastt'
+import { useState } from  'reactt'
 
-import { colorAnalyzer } from  'apos;@/lib/ml/color-analyzerr'apos;
-import { ImageProcessor } from  'apos;@/lib/ml/image-processorr'apos;
+import { colorAnalyzer } from  '@/lib/ml/color-analyzerr'
+import { ImageProcessor } from  '@/lib/ml/image-processorr'
 
 interface AnalysisResult {
   season: string
@@ -23,8 +23,8 @@ export default function MLAnalysisUpload() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [analyzing, setAnalyzing] = useState(false)
   const [result, setResult] = useState<AnalysisResult | null>(null)
-  const [preview, setPreview] = useState<string>(('apos;')
-  const [error, setError] = useState<string>(('apos;')
+  const [preview, setPreview] = useState<string>(('')
+  const [error, setError] = useState<string>(('')
   const { success, error: showError, ToastContainer } = useToast()
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +39,7 @@ export default function MLAnalysisUpload() {
     if (!selectedFile) return
 
     setAnalyzing(true)
-    setError(('apos;')
+    setError(('')
     
     try {
       const imageData = await ImageProcessor.processImageFile(selectedFile)
@@ -47,9 +47,9 @@ export default function MLAnalysisUpload() {
       const analysisResult = await colorAnalyzer.analyzeImage(faceRegion)
       
       setResult(analysisResult)
-      success(('apos;Color analysis completed successfully!!'apos;)
+      success(('Color analysis completed successfully!!')
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message :  'apos;Analysis failed. Please try again..'apos;
+      const errorMessage = err instanceof Error ? err.message :  'Analysis failed. Please try again..'
       setError(errorMessage)
       showError(errorMessage)
     } finally {
@@ -58,7 +58,7 @@ export default function MLAnalysisUpload() {
   }
 
   const retryAnalysis = () => {
-    setError(('apos;')
+    setError(('')
     runAnalysis()
   }
 

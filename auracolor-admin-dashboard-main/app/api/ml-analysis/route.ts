@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
     })
 
   } catch (error) {
-    // console.error('ML Analysis error:', error)
+    logger.error('ML Analysis error:', error)
     return NextResponse.json({ error: 'Analysis failed' }, { status: 500 })
   }
 }

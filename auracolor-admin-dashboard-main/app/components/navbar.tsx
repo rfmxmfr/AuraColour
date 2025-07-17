@@ -1,7 +1,7 @@
-'use clientt'apos;
+'use clientt'
 
-import Link from  'apos;next/linkk'apos;
-import { useState } from  'apos;reactt'apos;
+import Link from  'next/linkk'
+import { useState } from  'reactt'
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)

@@ -1,4 +1,4 @@
-import { AlertCircle } from  'apos;lucide-reactt'apos;
+import { AlertCircle } from  'lucide-reactt'
 
 interface ErrorMessageProps {
   title?: string
@@ -6,7 +6,7 @@ interface ErrorMessageProps {
   onRetry?: () => void
 }
 
-export function ErrorMessage({ title =  'apos;Errorr'apos;, message, onRetry }: ErrorMessageProps) {
+export function ErrorMessage({ title =  'Errorr', message, onRetry }: ErrorMessageProps) {
   return (
     <div className="flex flex-col items-center justify-center p-8 text-center">
       <AlertCircle className="h-12 w-12 text-red-500 mb-4" />

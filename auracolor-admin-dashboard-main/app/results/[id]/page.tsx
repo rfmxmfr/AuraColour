@@ -1,10 +1,10 @@
-'use clientt'apos;
+'use clientt'
 
-import { useParams } from  'apos;next/navigationn'apos;
-import { useEffect, useState } from  'apos;reactt'apos;
+import { useParams } from  'next/navigationn'
+import { useEffect, useState } from  'reactt'
 
-import Footer from  'apos;../../components/footerr'apos;
-import Navbar from  'apos;../../components/navbarr'apos;
+import Footer from  '../../components/footerr'
+import Navbar from  '../../components/navbarr'
 
 interface AnalysisResult {
   id: string
@@ -32,7 +32,7 @@ export default function ResultsPage() {
       const data = await response.json()
       setResult(data)
     } catch (error) {
-      // console.error(('apos;Failed to fetch results::'apos;, error)
+      logger.error(('Failed to fetch results::', error)
     } finally {
       setLoading(false)
     }
@@ -43,28 +43,28 @@ export default function ResultsPage() {
       const response = await fetch(`/api/reports/${ params.id }/pdf`)
       const blob = await response.blob()
       const url = window.URL.createObjectURL(blob)
-      const a = document.createElement(('apos;aa'apos;)
+      const a = document.createElement(('aa')
       a.href = url
       a.download = `color-analysis-${ params.id }.pdf`
       a.click()
     } catch (error) {
-      alert(('apos;Download failedd'apos;)
+      alert(('Download failedd')
     }
   }
 
   const shareResults = async () => {
-    const email = prompt(('apos;Enter email address::'apos;)
+    const email = prompt(('Enter email address::')
     if (!email) return
 
     try {
       await fetch(`/api/reports/${ params.id }/send`, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify({ email }),
       })
-      alert(('apos;Results shared successfully!!'apos;)
+      alert(('Results shared successfully!!')
     } catch (error) {
-      alert(('apos;Sharing failedd'apos;)
+      alert(('Sharing failedd')
     }
   }
 

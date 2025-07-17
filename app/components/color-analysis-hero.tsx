@@ -1,4 +1,4 @@
-'apos;use clientt'apos;apos;
+'use clientt'
 
 import { motion } from "framer-motion"
 
@@ -91,14 +91,14 @@ export default function ColorAnalysisHero() {
                 
                 <div className="grid grid-cols-4 gap-3">
                   { [
-                     'apos;apos;from-rose-400 to-pink-5000'apos;apos;,
-                     'apos;apos;from-purple-400 to-indigo-5000'apos;apos;, 
-                     'apos;apos;from-blue-400 to-cyan-5000'apos;apos;,
-                     'apos;apos;from-emerald-400 to-teal-5000'apos;apos;,
-                     'apos;apos;from-amber-400 to-orange-5000'apos;apos;,
-                     'apos;apos;from-red-400 to-rose-5000'apos;apos;,
-                     'apos;apos;from-violet-400 to-purple-5000'apos;apos;,
-                     'apos;apos;from-slate-400 to-gray-5000'apos;apos;,
+                     'from-rose-400 to-pink-5000',
+                     'from-purple-400 to-indigo-5000', 
+                     'from-blue-400 to-cyan-5000',
+                     'from-emerald-400 to-teal-5000',
+                     'from-amber-400 to-orange-5000',
+                     'from-red-400 to-rose-5000',
+                     'from-violet-400 to-purple-5000',
+                     'from-slate-400 to-gray-5000',
                   ].map((gradient, i) => (
                     <motion.div
                       key={ i }

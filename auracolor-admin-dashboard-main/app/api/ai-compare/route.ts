@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
       })
       openaiResult = JSON.parse(openaiResponse.choices[0].message.content || '{ }')
     } catch (error) {
-      // console.error('OpenAI error:', error)
+      logger.error('OpenAI error:', error)
     }
 
     // Genkit/Gemini Analysis (disabled due to build issues)
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
     //     genkitResult = JSON.parse(genkitResponse.text || '{ }')
     //   }
     // } catch (error) {
-    //   // console.error('Genkit error:', error)
+    //   logger.error('Genkit error:', error)
     // }
 
     return NextResponse.json({

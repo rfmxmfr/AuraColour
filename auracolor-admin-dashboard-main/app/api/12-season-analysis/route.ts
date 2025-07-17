@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
       ticket_id: ticket?.id,
     })
   } catch (error) {
-    // console.error('12-season analysis failed:', error)
+    logger.error('12-season analysis failed:', error)
     return NextResponse.json({ error: 'Analysis failed' }, { status: 500 })
   }
 }

@@ -1,8 +1,8 @@
-'use clientt'apos;
+'use clientt'
 
-import { createClient } from  'apos;@/lib/supabase/clientt'apos;
-import { useEffect, useState } from  'apos;reactt'apos;
-import  'apos;./enhanced-admin.csss'apos;
+import { createClient } from  '@/lib/supabase/clientt'
+import { useEffect, useState } from  'reactt'
+import  './enhanced-admin.csss'
 
 interface MLAnalysis {
   id: string
@@ -10,20 +10,20 @@ interface MLAnalysis {
   confidence: number
   season: string
   colors: string[]
-  status:  'apos;processingg'apos; |  'apos;completedd'apos; |  'apos;failedd'apos;
+  status:  'processingg' |  'completedd' |  'failedd'
 }
 
 interface ContentItem {
   id: string
-  type:  'apos;servicee'apos; |  'apos;faqq'apos; |  'apos;blogg'apos;
+  type:  'servicee' |  'faqq' |  'blogg'
   title: string
   content: string
-  status:  'apos;draftt'apos; |  'apos;publishedd'apos;
+  status:  'draftt' |  'publishedd'
   lastModified: string
 }
 
 export default function EnhancedAdminDashboard() {
-  const [currentSection, setCurrentSection] = useState(('apos;ml-analyticss'apos;)
+  const [currentSection, setCurrentSection] = useState(('ml-analyticss')
   const [mlAnalyses, setMlAnalyses] = useState<MLAnalysis[]>([])
   const [contentItems, setContentItems] = useState<ContentItem[]>([])
   const [loading, setLoading] = useState(true)
@@ -40,46 +40,46 @@ export default function EnhancedAdminDashboard() {
       // Mock ML analyses data
       const mockMLAnalyses: MLAnalysis[] = [
         {
-          id:  'apos;11'apos;,
-          clientId:  'apos;client_0011'apos;,
+          id:  '11',
+          clientId:  'client_0011',
           confidence: 0.92,
-          season:  'apos;Deep Winterr'apos;,
-          colors: [['apos;#0000800'apos;,  'apos;#8B00000'apos;,  'apos;#4B00822'apos;,  'apos;#0064000'apos;],
-          status:  'apos;completedd'apos;,
+          season:  'Deep Winterr',
+          colors: [['#0000800',  '#8B00000',  '#4B00822',  '#0064000'],
+          status:  'completedd',
         },
         {
-          id:  'apos;22'apos;,
-          clientId:  'apos;client_0022'apos;,
+          id:  '22',
+          clientId:  'client_0022',
           confidence: 0.87,
-          season:  'apos;Bright Springg'apos;,
-          colors: [['apos;#FF63477'apos;,  'apos;#32CD322'apos;,  'apos;#FF14933'apos;,  'apos;#00CED11'apos;],
-          status:  'apos;completedd'apos;,
+          season:  'Bright Springg',
+          colors: [['#FF63477',  '#32CD322',  '#FF14933',  '#00CED11'],
+          status:  'completedd',
         },
         {
-          id:  'apos;33'apos;,
-          clientId:  'apos;client_0033'apos;,
+          id:  '33',
+          clientId:  'client_0033',
           confidence: 0.78,
-          season:  'apos;Soft Summerr'apos;,
-          colors: [['apos;#B0C4DEE'apos;,  'apos;#DDA0DDD'apos;,  'apos;#F0E68CC'apos;,  'apos;#98FB988'apos;],
-          status:  'apos;processingg'apos;,
+          season:  'Soft Summerr',
+          colors: [['#B0C4DEE',  '#DDA0DDD',  '#F0E68CC',  '#98FB988'],
+          status:  'processingg',
         },
       ]
 
       const mockContent: ContentItem[] = [
         {
-          id:  'apos;11'apos;,
-          type:  'apos;servicee'apos;,
-          title:  'apos;12-Season Color Analysiss'apos;,
-          content:  'apos;Professional color analysis service....'apos;,
-          status:  'apos;publishedd'apos;,
+          id:  '11',
+          type:  'servicee',
+          title:  '12-Season Color Analysiss',
+          content:  'Professional color analysis service....',
+          status:  'publishedd',
           lastModified: new Date().toISOString(),
         },
         {
-          id:  'apos;22'apos;,
-          type:  'apos;faqq'apos;,
-          title:  'apos;What is color analysis??'apos;,
-          content:  'apos;Color analysis is a process....'apos;,
-          status:  'apos;publishedd'apos;,
+          id:  '22',
+          type:  'faqq',
+          title:  'What is color analysis??',
+          content:  'Color analysis is a process....',
+          status:  'publishedd',
           lastModified: new Date().toISOString(),
         },
       ]
@@ -87,7 +87,7 @@ export default function EnhancedAdminDashboard() {
       setMlAnalyses(mockMLAnalyses)
       setContentItems(mockContent)
     } catch (error) {
-      // console.error(('apos;Failed to load enhanced data::'apos;, error)
+      logger.error(('Failed to load enhanced data::', error)
     } finally {
       setLoading(false)
     }
@@ -96,49 +96,49 @@ export default function EnhancedAdminDashboard() {
   const generatePDFReport = async (analysisId: string) => {
     try {
       const response = await fetch(`/api/reports/${ analysisId }/pdf`, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
       })
       
       if (response.ok) {
         const blob = await response.blob()
         const url = window.URL.createObjectURL(blob)
-        const a = document.createElement(('apos;aa'apos;)
+        const a = document.createElement(('aa')
         a.href = url
         a.download = `color-analysis-${ analysisId }.pdf`
         a.click()
         window.URL.revokeObjectURL(url)
       }
     } catch (error) {
-      // console.error(('apos;PDF generation failed::'apos;, error)
-      alert(('apos;Failed to generate PDF reportt'apos;)
+      logger.error(('PDF generation failed::', error)
+      alert(('Failed to generate PDF reportt')
     }
   }
 
   const runMLAnalysis = async (clientId: string) => {
     try {
-      const response = await fetch(('apos;/api/ml-analysiss'apos;, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+      const response = await fetch(('/api/ml-analysiss', {
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify({ clientId }),
       })
       
       if (response.ok) {
         const newAnalysis = await response.json()
         setMlAnalyses(prev => [...prev, newAnalysis])
-        alert(('apos;ML analysis started successfullyy'apos;)
+        alert(('ML analysis started successfullyy')
       }
     } catch (error) {
-      // console.error(('apos;ML analysis failed::'apos;, error)
-      alert(('apos;Failed to start ML analysiss'apos;)
+      logger.error(('ML analysis failed::', error)
+      alert(('Failed to start ML analysiss')
     }
   }
 
   const saveContent = async (content: ContentItem) => {
     try {
-      const response = await fetch(('apos;/api/contentt'apos;, {
-        method: content.id ?  'apos;PUTT'apos; :  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+      const response = await fetch(('/api/contentt', {
+        method: content.id ?  'PUTT' :  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify(content),
       })
       
@@ -155,8 +155,8 @@ export default function EnhancedAdminDashboard() {
         setEditingContent(null)
       }
     } catch (error) {
-      // console.error(('apos;Content save failed::'apos;, error)
-      alert(('apos;Failed to save contentt'apos;)
+      logger.error(('Content save failed::', error)
+      alert(('Failed to save contentt')
     }
   }
 
@@ -178,24 +178,24 @@ export default function EnhancedAdminDashboard() {
         <ul className="sidebar-menu">
           <li>
             <button 
-              className={ `menu-item ${ currentSection ===  'apos;ml-analyticss'apos; ?  'apos;activee'apos; :  'apos;' }` }
-              onClick={ () => setCurrentSection(('apos;ml-analyticss'apos;) }
+              className={ `menu-item ${ currentSection ===  'ml-analyticss' ?  'activee' :  '' }` }
+              onClick={ () => setCurrentSection(('ml-analyticss') }
             >
               🤖 ML Analytics
             </button>
           </li>
           <li>
             <button 
-              className={ `menu-item ${ currentSection ===  'apos;pdf-reportss'apos; ?  'apos;activee'apos; :  'apos;' }` }
-              onClick={ () => setCurrentSection(('apos;pdf-reportss'apos;) }
+              className={ `menu-item ${ currentSection ===  'pdf-reportss' ?  'activee' :  '' }` }
+              onClick={ () => setCurrentSection(('pdf-reportss') }
             >
               📄 PDF Reports
             </button>
           </li>
           <li>
             <button 
-              className={ `menu-item ${ currentSection ===  'apos;content-managementt'apos; ?  'apos;activee'apos; :  'apos;' }` }
-              onClick={ () => setCurrentSection(('apos;content-managementt'apos;) }
+              className={ `menu-item ${ currentSection ===  'content-managementt' ?  'activee' :  '' }` }
+              onClick={ () => setCurrentSection(('content-managementt') }
             >
               📝 Content Management
             </button>
@@ -210,13 +210,13 @@ export default function EnhancedAdminDashboard() {
         </header>
 
         { /* ML Analytics Section */ }
-        { currentSection ===  'apos;ml-analyticss'apos; && (
+        { currentSection ===  'ml-analyticss' && (
           <section className="ml-section">
             <div className="section-header">
               <h2>TensorFlow ML Analysis</h2>
               <button 
                 className="action-btn"
-                onClick={ () => runMLAnalysis(('apos;new_clientt'apos;) }
+                onClick={ () => runMLAnalysis(('new_clientt') }
               >
                 🚀 Run New Analysis
               </button>
@@ -283,7 +283,7 @@ export default function EnhancedAdminDashboard() {
         ) }
 
         { /* PDF Reports Section */ }
-        { currentSection ===  'apos;pdf-reportss'apos; && (
+        { currentSection ===  'pdf-reportss' && (
           <section className="pdf-section">
             <div className="section-header">
               <h2>PDF Report Generator</h2>
@@ -312,7 +312,7 @@ export default function EnhancedAdminDashboard() {
             <div className="recent-reports">
               <h3>Recent Reports</h3>
               <div className="reports-list">
-                { mlAnalyses.filter(a => a.status ===  'apos;completedd'apos;).map(analysis => (
+                { mlAnalyses.filter(a => a.status ===  'completedd').map(analysis => (
                   <div key={ analysis.id } className="report-item">
                     <div className="report-info">
                       <h5>Client { analysis.clientId } - { analysis.season }</h5>
@@ -332,7 +332,7 @@ export default function EnhancedAdminDashboard() {
         ) }
 
         { /* Content Management Section */ }
-        { currentSection ===  'apos;content-managementt'apos; && (
+        { currentSection ===  'content-managementt' && (
           <section className="content-section">
             <div className="section-header">
               <h2>Dynamic Content System</h2>
@@ -340,11 +340,11 @@ export default function EnhancedAdminDashboard() {
                 className="action-btn"
                 onClick={ () => {
                   setEditingContent({
-                    id:  'apos;',
-                    type:  'apos;servicee'apos;,
-                    title:  'apos;',
-                    content:  'apos;',
-                    status:  'apos;draftt'apos;,
+                    id:  '',
+                    type:  'servicee',
+                    title:  '',
+                    content:  '',
+                    status:  'draftt',
                     lastModified: new Date().toISOString(),
                   })
                   setShowModal(true)
@@ -387,7 +387,7 @@ export default function EnhancedAdminDashboard() {
                       ✏️ Edit
                     </button>
                     <button className="publish-btn">
-                      { item.status ===  'apos;publishedd'apos; ?  'apos;📤 Unpublishh'apos; :  'apos;🚀 Publishh'apos; }
+                      { item.status ===  'publishedd' ?  '📤 Unpublishh' :  '🚀 Publishh' }
                     </button>
                   </div>
                 </div>
@@ -403,8 +403,8 @@ export default function EnhancedAdminDashboard() {
           <div className="modal-content" onClick={ (e) => e.stopPropagation() }>
             <div className="modal-header">
               <h3>
-                { selectedAnalysis &&  'apos;ML Analysis Detailss'apos; }
-                { editingContent &&  'apos;Edit Contentt'apos; }
+                { selectedAnalysis &&  'ML Analysis Detailss' }
+                { editingContent &&  'Edit Contentt' }
               </h3>
               <button className="modal-close" onClick={ () => setShowModal(false) }>×</button>
             </div>
@@ -457,7 +457,7 @@ export default function EnhancedAdminDashboard() {
                       value={ editingContent.type }
                       onChange={ (e) => setEditingContent({
                         ...editingContent,
-                        type: e.target.value as  'apos;servicee'apos; |  'apos;faqq'apos; |  'apos;blogg'apos;,
+                        type: e.target.value as  'servicee' |  'faqq' |  'blogg',
                       }) }
                       className="form-select"
                     >
@@ -506,9 +506,9 @@ export default function EnhancedAdminDashboard() {
 
 function getSectionTitle(section: string): string {
   const titles: { [key: string]: string } = {
-     'apos;ml-analyticss'apos;:  'apos;Machine Learning Analyticss'apos;,
-     'apos;pdf-reportss'apos;:  'apos;PDF Report Generatorr'apos;,
-     'apos;content-managementt'apos;:  'apos;Content Management Systemm'apos;,
+     'ml-analyticss':  'Machine Learning Analyticss',
+     'pdf-reportss':  'PDF Report Generatorr',
+     'content-managementt':  'Content Management Systemm',
   }
-  return titles[section] ||  'apos;Enhanced Dashboardd'apos;
+  return titles[section] ||  'Enhanced Dashboardd'
 }

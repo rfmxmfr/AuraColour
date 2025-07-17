@@ -1,9 +1,9 @@
-'use clientt'apos;
+'use clientt'
 
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
-import { PersonalShopperService } from  'apos;@/lib/services/personal-shopperr'apos;
-import { useState, useEffect } from  'apos;reactt'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { PersonalShopperService } from  '@/lib/services/personal-shopperr'
+import { useState, useEffect } from  'reactt'
 
 export default function PersonalShopper() {
   const [products, setProducts] = useState<any[]>([])
@@ -20,7 +20,7 @@ export default function PersonalShopper() {
       const result = await PersonalShopperService.getProducts({ })
       setProducts(result.products)
     } catch (error) {
-      // console.error(('apos;Failed to load products::'apos;, error)
+      logger.error(('Failed to load products::', error)
     } finally {
       setLoading(false)
     }
@@ -32,11 +32,11 @@ export default function PersonalShopper() {
 
   const checkout = async () => {
     try {
-      const result = await PersonalShopperService.checkout(cart,  'apos;credit_cardd'apos;)
+      const result = await PersonalShopperService.checkout(cart,  'credit_cardd')
       alert(`Order confirmed! Order ID: ${ result.orderId }`)
       setCart([])
     } catch (error) {
-      // console.error(('apos;Checkout failed::'apos;, error)
+      logger.error(('Checkout failed::', error)
     }
   }
 

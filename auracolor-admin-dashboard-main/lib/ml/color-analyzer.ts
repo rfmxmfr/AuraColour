@@ -33,7 +33,7 @@ class ColorAnalyzer {
         metrics: ['accuracy'],
       })
     } catch (error) {
-      // console.error('Model loading failed:', error)
+      logger.error('Model loading failed:', error)
     }
   }
 

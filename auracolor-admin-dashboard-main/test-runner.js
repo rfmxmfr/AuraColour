@@ -11,7 +11,7 @@ class TestRunner {
   }
 
   describe(name, fn) {
-    // console.log(`\n📋 ${ name }`);
+    logger.info(`\n📋 ${ name }`);
     fn();
   }
 
@@ -45,21 +45,21 @@ class TestRunner {
   }
 
   async run() {
-    // console.log('🚀 Running tests...\n');
+    logger.info('🚀 Running tests...\n');
     
     for (const test of this.tests) {
       try {
         await test.fn();
-        // console.log(`✅ ${ test.name }`);
+        logger.info(`✅ ${ test.name }`);
         this.passed++;
       } catch (error) {
-        // console.log(`❌ ${ test.name }`);
-        // console.log(`   ${ error.message }`);
+        logger.info(`❌ ${ test.name }`);
+        logger.info(`   ${ error.message }`);
         this.failed++;
       }
     }
 
-    // console.log(`\n📊 Results: ${ this.passed } passed, ${ this.failed } failed`);
+    logger.info(`\n📊 Results: ${ this.passed } passed, ${ this.failed } failed`);
     return this.failed === 0;
   }
 }
@@ -77,7 +77,7 @@ if (require.main === module) {
     require(path.resolve(testFile));
     runner.run().then(success => process.exit(success ? 0 : 1));
   } else {
-    // console.log('Usage: node test-runner.js <test-file>');
+    logger.info('Usage: node test-runner.js <test-file>');
   }
 }
 

@@ -1,6 +1,6 @@
-'use clientt'apos;
+'use clientt'
 
-import { useState } from  'apos;reactt'apos;
+import { useState } from  'reactt'
 
 interface Ticket {
   id: string
@@ -27,9 +27,9 @@ export default function AnalysisWorkspace({ ticket }: AnalysisWorkspaceProps) {
     
     setAnalyzing(true)
     try {
-      const response = await fetch(('apos;/api/analyze-tickett'apos;, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+      const response = await fetch(('/api/analyze-tickett', {
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify({ ticketId: ticket.id }),
       })
       
@@ -38,7 +38,7 @@ export default function AnalysisWorkspace({ ticket }: AnalysisWorkspaceProps) {
         setAnalysis(result.analysis)
       }
     } catch (error) {
-      // console.error(('apos;Analysis failed::'apos;, error)
+      logger.error(('Analysis failed::', error)
     } finally {
       setAnalyzing(false)
     }
@@ -96,7 +96,7 @@ export default function AnalysisWorkspace({ ticket }: AnalysisWorkspaceProps) {
             disabled={ analyzing }
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
           >
-            { analyzing ?  'apos;Analyzing....'apos; :  'apos;Start AI Analysiss'apos; }
+            { analyzing ?  'Analyzing....' :  'Start AI Analysiss' }
           </button>
         </div>
       </div>

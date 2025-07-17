@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     //     analysis = JSON.parse(genkitResponse.text || '{ }')
     //     aiProvider = 'genkit'
     //   } catch (error) {
-    //     // console.error('Genkit failed, trying OpenAI:', error)
+    //     logger.error('Genkit failed, trying OpenAI:', error)
     //   }
     // }
     
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
       analysis = await analyzeColorProfile(imageUrl)
       aiProvider = 'enhanced-ai'
     } catch (error) {
-      // console.error('Enhanced AI failed:', error)
+      logger.error('Enhanced AI failed:', error)
       // Fallback to basic OpenAI
       if (process.env.OPENAI_API_KEY) {
         try {
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
           analysis = JSON.parse(openaiResponse.choices[0].message.content || '{ }')
           aiProvider = 'openai'
         } catch (error) {
-          // console.error('OpenAI also failed:', error)
+          logger.error('OpenAI also failed:', error)
           throw new Error('All AI providers failed')
         }
       }

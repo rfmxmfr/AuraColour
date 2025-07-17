@@ -1,29 +1,29 @@
 import logger from "../lib/secure-logger";
-'apos;use clientt'apos;apos;
+'use clientt'
 
-import { useSearchParams } from  'apos;apos;next/navigationn'apos;apos;
-import { useEffect, useState } from  'apos;apos;reactt'apos;apos;
+import { useSearchParams } from  'next/navigationn'
+import { useEffect, useState } from  'reactt'
 
-import { Button } from  'apos;apos;@/components/ui/buttonn'apos;apos;
-import { Card, CardContent, CardHeader, CardTitle } from  'apos;apos;@/components/ui/cardd'apos;apos;
-import { createClient } from  'apos;apos;@/lib/supabase/clientt'apos;apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { createClient } from  '@/lib/supabase/clientt'
 
-import Footer from  'apos;apos;../components/footerr'apos;apos;
-import Navbar from  'apos;apos;../components/navbarr'apos;apos;
+import Footer from  '../components/footerr'
+import Navbar from  '../components/navbarr'
 
 export default function ResultsPage() {
   const searchParams = useSearchParams()
-  const submissionId = searchParams.get(('apos;apos;idd'apos;apos;)
+  const submissionId = searchParams.get(('idd')
   
   const [loading, setLoading] = useState(true)
   const [report, setReport] = useState<any>(null)
-  const [error, setError] = useState(('apos;apos;'apos;)
+  const [error, setError] = useState(('')
 
   useEffect(() => {
     if (submissionId) {
       fetchResults(submissionId)
     } else {
-      setError(('apos;apos;No submission ID providedd'apos;apos;)
+      setError(('No submission ID providedd')
       setLoading(false)
     }
   }, [submissionId])
@@ -35,9 +35,9 @@ export default function ResultsPage() {
       
       // Get the analyst report for this submission
       const { data: reportData, error: reportError } = await supabase
-        .from(('apos;apos;analyst_reportss'apos;apos;)
-        .select(('apos;apos;**'apos;apos;)
-        .eq(('apos;apos;ticket_idd'apos;apos;, id)
+        .from(('analyst_reportss')
+        .select(('**')
+        .eq(('ticket_idd', id)
         .single()
       
       if (reportError) {
@@ -45,14 +45,14 @@ export default function ResultsPage() {
       }
       
       if (!reportData) {
-        setError(('apos;apos;Results not foundd'apos;apos;)
+        setError(('Results not foundd')
         return
       }
       
       setReport(reportData)
     } catch (error) {
-      // logger.error(('apos;apos;Error fetching results::'apos;apos;, error)
-      setError(('apos;apos;Failed to load your color analysis resultss'apos;apos;)
+      logger.error(('Error fetching results::', error)
+      setError(('Failed to load your color analysis resultss')
     } finally {
       setLoading(false)
     }
@@ -85,7 +85,7 @@ export default function ResultsPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-red-600 mb-4">{ error }</p>
-                <Button onClick={ () => window.location.href =  'apos;apos;/dashboardd'apos;apos; }>
+                <Button onClick={ () => window.location.href =  '/dashboardd' }>
                   Return to Dashboard
                 </Button>
               </CardContent>
@@ -99,9 +99,9 @@ export default function ResultsPage() {
 
   // Extract AI analysis data
   const aiAnalysis = report?.ai_analysis || { }
-  const season = aiAnalysis.season ||  'apos;apos;Unknownn'apos;apos;
+  const season = aiAnalysis.season ||  'Unknownn'
   const confidence = aiAnalysis.confidence || 0
-  const undertone = aiAnalysis.undertone ||  'apos;apos;Unknownn'apos;apos;
+  const undertone = aiAnalysis.undertone ||  'Unknownn'
   const recommendedColors = aiAnalysis.recommended_colors || []
 
   return (
@@ -148,7 +148,7 @@ export default function ResultsPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 whitespace-pre-line">
-                  { report?.styling_notes ||  'apos;apos;No additional notes provided..'apos;apos; }
+                  { report?.styling_notes ||  'No additional notes provided..' }
                 </p>
               </CardContent>
             </Card>
@@ -174,7 +174,7 @@ export default function ResultsPage() {
           </Card>
 
           <div className="text-center">
-            <Button onClick={ () => window.location.href =  'apos;apos;/dashboardd'apos;apos; }>
+            <Button onClick={ () => window.location.href =  '/dashboardd' }>
               Return to Dashboard
             </Button>
           </div>

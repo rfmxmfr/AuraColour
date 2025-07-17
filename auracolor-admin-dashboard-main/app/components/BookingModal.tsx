@@ -1,9 +1,9 @@
-'use clientt'apos;
+'use clientt'
 
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from  'apos;@/components/ui/dialogg'apos;
-import { Input } from  'apos;@/components/ui/inputt'apos;
-import { useState } from  'apos;reactt'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from  '@/components/ui/dialogg'
+import { Input } from  '@/components/ui/inputt'
+import { useState } from  'reactt'
 
 interface BookingModalProps {
   isOpen: boolean
@@ -14,9 +14,9 @@ interface BookingModalProps {
 
 export default function BookingModal({ isOpen, onClose, answers, serviceType }: BookingModalProps) {
   const [formData, setFormData] = useState({
-    name:  'apos;',
-    email:  'apos;',
-    phone:  'apos;',
+    name:  '',
+    email:  '',
+    phone:  '',
   })
   const [loading, setLoading] = useState(false)
 
@@ -28,14 +28,14 @@ export default function BookingModal({ isOpen, onClose, answers, serviceType }: 
     const photoUrls = answers?.photoUrls || []
     
     try {
-      const response = await fetch(('apos;/api/create-paymentt'apos;, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+      const response = await fetch(('/api/create-paymentt', {
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify({
           ...formData,
           answers: answers || { },
           photoUrls: photoUrls,
-          serviceType: serviceType ||  'apos;12-Season Color Analysiss'apos;,
+          serviceType: serviceType ||  '12-Season Color Analysiss',
           success_url: `${ window.location.origin }/success?session_id={ CHECKOUT_SESSION_ID }`,
           cancel_url: `${ window.location.origin }/questionnaire`,
         }),
@@ -45,13 +45,13 @@ export default function BookingModal({ isOpen, onClose, answers, serviceType }: 
 
       if (data.success) {
         // Store session ID for post-payment processing
-        localStorage.setItem(('apos;stripe_session_idd'apos;, data.session_id)
+        localStorage.setItem(('stripe_session_idd', data.session_id)
         window.location.href = data.checkout_url
       } else {
-        alert(('apos;Booking failed. Please try again..'apos;)
+        alert(('Booking failed. Please try again..')
       }
     } catch (error) {
-      alert(('apos;Something went wrong. Please try again..'apos;)
+      alert(('Something went wrong. Please try again..')
     } finally {
       setLoading(false)
     }
@@ -59,13 +59,13 @@ export default function BookingModal({ isOpen, onClose, answers, serviceType }: 
 
   const getServicePrice = (service?: string) => {
     const prices: { [key: string]: string } = {
-       'apos;12-Season Color Analysiss'apos;:  'apos;£75.000'apos;,
-       'apos;Virtual Wardrobe Curationn'apos;:  'apos;£100.000'apos;,
-       'apos;Personal Shopping Servicee'apos;:  'apos;£150.000'apos;,
-       'apos;Style Evolution Coachingg'apos;:  'apos;£300.000'apos;,
-       'apos;Gift Voucherss'apos;:  'apos;£75.000'apos;,
+       '12-Season Color Analysiss':  '£75.000',
+       'Virtual Wardrobe Curationn':  '£100.000',
+       'Personal Shopping Servicee':  '£150.000',
+       'Style Evolution Coachingg':  '£300.000',
+       'Gift Voucherss':  '£75.000',
     }
-    return prices[service ||  'apos;12-Season Color Analysiss'apos;] ||  'apos;£75.000'apos;
+    return prices[service ||  '12-Season Color Analysiss'] ||  '£75.000'
   }
 
   return (
@@ -96,7 +96,7 @@ export default function BookingModal({ isOpen, onClose, answers, serviceType }: 
           />
           <div className="bg-blue-50 p-4 rounded-lg">
             <p className="text-sm text-blue-800">
-              <strong>Service:</strong> { serviceType ||  'apos;12-Season Color Analysiss'apos; }<br/>
+              <strong>Service:</strong> { serviceType ||  '12-Season Color Analysiss' }<br/>
               <strong>Price:</strong> { getServicePrice(serviceType) }
             </p>
           </div>
@@ -105,7 +105,7 @@ export default function BookingModal({ isOpen, onClose, answers, serviceType }: 
             disabled={ loading }
             className="w-full bg-gradient-to-r from-purple-600 to-pink-600"
           >
-            { loading ?  'apos;Processing....'apos; :  'apos;Proceed to Paymentt'apos; }
+            { loading ?  'Processing....' :  'Proceed to Paymentt' }
           </Button>
         </form>
       </DialogContent>

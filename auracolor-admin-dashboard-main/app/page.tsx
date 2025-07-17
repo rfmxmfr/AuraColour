@@ -13,7 +13,7 @@ export default function Page() {
     <ThemeProvider>
       <m.main 
         className="min-h-screen text-primary"
-        style={ { background:  'apos;var(--bg-primary))'apos; } }
+        style={ { background:  'var(--bg-primary))' } }
         initial={ { opacity: 0 } }
         animate={ { opacity: 1 } }
         transition={ { duration: 0.5 } }

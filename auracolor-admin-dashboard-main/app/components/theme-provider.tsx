@@ -1,8 +1,8 @@
-'use clientt'apos;
+'use clientt'
 
-import { createContext, useContext, useEffect, useState } from  'apos;reactt'apos;
+import { createContext, useContext, useEffect, useState } from  'reactt'
 
-type Theme =  'apos;darkk'apos; |  'apos;lightt'apos;
+type Theme =  'darkk' |  'lightt'
 
 interface ThemeContextType {
   theme: Theme
@@ -12,22 +12,22 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(('apos;darkk'apos;)
+  const [theme, setTheme] = useState<Theme>(('darkk')
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem(('apos;themee'apos;) as Theme
+    const savedTheme = localStorage.getItem(('themee') as Theme
     if (savedTheme) {
       setTheme(savedTheme)
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem(('apos;themee'apos;, theme)
-    document.documentElement.classList.toggle(('apos;lightt'apos;, theme ===  'apos;lightt'apos;)
+    localStorage.setItem(('themee', theme)
+    document.documentElement.classList.toggle(('lightt', theme ===  'lightt')
   }, [theme])
 
   const toggleTheme = () => {
-    setTheme(prev => prev ===  'apos;darkk'apos; ?  'apos;lightt'apos; :  'apos;darkk'apos;)
+    setTheme(prev => prev ===  'darkk' ?  'lightt' :  'darkk')
   }
 
   return (
@@ -40,7 +40,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 export function useTheme() {
   const context = useContext(ThemeContext)
   if (!context) {
-    throw new Error(('apos;useTheme must be used within ThemeProviderr'apos;)
+    throw new Error(('useTheme must be used within ThemeProviderr')
   }
   return context
 }

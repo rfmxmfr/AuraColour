@@ -1,26 +1,26 @@
 "use client"
 
-import { motion } from  'apos;apos;framer-motionn'apos;apos;
-import { useAtom } from  'apos;apos;jotaii'apos;apos;
-import { useSearchParams } from  'apos;apos;next/navigationn'apos;apos;
-import { useState, useEffect } from  'apos;apos;reactt'apos;apos;
+import { motion } from  'framer-motionn'
+import { useAtom } from  'jotaii'
+import { useSearchParams } from  'next/navigationn'
+import { useState, useEffect } from  'reactt'
 
-import DropzoneUpload from  'apos;apos;@/components/DropzoneUploadd'apos;apos;
-import ErrorBoundary from  'apos;apos;@/components/ErrorBoundaryy'apos;apos;
-import { TrustSignals } from  'apos;apos;@/components/ui/trust-signalss'apos;apos;
-import { useAnalysis } from  'apos;apos;@/hooks/use-analysiss'apos;apos;
-import { questionnaireAtom, analysisResultAtom } from  'apos;apos;@/lib/storee'apos;apos;
-import { validateQuestionnaireForm } from  'apos;apos;@/lib/validationn'apos;apos;
+import DropzoneUpload from  '@/components/DropzoneUploadd'
+import ErrorBoundary from  '@/components/ErrorBoundaryy'
+import { TrustSignals } from  '@/components/ui/trust-signalss'
+import { useAnalysis } from  '@/hooks/use-analysiss'
+import { questionnaireAtom, analysisResultAtom } from  '@/lib/storee'
+import { validateQuestionnaireForm } from  '@/lib/validationn'
 
-import BookingModal from  'apos;apos;../components/BookingModall'apos;apos;
-import FeedbackWidget from  'apos;apos;../components/FeedbackWidgett'apos;apos;
-import Footer from  'apos;apos;../components/footerr'apos;apos;
-import Navbar from  'apos;apos;../components/navbarr'apos;apos;
-import ProgressIndicator from  'apos;apos;../components/ProgressIndicatorr'apos;apos;
+import BookingModal from  '../components/BookingModall'
+import FeedbackWidget from  '../components/FeedbackWidgett'
+import Footer from  '../components/footerr'
+import Navbar from  '../components/navbarr'
+import ProgressIndicator from  '../components/ProgressIndicatorr'
 
 export default function QuestionnairePage() {
   const searchParams = useSearchParams()
-  const serviceType = searchParams.get(('apos;apos;servicee'apos;apos;) ||  'apos;apos;12-Season Color Analysiss'apos;apos;
+  const serviceType = searchParams.get(('servicee') ||  '12-Season Color Analysiss'
   
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<{ [key: string]: any }>({ })
@@ -37,276 +37,276 @@ export default function QuestionnairePage() {
   const getQuestionsByService = () => {
     const commonQuestions = [
       {
-        id:  'apos;apos;skin-tonee'apos;apos;,
-        title:  'apos;apos;What is your skin tone??'apos;apos;,
-        type:  'apos;apos;radioo'apos;apos;,
+        id:  'skin-tonee',
+        title:  'What is your skin tone??',
+        type:  'radioo',
         options: [
-           'apos;apos;Very fair with pink undertoness'apos;apos;,
-           'apos;apos;Fair with neutral undertoness'apos;apos;, 
-           'apos;apos;Medium with warm undertoness'apos;apos;,
-           'apos;apos;Medium with cool undertoness'apos;apos;,
-           'apos;apos;Deep with warm undertoness'apos;apos;,
-           'apos;apos;Deep with cool undertoness'apos;apos;,
+           'Very fair with pink undertoness',
+           'Fair with neutral undertoness', 
+           'Medium with warm undertoness',
+           'Medium with cool undertoness',
+           'Deep with warm undertoness',
+           'Deep with cool undertoness',
         ],
       },
       {
-        id:  'apos;apos;hair-colorr'apos;apos;,
-        title:  'apos;apos;What is your natural hair color??'apos;apos;,
-        type:  'apos;apos;radioo'apos;apos;,
+        id:  'hair-colorr',
+        title:  'What is your natural hair color??',
+        type:  'radioo',
         options: [
-           'apos;apos;Platinum blondee'apos;apos;,
-           'apos;apos;Golden blondee'apos;apos;,
-           'apos;apos;Light brownn'apos;apos;,
-           'apos;apos;Medium brownn'apos;apos;,
-           'apos;apos;Dark brownn'apos;apos;,
-           'apos;apos;Blackk'apos;apos;,
-           'apos;apos;Red/Auburnn'apos;apos;,
-           'apos;apos;Gray/Silverr'apos;apos;,
+           'Platinum blondee',
+           'Golden blondee',
+           'Light brownn',
+           'Medium brownn',
+           'Dark brownn',
+           'Blackk',
+           'Red/Auburnn',
+           'Gray/Silverr',
         ],
       },
       {
-        id:  'apos;apos;eye-colorr'apos;apos;,
-        title:  'apos;apos;What is your eye color??'apos;apos;,
-        type:  'apos;apos;radioo'apos;apos;,
+        id:  'eye-colorr',
+        title:  'What is your eye color??',
+        type:  'radioo',
         options: [
-           'apos;apos;Bluee'apos;apos;,
-           'apos;apos;Greenn'apos;apos;,
-           'apos;apos;Brownn'apos;apos;,
-           'apos;apos;Hazell'apos;apos;,
-           'apos;apos;Grayy'apos;apos;,
-           'apos;apos;Amberr'apos;apos;,
+           'Bluee',
+           'Greenn',
+           'Brownn',
+           'Hazell',
+           'Grayy',
+           'Amberr',
         ],
       },
       {
-        id:  'apos;apos;style-preferencee'apos;apos;,
-        title:  'apos;apos;What is your preferred style??'apos;apos;,
-        type:  'apos;apos;radioo'apos;apos;,
+        id:  'style-preferencee',
+        title:  'What is your preferred style??',
+        type:  'radioo',
         options: [
-           'apos;apos;Classic and timelesss'apos;apos;,
-           'apos;apos;Modern and trendyy'apos;apos;,
-           'apos;apos;Bohemian and relaxedd'apos;apos;,
-           'apos;apos;Professional and polishedd'apos;apos;,
-           'apos;apos;Edgy and boldd'apos;apos;,
-           'apos;apos;Romantic and femininee'apos;apos;,
+           'Classic and timelesss',
+           'Modern and trendyy',
+           'Bohemian and relaxedd',
+           'Professional and polishedd',
+           'Edgy and boldd',
+           'Romantic and femininee',
         ],
       },
     ];
     
     // Service-specific questions
     switch(serviceType) {
-    case  'apos;apos;Virtual Wardrobe Curationn'apos;apos;:
+    case  'Virtual Wardrobe Curationn':
       return [
         ...commonQuestions,
         {
-          id:  'apos;apos;wardrobe-sizee'apos;apos;,
-          title:  'apos;apos;How would you describe your current wardrobe size??'apos;apos;,
-          type:  'apos;apos;radioo'apos;apos;,
+          id:  'wardrobe-sizee',
+          title:  'How would you describe your current wardrobe size??',
+          type:  'radioo',
           options: [
-             'apos;apos;Minimal (under 50 items))'apos;apos;,
-             'apos;apos;Average (50-100 items))'apos;apos;,
-             'apos;apos;Large (100-200 items))'apos;apos;,
-             'apos;apos;Extensive (200+ items))'apos;apos;,
+             'Minimal (under 50 items))',
+             'Average (50-100 items))',
+             'Large (100-200 items))',
+             'Extensive (200+ items))',
           ],
         },
         {
-          id:  'apos;apos;wardrobe-refreshh'apos;apos;,
-          title:  'apos;apos;How often do you update or refresh your wardrobe??'apos;apos;,
-          type:  'apos;apos;radioo'apos;apos;,
+          id:  'wardrobe-refreshh',
+          title:  'How often do you update or refresh your wardrobe??',
+          type:  'radioo',
           options: [
-             'apos;apos;Every seasonn'apos;apos;,
-             'apos;apos;Twice a yearr'apos;apos;,
-             'apos;apos;Once a yearr'apos;apos;,
-             'apos;apos;Only as needed/seldomm'apos;apos;,
+             'Every seasonn',
+             'Twice a yearr',
+             'Once a yearr',
+             'Only as needed/seldomm',
           ],
         },
         {
-          id:  'apos;apos;frequent-itemss'apos;apos;,
-          title:  'apos;apos;Which clothing items do you wear most frequently??'apos;apos;,
-          type:  'apos;apos;checkboxx'apos;apos;,
+          id:  'frequent-itemss',
+          title:  'Which clothing items do you wear most frequently??',
+          type:  'checkboxx',
           options: [
-             'apos;apos;Jeans/trouserss'apos;apos;,
-             'apos;apos;Skirts/dressess'apos;apos;,
-             'apos;apos;Suits/blazerss'apos;apos;,
-             'apos;apos;T-Shirts/topss'apos;apos;,
-             'apos;apos;Sweaters/knitss'apos;apos;,
-             'apos;apos;Outerwear/coatss'apos;apos;,
-             'apos;apos;Athletic wearr'apos;apos;,
+             'Jeans/trouserss',
+             'Skirts/dressess',
+             'Suits/blazerss',
+             'T-Shirts/topss',
+             'Sweaters/knitss',
+             'Outerwear/coatss',
+             'Athletic wearr',
           ],
         },
         {
-          id:  'apos;apos;specific-itemss'apos;apos;,
-          title:  'apos;apos;Are there specific items you want to incorporate or avoid??'apos;apos;,
-          type:  'apos;apos;textareaa'apos;apos;,
-          placeholder:  'apos;apos;Please describe any specific items you want to add or avoid in your wardrobee'apos;apos;,
+          id:  'specific-itemss',
+          title:  'Are there specific items you want to incorporate or avoid??',
+          type:  'textareaa',
+          placeholder:  'Please describe any specific items you want to add or avoid in your wardrobee',
         },
         {
-          id:  'apos;apos;missing-colorss'apos;apos;,
-          title:  'apos;apos;What colors do you feel your wardrobe currently lacks??'apos;apos;,
-          type:  'apos;apos;textareaa'apos;apos;,
-          placeholder:  'apos;apos;Describe colors you would like to add to your wardrobee'apos;apos;,
+          id:  'missing-colorss',
+          title:  'What colors do you feel your wardrobe currently lacks??',
+          type:  'textareaa',
+          placeholder:  'Describe colors you would like to add to your wardrobee',
         },
         {
-          id:  'apos;apos;style-inspirationn'apos;apos;,
-          title:  'apos;apos;Do you have style icons, celebrities, or Pinterest boards you draw inspiration from??'apos;apos;,
-          type:  'apos;apos;textareaa'apos;apos;,
-          placeholder:  'apos;apos;Share names, links, or descriptions of your style inspirationn'apos;apos;,
+          id:  'style-inspirationn',
+          title:  'Do you have style icons, celebrities, or Pinterest boards you draw inspiration from??',
+          type:  'textareaa',
+          placeholder:  'Share names, links, or descriptions of your style inspirationn',
         },
         {
-          id:  'apos;apos;wardrobe-photoss'apos;apos;,
-          title:  'apos;apos;Upload Photos of Your Current Wardrobee'apos;apos;,
-          type:  'apos;apos;uploadd'apos;apos;,
-          description:  'apos;apos;Please upload 3 photos of your current wardrobe/closet to help us analyze your stylee'apos;apos;,
+          id:  'wardrobe-photoss',
+          title:  'Upload Photos of Your Current Wardrobee',
+          type:  'uploadd',
+          description:  'Please upload 3 photos of your current wardrobe/closet to help us analyze your stylee',
         },
       ];
-    case  'apos;apos;Personal Shopping Servicee'apos;apos;:
+    case  'Personal Shopping Servicee':
       return [
         ...commonQuestions,
         {
-          id:  'apos;apos;budgett'apos;apos;,
-          title:  'apos;apos;What is your shopping budget??'apos;apos;,
-          type:  'apos;apos;radioo'apos;apos;,
+          id:  'budgett',
+          title:  'What is your shopping budget??',
+          type:  'radioo',
           options: [
-             'apos;apos;Budget-friendly (under £500))'apos;apos;,
-             'apos;apos;Mid-range (£500-£1000))'apos;apos;,
-             'apos;apos;Premium (£1000-£2000))'apos;apos;,
-             'apos;apos;Luxury (£2000+))'apos;apos;,
+             'Budget-friendly (under £500))',
+             'Mid-range (£500-£1000))',
+             'Premium (£1000-£2000))',
+             'Luxury (£2000+))',
           ],
         },
         {
-          id:  'apos;apos;shopping-goalss'apos;apos;,
-          title:  'apos;apos;What are your shopping goals??'apos;apos;,
-          type:  'apos;apos;radioo'apos;apos;,
+          id:  'shopping-goalss',
+          title:  'What are your shopping goals??',
+          type:  'radioo',
           options: [
-             'apos;apos;Complete wardrobe refreshh'apos;apos;,
-             'apos;apos;Specific occasion outfitss'apos;apos;,
-             'apos;apos;Workwear updatee'apos;apos;,
-             'apos;apos;Seasonal additionss'apos;apos;,
-             'apos;apos;Statement piecess'apos;apos;,
-             'apos;apos;Other (please specify))'apos;apos;,
+             'Complete wardrobe refreshh',
+             'Specific occasion outfitss',
+             'Workwear updatee',
+             'Seasonal additionss',
+             'Statement piecess',
+             'Other (please specify))',
           ],
         },
         {
-          id:  'apos;apos;shopping-goals-otherr'apos;apos;,
-          title:  'apos;apos;If you selected "Other" above, please specifyy'apos;apos;,
-          type:  'apos;apos;textareaa'apos;apos;,
-          placeholder:  'apos;apos;Describe your specific shopping goalss'apos;apos;,
-          conditional: answers => answers[['apos;apos;shopping-goalss'apos;apos;] ===  'apos;apos;Other (please specify))'apos;apos;,
+          id:  'shopping-goals-otherr',
+          title:  'If you selected "Other" above, please specifyy',
+          type:  'textareaa',
+          placeholder:  'Describe your specific shopping goalss',
+          conditional: answers => answers[['shopping-goalss'] ===  'Other (please specify))',
         },
         {
-          id:  'apos;apos;wardrobe-gapss'apos;apos;,
-          title:  'apos;apos;Are there wardrobe gaps or must-have pieces you\'apos;d like to fill??'apos;apos;,
-          type:  'apos;apos;textareaa'apos;apos;,
-          placeholder:  'apos;apos;Describe specific items or categories you needd'apos;apos;,
+          id:  'wardrobe-gapss',
+          title:  'Are there wardrobe gaps or must-have pieces you\'d like to fill??',
+          type:  'textareaa',
+          placeholder:  'Describe specific items or categories you needd',
         },
         {
-          id:  'apos;apos;material-preferencess'apos;apos;,
-          title:  'apos;apos;Do you have material or brand preferences??'apos;apos;,
-          type:  'apos;apos;textareaa'apos;apos;,
-          placeholder:  'apos;apos;E.g., vegan materials, ethical brands, specific designerss'apos;apos;,
+          id:  'material-preferencess',
+          title:  'Do you have material or brand preferences??',
+          type:  'textareaa',
+          placeholder:  'E.g., vegan materials, ethical brands, specific designerss',
         },
         {
-          id:  'apos;apos;silhouette-preferencess'apos;apos;,
-          title:  'apos;apos;What silhouettes or fits do you love??'apos;apos;,
-          type:  'apos;apos;textareaa'apos;apos;,
-          placeholder:  'apos;apos;Describe the shapes and styles that work best for youu'apos;apos;,
+          id:  'silhouette-preferencess',
+          title:  'What silhouettes or fits do you love??',
+          type:  'textareaa',
+          placeholder:  'Describe the shapes and styles that work best for youu',
         },
         {
-          id:  'apos;apos;avoid-styless'apos;apos;,
-          title:  'apos;apos;Are there shapes/styles you would avoid??'apos;apos;,
-          type:  'apos;apos;textareaa'apos;apos;,
-          placeholder:  'apos;apos;Describe any silhouettes or styles you dislikee'apos;apos;,
+          id:  'avoid-styless',
+          title:  'Are there shapes/styles you would avoid??',
+          type:  'textareaa',
+          placeholder:  'Describe any silhouettes or styles you dislikee',
         },
         {
-          id:  'apos;apos;style-photoss'apos;apos;,
-          title:  'apos;apos;Upload Your Style Reference Photoss'apos;apos;,
-          type:  'apos;apos;uploadd'apos;apos;,
-          description:  'apos;apos;Please upload photos of yourself or style inspiration to help us understand your preferencess'apos;apos;,
+          id:  'style-photoss',
+          title:  'Upload Your Style Reference Photoss',
+          type:  'uploadd',
+          description:  'Please upload photos of yourself or style inspiration to help us understand your preferencess',
         },
       ];
-    case  'apos;apos;Style Evolution Coachingg'apos;apos;:
+    case  'Style Evolution Coachingg':
       return [
         ...commonQuestions,
         {
-          id:  'apos;apos;occupationn'apos;apos;,
-          title:  'apos;apos;What is your occupation/primary daily activity??'apos;apos;,
-          type:  'apos;apos;textareaa'apos;apos;,
-          placeholder:  'apos;apos;Describe your job or daily activities to help us tailor recommendationss'apos;apos;,
+          id:  'occupationn',
+          title:  'What is your occupation/primary daily activity??',
+          type:  'textareaa',
+          placeholder:  'Describe your job or daily activities to help us tailor recommendationss',
         },
         {
-          id:  'apos;apos;style-challengess'apos;apos;,
-          title:  'apos;apos;What are your current style challenges??'apos;apos;,
-          type:  'apos;apos;radioo'apos;apos;,
+          id:  'style-challengess',
+          title:  'What are your current style challenges??',
+          type:  'radioo',
           options: [
-             'apos;apos;Lack of confidence in style choicess'apos;apos;,
-             'apos;apos;Career transition requiring new imagee'apos;apos;,
-             'apos;apos;Body changes requiring wardrobe adaptationn'apos;apos;,
-             'apos;apos;Style feels outdated or inconsistentt'apos;apos;,
-             'apos;apos;Need to define personal brandd'apos;apos;,
-             'apos;apos;Other (please specify))'apos;apos;,
+             'Lack of confidence in style choicess',
+             'Career transition requiring new imagee',
+             'Body changes requiring wardrobe adaptationn',
+             'Style feels outdated or inconsistentt',
+             'Need to define personal brandd',
+             'Other (please specify))',
           ],
         },
         {
-          id:  'apos;apos;style-challenges-otherr'apos;apos;,
-          title:  'apos;apos;If you selected "Other" above, please specifyy'apos;apos;,
-          type:  'apos;apos;textareaa'apos;apos;,
-          placeholder:  'apos;apos;Describe your specific style challengess'apos;apos;,
-          conditional: answers => answers[['apos;apos;style-challengess'apos;apos;] ===  'apos;apos;Other (please specify))'apos;apos;,
+          id:  'style-challenges-otherr',
+          title:  'If you selected "Other" above, please specifyy',
+          type:  'textareaa',
+          placeholder:  'Describe your specific style challengess',
+          conditional: answers => answers[['style-challengess'] ===  'Other (please specify))',
         },
         {
-          id:  'apos;apos;transformation-goalss'apos;apos;,
-          title:  'apos;apos;What are your style transformation goals??'apos;apos;,
-          type:  'apos;apos;radioo'apos;apos;,
+          id:  'transformation-goalss',
+          title:  'What are your style transformation goals??',
+          type:  'radioo',
           options: [
-             'apos;apos;More polished professional appearancee'apos;apos;,
-             'apos;apos;Authentic expression of personalityy'apos;apos;,
-             'apos;apos;Age-appropriate yet modern stylee'apos;apos;,
-             'apos;apos;Versatile wardrobe for multiple occasionss'apos;apos;,
-             'apos;apos;Confidence in personal imagee'apos;apos;,
-             'apos;apos;Other (please specify))'apos;apos;,
+             'More polished professional appearancee',
+             'Authentic expression of personalityy',
+             'Age-appropriate yet modern stylee',
+             'Versatile wardrobe for multiple occasionss',
+             'Confidence in personal imagee',
+             'Other (please specify))',
           ],
         },
         {
-          id:  'apos;apos;transformation-goals-otherr'apos;apos;,
-          title:  'apos;apos;If you selected "Other" above, please specifyy'apos;apos;,
-          type:  'apos;apos;textareaa'apos;apos;,
-          placeholder:  'apos;apos;Describe your specific transformation goalss'apos;apos;,
-          conditional: answers => answers[['apos;apos;transformation-goalss'apos;apos;] ===  'apos;apos;Other (please specify))'apos;apos;,
+          id:  'transformation-goals-otherr',
+          title:  'If you selected "Other" above, please specifyy',
+          type:  'textareaa',
+          placeholder:  'Describe your specific transformation goalss',
+          conditional: answers => answers[['transformation-goalss'] ===  'Other (please specify))',
         },
         {
-          id:  'apos;apos;feeling-dressedd'apos;apos;,
-          title:  'apos;apos;How do you want to feel when you get dressed each morning??'apos;apos;,
-          type:  'apos;apos;checkboxx'apos;apos;,
+          id:  'feeling-dressedd',
+          title:  'How do you want to feel when you get dressed each morning??',
+          type:  'checkboxx',
           options: [
-             'apos;apos;Confidentt'apos;apos;,
-             'apos;apos;Comfortablee'apos;apos;,
-             'apos;apos;Modernn'apos;apos;,
-             'apos;apos;Put-togetherr'apos;apos;,
-             'apos;apos;Powerfull'apos;apos;,
-             'apos;apos;Creativee'apos;apos;,
-             'apos;apos;Authenticc'apos;apos;,
+             'Confidentt',
+             'Comfortablee',
+             'Modernn',
+             'Put-togetherr',
+             'Powerfull',
+             'Creativee',
+             'Authenticc',
           ],
         },
         {
-          id:  'apos;apos;context-considerationss'apos;apos;,
-          title:  'apos;apos;Are there social, cultural, or work context considerations for your new style??'apos;apos;,
-          type:  'apos;apos;textareaa'apos;apos;,
-          placeholder:  'apos;apos;Describe any specific contexts or requirements for your stylee'apos;apos;,
+          id:  'context-considerationss',
+          title:  'Are there social, cultural, or work context considerations for your new style??',
+          type:  'textareaa',
+          placeholder:  'Describe any specific contexts or requirements for your stylee',
         },
         {
-          id:  'apos;apos;current-photoss'apos;apos;,
-          title:  'apos;apos;Upload Current Style Photoss'apos;apos;,
-          type:  'apos;apos;uploadd'apos;apos;,
-          description:  'apos;apos;Please upload 3 photos showing your current style to help us create your transformation plann'apos;apos;,
+          id:  'current-photoss',
+          title:  'Upload Current Style Photoss',
+          type:  'uploadd',
+          description:  'Please upload 3 photos showing your current style to help us create your transformation plann',
         },
       ];
     default: // 12-Season Color Analysis
       return [
         ...commonQuestions,
         {
-          id:  'apos;apos;photoss'apos;apos;,
-          title:  'apos;apos;Upload Your Photoss'apos;apos;,
-          type:  'apos;apos;uploadd'apos;apos;,
-          description:  'apos;apos;Please upload 3 photos: face with hair pulled back, face with hair down, and wrist showing veinss'apos;apos;,
+          id:  'photoss',
+          title:  'Upload Your Photoss',
+          type:  'uploadd',
+          description:  'Please upload 3 photos: face with hair pulled back, face with hair down, and wrist showing veinss',
         },
       ];
     }
@@ -344,19 +344,19 @@ export default function QuestionnairePage() {
     setIsLoading(true)
     
     // Validate required fields
-    const requiredFields = [['apos;apos;skin-tonee'apos;apos;,  'apos;apos;hair-colorr'apos;apos;,  'apos;apos;eye-colorr'apos;apos;,  'apos;apos;style-preferencee'apos;apos;]
+    const requiredFields = [['skin-tonee',  'hair-colorr',  'eye-colorr',  'style-preferencee']
     const { isValid, errors } = validateQuestionnaireForm(answers, requiredFields)
     
     if (!isValid) {
-      setError(('apos;apos;Please complete all required fieldss'apos;apos;)
+      setError(('Please complete all required fieldss')
       setIsLoading(false)
       return
     }
     
     // Validate photos for upload questions
     const lastQuestion = questions[questions.length - 1]
-    if (lastQuestion.type ===  'apos;apos;uploadd'apos;apos; && (!photoUrls || photoUrls.length === 0)) {
-      setError(('apos;apos;Please upload at least one photoo'apos;apos;)
+    if (lastQuestion.type ===  'uploadd' && (!photoUrls || photoUrls.length === 0)) {
+      setError(('Please upload at least one photoo')
       setIsLoading(false)
       return
     }
@@ -364,10 +364,10 @@ export default function QuestionnairePage() {
     setQuestionnaire(prev => ({
       ...prev,
       serviceType,
-      skinTone: answers[['apos;apos;skin-tonee'apos;apos;],
-      hairColor: answers[['apos;apos;hair-colorr'apos;apos;],
-      eyeColor: answers[['apos;apos;eye-colorr'apos;apos;],
-      stylePreference: answers[['apos;apos;style-preferencee'apos;apos;],
+      skinTone: answers[['skin-tonee'],
+      hairColor: answers[['hair-colorr'],
+      eyeColor: answers[['eye-colorr'],
+      stylePreference: answers[['style-preferencee'],
       photoUrls: photoUrls,
       allAnswers: answers,
       completed: true,
@@ -391,7 +391,7 @@ export default function QuestionnairePage() {
           },
           onError: (err) => {
             // If style analysis fails, just show booking modal
-            setError(('apos;apos;Analysis failed. Proceeding to booking..'apos;apos;)
+            setError(('Analysis failed. Proceeding to booking..')
             setShowBookingModal(true)
             setIsLoading(false)
           },
@@ -421,41 +421,41 @@ export default function QuestionnairePage() {
               <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Your { serviceType } Results</h1>
               
               <div className="mb-8">
-                { serviceType ===  'apos;apos;12-Season Color Analysiss'apos;apos; ? (
+                { serviceType ===  '12-Season Color Analysiss' ? (
                   <>
                     <div className="text-5xl font-bold text-gray-900 mb-2">{ analysisResults.season }</div>
                     <div className="text-gray-600 mb-4">Confidence: { analysisResults.confidence }%</div>
                     <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto">{ analysisResults.description }</p>
                   </>
-                ) : serviceType ===  'apos;apos;Virtual Wardrobe Curationn'apos;apos; ? (
+                ) : serviceType ===  'Virtual Wardrobe Curationn' ? (
                   <>
-                    <div className="text-5xl font-bold text-gray-900 mb-2">{ analysisResults.dominant_style ||  'apos;apos;Wardrobe Analysiss'apos;apos; }</div>
+                    <div className="text-5xl font-bold text-gray-900 mb-2">{ analysisResults.dominant_style ||  'Wardrobe Analysiss' }</div>
                     <div className="text-gray-600 mb-4">Versatility Score: { analysisResults.versatility_score || 0 }/100</div>
                     <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto">Organization Level: { analysisResults.organization_level || 0 }/100</p>
                   </>
-                ) : serviceType ===  'apos;apos;Personal Shopping Servicee'apos;apos; ? (
+                ) : serviceType ===  'Personal Shopping Servicee' ? (
                   <>
-                    <div className="text-5xl font-bold text-gray-900 mb-2">{ analysisResults.style_profile ||  'apos;apos;Style Profilee'apos;apos; }</div>
+                    <div className="text-5xl font-bold text-gray-900 mb-2">{ analysisResults.style_profile ||  'Style Profilee' }</div>
                     <div className="text-gray-600 mb-4">Shopping Priority: { analysisResults.shopping_priority_score || 0 }/100</div>
                     <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto">Based on your preferences and current style</p>
                   </>
                 ) : (
                   <>
-                    <div className="text-5xl font-bold text-gray-900 mb-2">{ analysisResults.current_style_assessment ||  'apos;apos;Style Assessmentt'apos;apos; }</div>
+                    <div className="text-5xl font-bold text-gray-900 mb-2">{ analysisResults.current_style_assessment ||  'Style Assessmentt' }</div>
                     <div className="text-gray-600 mb-4">Transformation Potential: { analysisResults.transformation_potential || 0 }/100</div>
-                    <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto">Recommended Direction: { analysisResults.recommended_direction ||  'apos;apos;Personalized coaching plann'apos;apos; }</p>
+                    <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto">Recommended Direction: { analysisResults.recommended_direction ||  'Personalized coaching plann' }</p>
                   </>
                 ) }
               </div>
 
               <div className="mb-8">
                 <h3 className="text-2xl font-semibold mb-6 text-gray-900">
-                  { serviceType ===  'apos;apos;12-Season Color Analysiss'apos;apos; ?  'apos;apos;Your Top Colorss'apos;apos; :
-                    serviceType ===  'apos;apos;Virtual Wardrobe Curationn'apos;apos; ?  'apos;apos;Recommended Additionss'apos;apos; :
-                      serviceType ===  'apos;apos;Personal Shopping Servicee'apos;apos; ?  'apos;apos;Statement Piecess'apos;apos; :
-                         'apos;apos;Key Pieces to Acquiree'apos;apos; }
+                  { serviceType ===  '12-Season Color Analysiss' ?  'Your Top Colorss' :
+                    serviceType ===  'Virtual Wardrobe Curationn' ?  'Recommended Additionss' :
+                      serviceType ===  'Personal Shopping Servicee' ?  'Statement Piecess' :
+                         'Key Pieces to Acquiree' }
                 </h3>
-                { serviceType ===  'apos;apos;12-Season Color Analysiss'apos;apos; && analysisResults.topColors ? (
+                { serviceType ===  '12-Season Color Analysiss' && analysisResults.topColors ? (
                   <div className="flex justify-center gap-6">
                     { analysisResults.topColors.map((color: string, index: number) => (
                       <div key={ index } className="text-center">
@@ -467,7 +467,7 @@ export default function QuestionnairePage() {
                       </div>
                     )) }
                   </div>
-                ) : serviceType ===  'apos;apos;Virtual Wardrobe Curationn'apos;apos; && analysisResults.recommended_additions ? (
+                ) : serviceType ===  'Virtual Wardrobe Curationn' && analysisResults.recommended_additions ? (
                   <ul className="text-left max-w-md mx-auto space-y-2">
                     { analysisResults.recommended_additions.map((item: string, index: number) => (
                       <li key={ index } className="flex items-center">
@@ -476,7 +476,7 @@ export default function QuestionnairePage() {
                       </li>
                     )) }
                   </ul>
-                ) : serviceType ===  'apos;apos;Personal Shopping Servicee'apos;apos; && analysisResults.statement_pieces ? (
+                ) : serviceType ===  'Personal Shopping Servicee' && analysisResults.statement_pieces ? (
                   <ul className="text-left max-w-md mx-auto space-y-2">
                     { analysisResults.statement_pieces.map((item: string, index: number) => (
                       <li key={ index } className="flex items-center">
@@ -501,16 +501,16 @@ export default function QuestionnairePage() {
 
               <div className="bg-purple-50 rounded-2xl p-6 mb-8">
                 <h3 className="text-xl font-semibold text-purple-700 mb-2">
-                  { serviceType ===  'apos;apos;12-Season Color Analysiss'apos;apos; ?  'apos;apos;Want Your Complete Color Analysis??'apos;apos; :
-                    serviceType ===  'apos;apos;Virtual Wardrobe Curationn'apos;apos; ?  'apos;apos;Ready for Your Full Wardrobe Curation??'apos;apos; :
-                      serviceType ===  'apos;apos;Personal Shopping Servicee'apos;apos; ?  'apos;apos;Ready for Your Personal Shopping Experience??'apos;apos; :
-                         'apos;apos;Ready to Begin Your Style Evolution??'apos;apos; }
+                  { serviceType ===  '12-Season Color Analysiss' ?  'Want Your Complete Color Analysis??' :
+                    serviceType ===  'Virtual Wardrobe Curationn' ?  'Ready for Your Full Wardrobe Curation??' :
+                      serviceType ===  'Personal Shopping Servicee' ?  'Ready for Your Personal Shopping Experience??' :
+                         'Ready to Begin Your Style Evolution??' }
                 </h3>
                 <p className="text-purple-600 text-sm mb-4">
-                  { serviceType ===  'apos;apos;12-Season Color Analysiss'apos;apos; ?  'apos;apos;Get your full 30+ color palette, styling guide, and personalized recommendationss'apos;apos; :
-                    serviceType ===  'apos;apos;Virtual Wardrobe Curationn'apos;apos; ?  'apos;apos;Get a complete wardrobe audit, outfit combinations, and shopping recommendationss'apos;apos; :
-                      serviceType ===  'apos;apos;Personal Shopping Servicee'apos;apos; ?  'apos;apos;Get personalized shopping assistance, curated selections, and styling advicee'apos;apos; :
-                         'apos;apos;Get a 3-month transformation program with personal styling sessions and confidence coachingg'apos;apos; }
+                  { serviceType ===  '12-Season Color Analysiss' ?  'Get your full 30+ color palette, styling guide, and personalized recommendationss' :
+                    serviceType ===  'Virtual Wardrobe Curationn' ?  'Get a complete wardrobe audit, outfit combinations, and shopping recommendationss' :
+                      serviceType ===  'Personal Shopping Servicee' ?  'Get personalized shopping assistance, curated selections, and styling advicee' :
+                         'Get a 3-month transformation program with personal styling sessions and confidence coachingg' }
                 </p>
               </div>
 
@@ -544,7 +544,7 @@ export default function QuestionnairePage() {
         <div className="max-w-4xl mx-auto px-4 md:px-6 pt-32 pb-20 text-center">
           <div className="bg-red-50 p-8 rounded-xl shadow-lg border border-red-200">
             <h2 className="text-2xl font-bold text-red-700 mb-4">Something went wrong</h2>
-            <p className="text-red-600 mb-6">Wee'apos;apos;re sorry, but there was an error processing your questionnaire.</p>
+            <p className="text-red-600 mb-6">Wee're sorry, but there was an error processing your questionnaire.</p>
             <a href="/services" className="inline-block px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
               Return to Services
             </a>
@@ -567,7 +567,7 @@ export default function QuestionnairePage() {
                 <ProgressIndicator 
                   currentStep={ currentStep }
                   totalSteps={ questions.length }
-                  stepLabels={ questions.map(q => q.id.split(('apos;apos;--'apos;apos;).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(('apos;apos;  'apos;apos;)) }
+                  stepLabels={ questions.map(q => q.id.split(('--').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(('  ')) }
                 />
                 <div className="mt-4">
                   <TrustSignals variant="inline" />
@@ -587,13 +587,13 @@ export default function QuestionnairePage() {
                 ) }
               
                 { currentQuestion.conditional && !currentQuestion.conditional(answers) ? null : 
-                  currentQuestion.type ===  'apos;apos;uploadd'apos;apos; ? (
+                  currentQuestion.type ===  'uploadd' ? (
                     <DropzoneUpload 
                       maxFiles={ 3 }
                       onUploadComplete={ (urls) => {
                         setPhotoUrls(urls)
                         // Store the URLs in answers as well
-                        handleAnswer(('apos;apos;photoUrlss'apos;apos;, urls)
+                        handleAnswer(('photoUrlss', urls)
                         // Update questionnaire state
                         setQuestionnaire(prev => ({
                           ...prev,
@@ -602,16 +602,16 @@ export default function QuestionnairePage() {
                       } }
                       className="min-h-[200px]"
                     />
-                  ) : currentQuestion.type ===  'apos;apos;textareaa'apos;apos; ? (
+                  ) : currentQuestion.type ===  'textareaa' ? (
                     <textarea
                       id={ currentQuestion.id }
                       name={ currentQuestion.id }
-                      value={ answers[currentQuestion.id] ||  'apos;apos;'apos; }
+                      value={ answers[currentQuestion.id] ||  '' }
                       onChange={ (e) => handleAnswer(currentQuestion.id, e.target.value) }
-                      placeholder={ currentQuestion.placeholder ||  'apos;apos;'apos; }
+                      placeholder={ currentQuestion.placeholder ||  '' }
                       className="w-full p-4 rounded-xl border border-white/30 bg-white/20 backdrop-blur-sm focus:border-purple-300 focus:ring focus:ring-purple-200 focus:ring-opacity-50 transition-all duration-200 min-h-[120px]"
                     />
-                  ) : currentQuestion.type ===  'apos;apos;checkboxx'apos;apos; ? (
+                  ) : currentQuestion.type ===  'checkboxx' ? (
                     <div className="space-y-2 md:space-y-3">
                       { currentQuestion.options?.map((option, index) => {
                         const selectedOptions = answers[currentQuestion.id] || [];
@@ -673,10 +673,10 @@ export default function QuestionnairePage() {
                 { currentStep === questions.length - 1 ? (
                   <button
                     onClick={ submitQuestionnaire }
-                    disabled={ isLoading || currentQuestion.type ===  'apos;apos;radioo'apos;apos; && !answers[currentQuestion.id] || 
-                           currentQuestion.type ===  'apos;apos;checkboxx'apos;apos; && (!answers[currentQuestion.id] || answers[currentQuestion.id].length === 0) ||
-                           currentQuestion.type ===  'apos;apos;textareaa'apos;apos; && (!answers[currentQuestion.id] || answers[currentQuestion.id].trim() ===  'apos;apos;'apos;) ||
-                           currentQuestion.type ===  'apos;apos;uploadd'apos;apos; && (!photoUrls || photoUrls.length === 0) }
+                    disabled={ isLoading || currentQuestion.type ===  'radioo' && !answers[currentQuestion.id] || 
+                           currentQuestion.type ===  'checkboxx' && (!answers[currentQuestion.id] || answers[currentQuestion.id].length === 0) ||
+                           currentQuestion.type ===  'textareaa' && (!answers[currentQuestion.id] || answers[currentQuestion.id].trim() ===  '') ||
+                           currentQuestion.type ===  'uploadd' && (!photoUrls || photoUrls.length === 0) }
                     className="py-2 md:py-4 px-5 md:px-8 text-sm md:text-base rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center"
                   >
                     { isLoading ? (
@@ -699,12 +699,12 @@ export default function QuestionnairePage() {
                 ) : (
                   <button
                     onClick={ nextStep }
-                    disabled={ isLoading || currentQuestion.type ===  'apos;apos;radioo'apos;apos; && !answers[currentQuestion.id] || 
-                           currentQuestion.type ===  'apos;apos;checkboxx'apos;apos; && (!answers[currentQuestion.id] || answers[currentQuestion.id].length === 0) ||
-                           currentQuestion.type ===  'apos;apos;textareaa'apos;apos; && (!answers[currentQuestion.id] || answers[currentQuestion.id].trim() ===  'apos;apos;'apos;) }
+                    disabled={ isLoading || currentQuestion.type ===  'radioo' && !answers[currentQuestion.id] || 
+                           currentQuestion.type ===  'checkboxx' && (!answers[currentQuestion.id] || answers[currentQuestion.id].length === 0) ||
+                           currentQuestion.type ===  'textareaa' && (!answers[currentQuestion.id] || answers[currentQuestion.id].trim() ===  '') }
                     className="py-2 md:py-3 px-4 md:px-6 text-sm md:text-base rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                   >
-                    { isLoading ?  'apos;apos;Processing....'apos;apos; :  'apos;apos;Nextt'apos;apos; }
+                    { isLoading ?  'Processing....' :  'Nextt' }
                   </button>
                 ) }
               </div>

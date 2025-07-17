@@ -10,28 +10,28 @@ interface ColorAnalysisModalProps {
 export default function ColorAnalysisModal({ isOpen, onClose }: ColorAnalysisModalProps) {
   return (
     <AnimatePresence>
-      {isOpen && (
+      { isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <motion.div
             className="fixed inset-0 bg-black/80 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
+            initial={ { opacity: 0 } }
+            animate={ { opacity: 1 } }
+            exit={ { opacity: 0 } }
+            onClick={ onClose }
           />
           <motion.div
             className="relative bg-black/90 backdrop-blur-md rounded-2xl p-8 max-w-2xl w-full border border-orange-500/20 max-h-[80vh] overflow-y-auto"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.3 }}
+            initial={ { opacity: 0, scale: 0.9 } }
+            animate={ { opacity: 1, scale: 1 } }
+            exit={ { opacity: 0, scale: 0.9 } }
+            transition={ { duration: 0.3 } }
           >
             <button
-              onClick={onClose}
+              onClick={ onClose }
               className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
 
@@ -104,7 +104,7 @@ export default function ColorAnalysisModal({ isOpen, onClose }: ColorAnalysisMod
 
             <div className="mt-8 flex gap-4">
               <button
-                onClick={onClose}
+                onClick={ onClose }
                 className="flex-1 py-3 px-6 rounded-full text-white bg-gray-600 hover:bg-gray-700 transition-colors"
               >
                 Close
@@ -118,7 +118,7 @@ export default function ColorAnalysisModal({ isOpen, onClose }: ColorAnalysisMod
             </div>
           </motion.div>
         </div>
-      )}
+      ) }
     </AnimatePresence>
   )
 }

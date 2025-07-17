@@ -2,7 +2,7 @@ const { ColorFeatures, findBestSeason, calculateSeasonScore, SEASON_RULES } = re
 
 // Test the 12-season analysis rules
 function test12SeasonRules() {
-  // console.log('🧪 Testing 12-Season Analysis Rules...\n')
+  logger.info('🧪 Testing 12-Season Analysis Rules...\n')
 
   // Test case 1: Light Spring features
   const lightSpringFeatures = {
@@ -15,10 +15,10 @@ function test12SeasonRules() {
   }
 
   const result1 = findBestSeason(lightSpringFeatures)
-  // console.log('Test 1 - Light Spring Features:')
-  // console.log('Input:', lightSpringFeatures)
-  // console.log('Result:', result1)
-  // console.log('Expected: Light Spring or similar warm/light season\n')
+  logger.info('Test 1 - Light Spring Features:')
+  logger.info('Input:', lightSpringFeatures)
+  logger.info('Result:', result1)
+  logger.info('Expected: Light Spring or similar warm/light season\n')
 
   // Test case 2: Deep Winter features
   const deepWinterFeatures = {
@@ -31,10 +31,10 @@ function test12SeasonRules() {
   }
 
   const result2 = findBestSeason(deepWinterFeatures)
-  // console.log('Test 2 - Deep Winter Features:')
-  // console.log('Input:', deepWinterFeatures)
-  // console.log('Result:', result2)
-  // console.log('Expected: Deep Winter or similar cool/dark season\n')
+  logger.info('Test 2 - Deep Winter Features:')
+  logger.info('Input:', deepWinterFeatures)
+  logger.info('Result:', result2)
+  logger.info('Expected: Deep Winter or similar cool/dark season\n')
 
   // Test case 3: Soft Autumn features
   const softAutumnFeatures = {
@@ -47,23 +47,23 @@ function test12SeasonRules() {
   }
 
   const result3 = findBestSeason(softAutumnFeatures)
-  // console.log('Test 3 - Soft Autumn Features:')
-  // console.log('Input:', softAutumnFeatures)
-  // console.log('Result:', result3)
-  // console.log('Expected: Soft Autumn or similar warm/muted season\n')
+  logger.info('Test 3 - Soft Autumn Features:')
+  logger.info('Input:', softAutumnFeatures)
+  logger.info('Result:', result3)
+  logger.info('Expected: Soft Autumn or similar warm/muted season\n')
 
   // Show all available seasons
-  // console.log('📋 Available Seasons:')
+  logger.info('📋 Available Seasons:')
   SEASON_RULES.forEach((rule, index) => {
-    // console.log(`${ index + 1 }. ${ rule.season } (${ rule.category } - ${ rule.subtype })`)
+    logger.info(`${ index + 1 }. ${ rule.season } (${ rule.category } - ${ rule.subtype })`)
   })
 
-  // console.log('\n✅ 12-Season Rules Test Complete')
+  logger.info('\n✅ 12-Season Rules Test Complete')
 }
 
 // Run the test
 try {
   test12SeasonRules()
 } catch (error) {
-  // console.error('❌ Test failed:', error.message)
+  logger.error('❌ Test failed:', error.message)
 }

@@ -1,38 +1,38 @@
-'apos;use clientt'apos;apos;
+'use clientt'
 
-import { useEffect, useState } from  'apos;apos;reactt'apos;apos;
+import { useEffect, useState } from  'reactt'
 
-import { Button } from  'apos;apos;@/components/ui/buttonn'apos;apos;
-import { sendPushNotification } from  'apos;apos;@/lib/integrationss'apos;apos;
+import { Button } from  '@/components/ui/buttonn'
+import { sendPushNotification } from  '@/lib/integrationss'
 
 export default function NotificationSetup() {
-  const [permission, setPermission] = useState<NotificationPermission>(('apos;apos;defaultt'apos;apos;)
+  const [permission, setPermission] = useState<NotificationPermission>(('defaultt')
 
   useEffect(() => {
-    if (('apos;apos;Notificationn'apos;apos; in window) {
+    if (('Notificationn' in window) {
       setPermission(Notification.permission)
     }
   }, [])
 
   const requestPermission = async () => {
-    if (('apos;apos;Notificationn'apos;apos; in window) {
+    if (('Notificationn' in window) {
       const result = await Notification.requestPermission()
       setPermission(result)
       
-      if (result ===  'apos;apos;grantedd'apos;apos;) {
+      if (result ===  'grantedd') {
         sendPushNotification(
-           'apos;apos;AuraColor Notifications Enabled! ðŸŽ¨¨'apos;apos;,
-           'apos;apos;You\'apos;ll now receive updates about your color analysis and styling services..'apos;apos;
+           'AuraColor Notifications Enabled! ðŸŽ¨¨',
+           'You\'ll now receive updates about your color analysis and styling services..'
         )
       }
     }
   }
 
-  if (!(('apos;apos;Notificationn'apos;apos; in window)) {
+  if (!(('Notificationn' in window)) {
     return null
   }
 
-  if (permission ===  'apos;apos;grantedd'apos;apos;) {
+  if (permission ===  'grantedd') {
     return (
       <div className="bg-green-50 border border-green-200 rounded-lg p-4">
         <div className="flex items-center">
@@ -43,7 +43,7 @@ export default function NotificationSetup() {
     )
   }
 
-  if (permission ===  'apos;apos;deniedd'apos;apos;) {
+  if (permission ===  'deniedd') {
     return (
       <div className="bg-red-50 border border-red-200 rounded-lg p-4">
         <div className="flex items-center">

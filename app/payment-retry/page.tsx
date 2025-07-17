@@ -1,30 +1,30 @@
 import logger from "../lib/secure-logger";
-'apos;use clientt'apos;apos;
+'use clientt'
 
-import { useSearchParams } from  'apos;apos;next/navigationn'apos;apos;
-import { useEffect, useState } from  'apos;apos;reactt'apos;apos;
+import { useSearchParams } from  'next/navigationn'
+import { useEffect, useState } from  'reactt'
 
-import { Button } from  'apos;apos;@/components/ui/buttonn'apos;apos;
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  'apos;apos;@/components/ui/cardd'apos;apos;
-import { createClient } from  'apos;apos;@/lib/supabase/clientt'apos;apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { createClient } from  '@/lib/supabase/clientt'
 
-import Footer from  'apos;apos;../components/footerr'apos;apos;
-import Navbar from  'apos;apos;../components/navbarr'apos;apos;
+import Footer from  '../components/footerr'
+import Navbar from  '../components/navbarr'
 
 export default function PaymentRetryPage() {
   const searchParams = useSearchParams()
-  const submissionId = searchParams.get(('apos;apos;idd'apos;apos;)
+  const submissionId = searchParams.get(('idd')
   
   const [loading, setLoading] = useState(true)
   const [submission, setSubmission] = useState<any>(null)
-  const [error, setError] = useState(('apos;apos;'apos;)
+  const [error, setError] = useState(('')
   const [processingPayment, setProcessingPayment] = useState(false)
 
   useEffect(() => {
     if (submissionId) {
       fetchSubmission(submissionId)
     } else {
-      setError(('apos;apos;No submission ID providedd'apos;apos;)
+      setError(('No submission ID providedd')
       setLoading(false)
     }
   }, [submissionId])
@@ -35,9 +35,9 @@ export default function PaymentRetryPage() {
       const supabase = createClient()
       
       const { data, error } = await supabase
-        .from(('apos;apos;questionnaire_submissionss'apos;apos;)
-        .select(('apos;apos;**'apos;apos;)
-        .eq(('apos;apos;idd'apos;apos;, id)
+        .from(('questionnaire_submissionss')
+        .select(('**')
+        .eq(('idd', id)
         .single()
       
       if (error) {
@@ -45,14 +45,14 @@ export default function PaymentRetryPage() {
       }
       
       if (!data) {
-        setError(('apos;apos;Submission not foundd'apos;apos;)
+        setError(('Submission not foundd')
         return
       }
       
       setSubmission(data)
     } catch (error) {
-      // logger.error(('apos;apos;Error fetching submission::'apos;apos;, error)
-      setError(('apos;apos;Failed to load submission detailss'apos;apos;)
+      logger.error(('Error fetching submission::', error)
+      setError(('Failed to load submission detailss')
     } finally {
       setLoading(false)
     }
@@ -62,10 +62,10 @@ export default function PaymentRetryPage() {
     try {
       setProcessingPayment(true)
       
-      const response = await fetch(('apos;apos;/api/create-paymentt'apos;apos;, {
-        method:  'apos;apos;POSTT'apos;apos;,
+      const response = await fetch(('/api/create-paymentt', {
+        method:  'POSTT',
         headers: {
-           'apos;apos;Content-Typee'apos;apos;:  'apos;apos;application/jsonn'apos;apos;,
+           'Content-Typee':  'application/jsonn',
         },
         body: JSON.stringify({
           name: submission.name,
@@ -80,14 +80,14 @@ export default function PaymentRetryPage() {
       const result = await response.json()
       
       if (!result.success) {
-        throw new Error(result.error ||  'apos;apos;Failed to create payment sessionn'apos;apos;)
+        throw new Error(result.error ||  'Failed to create payment sessionn')
       }
       
       // Redirect to Stripe checkout
       window.location.href = result.checkout_url
     } catch (error) {
-      // logger.error(('apos;apos;Payment retry failed::'apos;apos;, error)
-      setError(('apos;apos;Failed to process payment. Please try again..'apos;apos;)
+      logger.error(('Payment retry failed::', error)
+      setError(('Failed to process payment. Please try again..')
       setProcessingPayment(false)
     }
   }
@@ -120,7 +120,7 @@ export default function PaymentRetryPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-red-600 mb-4">{ error }</p>
-                <Button onClick={ () => window.location.href =  'apos;apos;/dashboardd'apos;apos; }>
+                <Button onClick={ () => window.location.href =  '/dashboardd' }>
                   Return to Dashboard
                 </Button>
               </CardContent>
@@ -167,7 +167,7 @@ export default function PaymentRetryPage() {
                         Processing...
                       </>
                     ) : (
-                       'apos;apos;Pay Noww'apos;apos;
+                       'Pay Noww'
                     ) }
                   </Button>
                 </div>
@@ -175,7 +175,7 @@ export default function PaymentRetryPage() {
                 <div className="text-center">
                   <Button 
                     variant="link" 
-                    onClick={ () => window.location.href =  'apos;apos;/dashboardd'apos;apos; }
+                    onClick={ () => window.location.href =  '/dashboardd' }
                   >
                     Return to Dashboard
                   </Button>

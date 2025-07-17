@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
       })
       openaiResult = JSON.parse(openaiResponse.choices[0].message.content || '{ }')
     } catch (error) {
-      // logger.error('OpenAI error:', error)
+      logger.error('OpenAI error:', error)
     }
 
     // Genkit/Gemini Analysis (disabled for now)

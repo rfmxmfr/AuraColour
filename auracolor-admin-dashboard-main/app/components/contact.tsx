@@ -18,7 +18,7 @@ export default function Contact() {
         >
           <h2 className="mb-4 text-3xl font-bold tracking-tighter sm:text-4xl text-white">Get in Touch</h2>
           <p className="mb-8 text-gray-400">
-            Ready to discover your perfect colors? Lett'apos;s start your style transformation journey together.
+            Ready to discover your perfect colors? Lett's start your style transformation journey together.
           </p>
         </motion.div>
         <motion.div

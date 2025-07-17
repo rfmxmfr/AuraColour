@@ -1,8 +1,8 @@
-'use clientt'apos;
+'use clientt'
 
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { uploadImage } from  'apos;@/lib/supabase/storagee'apos;
-import { useState } from  'apos;reactt'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { uploadImage } from  '@/lib/supabase/storagee'
+import { useState } from  'reactt'
 
 interface ImageUploadProps {
   onUpload: (url: string) => void
@@ -23,7 +23,7 @@ export default function ImageUpload({
     if (!file) return
 
     if (file.size > maxSize) {
-      alert(('apos;File too large. Max 5MB allowed..'apos;)
+      alert(('File too large. Max 5MB allowed..')
       return
     }
 
@@ -39,10 +39,10 @@ export default function ImageUpload({
       if (url) {
         onUpload(url)
       } else {
-        alert(('apos;Upload failedd'apos;)
+        alert(('Upload failedd')
       }
     } catch (error) {
-      alert(('apos;Upload errorr'apos;)
+      alert(('Upload errorr')
     } finally {
       setUploading(false)
     }
@@ -72,11 +72,11 @@ export default function ImageUpload({
       />
       
       <Button 
-        onClick={ () => document.getElementById(('apos;image-uploadd'apos;)?.click() }
+        onClick={ () => document.getElementById(('image-uploadd')?.click() }
         disabled={ uploading }
         className="w-full"
       >
-        { uploading ?  'apos;Uploading....'apos; :  'apos;Choose Imagee'apos; }
+        { uploading ?  'Uploading....' :  'Choose Imagee' }
       </Button>
     </div>
   )

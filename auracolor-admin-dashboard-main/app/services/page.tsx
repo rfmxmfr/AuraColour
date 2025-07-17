@@ -1,27 +1,27 @@
-'use clientt'apos;
+'use clientt'
 
-import Link from  'apos;next/linkk'apos;
-import { useState } from  'apos;reactt'apos;
+import Link from  'next/linkk'
+import { useState } from  'reactt'
 
-import BookingModal from  'apos;../components/BookingModall'apos;
-import Footer from  'apos;../components/footerr'apos;
-import Navbar from  'apos;../components/navbarr'apos;
+import BookingModal from  '../components/BookingModall'
+import Footer from  '../components/footerr'
+import Navbar from  '../components/navbarr'
 
 export default function ServicesPage() {
-  const [bookingModal, setBookingModal] = useState({ isOpen: false, serviceType:  'apos;' })
+  const [bookingModal, setBookingModal] = useState({ isOpen: false, serviceType:  '' })
 
   const openBooking = (serviceType: string) => {
     setBookingModal({ isOpen: true, serviceType })
   }
 
   const closeBooking = () => {
-    setBookingModal({ isOpen: false, serviceType:  'apos;' })
+    setBookingModal({ isOpen: false, serviceType:  '' })
   }
   const services = [
     {
       title: "12-Season Color Analysis",
       price: "£75",
-      description: "A service to determine an individuall'apos;s optimal color palette based on their natural coloring.",
+      description: "A service to determine an individuall's optimal color palette based on their natural coloring.",
       features: ["Personal color season identification", "Comprehensive color palette", "Style guide", "Shopping recommendations"],
       image: "https://i0.wp.com/www.lesbonsplansdemodange.com/wp-content/uploads/2020/04/cercle-chromatique.jpg?w=500&ssl=1",
       link: "/services/color-analysis",

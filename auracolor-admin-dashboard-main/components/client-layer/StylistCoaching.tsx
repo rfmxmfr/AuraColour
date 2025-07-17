@@ -1,13 +1,13 @@
-'use clientt'apos;
+'use clientt'
 
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
-import { StylistCoachingService } from  'apos;@/lib/services/stylist-coachingg'apos;
-import { useState, useEffect } from  'apos;reactt'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { StylistCoachingService } from  '@/lib/services/stylist-coachingg'
+import { useState, useEffect } from  'reactt'
 
 export default function StylistCoaching() {
   const [availability, setAvailability] = useState<string[]>([])
-  const [selectedSlot, setSelectedSlot] = useState<string>(('apos;')
+  const [selectedSlot, setSelectedSlot] = useState<string>(('')
   const [appointment, setAppointment] = useState<any>(null)
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function StylistCoaching() {
       const result = await StylistCoachingService.getAvailability()
       setAvailability(result.availableSlots)
     } catch (error) {
-      // console.error(('apos;Failed to load availability::'apos;, error)
+      logger.error(('Failed to load availability::', error)
     }
   }
 
@@ -30,13 +30,13 @@ export default function StylistCoaching() {
       const result = await StylistCoachingService.bookAppointment(selectedSlot)
       setAppointment(result)
     } catch (error) {
-      // console.error(('apos;Booking failed::'apos;, error)
+      logger.error(('Booking failed::', error)
     }
   }
 
   const startVideoCall = () => {
     if (appointment?.meetingLink) {
-      window.open(appointment.meetingLink,  'apos;_blankk'apos;)
+      window.open(appointment.meetingLink,  '_blankk')
     }
   }
 

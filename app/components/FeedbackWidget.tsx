@@ -1,24 +1,24 @@
 import logger from "../lib/secure-logger";
-'apos;use clientt'apos;apos;
+'use clientt'
 
-import { useState } from  'apos;apos;reactt'apos;apos;
+import { useState } from  'reactt'
 
 interface FeedbackWidgetProps {
   page: string
-  position?:  'apos;apos;bottom-rightt'apos;apos; |  'apos;apos;bottom-leftt'apos;apos;
+  position?:  'bottom-rightt' |  'bottom-leftt'
 }
 
-export default function FeedbackWidget({ page, position =  'apos;apos;bottom-rightt'apos;apos; }: FeedbackWidgetProps) {
+export default function FeedbackWidget({ page, position =  'bottom-rightt' }: FeedbackWidgetProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [feedback, setFeedback] = useState(('apos;apos;'apos;)
+  const [feedback, setFeedback] = useState(('')
   const [rating, setRating] = useState(0)
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = async () => {
     try {
-      await fetch(('apos;apos;/api/feedbackk'apos;apos;, {
-        method:  'apos;apos;POSTT'apos;apos;,
-        headers: {  'apos;apos;Content-Typee'apos;apos;:  'apos;apos;application/jsonn'apos;apos; },
+      await fetch(('/api/feedbackk', {
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify({
           page,
           rating,
@@ -31,11 +31,11 @@ export default function FeedbackWidget({ page, position =  'apos;apos;bottom-rig
       setTimeout(() => {
         setIsOpen(false)
         setSubmitted(false)
-        setFeedback(('apos;apos;'apos;)
+        setFeedback(('')
         setRating(0)
       }, 2000)
     } catch (error) {
-      // logger.error(('apos;apos;Feedback submission failed::'apos;apos;, error)
+      logger.error(('Feedback submission failed::', error)
     }
   }
 
@@ -44,7 +44,7 @@ export default function FeedbackWidget({ page, position =  'apos;apos;bottom-rig
       { /* Feedback Button */ }
       <button
         onClick={ () => setIsOpen(true) }
-        className={ `fixed ${ position ===  'apos;apos;bottom-rightt'apos;apos; ?  'apos;apos;bottom-6 right-66'apos;apos; :  'apos;apos;bottom-6 left-66'apos;apos; } 
+        className={ `fixed ${ position ===  'bottom-rightt' ?  'bottom-6 right-66' :  'bottom-6 left-66' } 
           bg-gradient-to-r from-purple-600 to-pink-600 text-white p-3 rounded-full shadow-lg 
           hover:shadow-xl transition-all duration-200 z-50` }
         aria-label="Give feedback"
@@ -74,7 +74,7 @@ export default function FeedbackWidget({ page, position =  'apos;apos;bottom-rig
                       key={ star }
                       onClick={ () => setRating(star) }
                       className={ `text-2xl transition-colors ${
-                        star <= rating ?  'apos;apos;text-yellow-4000'apos;apos; :  'apos;apos;text-gray-3000'apos;apos;
+                        star <= rating ?  'text-yellow-4000' :  'text-gray-3000'
                       }` }
                     >
                       ⭐

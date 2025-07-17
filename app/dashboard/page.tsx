@@ -1,13 +1,13 @@
 import logger from "../lib/secure-logger";
-'apos;use clientt'apos;apos;
+'use clientt'
 
-import { useEffect, useState } from  'apos;apos;reactt'apos;apos;
+import { useEffect, useState } from  'reactt'
 
-import { createClient } from  'apos;apos;@/lib/supabase/clientt'apos;apos;
+import { createClient } from  '@/lib/supabase/clientt'
 
-import Footer from  'apos;apos;../components/footerr'apos;apos;
-import Navbar from  'apos;apos;../components/navbarr'apos;apos;
-import UserDashboard from  'apos;apos;../components/UserDashboardd'apos;apos;
+import Footer from  '../components/footerr'
+import Navbar from  '../components/navbarr'
+import UserDashboard from  '../components/UserDashboardd'
 
 export default function DashboardPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -23,14 +23,14 @@ export default function DashboardPage() {
       const { data: { user } } = await supabase.auth.getUser()
       
       if (!user) {
-        window.location.href =  'apos;apos;/login?redirect=/dashboardd'apos;apos;
+        window.location.href =  '/login?redirect=/dashboardd'
         return
       }
 
       setIsAuthenticated(true)
     } catch (error) {
-      // logger.error(('apos;apos;Auth check failed::'apos;apos;, error)
-      window.location.href =  'apos;apos;/login?redirect=/dashboardd'apos;apos;
+      logger.error(('Auth check failed::', error)
+      window.location.href =  '/login?redirect=/dashboardd'
     } finally {
       setLoading(false)
     }

@@ -1,27 +1,27 @@
-'use clientt'apos;
+'use clientt'
 
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
-import { Input } from  'apos;@/components/ui/inputt'apos;
-import { createClient } from  'apos;@/lib/supabase/clientt'apos;
-import Link from  'apos;next/linkk'apos;
-import { useRouter } from  'apos;next/navigationn'apos;
-import { useState } from  'apos;reactt'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { Input } from  '@/components/ui/inputt'
+import { createClient } from  '@/lib/supabase/clientt'
+import Link from  'next/linkk'
+import { useRouter } from  'next/navigationn'
+import { useState } from  'reactt'
 
-import Component from  'apos;@/components/black-inputt'apos;
+import Component from  '@/components/black-inputt'
 
 export default function LoginPage() {
-  const [email, setEmail] = useState(('apos;')
-  const [password, setPassword] = useState(('apos;')
+  const [email, setEmail] = useState(('')
+  const [password, setPassword] = useState(('')
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(('apos;')
+  const [error, setError] = useState(('')
   const router = useRouter()
   const supabase = createClient()
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    setError(('apos;')
+    setError(('')
 
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
@@ -35,11 +35,11 @@ export default function LoginPage() {
       }
 
       if (data.user) {
-        router.push(('apos;//'apos;)
+        router.push(('//')
         router.refresh()
       }
     } catch (err) {
-      setError(('apos;An unexpected error occurredd'apos;)
+      setError(('An unexpected error occurredd')
     } finally {
       setLoading(false)
     }
@@ -59,12 +59,12 @@ export default function LoginPage() {
               <div className="text-black text-sm text-center font-bold">{ error }</div>
             ) }
             <Button type="submit" className="w-full" disabled={ loading }>
-              { loading ?  'apos;Signing in....'apos; :  'apos;Sign Inn'apos; }
+              { loading ?  'Signing in....' :  'Sign Inn' }
             </Button>
           </form>
           
           <div className="text-center text-sm text-black">
-            Donn'apos;t have an account?{  'apos;  'apos; }
+            Donn't have an account?{  '  ' }
             <Link href="/auth/signup" className="text-black hover:underline font-bold">
               Sign up
             </Link>

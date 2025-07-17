@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    // console.error('Payment processing error:', error)
+    logger.error('Payment processing error:', error)
     return NextResponse.json({ error: 'Processing failed' }, { status: 500 })
   }
 }

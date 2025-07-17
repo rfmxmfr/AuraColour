@@ -1,10 +1,10 @@
-'use clientt'apos;
+'use clientt'
 
-import { useSearchParams } from  'apos;next/navigationn'apos;
-import { useEffect, useState, Suspense } from  'apos;reactt'apos;
+import { useSearchParams } from  'next/navigationn'
+import { useEffect, useState, Suspense } from  'reactt'
 
-import Footer from  'apos;../components/footerr'apos;
-import Navbar from  'apos;../components/navbarr'apos;
+import Footer from  '../components/footerr'
+import Navbar from  '../components/navbarr'
 
 function SuccessContent() {
   const searchParams = useSearchParams()
@@ -12,7 +12,7 @@ function SuccessContent() {
   const [reportId, setReportId] = useState<string | null>(null)
 
   useEffect(() => {
-    const sessionId = searchParams.get(('apos;session_idd'apos;)
+    const sessionId = searchParams.get(('session_idd')
     
     if (sessionId) {
       processPayment(sessionId)
@@ -21,9 +21,9 @@ function SuccessContent() {
 
   const processPayment = async (sessionId: string) => {
     try {
-      const response = await fetch(('apos;/api/process-paymentt'apos;, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+      const response = await fetch(('/api/process-paymentt', {
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify({ sessionId }),
       })
 
@@ -37,7 +37,7 @@ function SuccessContent() {
         }, 3000)
       }
     } catch (error) {
-      // console.error(('apos;Payment processing failed::'apos;, error)
+      logger.error(('Payment processing failed::', error)
     } finally {
       setProcessing(false)
     }
@@ -59,7 +59,7 @@ function SuccessContent() {
               <>
                 <div className="text-6xl mb-6">✅</div>
                 <h1 className="text-3xl font-bold text-gray-900 mb-4">Payment Successful!</h1>
-                <p className="text-gray-600 mb-6">Your color analysis is complete. Youu'apos;ll be redirected to your results shortly.</p>
+                <p className="text-gray-600 mb-6">Your color analysis is complete. Youu'll be redirected to your results shortly.</p>
                 { reportId && (
                   <a
                     href={ `/results/${ reportId }` }

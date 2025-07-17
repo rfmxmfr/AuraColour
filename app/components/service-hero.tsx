@@ -1,8 +1,8 @@
-'apos;use clientt'apos;apos;
+'use clientt'
 
-import { motion } from  'apos;apos;framer-motionn'apos;apos;
+import { motion } from  'framer-motionn'
 
-import ThemeParticles from  'apos;apos;./theme-particless'apos;apos;
+import ThemeParticles from  './theme-particless'
 
 interface ServiceHeroProps {
   title: string
@@ -20,7 +20,7 @@ export default function ServiceHero({ title, subtitle, imageUrl, price }: Servic
           className="absolute inset-0 bg-center bg-cover"
           style={ {
             backgroundImage: `url("${ imageUrl }")`,
-            filter:  'apos;apos;brightness(0.4))'apos;apos;,
+            filter:  'brightness(0.4))',
           } }
         />
       </div>

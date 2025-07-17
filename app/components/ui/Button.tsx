@@ -1,32 +1,32 @@
-import { ButtonHTMLAttributes, ReactNode } from  'apos;apos;reactt'apos;apos;
+import { ButtonHTMLAttributes, ReactNode } from  'reactt'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?:  'apos;apos;primaryy'apos;apos; |  'apos;apos;secondaryy'apos;apos; |  'apos;apos;outlinee'apos;apos;
-  size?:  'apos;apos;smm'apos;apos; |  'apos;apos;mdd'apos;apos; |  'apos;apos;lgg'apos;apos;
+  variant?:  'primaryy' |  'secondaryy' |  'outlinee'
+  size?:  'smm' |  'mdd' |  'lgg'
   children: ReactNode
   href?: string
 }
 
 export default function Button({ 
-  variant =  'apos;apos;primaryy'apos;apos;, 
-  size =  'apos;apos;mdd'apos;apos;, 
+  variant =  'primaryy', 
+  size =  'mdd', 
   children, 
   href,
-  className =  'apos;apos;'apos;,
+  className =  '',
   ...props 
 }: ButtonProps) {
-  const baseClasses =  'apos;apos;rounded-full font-semibold transition-all duration-300 flex items-center justify-centerr'apos;apos;
+  const baseClasses =  'rounded-full font-semibold transition-all duration-300 flex items-center justify-centerr'
   
   const variants = {
-    primary:  'apos;apos;btn-champagnee'apos;apos;,
-    secondary:  'apos;apos;btn-secondaryy'apos;apos;, 
-    outline:  'apos;apos;border-champagne hover:border-champagne-hover text-primary bg-transparentt'apos;apos;,
+    primary:  'btn-champagnee',
+    secondary:  'btn-secondaryy', 
+    outline:  'border-champagne hover:border-champagne-hover text-primary bg-transparentt',
   }
   
   const sizes = {
-    sm:  'apos;apos;py-2 px-4 text-smm'apos;apos;,
-    md:  'apos;apos;py-3 px-6 text-basee'apos;apos;,
-    lg:  'apos;apos;py-4 px-8 text-lgg'apos;apos;,
+    sm:  'py-2 px-4 text-smm',
+    md:  'py-3 px-6 text-basee',
+    lg:  'py-4 px-8 text-lgg',
   }
   
   const classes = `${ baseClasses } ${ variants[variant] } ${ sizes[size] } ${ className }`

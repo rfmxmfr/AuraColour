@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
       })
       analysis = JSON.parse(openaiResponse.choices[0].message.content || '{ }')
     } catch (error) {
-      // logger.error('Analysis failed:', error)
+      logger.error('Analysis failed:', error)
       throw new Error('Analysis failed')
     }
     
@@ -178,7 +178,7 @@ export async function POST(request: NextRequest) {
       ticket_id: ticket?.id,
     })
   } catch (error) {
-    // logger.error('Error in analysis API:', error)
+    logger.error('Error in analysis API:', error)
     return NextResponse.json({ error: 'Analysis failed' }, { status: 500 })
   }
 }

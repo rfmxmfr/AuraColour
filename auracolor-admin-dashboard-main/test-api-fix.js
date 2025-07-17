@@ -2,7 +2,7 @@
 const BASE_URL = 'https://firebase-deploy-mftvycpjt-renatos-projects-ef7b1af8.vercel.app'
 
 async function testBookingAPI() {
-  // console.log('🔧 Testing Booking API after fix...')
+  logger.info('🔧 Testing Booking API after fix...')
   
   const bookingData = {
     name: 'Test User',
@@ -20,22 +20,22 @@ async function testBookingAPI() {
     })
     
     const data = await response.json()
-    // console.log(`Status: ${ response.status }`)
-    // console.log('Response:', JSON.stringify(data, null, 2))
+    logger.info(`Status: ${ response.status }`)
+    logger.info('Response:', JSON.stringify(data, null, 2))
     
     if (data.success) {
-      // console.log('✅ Booking API WORKING!')
-      // console.log('Booking Number:', data.booking_number)
+      logger.info('✅ Booking API WORKING!')
+      logger.info('Booking Number:', data.booking_number)
     } else {
-      // console.log('❌ Booking failed:', data.error)
+      logger.info('❌ Booking failed:', data.error)
     }
   } catch (error) {
-    // console.log('❌ Request Error:', error.message)
+    logger.info('❌ Request Error:', error.message)
   }
 }
 
 async function testVoucherAPI() {
-  // console.log('\n🎁 Testing Voucher API after fix...')
+  logger.info('\n🎁 Testing Voucher API after fix...')
   
   const voucherData = {
     amount: 75,
@@ -52,17 +52,17 @@ async function testVoucherAPI() {
     })
     
     const data = await response.json()
-    // console.log(`Status: ${ response.status }`)
-    // console.log('Response:', JSON.stringify(data, null, 2))
+    logger.info(`Status: ${ response.status }`)
+    logger.info('Response:', JSON.stringify(data, null, 2))
     
     if (data.success) {
-      // console.log('✅ Voucher API WORKING!')
-      // console.log('Voucher Code:', data.voucherCode)
+      logger.info('✅ Voucher API WORKING!')
+      logger.info('Voucher Code:', data.voucherCode)
     } else {
-      // console.log('❌ Voucher failed:', data.error)
+      logger.info('❌ Voucher failed:', data.error)
     }
   } catch (error) {
-    // console.log('❌ Request Error:', error.message)
+    logger.info('❌ Request Error:', error.message)
   }
 }
 

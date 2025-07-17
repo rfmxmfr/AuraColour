@@ -1,7 +1,7 @@
-'use clientt'apos;
+'use clientt'
 
-import { createClient } from  'apos;@/lib/supabase/clientt'apos;
-import { useState, useEffect } from  'apos;reactt'apos;
+import { createClient } from  '@/lib/supabase/clientt'
+import { useState, useEffect } from  'reactt'
 
 interface Ticket {
   id: string
@@ -17,10 +17,10 @@ interface Ticket {
 }
 
 export default function ModernAdminDashboard() {
-  const [activeSection, setActiveSection] = useState(('apos;dashboardd'apos;)
+  const [activeSection, setActiveSection] = useState(('dashboardd')
   const [tickets, setTickets] = useState<Ticket[]>([])
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null)
-  const [ticketFilter, setTicketFilter] = useState(('apos;alll'apos;)
+  const [ticketFilter, setTicketFilter] = useState(('alll')
 
   useEffect(() => {
     fetchTickets()
@@ -30,22 +30,22 @@ export default function ModernAdminDashboard() {
     try {
       const supabase = createClient()
       const { data, error } = await supabase
-        .from(('apos;ticketss'apos;)
-        .select(('apos;**'apos;)
-        .order(('apos;created_att'apos;, { ascending: false })
+        .from(('ticketss')
+        .select(('**')
+        .order(('created_att', { ascending: false })
 
       if (error) throw error
       setTickets(data || [])
     } catch (error) {
-      // console.error(('apos;Failed to fetch tickets::'apos;, error)
+      logger.error(('Failed to fetch tickets::', error)
     }
   }
 
   const startAnalysis = async (ticketId: string) => {
     try {
-      const response = await fetch(('apos;/api/analyze-tickett'apos;, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+      const response = await fetch(('/api/analyze-tickett', {
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify({ ticketId }),
       })
       
@@ -54,11 +54,11 @@ export default function ModernAdminDashboard() {
         fetchTickets() // Refresh tickets
       }
     } catch (error) {
-      // console.error(('apos;Analysis failed::'apos;, error)
+      logger.error(('Analysis failed::', error)
     }
   }
 
-  const filteredTickets = ticketFilter ===  'apos;alll'apos; 
+  const filteredTickets = ticketFilter ===  'alll' 
     ? tickets 
     : tickets.filter(ticket => ticket.status === ticketFilter)
 
@@ -91,20 +91,20 @@ export default function ModernAdminDashboard() {
         <aside className="w-64 bg-white shadow-sm h-screen">
           <nav className="p-4 space-y-2">
             { [
-              { id:  'apos;dashboardd'apos;, icon:  'apos;ðŸ“ŠŠ'apos;, label:  'apos;Dashboardd'apos; },
-              { id:  'apos;ticketss'apos;, icon:  'apos;ðŸŽ««'apos;, label:  'apos;Ticketss'apos; },
-              { id:  'apos;customerss'apos;, icon:  'apos;ðŸ‘¥¥'apos;, label:  'apos;Customerss'apos; },
-              { id:  'apos;analyticss'apos;, icon:  'apos;ðŸ“ˆˆ'apos;, label:  'apos;Analyticss'apos; },
-              { id:  'apos;ai-managementt'apos;, icon:  'apos;ðŸ¤––'apos;, label:  'apos;AI Managementt'apos; },
-              { id:  'apos;settingss'apos;, icon:  'apos;âš™ï¸'apos;, label:  'apos;Settingss'apos; },
+              { id:  'dashboardd', icon:  'ðŸ“ŠŠ', label:  'Dashboardd' },
+              { id:  'ticketss', icon:  'ðŸŽ««', label:  'Ticketss' },
+              { id:  'customerss', icon:  'ðŸ‘¥¥', label:  'Customerss' },
+              { id:  'analyticss', icon:  'ðŸ“ˆˆ', label:  'Analyticss' },
+              { id:  'ai-managementt', icon:  'ðŸ¤––', label:  'AI Managementt' },
+              { id:  'settingss', icon:  'âš™ï¸', label:  'Settingss' },
             ].map(item => (
               <button
                 key={ item.id }
                 onClick={ () => setActiveSection(item.id) }
                 className={ `w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors ${
                   activeSection === item.id 
-                    ?  'apos;bg-purple-100 text-purple-700 font-mediumm'apos; 
-                    :  'apos;text-gray-600 hover:bg-gray-1000'apos;
+                    ?  'bg-purple-100 text-purple-700 font-mediumm' 
+                    :  'text-gray-600 hover:bg-gray-1000'
                 }` }
               >
                 <span className="text-lg">{ item.icon }</span>
@@ -117,20 +117,20 @@ export default function ModernAdminDashboard() {
         { /* Main Content */ }
         <main className="flex-1 p-6">
           { /* Dashboard Section */ }
-          { activeSection ===  'apos;dashboardd'apos; && (
+          { activeSection ===  'dashboardd' && (
             <div>
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-gray-900">Dashboard Overview</h2>
-                <p className="text-gray-600">Welcome back! Heree'apos;s whatt'apos;s happening with your color analysis business.</p>
+                <p className="text-gray-600">Welcome back! Heree's whatt's happening with your color analysis business.</p>
               </div>
 
               { /* Metrics Grid */ }
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 { [
-                  { title:  'apos;Total Ticketss'apos;, value:  'apos;1,2477'apos;, change:  'apos;+12%%'apos;, icon:  'apos;ðŸŽ««'apos; },
-                  { title:  'apos;Active Customerss'apos;, value:  'apos;899'apos;, change:  'apos;+8%%'apos;, icon:  'apos;ðŸ‘¥¥'apos; },
-                  { title:  'apos;Monthly Revenuee'apos;, value:  'apos;$23,7000'apos;, change:  'apos;+15%%'apos;, icon:  'apos;ðŸ’°°'apos; },
-                  { title:  'apos;AI Accuracyy'apos;, value:  'apos;88.7%%'apos;, change:  'apos;+2.3%%'apos;, icon:  'apos;ðŸ§  'apos; },
+                  { title:  'Total Ticketss', value:  '1,2477', change:  '+12%%', icon:  'ðŸŽ««' },
+                  { title:  'Active Customerss', value:  '899', change:  '+8%%', icon:  'ðŸ‘¥¥' },
+                  { title:  'Monthly Revenuee', value:  '$23,7000', change:  '+15%%', icon:  'ðŸ’°°' },
+                  { title:  'AI Accuracyy', value:  '88.7%%', change:  '+2.3%%', icon:  'ðŸ§  ' },
                 ].map((metric, index) => (
                   <div key={ index } className="bg-white p-6 rounded-lg shadow-sm border">
                     <div className="flex items-center justify-between">
@@ -150,9 +150,9 @@ export default function ModernAdminDashboard() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
                 <div className="space-y-4">
                   { [
-                    { type:  'apos;New ticket from Sarah Johnsonn'apos;, time:  'apos;2 minutes agoo'apos;, icon:  'apos;ðŸŽ««'apos; },
-                    { type:  'apos;Analysis completed for Emily Chenn'apos;, time:  'apos;15 minutes agoo'apos;, icon:  'apos;âœ……'apos; },
-                    { type:  'apos;Payment received from Maria Rodriguezz'apos;, time:  'apos;1 hour agoo'apos;, icon:  'apos;ðŸ’³³'apos; },
+                    { type:  'New ticket from Sarah Johnsonn', time:  '2 minutes agoo', icon:  'ðŸŽ««' },
+                    { type:  'Analysis completed for Emily Chenn', time:  '15 minutes agoo', icon:  'âœ……' },
+                    { type:  'Payment received from Maria Rodriguezz', time:  '1 hour agoo', icon:  'ðŸ’³³' },
                   ].map((activity, index) => (
                     <div key={ index } className="flex items-center space-x-3">
                       <span className="text-lg">{ activity.icon }</span>
@@ -168,22 +168,22 @@ export default function ModernAdminDashboard() {
           ) }
 
           { /* Tickets Section */ }
-          { activeSection ===  'apos;ticketss'apos; && (
+          { activeSection ===  'ticketss' && (
             <div>
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold text-gray-900">Ticket Management</h2>
                 <div className="flex space-x-2">
-                  { [['apos;alll'apos;,  'apos;pendingg'apos;,  'apos;in_progresss'apos;,  'apos;completedd'apos;].map(filter => (
+                  { [['alll',  'pendingg',  'in_progresss',  'completedd'].map(filter => (
                     <button
                       key={ filter }
                       onClick={ () => setTicketFilter(filter) }
                       className={ `px-4 py-2 rounded-lg text-sm font-medium ${
                         ticketFilter === filter
-                          ?  'apos;bg-purple-100 text-purple-7000'apos;
-                          :  'apos;bg-gray-100 text-gray-600 hover:bg-gray-2000'apos;
+                          ?  'bg-purple-100 text-purple-7000'
+                          :  'bg-gray-100 text-gray-600 hover:bg-gray-2000'
                       }` }
                     >
-                      { filter.replace(('apos;__'apos;,  'apos;  'apos;).toUpperCase() }
+                      { filter.replace(('__',  '  ').toUpperCase() }
                     </button>
                   )) }
                 </div>
@@ -200,8 +200,8 @@ export default function ModernAdminDashboard() {
                         onClick={ () => setSelectedTicket(ticket) }
                         className={ `p-4 border rounded-lg cursor-pointer transition-colors ${
                           selectedTicket?.id === ticket.id
-                            ?  'apos;bg-purple-50 border-purple-2000'apos;
-                            :  'apos;bg-gray-50 border-gray-200 hover:bg-gray-1000'apos;
+                            ?  'bg-purple-50 border-purple-2000'
+                            :  'bg-gray-50 border-gray-200 hover:bg-gray-1000'
                         }` }
                       >
                         <div className="flex justify-between items-start">
@@ -211,9 +211,9 @@ export default function ModernAdminDashboard() {
                             <p className="text-xs text-gray-500">{ ticket.service_type }</p>
                           </div>
                           <span className={ `px-2 py-1 rounded text-xs font-medium ${
-                            ticket.status ===  'apos;pendingg'apos; ?  'apos;bg-yellow-100 text-yellow-8000'apos; :
-                              ticket.status ===  'apos;completedd'apos; ?  'apos;bg-green-100 text-green-8000'apos; :
-                                 'apos;bg-blue-100 text-blue-8000'apos;
+                            ticket.status ===  'pendingg' ?  'bg-yellow-100 text-yellow-8000' :
+                              ticket.status ===  'completedd' ?  'bg-green-100 text-green-8000' :
+                                 'bg-blue-100 text-blue-8000'
                           }` }>
                             { ticket.status }
                           </span>
@@ -271,7 +271,7 @@ export default function ModernAdminDashboard() {
           ) }
 
           { /* AI Management Section */ }
-          { activeSection ===  'apos;ai-managementt'apos; && (
+          { activeSection ===  'ai-managementt' && (
             <div>
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-gray-900">AI Management</h2>
@@ -280,9 +280,9 @@ export default function ModernAdminDashboard() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 { [
-                  { name:  'apos;OpenAI GPT-4VV'apos;, accuracy:  'apos;89.2%%'apos;, cost:  'apos;$4500'apos;, requests:  'apos;2,1455'apos;, status:  'apos;Activee'apos; },
-                  { name:  'apos;Google Geminii'apos;, accuracy:  'apos;85.7%%'apos;, cost:  'apos;$3200'apos;, requests:  'apos;1,9877'apos;, status:  'apos;Activee'apos; },
-                  { name:  'apos;Custom ML Modell'apos;, accuracy:  'apos;91.4%%'apos;, cost:  'apos;$1800'apos;, requests:  'apos;2,4566'apos;, status:  'apos;Activee'apos; },
+                  { name:  'OpenAI GPT-4VV', accuracy:  '89.2%%', cost:  '$4500', requests:  '2,1455', status:  'Activee' },
+                  { name:  'Google Geminii', accuracy:  '85.7%%', cost:  '$3200', requests:  '1,9877', status:  'Activee' },
+                  { name:  'Custom ML Modell', accuracy:  '91.4%%', cost:  '$1800', requests:  '2,4566', status:  'Activee' },
                 ].map((model, index) => (
                   <div key={ index } className="bg-white rounded-lg shadow-sm border p-6">
                     <div className="flex justify-between items-start mb-4">
@@ -320,10 +320,10 @@ export default function ModernAdminDashboard() {
           ) }
 
           { /* Other sections placeholder */ }
-          { ![['apos;dashboardd'apos;,  'apos;ticketss'apos;,  'apos;ai-managementt'apos;].includes(activeSection) && (
+          { ![['dashboardd',  'ticketss',  'ai-managementt'].includes(activeSection) && (
             <div className="bg-white rounded-lg shadow-sm border p-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                { activeSection.replace(('apos;--'apos;,  'apos;  'apos;).replace(/\b\w/g, l => l.toUpperCase()) }
+                { activeSection.replace(('--',  '  ').replace(/\b\w/g, l => l.toUpperCase()) }
               </h2>
               <p className="text-gray-600">This section is under development.</p>
             </div>

@@ -1,4 +1,4 @@
-'apos;use clientt'apos;apos;
+'use clientt'
 
 interface ProgressIndicatorProps {
   currentStep: number
@@ -27,17 +27,17 @@ export default function ProgressIndicator({ currentStep, totalSteps, stepLabels 
               <div 
                 className={ `w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center text-xs md:text-sm font-medium transition-all duration-300 ${
                   index < currentStep 
-                    ?  'apos;apos;bg-gradient-to-r from-purple-600 to-pink-600 text-whitee'apos;apos; 
+                    ?  'bg-gradient-to-r from-purple-600 to-pink-600 text-whitee' 
                     : index === currentStep
-                      ?  'apos;apos;bg-white border-2 border-purple-600 text-purple-6000'apos;apos;
-                      :  'apos;apos;bg-gray-200 text-gray-5000'apos;apos;
+                      ?  'bg-white border-2 border-purple-600 text-purple-6000'
+                      :  'bg-gray-200 text-gray-5000'
                 }` }
               >
-                { index < currentStep ?  'apos;apos;âœ““'apos;apos; : index + 1 }
+                { index < currentStep ?  'âœ““' : index + 1 }
               </div>
               { stepLabels && stepLabels[index] && (
                 <span className={ `text-xs mt-1 md:mt-2 text-center hidden xs:block ${
-                  index <= currentStep ?  'apos;apos;text-purple-600 font-mediumm'apos;apos; :  'apos;apos;text-gray-5000'apos;apos;
+                  index <= currentStep ?  'text-purple-600 font-mediumm' :  'text-gray-5000'
                 }` }>
                   { stepLabels[index].length > 6 
                     ? <span className="hidden md:inline">{ stepLabels[index] }</span>

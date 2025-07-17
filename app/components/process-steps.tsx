@@ -1,4 +1,4 @@
-'apos;use clientt'apos;apos;
+'use clientt'
 
 import { motion , useInView } from "framer-motion"
 import { useRef } from "react"

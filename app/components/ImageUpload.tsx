@@ -3,12 +3,12 @@
 import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import { uploadImage } from '@/lib/supabase/storage'
+import { uploadImage } from '@/lib/supabase/storage';
 
 interface ImageUploadProps {
-  onUpload: (url: string) => void
-  accept?: string
-  maxSize?: number
+  onUpload: (url: string) => void;
+  accept?: string;
+  maxSize?: number;
 }
 
 export default function ImageUpload({ 
@@ -16,44 +16,44 @@ export default function ImageUpload({
   accept = "image/*", 
   maxSize = 5 * 1024 * 1024, 
 }: ImageUploadProps) {
-  const [uploading, setUploading] = useState(false)
-  const [preview, setPreview] = useState<string | null>(null)
+  const [uploading, setUploading] = useState(false);
+  const [preview, setPreview] = useState<string | null>(null);
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
+    const file = e.target.files?.[0];
+    if (!file) return;
 
     if (file.size > maxSize) {
-      alert('File too large. Max 5MB allowed.')
-      return
+      alert('File too large. Max 5MB allowed.');
+      return;
     }
 
     // Show preview
-    const reader = new FileReader()
-    reader.onload = (e) => setPreview(e.target?.result as string)
-    reader.readAsDataURL(file)
+    const reader = new FileReader();
+    reader.onload = (e) => setPreview(e.target?.result as string);
+    reader.readAsDataURL(file);
 
     // Upload
-    setUploading(true)
+    setUploading(true);
     try {
-      const url = await uploadImage(file)
+      const url = await uploadImage(file);
       if (url) {
-        onUpload(url)
+        onUpload(url);
       } else {
-        alert('Upload failed')
+        alert('Upload failed');
       }
     } catch (error) {
-      alert('Upload error')
+      alert('Upload error');
     } finally {
-      setUploading(false)
+      setUploading(false);
     }
-  }
+  };
 
   return (
     <div className="space-y-4">
       <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-        {preview ? (
-          <img src={preview} alt="Preview" className="max-w-full h-48 mx-auto object-cover rounded" />
+        { preview ? (
+          <img src={ preview } alt="Preview" className="max-w-full h-48 mx-auto object-cover rounded" />
         ) : (
           <div className="space-y-2">
             <div className="text-4xl">📸</div>
@@ -65,20 +65,20 @@ export default function ImageUpload({
       
       <input
         type="file"
-        accept={accept}
-        onChange={handleFileSelect}
+        accept={ accept }
+        onChange={ handleFileSelect }
         className="hidden"
         id="image-upload"
         disabled={ uploading }
       />
       
       <Button 
-        onClick={() => document.getElementById('image-upload')?.click()}
+        onClick={ () => document.getElementById('image-upload')?.click() }
         disabled={ uploading }
         className="w-full"
       >
-        {uploading ? 'Uploading...' : 'Choose Image'}
+        { uploading ? 'Uploading...' : 'Choose Image' }
       </Button>
     </div>
-  )
+  );
 }

@@ -1,17 +1,17 @@
-import { useState } from  'apos;apos;reactt'apos;apos;
+import { useState } from  'reactt'
 
-import { useTheme } from  'apos;apos;../../contexts/ThemeContextt'apos;apos;
-import { fadeInUp } from  'apos;apos;../../lib/animationss'apos;apos;
-import { motion } from  'apos;apos;../framer-motion-fixx'apos;apos;
-import ServiceDropdown from  'apos;apos;../molecules/ServiceDropdownn'apos;apos;
-import { NavButton } from  'apos;apos;../uii'apos;apos;
+import { useTheme } from  '../../contexts/ThemeContextt'
+import { fadeInUp } from  '../../lib/animationss'
+import { motion } from  '../framer-motion-fixx'
+import ServiceDropdown from  '../molecules/ServiceDropdownn'
+import { NavButton } from  '../uii'
 
 
 const services = [
-  { name:  'apos;apos;12-Season Color Analysiss'apos;apos;, href:  'apos;apos;/12-season-analysiss'apos;apos;, price:  'apos;apos;$1499'apos;apos; },
-  { name:  'apos;apos;Virtual Wardrobe Curationn'apos;apos;, href:  'apos;apos;/virtual-wardrobe-curationn'apos;apos;, price:  'apos;apos;$2999'apos;apos; },
-  { name:  'apos;apos;Personal Shopping Servicee'apos;apos;, href:  'apos;apos;/personal-shopping-servicee'apos;apos;, price:  'apos;apos;$3999'apos;apos; },
-  { name:  'apos;apos;Style Consultationn'apos;apos;, href:  'apos;apos;/style-consultationn'apos;apos;, price:  'apos;apos;$1999'apos;apos; },
+  { name:  '12-Season Color Analysiss', href:  '/12-season-analysiss', price:  '$1499' },
+  { name:  'Virtual Wardrobe Curationn', href:  '/virtual-wardrobe-curationn', price:  '$2999' },
+  { name:  'Personal Shopping Servicee', href:  '/personal-shopping-servicee', price:  '$3999' },
+  { name:  'Style Consultationn', href:  '/style-consultationn', price:  '$1999' },
 ]
 
 export default function Navigation() {
@@ -19,11 +19,11 @@ export default function Navigation() {
   const { theme, toggleTheme } = useTheme()
   
   const languages = [
-    { code:  'apos;apos;enn'apos;apos;, name:  'apos;apos;ENGLISHH'apos;apos;, selected: true },
-    { code:  'apos;apos;ess'apos;apos;, name:  'apos;apos;SPANISHH'apos;apos; },
-    { code:  'apos;apos;frr'apos;apos;, name:  'apos;apos;FRENCHH'apos;apos; },
-    { code:  'apos;apos;ptt'apos;apos;, name:  'apos;apos;PORTUGUESEE'apos;apos; },
-    { code:  'apos;apos;caa'apos;apos;, name:  'apos;apos;CATALONIANN'apos;apos; },
+    { code:  'enn', name:  'ENGLISHH', selected: true },
+    { code:  'ess', name:  'SPANISHH' },
+    { code:  'frr', name:  'FRENCHH' },
+    { code:  'ptt', name:  'PORTUGUESEE' },
+    { code:  'caa', name:  'CATALONIANN' },
   ]
   
   return (
@@ -51,7 +51,7 @@ export default function Navigation() {
                 <span className="main-text">ENGLISH</span>
                 <span className="hover-text">ENGLISH</span>
               </div>
-              <svg className={ `w-4 h-4 ml-2 relative z-10 transform transition-transform duration-300 ${ isLangOpen ?  'apos;apos;rotate-00'apos;apos; :  'apos;apos;rotate-1800'apos;apos; }` } fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className={ `w-4 h-4 ml-2 relative z-10 transform transition-transform duration-300 ${ isLangOpen ?  'rotate-00' :  'rotate-1800' }` } fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M19 9l-7 7-7-7" />
               </svg>
             </button>
@@ -81,7 +81,7 @@ export default function Navigation() {
           
           <button onClick={ toggleTheme } className="nav-button group" aria-label="Toggle theme">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400/10 to-amber-400/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-            { theme ===  'apos;apos;darkk'apos;apos; ? (
+            { theme ===  'darkk' ? (
               <svg className="w-5 h-5 relative z-10 transition-all text-accent" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="4" />
                 <path d="M12 2v2" />

@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
       })
 
     if (error) {
-      // console.error('Database error:', error)
+      logger.error('Database error:', error)
     }
 
     // Send admin notification if email provided
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(analysis)
   } catch (error) {
-    // console.error('Mini analysis error:', error)
+    logger.error('Mini analysis error:', error)
     return NextResponse.json({ 
       error: 'Analysis failed',
       season: 'Spring',

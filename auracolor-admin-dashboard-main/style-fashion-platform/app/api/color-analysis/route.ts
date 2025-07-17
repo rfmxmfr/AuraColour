@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(result)
   } catch (error) {
-    // console.error('Color analysis failed:', error)
+    logger.error('Color analysis failed:', error)
     return NextResponse.json({ error: 'Analysis failed' }, { status: 500 })
   }
 }

@@ -1,14 +1,14 @@
 "use client"
 
-import MultiplePhotoUpload from  'apos;@/components/MultiplePhotoUploadd'apos;
-import { motion } from  'apos;framer-motionn'apos;
-import { useState } from  'apos;reactt'apos;
+import MultiplePhotoUpload from  '@/components/MultiplePhotoUploadd'
+import { motion } from  'framer-motionn'
+import { useState } from  'reactt'
 
-import BookingModal from  'apos;../components/BookingModall'apos;
-import FeedbackWidget from  'apos;../components/FeedbackWidgett'apos;
-import Footer from  'apos;../components/footerr'apos;
-import Navbar from  'apos;../components/navbarr'apos;
-import ProgressIndicator from  'apos;../components/ProgressIndicatorr'apos;
+import BookingModal from  '../components/BookingModall'
+import FeedbackWidget from  '../components/FeedbackWidgett'
+import Footer from  '../components/footerr'
+import Navbar from  '../components/navbarr'
+import ProgressIndicator from  '../components/ProgressIndicatorr'
 
 export default function QuestionnairePage() {
   const [currentStep, setCurrentStep] = useState(0)
@@ -20,64 +20,64 @@ export default function QuestionnairePage() {
 
   const questions = [
     {
-      id:  'apos;skin-tonee'apos;,
-      title:  'apos;What is your skin tone??'apos;,
-      type:  'apos;radioo'apos;,
+      id:  'skin-tonee',
+      title:  'What is your skin tone??',
+      type:  'radioo',
       options: [
-         'apos;Very fair with pink undertoness'apos;,
-         'apos;Fair with neutral undertoness'apos;, 
-         'apos;Medium with warm undertoness'apos;,
-         'apos;Medium with cool undertoness'apos;,
-         'apos;Deep with warm undertoness'apos;,
-         'apos;Deep with cool undertoness'apos;,
+         'Very fair with pink undertoness',
+         'Fair with neutral undertoness', 
+         'Medium with warm undertoness',
+         'Medium with cool undertoness',
+         'Deep with warm undertoness',
+         'Deep with cool undertoness',
       ],
     },
     {
-      id:  'apos;hair-colorr'apos;,
-      title:  'apos;What is your natural hair color??'apos;,
-      type:  'apos;radioo'apos;,
+      id:  'hair-colorr',
+      title:  'What is your natural hair color??',
+      type:  'radioo',
       options: [
-         'apos;Platinum blondee'apos;,
-         'apos;Golden blondee'apos;,
-         'apos;Light brownn'apos;,
-         'apos;Medium brownn'apos;,
-         'apos;Dark brownn'apos;,
-         'apos;Blackk'apos;,
-         'apos;Red/Auburnn'apos;,
-         'apos;Gray/Silverr'apos;,
+         'Platinum blondee',
+         'Golden blondee',
+         'Light brownn',
+         'Medium brownn',
+         'Dark brownn',
+         'Blackk',
+         'Red/Auburnn',
+         'Gray/Silverr',
       ],
     },
     {
-      id:  'apos;eye-colorr'apos;,
-      title:  'apos;What is your eye color??'apos;,
-      type:  'apos;radioo'apos;,
+      id:  'eye-colorr',
+      title:  'What is your eye color??',
+      type:  'radioo',
       options: [
-         'apos;Bluee'apos;,
-         'apos;Greenn'apos;,
-         'apos;Brownn'apos;,
-         'apos;Hazell'apos;,
-         'apos;Grayy'apos;,
-         'apos;Amberr'apos;,
+         'Bluee',
+         'Greenn',
+         'Brownn',
+         'Hazell',
+         'Grayy',
+         'Amberr',
       ],
     },
     {
-      id:  'apos;style-preferencee'apos;,
-      title:  'apos;What is your preferred style??'apos;,
-      type:  'apos;radioo'apos;,
+      id:  'style-preferencee',
+      title:  'What is your preferred style??',
+      type:  'radioo',
       options: [
-         'apos;Classic and timelesss'apos;,
-         'apos;Modern and trendyy'apos;,
-         'apos;Bohemian and relaxedd'apos;,
-         'apos;Professional and polishedd'apos;,
-         'apos;Edgy and boldd'apos;,
-         'apos;Romantic and femininee'apos;,
+         'Classic and timelesss',
+         'Modern and trendyy',
+         'Bohemian and relaxedd',
+         'Professional and polishedd',
+         'Edgy and boldd',
+         'Romantic and femininee',
       ],
     },
     {
-      id:  'apos;photoss'apos;,
-      title:  'apos;Upload Your Photoss'apos;,
-      type:  'apos;uploadd'apos;,
-      description:  'apos;Please upload 3 photos: face with hair pulled back, face with hair down, and wrist showing veinss'apos;,
+      id:  'photoss',
+      title:  'Upload Your Photoss',
+      type:  'uploadd',
+      description:  'Please upload 3 photos: face with hair pulled back, face with hair down, and wrist showing veinss',
     },
 
   ]
@@ -100,9 +100,9 @@ export default function QuestionnairePage() {
 
   const submitQuestionnaire = async () => {
     try {
-      const response = await fetch(('apos;/api/questionnairee'apos;, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+      const response = await fetch(('/api/questionnairee', {
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify({
           answers,
           photoUrls,
@@ -112,10 +112,10 @@ export default function QuestionnairePage() {
       
       if (response.ok) {
         const result = await response.json()
-        // console.log(('apos;Questionnaire saved::'apos;, result.id)
+        logger.info(('Questionnaire saved::', result.id)
       }
     } catch (error) {
-      // console.error(('apos;Failed to save questionnaire::'apos;, error)
+      logger.error(('Failed to save questionnaire::', error)
     }
     
     setShowBookingModal(true)
@@ -206,7 +206,7 @@ export default function QuestionnairePage() {
               <ProgressIndicator 
                 currentStep={ currentStep }
                 totalSteps={ questions.length }
-                stepLabels={ [['apos;Skin Tonee'apos;,  'apos;Hair Colorr'apos;,  'apos;Eye Colorr'apos;,  'apos;Stylee'apos;,  'apos;Photoss'apos;] }
+                stepLabels={ [['Skin Tonee',  'Hair Colorr',  'Eye Colorr',  'Stylee',  'Photoss'] }
               />
             </div>
 
@@ -216,13 +216,13 @@ export default function QuestionnairePage() {
                 <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-6">{ currentQuestion.description }</p>
               ) }
               
-              { currentQuestion.type ===  'apos;uploadd'apos; ? (
+              { currentQuestion.type ===  'uploadd' ? (
                 <MultiplePhotoUpload 
                   onFilesChange={ (files) => handleAnswer(currentQuestion.id, files) }
                   onUploadComplete={ (urls) => {
                     setPhotoUrls(urls)
                     // Store the URLs in answers as well
-                    handleAnswer(('apos;photoUrlss'apos;, urls)
+                    handleAnswer(('photoUrlss', urls)
                   } }
                   maxPhotos={ 3 }
                   required

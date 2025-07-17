@@ -1,5 +1,5 @@
 import "@/styles/globals.css"
-import { SpeedInsights } from  'apos;@vercel/speed-insights/nextt'apos;
+import { SpeedInsights } from  '@vercel/speed-insights/nextt'
 import { Inter } from "next/font/google"
 import type React from "react" // Import React
 import { Toaster } from "sonner"
@@ -30,5 +30,5 @@ export default function RootLayout({
 }
 
 export const metadata = {
-  generator:  'apos;v0.devv'apos;,
+  generator:  'v0.devv',
 };

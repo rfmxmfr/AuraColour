@@ -1,9 +1,9 @@
-'use clientt'apos;
+'use clientt'
 
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Input } from  'apos;@/components/ui/inputt'apos;
-import { Textarea } from  'apos;@/components/ui/textareaa'apos;
-import { useState, useEffect } from  'apos;reactt'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Input } from  '@/components/ui/inputt'
+import { Textarea } from  '@/components/ui/textareaa'
+import { useState, useEffect } from  'reactt'
 
 interface ReportEditorProps {
   reportId: string
@@ -12,16 +12,16 @@ interface ReportEditorProps {
 
 export default function ReportEditor({ reportId, onClose }: ReportEditorProps) {
   const [report, setReport] = useState({
-    customerName:  'apos;',
-    season:  'apos;',
+    customerName:  '',
+    season:  '',
     confidence: 85,
-    undertone:  'apos;',
-    bestColors: [['apos;#8B45133'apos;,  'apos;#CD853FF'apos;,  'apos;#D2691EE'apos;,  'apos;#A0522DD'apos;,  'apos;#DEB8877'apos;],
-    avoidColors: [['apos;#FF69B44'apos;,  'apos;#00FFFFF'apos;,  'apos;#FFFF000'apos;],
-    makeupTips:  'apos;',
-    wardrobeTips:  'apos;',
-    shoppingGuide:  'apos;',
-    personalMessage:  'apos;',
+    undertone:  '',
+    bestColors: [['#8B45133',  '#CD853FF',  '#D2691EE',  '#A0522DD',  '#DEB8877'],
+    avoidColors: [['#FF69B44',  '#00FFFFF',  '#FFFF000'],
+    makeupTips:  '',
+    wardrobeTips:  '',
+    shoppingGuide:  '',
+    personalMessage:  '',
   })
 
   useEffect(() => {
@@ -39,23 +39,23 @@ export default function ReportEditor({ reportId, onClose }: ReportEditorProps) {
 
   const saveReport = async () => {
     const response = await fetch(`/api/reports/${ reportId }`, {
-      method:  'apos;PUTT'apos;,
-      headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+      method:  'PUTT',
+      headers: {  'Content-Typee':  'application/jsonn' },
       body: JSON.stringify(report),
     })
     
     if (response.ok) {
-      alert(('apos;Report saved successfully!!'apos;)
+      alert(('Report saved successfully!!')
     }
   }
 
   const sendReport = async () => {
     const response = await fetch(`/api/reports/${ reportId }/send`, {
-      method:  'apos;POSTT'apos;,
+      method:  'POSTT',
     })
     
     if (response.ok) {
-      alert(('apos;Report sent to customer!!'apos;)
+      alert(('Report sent to customer!!')
       onClose()
     }
   }

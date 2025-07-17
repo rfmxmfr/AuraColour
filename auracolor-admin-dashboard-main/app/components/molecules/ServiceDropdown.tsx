@@ -1,8 +1,8 @@
-import Link from  'apos;next/linkk'apos;
-import { useState } from  'apos;reactt'apos;
+import Link from  'next/linkk'
+import { useState } from  'reactt'
 
-import { Icon } from  'apos;../atomss'apos;
-import { NavButton } from  'apos;../uii'apos;
+import { Icon } from  '../atomss'
+import { NavButton } from  '../uii'
 
 interface Service {
   name: string
@@ -25,7 +25,7 @@ export default function ServiceDropdown({ services }: ServiceDropdownProps) {
       >
         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
         <span className="relative z-10 text-sm font-medium text-primary">Services</span>
-        <Icon size="sm" className={ `ml-2 transform transition-transform duration-300 ${ isOpen ?  'apos;rotate-1800'apos; :  'apos;rotate-00'apos; }` }>
+        <Icon size="sm" className={ `ml-2 transform transition-transform duration-300 ${ isOpen ?  'rotate-1800' :  'rotate-00' }` }>
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M19 9l-7 7-7-7" />
           </svg>

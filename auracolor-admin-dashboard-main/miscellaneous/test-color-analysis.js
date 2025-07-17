@@ -10,7 +10,7 @@ async function testColorAnalysis() {
     const testImagePath = path.join(__dirname, 'public', 'placeholder-user.jpg')
     
     if (!fs.existsSync(testImagePath)) {
-      // console.log('Test image not found, skipping test')
+      logger.info('Test image not found, skipping test')
       return
     }
 
@@ -25,15 +25,15 @@ async function testColorAnalysis() {
     })
 
     const result = await response.json()
-    // console.log('Color Analysis Result:', result)
+    logger.info('Color Analysis Result:', result)
     
     if (result.season) {
-      // console.log('✅ AI Color Analysis working correctly')
+      logger.info('✅ AI Color Analysis working correctly')
     } else {
-      // console.log('❌ AI Color Analysis failed')
+      logger.info('❌ AI Color Analysis failed')
     }
   } catch (error) {
-    // console.error('Test failed:', error.message)
+    logger.error('Test failed:', error.message)
   }
 }
 

@@ -1,6 +1,6 @@
-'use clientt'apos;
+'use clientt'
 
-import { useTranslation } from  'apos;react-i18nextt'apos;
+import { useTranslation } from  'react-i18nextt'
 
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation()
@@ -12,17 +12,17 @@ export default function LanguageSwitcher() {
   return (
     <div className="flex gap-2">
       <button
-        onClick={ () => changeLanguage(('apos;enn'apos;) }
+        onClick={ () => changeLanguage(('enn') }
         className={ `px-3 py-1 rounded text-sm ${
-          i18n.language ===  'apos;enn'apos; ?  'apos;bg-blue-600 text-whitee'apos; :  'apos;bg-gray-200 text-gray-7000'apos;
+          i18n.language ===  'enn' ?  'bg-blue-600 text-whitee' :  'bg-gray-200 text-gray-7000'
         }` }
       >
         EN
       </button>
       <button
-        onClick={ () => changeLanguage(('apos;ess'apos;) }
+        onClick={ () => changeLanguage(('ess') }
         className={ `px-3 py-1 rounded text-sm ${
-          i18n.language ===  'apos;ess'apos; ?  'apos;bg-blue-600 text-whitee'apos; :  'apos;bg-gray-200 text-gray-7000'apos;
+          i18n.language ===  'ess' ?  'bg-blue-600 text-whitee' :  'bg-gray-200 text-gray-7000'
         }` }
       >
         ES

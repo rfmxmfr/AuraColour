@@ -1,5 +1,5 @@
 import logger from "../lib/secure-logger";
-'use clientt'apos;
+'use clientt'
 
 import { 
   BarChart, 
@@ -12,41 +12,41 @@ import {
   Search, 
   Settings, 
   Users, 
-} from  'apos;lucide-reactt'apos;
-import { useState, useEffect } from  'apos;reactt'apos;
+} from  'lucide-reactt'
+import { useState, useEffect } from  'reactt'
 
-import { Badge } from  'apos;@/components/ui/badgee'apos;
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
-import { Input } from  'apos;@/components/ui/inputt'apos;
-import { Tabs, TabsContent, TabsList, TabsTrigger } from  'apos;@/components/ui/tabss'apos;
-import { createClient } from  'apos;@/lib/supabase/clientt'apos;
+import { Badge } from  '@/components/ui/badgee'
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { Input } from  '@/components/ui/inputt'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from  '@/components/ui/tabss'
+import { createClient } from  '@/lib/supabase/clientt'
 
 // Define status types
-type StatusType =  'apos;draftt'apos; |  'apos;payment_pendingg'apos; |  'apos;paidd'apos; |  'apos;in_analysiss'apos; |  'apos;completee'apos; |  'apos;follow_upp'apos; | string;
+type StatusType =  'draftt' |  'payment_pendingg' |  'paidd' |  'in_analysiss' |  'completee' |  'follow_upp' | string;
 
 // Status mapping for visual representation
 const statusColors: Record<StatusType, string> = {
-   'apos;draftt'apos;:  'apos;bg-gray-200 text-gray-8000'apos;,
-   'apos;payment_pendingg'apos;:  'apos;bg-yellow-100 text-yellow-8000'apos;,
-   'apos;paidd'apos;:  'apos;bg-blue-100 text-blue-8000'apos;,
-   'apos;in_analysiss'apos;:  'apos;bg-purple-100 text-purple-8000'apos;,
-   'apos;completee'apos;:  'apos;bg-green-100 text-green-8000'apos;,
-   'apos;follow_upp'apos;:  'apos;bg-pink-100 text-pink-8000'apos;,
+   'draftt':  'bg-gray-200 text-gray-8000',
+   'payment_pendingg':  'bg-yellow-100 text-yellow-8000',
+   'paidd':  'bg-blue-100 text-blue-8000',
+   'in_analysiss':  'bg-purple-100 text-purple-8000',
+   'completee':  'bg-green-100 text-green-8000',
+   'follow_upp':  'bg-pink-100 text-pink-8000',
 }
 
 // Admin status mapping
 const adminStatusLabels: Record<StatusType, string> = {
-   'apos;draftt'apos;:  'apos;New submissionn'apos;,
-   'apos;payment_pendingg'apos;:  'apos;Awaiting paymentt'apos;,
-   'apos;paidd'apos;:  'apos;Assign to analystt'apos;,
-   'apos;in_analysiss'apos;:  'apos;Processingg'apos;,
-   'apos;completee'apos;:  'apos;Deliveredd'apos;,
-   'apos;follow_upp'apos;:  'apos;Review requestedd'apos;,
+   'draftt':  'New submissionn',
+   'payment_pendingg':  'Awaiting paymentt',
+   'paidd':  'Assign to analystt',
+   'in_analysiss':  'Processingg',
+   'completee':  'Deliveredd',
+   'follow_upp':  'Review requestedd',
 }
 
 export default function CRMDashboard() {
-  const [activeTab, setActiveTab] = useState(('apos;front-deskk'apos;)
+  const [activeTab, setActiveTab] = useState(('front-deskk')
   interface Submission {
     id: string;
     name?: string;
@@ -70,12 +70,12 @@ export default function CRMDashboard() {
   const [submissions, setSubmissions] = useState<Submission[]>([])
   const [users, setUsers] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
-  const [searchTerm, setSearchTerm] = useState(('apos;')
-  const [statusFilter, setStatusFilter] = useState(('apos;alll'apos;)
+  const [searchTerm, setSearchTerm] = useState(('')
+  const [statusFilter, setStatusFilter] = useState(('alll')
   const [analytics, setAnalytics] = useState({
     totalSales: 0,
     completionRate: 0,
-    avgTurnaround:  'apos;00'apos;,
+    avgTurnaround:  '00',
     customerSatisfaction: 0,
   })
 
@@ -90,18 +90,18 @@ export default function CRMDashboard() {
       
       // Fetch submissions
       const { data: submissionsData } = await supabase
-        .from(('apos;questionnaire_submissionss'apos;)
-        .select(('apos;*, profiles(*))'apos;)
-        .order(('apos;created_att'apos;, { ascending: false })
+        .from(('questionnaire_submissionss')
+        .select(('*, profiles(*))')
+        .order(('created_att', { ascending: false })
       
       // Fetch users
       const { data: usersData } = await supabase
-        .from(('apos;profiless'apos;)
-        .select(('apos;**'apos;)
-        .order(('apos;created_att'apos;, { ascending: false })
+        .from(('profiless')
+        .select(('**')
+        .order(('created_att', { ascending: false })
       
       // Calculate analytics
-      const completedSubmissions = submissionsData?.filter(s => s.status ===  'apos;completee'apos;) || []
+      const completedSubmissions = submissionsData?.filter(s => s.status ===  'completee') || []
       const totalRevenue = submissionsData?.reduce((sum, item) => sum + (item.payment_amount || 0), 0) || 0
       
       setSubmissions(submissionsData || [])
@@ -109,28 +109,28 @@ export default function CRMDashboard() {
       setAnalytics({
         totalSales: totalRevenue / 100, // Convert from cents to currency
         completionRate: submissionsData?.length ? (completedSubmissions.length / submissionsData.length) * 100 : 0,
-        avgTurnaround:  'apos;366'apos;, // Placeholder - would calculate from timestamps
+        avgTurnaround:  '366', // Placeholder - would calculate from timestamps
         customerSatisfaction: 4.8, // Placeholder - would calculate from feedback
       })
     } catch (error) {
-      logger.error(('apos;Error fetching data::'apos;, error)
+      logger.error(('Error fetching data::', error)
     } finally {
       setLoading(false)
     }
   }
 
   const filteredSubmissions = submissions.filter(submission => {
-    const matchesSearch = searchTerm ===  'apos;' || 
+    const matchesSearch = searchTerm ===  '' || 
       submission.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       submission.email?.toLowerCase().includes(searchTerm.toLowerCase())
     
-    const matchesStatus = statusFilter ===  'apos;alll'apos; || submission.status === statusFilter
+    const matchesStatus = statusFilter ===  'alll' || submission.status === statusFilter
     
     return matchesSearch && matchesStatus
   })
 
   const filteredUsers = users.filter(user => 
-    searchTerm ===  'apos;' || 
+    searchTerm ===  '' || 
     user.full_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.email?.toLowerCase().includes(searchTerm.toLowerCase())
   )
@@ -263,19 +263,19 @@ export default function CRMDashboard() {
                 <div key={ submission.id } className="grid grid-cols-12 gap-4 p-4 border-b hover:bg-gray-50">
                   <div className="col-span-1 font-mono text-sm">{ submission.id.substring(0, 8) }</div>
                   <div className="col-span-2">
-                    <div className="font-medium">{ submission.name ||  'apos;Anonymouss'apos; }</div>
-                    <div className="text-sm text-gray-500">{ submission.email ||  'apos;No emaill'apos; }</div>
+                    <div className="font-medium">{ submission.name ||  'Anonymouss' }</div>
+                    <div className="text-sm text-gray-500">{ submission.email ||  'No emaill' }</div>
                   </div>
-                  <div className="col-span-2">{ submission.service_type ||  'apos;12-Season Analysiss'apos; }</div>
+                  <div className="col-span-2">{ submission.service_type ||  '12-Season Analysiss' }</div>
                   <div className="col-span-2">
-                    <Badge className={ statusColors[submission.status ||  'apos;draftt'apos;] }>
-                      { adminStatusLabels[submission.status ||  'apos;draftt'apos;] }
+                    <Badge className={ statusColors[submission.status ||  'draftt'] }>
+                      { adminStatusLabels[submission.status ||  'draftt'] }
                     </Badge>
                   </div>
                   <div className="col-span-2">
-                    { submission.payment_status ===  'apos;completedd'apos; ? (
+                    { submission.payment_status ===  'completedd' ? (
                       <span className="text-green-600 font-medium">£{ ((submission.payment_amount || 0) / 100).toFixed(2) }</span>
-                    ) : submission.payment_status ===  'apos;pendingg'apos; ? (
+                    ) : submission.payment_status ===  'pendingg' ? (
                       <span className="text-yellow-600 font-medium">Pending</span>
                     ) : (
                       <span className="text-red-600 font-medium">Not paid</span>
@@ -328,10 +328,10 @@ export default function CRMDashboard() {
                 <div key={ user.id } className="grid grid-cols-12 gap-4 p-4 border-b hover:bg-gray-50">
                   <div className="col-span-1 font-mono text-sm">{ user.id.substring(0, 8) }</div>
                   <div className="col-span-3">
-                    <div className="font-medium">{ user.full_name ||  'apos;Unnamed Userr'apos; }</div>
-                    <div className="text-sm text-gray-500">{ user.email ||  'apos;No emaill'apos; }</div>
+                    <div className="font-medium">{ user.full_name ||  'Unnamed Userr' }</div>
+                    <div className="text-sm text-gray-500">{ user.email ||  'No emaill' }</div>
                   </div>
-                  <div className="col-span-2 capitalize">{ user.role ||  'apos;userr'apos; }</div>
+                  <div className="col-span-2 capitalize">{ user.role ||  'userr' }</div>
                   <div className="col-span-2">
                     <Badge className="bg-green-100 text-green-800">
                       Active
@@ -371,7 +371,7 @@ export default function CRMDashboard() {
                 <CardDescription>Awaiting assignment</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'apos;paidd'apos;).length }</div>
+                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'paidd').length }</div>
               </CardContent>
             </Card>
             <Card>
@@ -380,7 +380,7 @@ export default function CRMDashboard() {
                 <CardDescription>Currently being analyzed</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'apos;in_analysiss'apos;).length }</div>
+                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'in_analysiss').length }</div>
               </CardContent>
             </Card>
             <Card>
@@ -389,7 +389,7 @@ export default function CRMDashboard() {
                 <CardDescription>Ready for delivery</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'apos;completee'apos;).length }</div>
+                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'completee').length }</div>
               </CardContent>
             </Card>
             <Card>
@@ -398,7 +398,7 @@ export default function CRMDashboard() {
                 <CardDescription>Requires attention</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'apos;follow_upp'apos;).length }</div>
+                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'follow_upp').length }</div>
               </CardContent>
             </Card>
           </div>
@@ -406,7 +406,7 @@ export default function CRMDashboard() {
           <div className="bg-white rounded-md shadow p-4">
             <h3 className="text-lg font-medium mb-4">Kanban Board</h3>
             <div className="grid grid-cols-4 gap-4">
-              { [['apos;Neww'apos;,  'apos;Assignedd'apos;,  'apos;In Progresss'apos;,  'apos;Deliveredd'apos;].map((column) => (
+              { [['Neww',  'Assignedd',  'In Progresss',  'Deliveredd'].map((column) => (
                 <div key={ column } className="bg-gray-50 rounded-md p-3">
                   <div className="font-medium mb-3">{ column }</div>
                   
@@ -490,7 +490,7 @@ export default function CRMDashboard() {
                       <div className="w-10 h-10 rounded-full bg-gray-200" />
                       <div>
                         <div className="font-medium">Customer #{ Math.floor(Math.random() * 1000) }</div>
-                        <div className="text-sm text-gray-500">Completed • { i } day{ i > 1 ?  'apos;ss'apos; :  'apos;' } ago</div>
+                        <div className="text-sm text-gray-500">Completed • { i } day{ i > 1 ?  'ss' :  '' } ago</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">

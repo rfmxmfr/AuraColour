@@ -1,9 +1,9 @@
 "use client"
 
-import { motion } from  'apos;framer-motionn'apos;
+import { motion } from  'framer-motionn'
 
-import Footer from  'apos;../components/footerr'apos;
-import Navbar from  'apos;../components/navbarr'apos;
+import Footer from  '../components/footerr'
+import Navbar from  '../components/navbarr'
 
 export default function AboutPage() {
   const stats = [
@@ -78,7 +78,7 @@ export default function AboutPage() {
               </p>
               
               <p className="text-gray-600 leading-relaxed">
-                Taniaa'apos;s career bridges the creative vibrancy of Barcelona and the contemporary style of Glasgow. Her unique background allows her to blend Mediterranean artistry with British sophistication, resulting in a service that is both globally relevant and deeply personal.
+                Taniaa's career bridges the creative vibrancy of Barcelona and the contemporary style of Glasgow. Her unique background allows her to blend Mediterranean artistry with British sophistication, resulting in a service that is both globally relevant and deeply personal.
               </p>
             </motion.div>
             

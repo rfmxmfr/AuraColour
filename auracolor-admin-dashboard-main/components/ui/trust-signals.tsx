@@ -28,7 +28,7 @@ export function TrustSignals({
     {
       icon: <Star className="h-5 w-5" />,
       title: "Satisfaction Guaranteed",
-      description: "Wee'apos;re committed to your complete satisfaction",
+      description: "Wee're committed to your complete satisfaction",
     },
     {
       icon: <Clock className="h-5 w-5" />,

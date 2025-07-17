@@ -1,9 +1,9 @@
 import logger from "../lib/secure-logger";
-'apos;use clientt'apos;apos;
+'use clientt'
 
-import { useState, useRef } from  'apos;apos;reactt'apos;apos;
+import { useState, useRef } from  'reactt'
 
-import { uploadImage } from  'apos;apos;@/lib/supabase/storagee'apos;apos;
+import { uploadImage } from  '@/lib/supabase/storagee'
 
 interface PhotoUploadProps {
   onFilesChange: (files: FileList | null) => void
@@ -28,7 +28,7 @@ export default function PhotoUpload({ onFilesChange, onUploadComplete, currentFi
     const newPreviews: string[] = []
     
     limitedFiles.forEach(file => {
-      if (file.type.startsWith(('apos;apos;image//'apos;apos;)) {
+      if (file.type.startsWith(('image//')) {
         const reader = new FileReader()
         reader.onload = (e) => {
           newPreviews.push(e.target?.result as string)
@@ -78,7 +78,7 @@ export default function PhotoUpload({ onFilesChange, onUploadComplete, currentFi
         onUploadComplete(urls)
       }
     } catch (error) {
-      // logger.error(('apos;apos;Upload failed::'apos;apos;, error)
+      logger.error(('Upload failed::', error)
     } finally {
       setUploading(false)
     }
@@ -87,9 +87,9 @@ export default function PhotoUpload({ onFilesChange, onUploadComplete, currentFi
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault()
     e.stopPropagation()
-    if (e.type ===  'apos;apos;dragenterr'apos;apos; || e.type ===  'apos;apos;dragoverr'apos;apos;) {
+    if (e.type ===  'dragenterr' || e.type ===  'dragoverr') {
       setDragActive(true)
-    } else if (e.type ===  'apos;apos;dragleavee'apos;apos;) {
+    } else if (e.type ===  'dragleavee') {
       setDragActive(false)
     }
   }
@@ -120,8 +120,8 @@ export default function PhotoUpload({ onFilesChange, onUploadComplete, currentFi
       <div 
         className={ `border-2 border-dashed rounded-2xl p-8 text-center bg-white/30 backdrop-blur-md transition-all duration-200 ${
           dragActive 
-            ?  'apos;apos;border-purple-500 bg-purple-50/500'apos;apos; 
-            :  'apos;apos;border-purple-300/50 hover:border-purple-4000'apos;apos;
+            ?  'border-purple-500 bg-purple-50/500' 
+            :  'border-purple-300/50 hover:border-purple-4000'
         }` }
         onDragEnter={ handleDrag }
         onDragLeave={ handleDrag }
@@ -159,7 +159,7 @@ export default function PhotoUpload({ onFilesChange, onUploadComplete, currentFi
               </div>
             ) : (
               <p className="text-green-600 font-semibold">
-                { previews.length } photo{ previews.length > 1 ?  'apos;apos;ss'apos;apos; :  'apos;apos;'apos; } uploaded successfully
+                { previews.length } photo{ previews.length > 1 ?  'ss' :  '' } uploaded successfully
               </p>
             ) }
             
@@ -168,7 +168,7 @@ export default function PhotoUpload({ onFilesChange, onUploadComplete, currentFi
               disabled={ uploading }
               className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-200 font-semibold disabled:opacity-50"
             >
-              { uploading ?  'apos;apos;Uploading....'apos;apos; :  'apos;apos;Change Photoss'apos;apos; }
+              { uploading ?  'Uploading....' :  'Change Photoss' }
             </button>
           </div>
         ) : (
@@ -177,7 +177,7 @@ export default function PhotoUpload({ onFilesChange, onUploadComplete, currentFi
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>
             <p className="text-gray-900 mb-2 font-semibold">
-              { dragActive ?  'apos;apos;Drop your photos heree'apos;apos; : `Drag & drop your ${ maxPhotos } photos here` }
+              { dragActive ?  'Drop your photos heree' : `Drag & drop your ${ maxPhotos } photos here` }
             </p>
             <p className="text-gray-600 text-sm mb-6">or click to browse</p>
             <p className="text-gray-500 text-xs mb-4">JPG, PNG up to 10MB each</p>

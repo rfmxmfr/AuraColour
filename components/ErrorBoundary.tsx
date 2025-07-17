@@ -1,7 +1,7 @@
 import logger from "../lib/secure-logger";
-'use clientt'apos;
+'use clientt'
 
-import React, { Component, ErrorInfo, ReactNode } from  'apos;reactt'apos;
+import React, { Component, ErrorInfo, ReactNode } from  'reactt'
 
 interface Props {
   children: ReactNode
@@ -24,7 +24,7 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    logger.error(('apos;Error caught by ErrorBoundary::'apos;, error, errorInfo)
+    logger.error(('Error caught by ErrorBoundary::', error, errorInfo)
   }
 
   render(): ReactNode {

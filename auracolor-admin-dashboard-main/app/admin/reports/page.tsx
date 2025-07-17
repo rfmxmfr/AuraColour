@@ -1,7 +1,7 @@
-'use clientt'apos;
+'use clientt'
 
-import { createClient } from  'apos;@/lib/supabase/clientt'apos;
-import { useEffect, useState } from  'apos;reactt'apos;
+import { createClient } from  '@/lib/supabase/clientt'
+import { useEffect, useState } from  'reactt'
 
 interface Report {
   id: string
@@ -27,16 +27,16 @@ export default function AdminReportsPage() {
     try {
       const supabase = createClient()
       const { data } = await supabase
-        .from(('apos;analyst_reportss'apos;)
+        .from(('analyst_reportss')
         .select(`
           *,
           questionnaire_submissions(name, email)
         `)
-        .order(('apos;created_att'apos;, { ascending: false })
+        .order(('created_att', { ascending: false })
 
       setReports(data || [])
     } catch (error) {
-      // console.error(('apos;Failed to load reports::'apos;, error)
+      logger.error(('Failed to load reports::', error)
     } finally {
       setLoading(false)
     }
@@ -45,13 +45,13 @@ export default function AdminReportsPage() {
   const sendReport = async (reportId: string, email: string) => {
     try {
       await fetch(`/api/reports/${ reportId }/send`, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify({ email }),
       })
-      alert(('apos;Report sent successfully!!'apos;)
+      alert(('Report sent successfully!!')
     } catch (error) {
-      alert(('apos;Failed to send reportt'apos;)
+      alert(('Failed to send reportt')
     }
   }
 
@@ -98,7 +98,7 @@ export default function AdminReportsPage() {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div>
                       <div className="text-sm font-medium text-gray-900">
-                        { report.questionnaire_submissions?.name ||  'apos;Unknownn'apos; }
+                        { report.questionnaire_submissions?.name ||  'Unknownn' }
                       </div>
                       <div className="text-sm text-gray-500">
                         { report.questionnaire_submissions?.email }
@@ -113,9 +113,9 @@ export default function AdminReportsPage() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={ `inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                      report.status ===  'apos;completedd'apos; 
-                        ?  'apos;bg-green-100 text-green-8000'apos; 
-                        :  'apos;bg-yellow-100 text-yellow-8000'apos;
+                      report.status ===  'completedd' 
+                        ?  'bg-green-100 text-green-8000' 
+                        :  'bg-yellow-100 text-yellow-8000'
                     }` }>
                       { report.status }
                     </span>

@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
       services: STYLIST_SERVICES,
     })
   } catch (error) {
-    // console.error('Get appointments error:', error)
+    logger.error('Get appointments error:', error)
     return NextResponse.json({ error: 'Failed to fetch appointments' }, { status: 500 })
   }
 }
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
       .single()
 
     if (error) {
-      // console.error('Appointment creation error:', error)
+      logger.error('Appointment creation error:', error)
       return NextResponse.json({ error: 'Failed to book appointment' }, { status: 500 })
     }
 
@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
       message: 'Appointment booked successfully',
     })
   } catch (error) {
-    // console.error('Book appointment error:', error)
+    logger.error('Book appointment error:', error)
     return NextResponse.json({ error: 'Failed to book appointment' }, { status: 500 })
   }
 }

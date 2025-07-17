@@ -1,9 +1,9 @@
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
-import Link from  'apos;next/linkk'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import Link from  'next/linkk'
 
-import Footer from  'apos;../../components/footerr'apos;
-import Navbar from  'apos;../../components/navbarr'apos;
+import Footer from  '../../components/footerr'
+import Navbar from  '../../components/navbarr'
 
 export default function VirtualWardrobePage() {
   return (
@@ -64,11 +64,11 @@ export default function VirtualWardrobePage() {
               <CardContent className="space-y-6">
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-2">How does the virtual wardrobe audit work?</h4>
-                  <p className="text-gray-600 text-sm">Youu'apos;ll share photos or a video of your wardrobe. Your stylist will review, organize, and suggest new outfit combinations.</p>
+                  <p className="text-gray-600 text-sm">Youu'll share photos or a video of your wardrobe. Your stylist will review, organize, and suggest new outfit combinations.</p>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-2">What is a gap analysis?</h4>
-                  <p className="text-gray-600 text-sm">Itt'apos;s an assessment to identify missing items that would maximize your wardrobee'apos;s versatility.</p>
+                  <p className="text-gray-600 text-sm">Itt's an assessment to identify missing items that would maximize your wardrobee's versatility.</p>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-2">Is this service suitable for all wardrobe sizes?</h4>

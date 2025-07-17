@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     const analysis = await analyze12Season(imageUrl)
     const supabase = await createClient()
 
-    const ticketNumber = `12S-${ Date.now()}`
+    const ticketNumber = `12S-${ Date.now() }`
     const { data: ticket } = await supabase.from('tickets').insert({
       ticket_number: ticketNumber,
       customer_email: sanitizedEmail,
@@ -50,9 +50,9 @@ export async function POST(request: NextRequest) {
     if (ticket) {
       await supabase.from('analyst_reports').insert({
         ticket_id: ticket.id,
-        season_analysis: `12-Season Analysis: ${ analysis.season}`,
+        season_analysis: `12-Season Analysis: ${ analysis.season }`,
         color_recommendations: analysis.colors,
-        styling_notes: `Features: ${ JSON.stringify(analysis.features)}. Category: ${ analysis.category}`,
+        styling_notes: `Features: ${ JSON.stringify(analysis.features) }. Category: ${ analysis.category }`,
         confidence_score: analysis.confidence,
         status: 'completed',
         ai_analysis: analysis,
@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
       ticket_id: ticket?.id,
     })
   } catch (error) {
-    // logger.error('12-season analysis failed:', error)
+    logger.error('12-season analysis failed:', error)
     return NextResponse.json({ error: 'Analysis failed' }, { status: 500 })
   }
 }

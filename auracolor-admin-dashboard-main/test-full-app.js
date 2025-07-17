@@ -6,27 +6,27 @@ const fetch = require('node-fetch');
 
 const BASE_URL = 'https://firebase-deploy-45h6701x4-renatos-projects-ef7b1af8.vercel.app';
 
-// console.log('🚀 FULL APP TESTING SUITE');
-// console.log('========================\n');
+logger.info('🚀 FULL APP TESTING SUITE');
+logger.info('========================\n');
 
 // Test 1: Unit Tests
 async function runUnitTests() {
-  // console.log('📋 1. UNIT TESTS');
-  // console.log('----------------');
+  logger.info('📋 1. UNIT TESTS');
+  logger.info('----------------');
   try {
     const output = execSync('npm run test:unit', { encoding: 'utf8' });
-    // console.log(output);
+    logger.info(output);
     return true;
   } catch (error) {
-    // console.log('❌ Unit tests failed:', error.message);
+    logger.info('❌ Unit tests failed:', error.message);
     return false;
   }
 }
 
 // Test 2: Frontend Pages
 async function testFrontendPages() {
-  // console.log('🌐 2. FRONTEND PAGES');
-  // console.log('-------------------');
+  logger.info('🌐 2. FRONTEND PAGES');
+  logger.info('-------------------');
   
   const pages = [
     '/',
@@ -46,30 +46,30 @@ async function testFrontendPages() {
     try {
       const response = await fetch(`${ BASE_URL }${ page }`);
       const status = response.ok ? '✅' : '❌';
-      // console.log(`${ status } ${ page }: ${ response.status }`);
+      logger.info(`${ status } ${ page }: ${ response.status }`);
       if (response.ok) passed++;
     } catch (error) {
-      // console.log(`❌ ${ page }: ERROR`);
+      logger.info(`❌ ${ page }: ERROR`);
     }
   }
   
-  // console.log(`\n📊 Frontend: ${ passed }/${ pages.length } pages working\n`);
+  logger.info(`\n📊 Frontend: ${ passed }/${ pages.length } pages working\n`);
   return passed === pages.length;
 }
 
 // Test 3: API Endpoints
 async function testAPIEndpoints() {
-  // console.log('🔧 3. API ENDPOINTS');
-  // console.log('------------------');
+  logger.info('🔧 3. API ENDPOINTS');
+  logger.info('------------------');
   
   // Test Debug API
   try {
     const response = await fetch(`${ BASE_URL }/api/debug`);
     const data = await response.json();
-    // console.log(`✅ Debug API: ${ response.status }`);
-    // console.log(`   Environment: ${ data.env?.supabase_url }, ${ data.env?.supabase_key }`);
+    logger.info(`✅ Debug API: ${ response.status }`);
+    logger.info(`   Environment: ${ data.env?.supabase_url }, ${ data.env?.supabase_key }`);
   } catch (error) {
-    // console.log('❌ Debug API: Failed');
+    logger.info('❌ Debug API: Failed');
   }
   
   // Test Booking API
@@ -86,10 +86,10 @@ async function testAPIEndpoints() {
     
     const data = await response.json();
     const status = data.success ? '✅' : '❌';
-    // console.log(`${ status } Booking API: ${ response.status }`);
-    if (data.booking_number) // console.log(`   Booking: ${ data.booking_number }`);
+    logger.info(`${ status } Booking API: ${ response.status }`);
+    if (data.booking_number) logger.info(`   Booking: ${ data.booking_number }`);
   } catch (error) {
-    // console.log('❌ Booking API: Failed');
+    logger.info('❌ Booking API: Failed');
   }
   
   // Test Voucher API
@@ -106,47 +106,47 @@ async function testAPIEndpoints() {
     
     const data = await response.json();
     const status = data.success ? '✅' : '❌';
-    // console.log(`${ status } Voucher API: ${ response.status }`);
-    if (data.voucherCode) // console.log(`   Code: ${ data.voucherCode }`);
+    logger.info(`${ status } Voucher API: ${ response.status }`);
+    if (data.voucherCode) logger.info(`   Code: ${ data.voucherCode }`);
   } catch (error) {
-    // console.log('❌ Voucher API: Failed');
+    logger.info('❌ Voucher API: Failed');
   }
   
-  // console.log();
+  logger.info();
 }
 
 // Test 4: Admin Dashboard Access
 async function testAdminDashboard() {
-  // console.log('👑 4. ADMIN DASHBOARD');
-  // console.log('--------------------');
+  logger.info('👑 4. ADMIN DASHBOARD');
+  logger.info('--------------------');
   
   try {
     const response = await fetch(`${ BASE_URL }/admin`);
-    // console.log(`✅ Admin Page: ${ response.status }`);
-    // console.log(`📍 Admin URL: ${ BASE_URL }/admin`);
-    // console.log('   Features: Bookings, Reports, Analytics, Content Management');
+    logger.info(`✅ Admin Page: ${ response.status }`);
+    logger.info(`📍 Admin URL: ${ BASE_URL }/admin`);
+    logger.info('   Features: Bookings, Reports, Analytics, Content Management');
     
     // Test admin API endpoints
     const adminAPIs = ['/api/bookings', '/api/reports', '/api/content'];
     for (const api of adminAPIs) {
       try {
         const apiResponse = await fetch(`${ BASE_URL }${ api }`);
-        // console.log(`   ${ api }: ${ apiResponse.status }`);
+        logger.info(`   ${ api }: ${ apiResponse.status }`);
       } catch (error) {
-        // console.log(`   ${ api }: ERROR`);
+        logger.info(`   ${ api }: ERROR`);
       }
     }
   } catch (error) {
-    // console.log('❌ Admin Dashboard: Failed');
+    logger.info('❌ Admin Dashboard: Failed');
   }
   
-  // console.log();
+  logger.info();
 }
 
 // Test 5: Core Features
 async function testCoreFeatures() {
-  // console.log('⭐ 5. CORE FEATURES');
-  // console.log('------------------');
+  logger.info('⭐ 5. CORE FEATURES');
+  logger.info('------------------');
   
   const features = [
     { name: 'Color Analysis', url: '/services/color-analysis' },
@@ -160,49 +160,49 @@ async function testCoreFeatures() {
     try {
       const response = await fetch(`${ BASE_URL }${ feature.url }`);
       const status = response.ok ? '✅' : '❌';
-      // console.log(`${ status } ${ feature.name }: ${ response.status }`);
+      logger.info(`${ status } ${ feature.name }: ${ response.status }`);
     } catch (error) {
-      // console.log(`❌ ${ feature.name }: ERROR`);
+      logger.info(`❌ ${ feature.name }: ERROR`);
     }
   }
   
-  // console.log();
+  logger.info();
 }
 
 // Test 6: Performance & Build
 async function testPerformance() {
-  // console.log('⚡ 6. PERFORMANCE & BUILD');
-  // console.log('------------------------');
+  logger.info('⚡ 6. PERFORMANCE & BUILD');
+  logger.info('------------------------');
   
   try {
     const start = Date.now();
     const response = await fetch(`${ BASE_URL }/`);
     const loadTime = Date.now() - start;
     
-    // console.log(`✅ Load Time: ${ loadTime }ms`);
-    // console.log(`✅ Status: ${ response.status }`);
-    // console.log(`✅ Content-Type: ${ response.headers.get('content-type') }`);
+    logger.info(`✅ Load Time: ${ loadTime }ms`);
+    logger.info(`✅ Status: ${ response.status }`);
+    logger.info(`✅ Content-Type: ${ response.headers.get('content-type') }`);
     
     // Test static assets
     const assets = ['/favicon.ico', '/_next/static'];
     for (const asset of assets) {
       try {
         const assetResponse = await fetch(`${ BASE_URL }${ asset }`);
-        // console.log(`   ${ asset }: ${ assetResponse.status }`);
+        logger.info(`   ${ asset }: ${ assetResponse.status }`);
       } catch (error) {
-        // console.log(`   ${ asset }: ERROR`);
+        logger.info(`   ${ asset }: ERROR`);
       }
     }
   } catch (error) {
-    // console.log('❌ Performance test failed');
+    logger.info('❌ Performance test failed');
   }
   
-  // console.log();
+  logger.info();
 }
 
 // Main test runner
 async function runFullAppTest() {
-  // console.log(`🎯 Testing: ${ BASE_URL }\n`);
+  logger.info(`🎯 Testing: ${ BASE_URL }\n`);
   
   const results = {
     unit: await runUnitTests(),
@@ -219,23 +219,23 @@ async function runFullAppTest() {
   await testPerformance();
   
   // Final Summary
-  // console.log('📊 FINAL SUMMARY');
-  // console.log('================');
-  // console.log(`🌐 Live App: ${ BASE_URL }`);
-  // console.log(`👑 Admin Panel: ${ BASE_URL }/admin`);
-  // console.log(`📱 Mobile Responsive: Yes`);
-  // console.log(`🔒 HTTPS: Yes`);
-  // console.log(`⚡ Performance: Optimized`);
-  // console.log(`🧪 Unit Tests: ${ results.unit ? 'PASSING' : 'FAILING' }`);
-  // console.log(`🎨 Frontend: ${ results.frontend ? 'WORKING' : 'ISSUES' }`);
-  // console.log(`🔧 APIs: Check individual results above`);
-  // console.log(`📊 Analytics: Available in admin dashboard`);
+  logger.info('📊 FINAL SUMMARY');
+  logger.info('================');
+  logger.info(`🌐 Live App: ${ BASE_URL }`);
+  logger.info(`👑 Admin Panel: ${ BASE_URL }/admin`);
+  logger.info(`📱 Mobile Responsive: Yes`);
+  logger.info(`🔒 HTTPS: Yes`);
+  logger.info(`⚡ Performance: Optimized`);
+  logger.info(`🧪 Unit Tests: ${ results.unit ? 'PASSING' : 'FAILING' }`);
+  logger.info(`🎨 Frontend: ${ results.frontend ? 'WORKING' : 'ISSUES' }`);
+  logger.info(`🔧 APIs: Check individual results above`);
+  logger.info(`📊 Analytics: Available in admin dashboard`);
   
-  // console.log('\n🎉 FULL APP TEST COMPLETE!');
-  // console.log('\n📋 ADMIN ACCESS:');
-  // console.log(`   Dashboard: ${ BASE_URL }/admin`);
-  // console.log('   Features: Bookings, Reports, ML Analytics, Content Management');
-  // console.log('   APIs: /api/bookings, /api/reports, /api/content, /api/vouchers');
+  logger.info('\n🎉 FULL APP TEST COMPLETE!');
+  logger.info('\n📋 ADMIN ACCESS:');
+  logger.info(`   Dashboard: ${ BASE_URL }/admin`);
+  logger.info('   Features: Bookings, Reports, ML Analytics, Content Management');
+  logger.info('   APIs: /api/bookings, /api/reports, /api/content, /api/vouchers');
 }
 
 // Run if called directly

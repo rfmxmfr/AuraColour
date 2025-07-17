@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
       .single()
 
     if (dbError) {
-      // console.error('Database error:', dbError)
+      logger.error('Database error:', dbError)
     }
 
     // Send email with results
@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
     })
 
     if (emailError) {
-      // console.error('Email error:', emailError)
+      logger.error('Email error:', emailError)
       return NextResponse.json({
         success: false,
         error: 'Failed to send email',
@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
     })
 
   } catch (error) {
-    // console.error('Full color test error:', error)
+    logger.error('Full color test error:', error)
     return NextResponse.json({
       success: false,
       error: 'Failed to process full color test',

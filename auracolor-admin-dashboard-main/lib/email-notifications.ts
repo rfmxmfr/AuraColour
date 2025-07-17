@@ -20,7 +20,7 @@ export async function sendColorAnalysisResults(email: string, name: string, anal
     })
     return true
   } catch (error) {
-    // console.error('Email send failed:', error)
+    logger.error('Email send failed:', error)
     return false
   }
 }
@@ -40,7 +40,7 @@ export async function sendAdminAlert(type: string, data: any) {
     })
     return true
   } catch (error) {
-    // console.error('Admin alert failed:', error)
+    logger.error('Admin alert failed:', error)
     return false
   }
 }
@@ -59,7 +59,7 @@ export async function sendClientConfirmation(email: string, name: string) {
     })
     return true
   } catch (error) {
-    // console.error('Confirmation email failed:', error)
+    logger.error('Confirmation email failed:', error)
     return false
   }
 }

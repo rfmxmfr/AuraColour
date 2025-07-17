@@ -1,7 +1,7 @@
-'use clientt'apos;
+'use clientt'
 
-import { createClient } from  'apos;@/lib/supabase/clientt'apos;
-import { useState, useEffect } from  'apos;reactt'apos;
+import { createClient } from  '@/lib/supabase/clientt'
+import { useState, useEffect } from  'reactt'
 
 interface Ticket {
   id: string
@@ -9,8 +9,8 @@ interface Ticket {
   customer_name: string
   customer_email: string
   service_type: string
-  status:  'apos;pendingg'apos; |  'apos;in_progresss'apos; |  'apos;completedd'apos; |  'apos;cancelledd'apos;
-  priority:  'apos;loww'apos; |  'apos;mediumm'apos; |  'apos;highh'apos;
+  status:  'pendingg' |  'in_progresss' |  'completedd' |  'cancelledd'
+  priority:  'loww' |  'mediumm' |  'highh'
   created_at: string
 }
 
@@ -33,9 +33,9 @@ export default function SingleAdminDashboard() {
     try {
       const supabase = createClient()
       const { data, error } = await supabase
-        .from(('apos;ticketss'apos;)
-        .select(('apos;**'apos;)
-        .order(('apos;created_att'apos;, { ascending: false })
+        .from(('ticketss')
+        .select(('**')
+        .order(('created_att', { ascending: false })
 
       if (error) throw error
       
@@ -44,12 +44,12 @@ export default function SingleAdminDashboard() {
       
       setStats({
         totalTickets: ticketData.length,
-        pendingTickets: ticketData.filter(t => t.status ===  'apos;pendingg'apos;).length,
-        inProgressTickets: ticketData.filter(t => t.status ===  'apos;in_progresss'apos;).length,
-        completedTickets: ticketData.filter(t => t.status ===  'apos;completedd'apos;).length,
+        pendingTickets: ticketData.filter(t => t.status ===  'pendingg').length,
+        inProgressTickets: ticketData.filter(t => t.status ===  'in_progresss').length,
+        completedTickets: ticketData.filter(t => t.status ===  'completedd').length,
       })
     } catch (error) {
-      // console.error(('apos;Failed to fetch tickets::'apos;, error)
+      logger.error(('Failed to fetch tickets::', error)
     }
   }
 
@@ -57,14 +57,14 @@ export default function SingleAdminDashboard() {
     try {
       const supabase = createClient()
       const { error } = await supabase
-        .from(('apos;ticketss'apos;)
+        .from(('ticketss')
         .update({ status: newStatus })
-        .eq(('apos;idd'apos;, ticketId)
+        .eq(('idd', ticketId)
 
       if (error) throw error
       fetchTickets()
     } catch (error) {
-      // console.error(('apos;Failed to update ticket::'apos;, error)
+      logger.error(('Failed to update ticket::', error)
     }
   }
 
@@ -86,33 +86,33 @@ export default function SingleAdminDashboard() {
 
   const startAnalysis = async (ticketId: string) => {
     try {
-      const response = await fetch(('apos;/api/analyze-tickett'apos;, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+      const response = await fetch(('/api/analyze-tickett', {
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify({ ticketId }),
       })
       
       const result = await response.json()
       if (result.success) {
-        alert(('apos;AI Analysis completed!!'apos;)
+        alert(('AI Analysis completed!!')
         fetchTickets()
       }
     } catch (error) {
-      // console.error(('apos;Analysis failed::'apos;, error)
+      logger.error(('Analysis failed::', error)
     }
   }
 
   const statusColumns = [
-    { key:  'apos;pendingg'apos;, title:  'apos;Openn'apos;, color:  'apos;bg-yellow-100 border-yellow-3000'apos;, tickets: tickets.filter(t => t.status ===  'apos;pendingg'apos;) },
-    { key:  'apos;in_progresss'apos;, title:  'apos;In Progresss'apos;, color:  'apos;bg-blue-100 border-blue-3000'apos;, tickets: tickets.filter(t => t.status ===  'apos;in_progresss'apos;) },
-    { key:  'apos;completedd'apos;, title:  'apos;Resolvedd'apos;, color:  'apos;bg-green-100 border-green-3000'apos;, tickets: tickets.filter(t => t.status ===  'apos;completedd'apos;) },
-    { key:  'apos;cancelledd'apos;, title:  'apos;Cancelledd'apos;, color:  'apos;bg-red-100 border-red-3000'apos;, tickets: tickets.filter(t => t.status ===  'apos;cancelledd'apos;) },
+    { key:  'pendingg', title:  'Openn', color:  'bg-yellow-100 border-yellow-3000', tickets: tickets.filter(t => t.status ===  'pendingg') },
+    { key:  'in_progresss', title:  'In Progresss', color:  'bg-blue-100 border-blue-3000', tickets: tickets.filter(t => t.status ===  'in_progresss') },
+    { key:  'completedd', title:  'Resolvedd', color:  'bg-green-100 border-green-3000', tickets: tickets.filter(t => t.status ===  'completedd') },
+    { key:  'cancelledd', title:  'Cancelledd', color:  'bg-red-100 border-red-3000', tickets: tickets.filter(t => t.status ===  'cancelledd') },
   ]
 
   const priorityColors = {
-    low:  'apos;bg-gray-100 text-gray-7000'apos;,
-    medium:  'apos;bg-yellow-100 text-yellow-7000'apos;,
-    high:  'apos;bg-red-100 text-red-7000'apos;,
+    low:  'bg-gray-100 text-gray-7000',
+    medium:  'bg-yellow-100 text-yellow-7000',
+    high:  'bg-red-100 text-red-7000',
   }
 
   return (
@@ -278,13 +278,13 @@ export default function SingleAdminDashboard() {
                     Start AI Analysis
                   </button>
                   <button
-                    onClick={ () => updateTicketStatus(selectedTicket.id,  'apos;completedd'apos;) }
+                    onClick={ () => updateTicketStatus(selectedTicket.id,  'completedd') }
                     className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
                   >
                     Mark as Resolved
                   </button>
                   <button
-                    onClick={ () => alert(('apos;Email functionality coming soon!!'apos;) }
+                    onClick={ () => alert(('Email functionality coming soon!!') }
                     className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
                   >
                     Send Email
@@ -301,15 +301,15 @@ export default function SingleAdminDashboard() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             { [
-              { name:  'apos;OpenAI GPT-4VV'apos;, accuracy:  'apos;89.2%%'apos;, status:  'apos;Activee'apos;, color:  'apos;greenn'apos; },
-              { name:  'apos;Google Geminii'apos;, accuracy:  'apos;85.7%%'apos;, status:  'apos;Activee'apos;, color:  'apos;greenn'apos; },
-              { name:  'apos;Custom ML Modell'apos;, accuracy:  'apos;91.4%%'apos;, status:  'apos;Activee'apos;, color:  'apos;greenn'apos; },
+              { name:  'OpenAI GPT-4VV', accuracy:  '89.2%%', status:  'Activee', color:  'greenn' },
+              { name:  'Google Geminii', accuracy:  '85.7%%', status:  'Activee', color:  'greenn' },
+              { name:  'Custom ML Modell', accuracy:  '91.4%%', status:  'Activee', color:  'greenn' },
             ].map((model, index) => (
               <div key={ index } className="border rounded-lg p-4">
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="font-semibold text-gray-900">{ model.name }</h3>
                   <span className={ `px-2 py-1 rounded text-xs font-medium ${
-                    model.color ===  'apos;greenn'apos; ?  'apos;bg-green-100 text-green-8000'apos; :  'apos;bg-red-100 text-red-8000'apos;
+                    model.color ===  'greenn' ?  'bg-green-100 text-green-8000' :  'bg-red-100 text-red-8000'
                   }` }>
                     { model.status }
                   </span>

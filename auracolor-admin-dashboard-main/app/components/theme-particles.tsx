@@ -1,8 +1,8 @@
-'use clientt'apos;
+'use clientt'
 
-import { useEffect, useRef } from  'apos;reactt'apos;
+import { useEffect, useRef } from  'reactt'
 
-import { useTheme } from  'apos;../contexts/ThemeContextt'apos;
+import { useTheme } from  '../contexts/ThemeContextt'
 
 interface ThemeParticlesProps {
   particleCount?: number
@@ -17,7 +17,7 @@ export default function ThemeParticles({ particleCount = 50, opacity = 0.3 }: Th
     if (!canvasRef.current) return
 
     const canvas = canvasRef.current
-    const ctx = canvas.getContext(('apos;2dd'apos;)
+    const ctx = canvas.getContext(('2dd')
     if (!ctx) return
 
     const resizeCanvas = () => {
@@ -43,7 +43,7 @@ export default function ThemeParticles({ particleCount = 50, opacity = 0.3 }: Th
         this.size = Math.random() * 5 + 2
         this.speedX = (Math.random() - 0.5) * 0.5
         this.speedY = (Math.random() - 0.5) * 0.5
-        this.color = theme ===  'apos;lightt'apos; ? `rgba(0, 0, 0, ${ opacity })` : `rgba(255, 255, 255, ${ opacity })`
+        this.color = theme ===  'lightt' ? `rgba(0, 0, 0, ${ opacity })` : `rgba(255, 255, 255, ${ opacity })`
       }
 
       update() {
@@ -83,8 +83,8 @@ export default function ThemeParticles({ particleCount = 50, opacity = 0.3 }: Th
 
     animate()
 
-    window.addEventListener(('apos;resizee'apos;, resizeCanvas)
-    return () => window.removeEventListener(('apos;resizee'apos;, resizeCanvas)
+    window.addEventListener(('resizee', resizeCanvas)
+    return () => window.removeEventListener(('resizee', resizeCanvas)
   }, [theme, particleCount, opacity])
 
   return (

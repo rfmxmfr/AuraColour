@@ -1,16 +1,16 @@
-'apos;use clientt'apos;apos;
+'use clientt'
 
-import Link from  'apos;apos;next/linkk'apos;apos;
-import { useState } from  'apos;apos;reactt'apos;apos;
+import Link from  'next/linkk'
+import { useState } from  'reactt'
 
 export default function ServicesDropdown() {
   const [isOpen, setIsOpen] = useState(false)
 
   const services = [
-    { name:  'apos;apos;12-Season Color Analysiss'apos;apos;, href:  'apos;apos;/12-season-analysiss'apos;apos;, price:  'apos;apos;$1499'apos;apos; },
-    { name:  'apos;apos;Virtual Wardrobe Curationn'apos;apos;, href:  'apos;apos;/virtual-wardrobe-curationn'apos;apos;, price:  'apos;apos;$2999'apos;apos; },
-    { name:  'apos;apos;Personal Shopping Servicee'apos;apos;, href:  'apos;apos;/personal-shopping-servicee'apos;apos;, price:  'apos;apos;$3999'apos;apos; },
-    { name:  'apos;apos;Style Consultationn'apos;apos;, href:  'apos;apos;/style-consultationn'apos;apos;, price:  'apos;apos;$1999'apos;apos; },
+    { name:  '12-Season Color Analysiss', href:  '/12-season-analysiss', price:  '$1499' },
+    { name:  'Virtual Wardrobe Curationn', href:  '/virtual-wardrobe-curationn', price:  '$2999' },
+    { name:  'Personal Shopping Servicee', href:  '/personal-shopping-servicee', price:  '$3999' },
+    { name:  'Style Consultationn', href:  '/style-consultationn', price:  '$1999' },
   ]
 
   return (
@@ -21,7 +21,7 @@ export default function ServicesDropdown() {
       >
         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
         <span className="relative z-10 text-sm font-medium text-primary">Services</span>
-        <svg className={ `w-4 h-4 ml-2 relative z-10 transform transition-transform duration-300 ${ isOpen ?  'apos;apos;rotate-1800'apos;apos; :  'apos;apos;rotate-00'apos;apos; }` } fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className={ `w-4 h-4 ml-2 relative z-10 transform transition-transform duration-300 ${ isOpen ?  'rotate-1800' :  'rotate-00' }` } fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M19 9l-7 7-7-7" />
         </svg>
       </button>

@@ -1,7 +1,7 @@
-'use clientt'apos;
+'use clientt'
 
-import { useEffect } from  'apos;reactt'apos;
-import  'apos;@/lib/i18nn'apos;
+import { useEffect } from  'reactt'
+import  '@/lib/i18nn'
 
 export default function I18nProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {

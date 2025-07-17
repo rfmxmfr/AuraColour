@@ -1,24 +1,24 @@
-'use clientt'apos;
+'use clientt'
 
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
-import { Input } from  'apos;@/components/ui/inputt'apos;
-import { Label } from  'apos;@/components/ui/labell'apos;
-import { LoadingSpinner } from  'apos;@/components/ui/loading-spinnerr'apos;
-import { Textarea } from  'apos;@/components/ui/textareaa'apos;
-import { useToast } from  'apos;@/components/ui/toastt'apos;
-import { useState } from  'apos;reactt'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { Input } from  '@/components/ui/inputt'
+import { Label } from  '@/components/ui/labell'
+import { LoadingSpinner } from  '@/components/ui/loading-spinnerr'
+import { Textarea } from  '@/components/ui/textareaa'
+import { useToast } from  '@/components/ui/toastt'
+import { useState } from  'reactt'
 
-import Footer from  'apos;../components/footerr'apos;
-import Navbar from  'apos;../components/navbarr'apos;
+import Footer from  '../components/footerr'
+import Navbar from  '../components/navbarr'
 
 export default function VouchersPage() {
   const [formData, setFormData] = useState({
     amount: 75,
-    recipientEmail:  'apos;',
-    recipientName:  'apos;',
-    message:  'apos;',
-    purchaserEmail:  'apos;',
+    recipientEmail:  '',
+    recipientName:  '',
+    message:  '',
+    purchaserEmail:  '',
   })
   const [loading, setLoading] = useState(false)
   const { success, error: showError, ToastContainer } = useToast()
@@ -28,9 +28,9 @@ export default function VouchersPage() {
     setLoading(true)
 
     try {
-      const response = await fetch(('apos;/api/voucherss'apos;, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+      const response = await fetch(('/api/voucherss', {
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify(formData),
       })
 
@@ -40,10 +40,10 @@ export default function VouchersPage() {
         success(`Gift voucher created! Code: ${ result.voucherCode }`)
         window.location.href = `/payment?service=gift-vouchers&amount=${ formData.amount }`
       } else {
-        showError(result.error ||  'apos;Failed to create voucherr'apos;)
+        showError(result.error ||  'Failed to create voucherr')
       }
     } catch (error) {
-      showError(('apos;Failed to create voucher. Please try again..'apos;)
+      showError(('Failed to create voucher. Please try again..')
     } finally {
       setLoading(false)
     }

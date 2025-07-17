@@ -43,7 +43,7 @@ export async function GET() {
     const { data, error } = await supabase.from('profiles').select('id').limit(1)
     results.database = !error
   } catch (error) {
-    // console.error('Database test failed:', error)
+    logger.error('Database test failed:', error)
   }
 
   // Test Email
@@ -51,7 +51,7 @@ export async function GET() {
     const emailResult = await sendClientConfirmation('delivered@resend.dev', 'Test User')
     results.email = emailResult
   } catch (error) {
-    // console.error('Email test failed:', error)
+    logger.error('Email test failed:', error)
   }
 
   // Test Slack
@@ -60,7 +60,7 @@ export async function GET() {
       results.slack = await sendSlackNotification('🧪 Test from AuraColor', process.env.SLACK_WEBHOOK_URL)
     }
   } catch (error) {
-    // console.error('Slack test failed:', error)
+    logger.error('Slack test failed:', error)
   }
 
   // Test Discord
@@ -69,7 +69,7 @@ export async function GET() {
       results.discord = await sendDiscordNotification('🧪 Test from AuraColor', process.env.DISCORD_WEBHOOK_URL)
     }
   } catch (error) {
-    // console.error('Discord test failed:', error)
+    logger.error('Discord test failed:', error)
   }
 
   // Test SMS
@@ -78,7 +78,7 @@ export async function GET() {
       results.sms = await sendSMS('+1234567890', '🧪 Test SMS from AuraColor')
     }
   } catch (error) {
-    // console.error('SMS test failed:', error)
+    logger.error('SMS test failed:', error)
   }
 
   // Test Storage
@@ -87,7 +87,7 @@ export async function GET() {
     const { data, error } = await supabase.storage.listBuckets()
     results.storage = !error
   } catch (error) {
-    // console.error('Storage test failed:', error)
+    logger.error('Storage test failed:', error)
   }
 
   // Test AI
@@ -96,7 +96,7 @@ export async function GET() {
       results.ai = true // Just check if key exists
     }
   } catch (error) {
-    // console.error('AI test failed:', error)
+    logger.error('AI test failed:', error)
   }
 
   const totalTests = Object.keys(results).length - 1

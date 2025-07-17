@@ -97,7 +97,7 @@ export async function GET(request: NextRequest) {
     })
 
   } catch (error) {
-    // console.error('Voucher lookup error:', error)
+    logger.error('Voucher lookup error:', error)
     return NextResponse.json(
       { error: 'Failed to lookup voucher' },
       { status: 500 }

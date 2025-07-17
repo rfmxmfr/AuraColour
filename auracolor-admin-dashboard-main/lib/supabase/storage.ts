@@ -18,7 +18,7 @@ export async function uploadImage(file: File, bucket: string = 'images'): Promis
 
     return publicUrl
   } catch (error) {
-    // console.error('Upload failed:', error)
+    logger.error('Upload failed:', error)
     return null
   }
 }
@@ -35,7 +35,7 @@ export async function deleteImage(url: string, bucket: string = 'images'): Promi
 
     return !error
   } catch (error) {
-    // console.error('Delete failed:', error)
+    logger.error('Delete failed:', error)
     return false
   }
 }

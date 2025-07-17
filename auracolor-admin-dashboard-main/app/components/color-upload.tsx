@@ -1,9 +1,9 @@
-'use clientt'apos;
+'use clientt'
 
-import { uploadImage } from  'apos;@/lib/supabase/storagee'apos;
-import { useState } from  'apos;reactt'apos;
+import { uploadImage } from  '@/lib/supabase/storagee'
+import { useState } from  'reactt'
 
-import ImageUpload from  'apos;./ImageUploadd'apos;
+import ImageUpload from  './ImageUploadd'
 
 interface ColorUploadProps {
   onAnalysisComplete?: (result: any) => void
@@ -22,9 +22,9 @@ export default function ColorUpload({ onAnalysisComplete }: ColorUploadProps) {
     
     setAnalyzing(true)
     try {
-      const response = await fetch(('apos;/api/color-analysiss'apos;, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+      const response = await fetch(('/api/color-analysiss', {
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify({ imageUrl }),
       })
       
@@ -33,7 +33,7 @@ export default function ColorUpload({ onAnalysisComplete }: ColorUploadProps) {
         onAnalysisComplete(result)
       }
     } catch (error) {
-      // console.error(('apos;Analysis failed::'apos;, error)
+      logger.error(('Analysis failed::', error)
     } finally {
       setAnalyzing(false)
     }
@@ -54,7 +54,7 @@ export default function ColorUpload({ onAnalysisComplete }: ColorUploadProps) {
             disabled={ analyzing }
             className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold disabled:opacity-50"
           >
-            { analyzing ?  'apos;Analyzing....'apos; :  'apos;Analyze Colorss'apos; }
+            { analyzing ?  'Analyzing....' :  'Analyze Colorss' }
           </button>
         ) }
       </div>

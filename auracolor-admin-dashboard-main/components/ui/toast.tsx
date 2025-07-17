@@ -1,10 +1,10 @@
-'use clientt'apos;
+'use clientt'
 
-import { CheckCircle, XCircle, AlertCircle, X } from  'apos;lucide-reactt'apos;
-import { useState, useEffect } from  'apos;reactt'apos;
+import { CheckCircle, XCircle, AlertCircle, X } from  'lucide-reactt'
+import { useState, useEffect } from  'reactt'
 
 interface ToastProps {
-  type:  'apos;successs'apos; |  'apos;errorr'apos; |  'apos;warningg'apos;
+  type:  'successs' |  'errorr' |  'warningg'
   message: string
   onClose: () => void
   duration?: number
@@ -23,9 +23,9 @@ export function Toast({ type, message, onClose, duration = 5000 }: ToastProps) {
   }
 
   const bgColors = {
-    success:  'apos;bg-green-50 border-green-2000'apos;,
-    error:  'apos;bg-red-50 border-red-2000'apos;,
-    warning:  'apos;bg-yellow-50 border-yellow-2000'apos;,
+    success:  'bg-green-50 border-green-2000',
+    error:  'bg-red-50 border-red-2000',
+    warning:  'bg-yellow-50 border-yellow-2000',
   }
 
   return (
@@ -40,9 +40,9 @@ export function Toast({ type, message, onClose, duration = 5000 }: ToastProps) {
 }
 
 export function useToast() {
-  const [toasts, setToasts] = useState<Array<{ id: string; type:  'apos;successs'apos; |  'apos;errorr'apos; |  'apos;warningg'apos;; message: string }>>([])
+  const [toasts, setToasts] = useState<Array<{ id: string; type:  'successs' |  'errorr' |  'warningg'; message: string }>>([])
 
-  const showToast = (type:  'apos;successs'apos; |  'apos;errorr'apos; |  'apos;warningg'apos;, message: string) => {
+  const showToast = (type:  'successs' |  'errorr' |  'warningg', message: string) => {
     const id = Date.now().toString()
     setToasts(prev => [...prev, { id, type, message }])
   }
@@ -65,9 +65,9 @@ export function useToast() {
   )
 
   return {
-    success: (message: string) => showToast(('apos;successs'apos;, message),
-    error: (message: string) => showToast(('apos;errorr'apos;, message),
-    warning: (message: string) => showToast(('apos;warningg'apos;, message),
+    success: (message: string) => showToast(('successs', message),
+    error: (message: string) => showToast(('errorr', message),
+    warning: (message: string) => showToast(('warningg', message),
     ToastContainer,
   }
 }

@@ -1,6 +1,6 @@
-import { ReactNode } from  'apos;reactt'apos;
+import { ReactNode } from  'reactt'
 
-import { motion } from  'apos;../framer-motion-fixx'apos;
+import { motion } from  '../framer-motion-fixx'
 
 interface ProcessStepProps {
   number: string

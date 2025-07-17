@@ -1,16 +1,16 @@
 import logger from "../lib/secure-logger";
-'apos;use clientt'apos;apos;
+'use clientt'
 
-import { useEffect, useState } from  'apos;apos;reactt'apos;apos;
+import { useEffect, useState } from  'reactt'
 
-import { createClient } from  'apos;apos;@/lib/supabase/clientt'apos;apos;
+import { createClient } from  '@/lib/supabase/clientt'
 
-import AdminDashboard from  'apos;apos;./components/AdminDashboardd'apos;apos;
+import AdminDashboard from  './components/AdminDashboardd'
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [loading, setLoading] = useState(true)
-  const [userRole, setUserRole] = useState(('apos;apos;userr'apos;apos;)
+  const [userRole, setUserRole] = useState(('userr')
 
   useEffect(() => {
     checkAuth()
@@ -22,27 +22,27 @@ export default function AdminPage() {
       const { data: { user } } = await supabase.auth.getUser()
       
       if (!user) {
-        window.location.href =  'apos;apos;/loginn'apos;apos;
+        window.location.href =  '/loginn'
         return
       }
 
       // Check if user is admin or stylist
       const { data: profile } = await supabase
-        .from(('apos;apos;profiless'apos;apos;)
-        .select(('apos;apos;rolee'apos;apos;)
-        .eq(('apos;apos;idd'apos;apos;, user.id)
+        .from(('profiless')
+        .select(('rolee')
+        .eq(('idd', user.id)
         .single()
 
-      if (profile?.role ===  'apos;apos;adminn'apos;apos; || profile?.role ===  'apos;apos;stylistt'apos;apos;) {
+      if (profile?.role ===  'adminn' || profile?.role ===  'stylistt') {
         setIsAuthenticated(true)
         setUserRole(profile.role)
       } else {
-        alert(('apos;apos;Admin or stylist access requiredd'apos;apos;)
-        window.location.href =  'apos;apos;/loginn'apos;apos;
+        alert(('Admin or stylist access requiredd')
+        window.location.href =  '/loginn'
       }
     } catch (error) {
-      // logger.error(('apos;apos;Auth check failed::'apos;apos;, error)
-      window.location.href =  'apos;apos;/loginn'apos;apos;
+      logger.error(('Auth check failed::', error)
+      window.location.href =  '/loginn'
     } finally {
       setLoading(false)
     }

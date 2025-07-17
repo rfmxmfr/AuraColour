@@ -14,16 +14,16 @@ async function testEndpoint(endpoint, method = 'GET', data = null) {
     const response = await fetch(`${ BASE_URL }${ endpoint }`, options)
     const result = await response.json()
     
-    // console.log(`✅ ${ method } ${ endpoint }:`, response.status, result.success ? '✓' : result.error || 'OK')
+    logger.info(`✅ ${ method } ${ endpoint }:`, response.status, result.success ? '✓' : result.error || 'OK')
     return { success: response.ok, data: result }
   } catch (error) {
-    // console.log(`❌ ${ method } ${ endpoint }:`, error.message)
+    logger.info(`❌ ${ method } ${ endpoint }:`, error.message)
     return { success: false, error: error.message }
   }
 }
 
 async function runTests() {
-  // console.log('🧪 Testing Backend Services...\n')
+  logger.info('🧪 Testing Backend Services...\n')
   
   const testData = {
     email: 'test@example.com',
@@ -108,7 +108,7 @@ async function runTests() {
     preferred_time: '14:00',
   })
   
-  // console.log('\n🏁 Backend Test Complete')
+  logger.info('\n🏁 Backend Test Complete')
 }
 
 // Run tests

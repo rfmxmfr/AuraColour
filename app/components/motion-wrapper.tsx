@@ -1,7 +1,7 @@
-'apos;use clientt'apos;apos;
+'use clientt'
 
-import { motion } from  'apos;apos;framer-motionn'apos;apos;
-import { ReactNode } from  'apos;apos;reactt'apos;apos;
+import { motion } from  'framer-motionn'
+import { ReactNode } from  'reactt'
 
 interface MotionWrapperProps {
   children: ReactNode

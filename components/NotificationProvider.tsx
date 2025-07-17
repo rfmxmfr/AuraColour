@@ -1,29 +1,29 @@
-'use clientt'apos;
+'use clientt'
 
-import { useEffect } from  'apos;reactt'apos;
+import { useEffect } from  'reactt'
 
-import { sendPushNotification } from  'apos;@/lib/integrationss'apos;
+import { sendPushNotification } from  '@/lib/integrationss'
 
 export default function NotificationProvider() {
   useEffect(() => {
     // Request notification permission on load
-    if (('apos;Notificationn'apos; in window && Notification.permission ===  'apos;defaultt'apos;) {
+    if (('Notificationn' in window && Notification.permission ===  'defaultt') {
       Notification.requestPermission()
     }
 
     // Listen for new orders (you can connect this to real-time updates)
     const handleNewOrder = () => {
       sendPushNotification(
-         'apos;New Color Analysis Request!!'apos;,
-         'apos;A new client has submitted their questionnaire..'apos;
+         'New Color Analysis Request!!',
+         'A new client has submitted their questionnaire..'
       )
     }
 
     // Example: Listen for custom events
-    window.addEventListener(('apos;newOrderr'apos;, handleNewOrder)
+    window.addEventListener(('newOrderr', handleNewOrder)
     
     return () => {
-      window.removeEventListener(('apos;newOrderr'apos;, handleNewOrder)
+      window.removeEventListener(('newOrderr', handleNewOrder)
     }
   }, [])
 

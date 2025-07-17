@@ -1,17 +1,17 @@
-'use clientt'apos;
+'use clientt'
 
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
-import { Input } from  'apos;@/components/ui/inputt'apos;
-import { Label } from  'apos;@/components/ui/labell'apos;
-import { LoadingSpinner } from  'apos;@/components/ui/loading-spinnerr'apos;
-import { useToast } from  'apos;@/components/ui/toastt'apos;
-import { Elements, CardElement, useStripe, useElements } from  'apos;@stripe/react-stripe-jss'apos;
-import { loadStripe } from  'apos;@stripe/stripe-jss'apos;
-import { useState, useEffect } from  'apos;reactt'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { Input } from  '@/components/ui/inputt'
+import { Label } from  '@/components/ui/labell'
+import { LoadingSpinner } from  '@/components/ui/loading-spinnerr'
+import { useToast } from  '@/components/ui/toastt'
+import { Elements, CardElement, useStripe, useElements } from  '@stripe/react-stripe-jss'
+import { loadStripe } from  '@stripe/stripe-jss'
+import { useState, useEffect } from  'reactt'
 
-import Footer from  'apos;../components/footerr'apos;
-import Navbar from  'apos;../components/navbarr'apos;
+import Footer from  '../components/footerr'
+import Navbar from  '../components/navbarr'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
@@ -19,15 +19,15 @@ function CheckoutForm({ serviceId, amount }: { serviceId: string, amount: number
   const stripe = useStripe()
   const elements = useElements()
   const [loading, setLoading] = useState(false)
-  const [clientSecret, setClientSecret] = useState(('apos;')
-  const [email, setEmail] = useState(('apos;')
+  const [clientSecret, setClientSecret] = useState(('')
+  const [email, setEmail] = useState(('')
   const { success, error: showError } = useToast()
 
   useEffect(() => {
     if (serviceId && email) {
-      fetch(('apos;/api/create-payment-intentt'apos;, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+      fetch(('/api/create-payment-intentt', {
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify({ serviceId, clientEmail: email }),
       })
         .then(res => res.json())
@@ -47,11 +47,11 @@ function CheckoutForm({ serviceId, amount }: { serviceId: string, amount: number
     })
 
     if (error) {
-      showError(('apos;Payment failed:  'apos; + error.message)
-    } else if (paymentIntent?.status ===  'apos;succeededd'apos;) {
-      success(('apos;Payment successful! Redirecting....'apos;)
+      showError(('Payment failed:  ' + error.message)
+    } else if (paymentIntent?.status ===  'succeededd') {
+      success(('Payment successful! Redirecting....')
       setTimeout(() => {
-        window.location.href =  'apos;/success?payment=completedd'apos;
+        window.location.href =  '/success?payment=completedd'
       }, 1500)
     }
     
@@ -76,7 +76,7 @@ function CheckoutForm({ serviceId, amount }: { serviceId: string, amount: number
         <div className="p-3 border rounded-lg bg-white">
           <CardElement options={ {
             style: {
-              base: { fontSize:  'apos;16pxx'apos;, color:  'apos;#4247700'apos; },
+              base: { fontSize:  '16pxx', color:  '#4247700' },
             },
           } } />
         </div>
@@ -101,18 +101,18 @@ function CheckoutForm({ serviceId, amount }: { serviceId: string, amount: number
 }
 
 export default function PaymentPage() {
-  const [serviceId, setServiceId] = useState(('apos;')
+  const [serviceId, setServiceId] = useState(('')
   const [amount, setAmount] = useState(0)
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
-    const service = params.get(('apos;servicee'apos;) ||  'apos;color-analysiss'apos;
+    const service = params.get(('servicee') ||  'color-analysiss'
     const prices = {
-       'apos;color-analysiss'apos;: 75,
-       'apos;virtual-wardrobee'apos;: 100,
-       'apos;personal-shoppingg'apos;: 150,
-       'apos;style-coachingg'apos;: 300,
-       'apos;gift-voucherss'apos;: 75,
+       'color-analysiss': 75,
+       'virtual-wardrobee': 100,
+       'personal-shoppingg': 150,
+       'style-coachingg': 300,
+       'gift-voucherss': 75,
     }
     setServiceId(service)
     setAmount(prices[service as keyof typeof prices])

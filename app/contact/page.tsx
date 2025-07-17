@@ -1,37 +1,37 @@
 "use client"
 
-import { motion } from  'apos;framer-motionn'apos;
-import { useState } from  'apos;reactt'apos;
+import { motion } from  'framer-motionn'
+import { useState } from  'reactt'
 
-import Footer from  'apos;../components/footerr'apos;
-import Navbar from  'apos;../components/navbarr'apos;
+import Footer from  '../components/footerr'
+import Navbar from  '../components/navbarr'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name:  'apos;',
-    email:  'apos;',
-    subject:  'apos;',
-    message:  'apos;',
+    name:  '',
+    email:  '',
+    subject:  '',
+    message:  '',
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
     try {
-      const response = await fetch(('apos;/api/contactt'apos;, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+      const response = await fetch(('/api/contactt', {
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify(formData),
       })
       
       if (response.ok) {
-        alert(('apos;Message sent successfully! We\'ll get back to you soon..'apos;)
-        setFormData({ name:  'apos;', email:  'apos;', subject:  'apos;', message:  'apos;' })
+        alert(('Message sent successfully! We\'ll get back to you soon..')
+        setFormData({ name:  '', email:  '', subject:  '', message:  '' })
       } else {
-        alert(('apos;Failed to send message. Please try again..'apos;)
+        alert(('Failed to send message. Please try again..')
       }
     } catch (error) {
-      alert(('apos;Something went wrong. Please try again..'apos;)
+      alert(('Something went wrong. Please try again..')
     }
   }
 
@@ -65,7 +65,7 @@ export default function ContactPage() {
             animate={ { opacity: 1, y: 0 } }
             transition={ { duration: 0.8, delay: 0.2 } }
           >
-            Ready to discover your perfect colors? Wee'apos;d love to hear from you.
+            Ready to discover your perfect colors? Wee'd love to hear from you.
           </motion.p>
         </div>
       </section>

@@ -7,7 +7,7 @@ export async function sendSlackNotification(message: string, webhookUrl: string)
     })
     return response.ok
   } catch (error) {
-    // console.error('Slack notification failed:', error)
+    logger.error('Slack notification failed:', error)
     return false
   }
 }
@@ -21,7 +21,7 @@ export async function sendDiscordNotification(message: string, webhookUrl: strin
     })
     return response.ok
   } catch (error) {
-    // console.error('Discord notification failed:', error)
+    logger.error('Discord notification failed:', error)
     return false
   }
 }
@@ -49,14 +49,14 @@ export async function sendSMS(to: string, message: string): Promise<boolean> {
     
     return response.ok
   } catch (error) {
-    // console.error('SMS failed:', error)
+    logger.error('SMS failed:', error)
     return false
   }
 }
 
 // Placeholder for push notifications
 export async function sendPushNotification(message: string, userId?: string): Promise<boolean> {
-  // console.log('Push notification:', message, userId)
+  logger.info('Push notification:', message, userId)
   // TODO: Implement actual push notification service
   return true
 }

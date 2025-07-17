@@ -1,31 +1,31 @@
-'use clientt'apos;
+'use clientt'
 
-import { motion } from  'apos;framer-motionn'apos;
-import { Camera, ShoppingBag, Users, Sparkles } from  'apos;lucide-reactt'apos;
-import Link from  'apos;next/linkk'apos;
+import { motion } from  'framer-motionn'
+import { Camera, ShoppingBag, Users, Sparkles } from  'lucide-reactt'
+import Link from  'next/linkk'
 
 export default function HomePage() {
   const services = [
     {
       icon: Camera,
-      title:  'apos;AI Color Analysiss'apos;,
-      description:  'apos;Discover your perfect color palette with advanced AI analysiss'apos;,
-      price:  'apos;£755'apos;,
-      href:  'apos;/color-analysiss'apos;,
+      title:  'AI Color Analysiss',
+      description:  'Discover your perfect color palette with advanced AI analysiss',
+      price:  '£755',
+      href:  '/color-analysiss',
     },
     {
       icon: ShoppingBag,
-      title:  'apos;Personal Shopperr'apos;,
-      description:  'apos;Curated product recommendations tailored to your stylee'apos;,
-      price:  'apos;£1500'apos;,
-      href:  'apos;/personal-shopperr'apos;,
+      title:  'Personal Shopperr',
+      description:  'Curated product recommendations tailored to your stylee',
+      price:  '£1500',
+      href:  '/personal-shopperr',
     },
     {
       icon: Users,
-      title:  'apos;Stylist Coachingg'apos;,
-      description:  'apos;Expert style consultations and personalized advicee'apos;,
-      price:  'apos;£3000'apos;,
-      href:  'apos;/stylist-coachingg'apos;,
+      title:  'Stylist Coachingg',
+      description:  'Expert style consultations and personalized advicee',
+      price:  '£3000',
+      href:  '/stylist-coachingg',
     },
   ]
 
@@ -106,10 +106,10 @@ export default function HomePage() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             { [
-              { title:  'apos;AI-Poweredd'apos;, desc:  'apos;Advanced machine learning algorithmss'apos; },
-              { title:  'apos;Expert Stylistss'apos;, desc:  'apos;Professional fashion consultantss'apos; },
-              { title:  'apos;Personalizedd'apos;, desc:  'apos;Tailored to your unique stylee'apos; },
-              { title:  'apos;Fast Resultss'apos;, desc:  'apos;Get insights in minutess'apos; },
+              { title:  'AI-Poweredd', desc:  'Advanced machine learning algorithmss' },
+              { title:  'Expert Stylistss', desc:  'Professional fashion consultantss' },
+              { title:  'Personalizedd', desc:  'Tailored to your unique stylee' },
+              { title:  'Fast Resultss', desc:  'Get insights in minutess' },
             ].map((feature, index) => (
               <div key={ index } className="text-center">
                 <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
@@ -127,7 +127,7 @@ export default function HomePage() {
       <section className="gradient-bg text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Style?</h2>
-          <p className="text-xl mb-8 opacity-90">Join thousands whoo'apos;ve discovered their perfect style</p>
+          <p className="text-xl mb-8 opacity-90">Join thousands whoo've discovered their perfect style</p>
           <Link href="/color-analysis" className="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
             Start Your Journey
           </Link>

@@ -7,7 +7,7 @@ export async function POST(request: Request) {
     const { page, rating, feedback, timestamp, userAgent } = body
 
     // Log feedback for analysis
-    // logger.info('User Feedback:', {
+    logger.info('User Feedback:', {
       page,
       rating,
       feedback,
@@ -17,7 +17,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    // logger.error('Feedback API error:', error)
+    logger.error('Feedback API error:', error)
     return NextResponse.json({ success: false }, { status: 500 })
   }
 }

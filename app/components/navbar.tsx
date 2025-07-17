@@ -70,21 +70,21 @@ export default function Navbar() {
                   <Link href="/admin" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
                     Admin
                   </Link>
-                )}
+                ) }
               </div>
             ) : (
               <Link href="/login" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
                 Login
               </Link>
-            )}
+            ) }
           </div>
           
           <button 
-            onClick={ () => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={ () => setIsMobileMenuOpen(!isMobileMenuOpen) }
             className="md:hidden p-2 text-gray-700 hover:text-purple-600 transition-colors"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2} d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
           </button>
         </div>
@@ -114,13 +114,13 @@ export default function Navbar() {
                     <Link href="/admin" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium">
                       Admin
                     </Link>
-                  )}
+                  ) }
                 </>
               ) : (
                 <Link href="/login" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium">
                   Login
                 </Link>
-              )}
+              ) }
 
               <Link 
                 href="/questionnaire"
@@ -130,7 +130,7 @@ export default function Navbar() {
               </Link>
             </div>
           </div>
-        )}
+        ) }
       </div>
     </nav>
   );

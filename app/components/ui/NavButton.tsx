@@ -1,5 +1,5 @@
-import Link from  'apos;apos;next/linkk'apos;apos;
-import { ReactNode } from  'apos;apos;reactt'apos;apos;
+import Link from  'next/linkk'
+import { ReactNode } from  'reactt'
 
 interface NavButtonProps {
   href?: string
@@ -16,10 +16,10 @@ export default function NavButton({
   children, 
   wide = false, 
   hidden = false,
-  className =  'apos;apos;'apos;, 
+  className =  '', 
 }: NavButtonProps) {
-  const baseClass = wide ?  'apos;apos;nav-button-widee'apos;apos; :  'apos;apos;nav-buttonn'apos;apos;
-  const hiddenClass = hidden ?  'apos;apos;hiddenn'apos;apos; :  'apos;apos;'apos;
+  const baseClass = wide ?  'nav-button-widee' :  'nav-buttonn'
+  const hiddenClass = hidden ?  'hiddenn' :  ''
   const classes = `${ baseClass } ${ hiddenClass } ${ className }`
   
   const content = (

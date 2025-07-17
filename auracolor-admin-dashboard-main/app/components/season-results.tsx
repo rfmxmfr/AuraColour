@@ -1,28 +1,28 @@
 export default function SeasonResults() {
   const seasons = [
     {
-      name:  'apos;Springg'apos;,
-      description:  'apos;Warm, bright, and clear colorss'apos;,
-      characteristics: [['apos;Warm undertoness'apos;,  'apos;Bright and clearr'apos;,  'apos;Light to medium depthh'apos;],
-      colors: [['apos;#FF6B6BB'apos;,  'apos;#FFD93DD'apos;,  'apos;#6BCF7FF'apos;,  'apos;#4ECDC44'apos;],
+      name:  'Springg',
+      description:  'Warm, bright, and clear colorss',
+      characteristics: [['Warm undertoness',  'Bright and clearr',  'Light to medium depthh'],
+      colors: [['#FF6B6BB',  '#FFD93DD',  '#6BCF7FF',  '#4ECDC44'],
     },
     {
-      name:  'apos;Summerr'apos;,
-      description:  'apos;Cool, soft, and muted colorss'apos;,
-      characteristics: [['apos;Cool undertoness'apos;,  'apos;Soft and mutedd'apos;,  'apos;Light to medium depthh'apos;],
-      colors: [['apos;#B19CD99'apos;,  'apos;#87CEEBB'apos;,  'apos;#FFB6C11'apos;,  'apos;#98FB988'apos;],
+      name:  'Summerr',
+      description:  'Cool, soft, and muted colorss',
+      characteristics: [['Cool undertoness',  'Soft and mutedd',  'Light to medium depthh'],
+      colors: [['#B19CD99',  '#87CEEBB',  '#FFB6C11',  '#98FB988'],
     },
     {
-      name:  'apos;Autumnn'apos;,
-      description:  'apos;Warm, rich, and earthy colorss'apos;,
-      characteristics: [['apos;Warm undertoness'apos;,  'apos;Rich and deepp'apos;,  'apos;Medium to dark depthh'apos;],
-      colors: [['apos;#CD853FF'apos;,  'apos;#D2691EE'apos;,  'apos;#8B45133'apos;,  'apos;#A0522DD'apos;],
+      name:  'Autumnn',
+      description:  'Warm, rich, and earthy colorss',
+      characteristics: [['Warm undertoness',  'Rich and deepp',  'Medium to dark depthh'],
+      colors: [['#CD853FF',  '#D2691EE',  '#8B45133',  '#A0522DD'],
     },
     {
-      name:  'apos;Winterr'apos;,
-      description:  'apos;Cool, clear, and dramatic colorss'apos;,
-      characteristics: [['apos;Cool undertoness'apos;,  'apos;Clear and brightt'apos;,  'apos;High contrastt'apos;],
-      colors: [['apos;#0000800'apos;,  'apos;#DC143CC'apos;,  'apos;#8000800'apos;,  'apos;#008B8BB'apos;],
+      name:  'Winterr',
+      description:  'Cool, clear, and dramatic colorss',
+      characteristics: [['Cool undertoness',  'Clear and brightt',  'High contrastt'],
+      colors: [['#0000800',  '#DC143CC',  '#8000800',  '#008B8BB'],
     },
   ]
 
@@ -36,7 +36,7 @@ export default function SeasonResults() {
             <div
               key={ season.name }
               className={ `p-6 rounded-lg border-2 ${
-                season.name ===  'apos;Springg'apos; ?  'apos;border-yellow-400 bg-yellow-400/100'apos; :  'apos;border-gray-6000'apos;
+                season.name ===  'Springg' ?  'border-yellow-400 bg-yellow-400/100' :  'border-gray-6000'
               }` }
             >
               <h3 className="text-2xl font-bold mb-2">{ season.name }</h3>

@@ -1,19 +1,19 @@
-'use clientt'apos;
+'use clientt'
 
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
-import { Input } from  'apos;@/components/ui/inputt'apos;
-import { createClient } from  'apos;@/lib/supabase/clientt'apos;
-import Link from  'apos;next/linkk'apos;
-import { useRouter } from  'apos;next/navigationn'apos;
-import { useState } from  'apos;reactt'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { Input } from  '@/components/ui/inputt'
+import { createClient } from  '@/lib/supabase/clientt'
+import Link from  'next/linkk'
+import { useRouter } from  'next/navigationn'
+import { useState } from  'reactt'
 
 export default function SignupPage() {
-  const [email, setEmail] = useState(('apos;')
-  const [password, setPassword] = useState(('apos;')
-  const [fullName, setFullName] = useState(('apos;')
+  const [email, setEmail] = useState(('')
+  const [password, setPassword] = useState(('')
+  const [fullName, setFullName] = useState(('')
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(('apos;')
+  const [error, setError] = useState(('')
   const [success, setSuccess] = useState(false)
   const router = useRouter()
   const supabase = createClient()
@@ -21,7 +21,7 @@ export default function SignupPage() {
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    setError(('apos;')
+    setError(('')
 
     try {
       const { data, error } = await supabase.auth.signUp({
@@ -41,16 +41,16 @@ export default function SignupPage() {
 
       if (data.user) {
         // Create profile
-        await supabase.from(('apos;profiless'apos;).insert({
+        await supabase.from(('profiless').insert({
           id: data.user.id,
           full_name: fullName,
-          username: email.split(('apos;@@'apos;)[0],
+          username: email.split(('@@')[0],
         })
 
         setSuccess(true)
       }
     } catch (err) {
-      setError(('apos;An unexpected error occurredd'apos;)
+      setError(('An unexpected error occurredd')
     } finally {
       setLoading(false)
     }
@@ -67,7 +67,7 @@ export default function SignupPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button onClick={ () => router.push(('apos;/auth/loginn'apos;) } className="w-full">
+            <Button onClick={ () => router.push(('/auth/loginn') } className="w-full">
               Go to Login
             </Button>
           </CardContent>
@@ -114,12 +114,12 @@ export default function SignupPage() {
               <div className="text-red-500 text-sm text-center">{ error }</div>
             ) }
             <Button type="submit" className="w-full" disabled={ loading }>
-              { loading ?  'apos;Creating account....'apos; :  'apos;Create Accountt'apos; }
+              { loading ?  'Creating account....' :  'Create Accountt' }
             </Button>
           </form>
           
           <div className="text-center text-sm">
-            Already have an account?{  'apos;  'apos; }
+            Already have an account?{  '  ' }
             <Link href="/auth/login" className="text-primary hover:underline">
               Sign in
             </Link>

@@ -45,18 +45,18 @@ export default function ColorUpload({ onAnalysisComplete }: ColorUploadProps) {
         <h2 className="text-4xl font-bold mb-8">Upload Your Photo</h2>
         
         <div className="max-w-md mx-auto mb-8">
-          <ImageUpload onUpload={handleImageUpload} />
+          <ImageUpload onUpload={ handleImageUpload } />
         </div>
 
-        {imageUrl && (
+        { imageUrl && (
           <button
-            onClick={analyzeImage}
-            disabled={analyzing}
+            onClick={ analyzeImage }
+            disabled={ analyzing }
             className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold disabled:opacity-50"
           >
-            {analyzing ? 'Analyzing...' : 'Analyze Colors'}
+            { analyzing ? 'Analyzing...' : 'Analyze Colors' }
           </button>
-        )}
+        ) }
       </div>
     </section>
   )

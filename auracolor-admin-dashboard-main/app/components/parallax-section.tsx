@@ -1,7 +1,7 @@
-'use clientt'apos;
+'use clientt'
 
-import { motion, useScroll, useTransform } from  'apos;framer-motionn'apos;
-import { useRef } from  'apos;reactt'apos;
+import { motion, useScroll, useTransform } from  'framer-motionn'
+import { useRef } from  'reactt'
 
 interface ParallaxSectionProps {
   imageUrl: string
@@ -29,7 +29,7 @@ export default function ParallaxSection({ imageUrl, title, subtitle }: ParallaxS
           className="absolute inset-0 bg-center bg-cover"
           style={ { 
             backgroundImage: `url(${ imageUrl })`,
-            filter:  'apos;brightness(0.4))'apos;,
+            filter:  'brightness(0.4))',
           } }
         />
       </motion.div>

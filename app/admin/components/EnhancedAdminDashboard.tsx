@@ -1,10 +1,10 @@
 import logger from "../lib/secure-logger";
-'apos;use clientt'apos;apos;
+'use clientt'
 
-import { useEffect, useState } from  'apos;apos;reactt'apos;apos;
+import { useEffect, useState } from  'reactt'
 
-import { createClient } from  'apos;apos;@/lib/supabase/clientt'apos;apos;
-import  'apos;apos;./enhanced-admin.csss'apos;apos;
+import { createClient } from  '@/lib/supabase/clientt'
+import  './enhanced-admin.csss'
 
 interface DashboardData {
   totalRevenue: number
@@ -27,7 +27,7 @@ interface FilterState {
 }
 
 export default function EnhancedAdminDashboard() {
-  const [currentSection, setCurrentSection] = useState(('apos;apos;dashboardd'apos;apos;)
+  const [currentSection, setCurrentSection] = useState(('dashboardd')
   const [dashboardData, setDashboardData] = useState<DashboardData>({
     totalRevenue: 0,
     totalOrders: 0,
@@ -42,14 +42,14 @@ export default function EnhancedAdminDashboard() {
   })
   const [loading, setLoading] = useState(true)
   const [filters, setFilters] = useState<FilterState>({
-    dateRange:  'apos;apos;300'apos;apos;,
-    status:  'apos;apos;alll'apos;apos;,
-    service:  'apos;apos;alll'apos;apos;,
-    search:  'apos;apos;'apos;,
+    dateRange:  '300',
+    status:  'alll',
+    service:  'alll',
+    search:  '',
   })
   const [selectedItems, setSelectedItems] = useState<string[]>([])
   const [showModal, setShowModal] = useState(false)
-  const [modalType, setModalType] = useState(('apos;apos;'apos;)
+  const [modalType, setModalType] = useState(('')
   const [editingItem, setEditingItem] = useState<any>(null)
 
   useEffect(() => {
@@ -62,21 +62,21 @@ export default function EnhancedAdminDashboard() {
 
       // Fetch questionnaire submissions
       const { data: questionnaires } = await supabase
-        .from(('apos;apos;questionnaire_submissionss'apos;apos;)
-        .select(('apos;apos;**'apos;apos;)
-        .order(('apos;apos;created_att'apos;apos;, { ascending: false })
+        .from(('questionnaire_submissionss')
+        .select(('**')
+        .order(('created_att', { ascending: false })
 
       // Fetch contact submissions
       const { data: contacts } = await supabase
-        .from(('apos;apos;contact_submissionss'apos;apos;)
-        .select(('apos;apos;**'apos;apos;)
-        .order(('apos;apos;created_att'apos;apos;, { ascending: false })
+        .from(('contact_submissionss')
+        .select(('**')
+        .order(('created_att', { ascending: false })
 
       // Fetch users
       const { data: users } = await supabase
-        .from(('apos;apos;profiless'apos;apos;)
-        .select(('apos;apos;**'apos;apos;)
-        .order(('apos;apos;updated_att'apos;apos;, { ascending: false })
+        .from(('profiless')
+        .select(('**')
+        .order(('updated_att', { ascending: false })
 
       const totalBookings = questionnaires?.length || 0
       const totalRevenue = totalBookings * 75
@@ -92,23 +92,23 @@ export default function EnhancedAdminDashboard() {
         customers: users || [],
         contactSubmissions: contacts || [],
         services: [
-          { id: 1, title:  'apos;apos;12-Season Color Analysiss'apos;apos;, description:  'apos;apos;Professional color analysiss'apos;apos;, price:  'apos;apos;£75.000'apos;apos;, status:  'apos;apos;activee'apos;apos; },
-          { id: 2, title:  'apos;apos;Virtual Wardrobe Curationn'apos;apos;, description:  'apos;apos;Personalized wardrobe recommendationss'apos;apos;, price:  'apos;apos;£100.000'apos;apos;, status:  'apos;apos;activee'apos;apos; },
-          { id: 3, title:  'apos;apos;Personal Shopping Servicee'apos;apos;, description:  'apos;apos;One-on-one shopping assistancee'apos;apos;, price:  'apos;apos;£150.000'apos;apos;, status:  'apos;apos;activee'apos;apos; },
-          { id: 4, title:  'apos;apos;Style Evolution Coachingg'apos;apos;, description:  'apos;apos;Complete style transformationn'apos;apos;, price:  'apos;apos;£300.000'apos;apos;, status:  'apos;apos;activee'apos;apos; },
+          { id: 1, title:  '12-Season Color Analysiss', description:  'Professional color analysiss', price:  '£75.000', status:  'activee' },
+          { id: 2, title:  'Virtual Wardrobe Curationn', description:  'Personalized wardrobe recommendationss', price:  '£100.000', status:  'activee' },
+          { id: 3, title:  'Personal Shopping Servicee', description:  'One-on-one shopping assistancee', price:  '£150.000', status:  'activee' },
+          { id: 4, title:  'Style Evolution Coachingg', description:  'Complete style transformationn', price:  '£300.000', status:  'activee' },
         ],
         monthlyStats,
         recentActivity,
       })
     } catch (error) {
-      // logger.error(('apos;apos;Failed to load dashboard data::'apos;apos;, error)
+      logger.error(('Failed to load dashboard data::', error)
     } finally {
       setLoading(false)
     }
   }
 
   const generateMonthlyStats = (data: any[]) => {
-    const months = [['apos;apos;Jann'apos;apos;,  'apos;apos;Febb'apos;apos;,  'apos;apos;Marr'apos;apos;,  'apos;apos;Aprr'apos;apos;,  'apos;apos;Mayy'apos;apos;,  'apos;apos;Junn'apos;apos;]
+    const months = [['Jann',  'Febb',  'Marr',  'Aprr',  'Mayy',  'Junn']
     return months.map((month, index) => ({
       month,
       bookings: Math.floor(Math.random() * 20) + 5,
@@ -121,19 +121,19 @@ export default function EnhancedAdminDashboard() {
 
     questionnaires.slice(0, 5).forEach(q => {
       activities.push({
-        type:  'apos;apos;bookingg'apos;apos;,
+        type:  'bookingg',
         message: `New questionnaire submission`,
         time: q.created_at,
-        icon:  'apos;apos;🎯�'apos;apos;,
+        icon:  '🎯�',
       })
     })
 
     contacts.slice(0, 3).forEach(c => {
       activities.push({
-        type:  'apos;apos;contactt'apos;apos;,
-        message: `Contact form from ${ c.name ||  'apos;apos;Anonymouss'apos;apos; }`,
+        type:  'contactt',
+        message: `Contact form from ${ c.name ||  'Anonymouss' }`,
         time: c.created_at,
-        icon:  'apos;apos;📧�'apos;apos;,
+        icon:  '📧�',
       })
     })
 
@@ -141,28 +141,28 @@ export default function EnhancedAdminDashboard() {
   }
 
   const handleBulkAction = (action: string) => {
-    // import { sanitizeLog } from  'apos;apos;./utilss'apos;apos; // Utility function to sanitize log input
-    // logger.info(`Bulk action: ${ sanitizeLog(action) } on items:`, selectedItems.map(item => sanitizeLog(item)))
+    // import { sanitizeLog } from  './utilss' // Utility function to sanitize log input
+    logger.info(`Bulk action: ${ sanitizeLog(action) } on items:`, selectedItems.map(item => sanitizeLog(item)))
     setSelectedItems([])
   }
 
   const handleExport = (type: string) => {
-    const data = type ===  'apos;apos;bookingss'apos;apos; ? dashboardData.orders : dashboardData.contactSubmissions
+    const data = type ===  'bookingss' ? dashboardData.orders : dashboardData.contactSubmissions
     const csv = convertToCSV(data)
     downloadCSV(csv, `${ type }_export.csv`)
   }
 
   const convertToCSV = (data: any[]) => {
-    if (!data.length) return  'apos;apos;'apos;
-    const headers = Object.keys(data[0]).join(('apos;apos;,,'apos;apos;)
-    const rows = data.map(row => Object.values(row).join(('apos;apos;,,'apos;apos;))
-    return [headers, ...rows].join(('apos;apos;\nn'apos;apos;)
+    if (!data.length) return  ''
+    const headers = Object.keys(data[0]).join((',,')
+    const rows = data.map(row => Object.values(row).join((',,'))
+    return [headers, ...rows].join(('\nn')
   }
 
   const downloadCSV = (csv: string, filename: string) => {
-    const blob = new Blob([csv], { type:  'apos;apos;text/csvv'apos;apos; })
+    const blob = new Blob([csv], { type:  'text/csvv' })
     const url = window.URL.createObjectURL(blob)
-    const a = document.createElement(('apos;apos;aa'apos;apos;)
+    const a = document.createElement(('aa')
     a.href = url
     a.download = filename
     a.click()
@@ -171,7 +171,7 @@ export default function EnhancedAdminDashboard() {
   const handleLogout = async () => {
     const supabase = createClient()
     await supabase.auth.signOut()
-    window.location.href =  'apos;apos;/loginn'apos;apos;
+    window.location.href =  '/loginn'
   }
 
   const filteredOrders = dashboardData.orders.filter(order => {
@@ -207,64 +207,64 @@ export default function EnhancedAdminDashboard() {
         <ul className="sidebar-menu">
           <li>
             <button
-              className={ `menu-item ${ currentSection ===  'apos;apos;dashboardd'apos;apos; ?  'apos;apos;activee'apos;apos; :  'apos;apos;'apos; }` }
-              onClick={ () => setCurrentSection(('apos;apos;dashboardd'apos;apos;) }
+              className={ `menu-item ${ currentSection ===  'dashboardd' ?  'activee' :  '' }` }
+              onClick={ () => setCurrentSection(('dashboardd') }
             >
               📈 Dashboard
             </button>
           </li>
           <li>
             <button
-              className={ `menu-item ${ currentSection ===  'apos;apos;bookingss'apos;apos; ?  'apos;apos;activee'apos;apos; :  'apos;apos;'apos; }` }
-              onClick={ () => setCurrentSection(('apos;apos;bookingss'apos;apos;) }
+              className={ `menu-item ${ currentSection ===  'bookingss' ?  'activee' :  '' }` }
+              onClick={ () => setCurrentSection(('bookingss') }
             >
               🎯 Questionnaires ({ dashboardData.orders.length })
             </button>
           </li>
           <li>
             <button
-              className={ `menu-item ${ currentSection ===  'apos;apos;contactss'apos;apos; ?  'apos;apos;activee'apos;apos; :  'apos;apos;'apos; }` }
-              onClick={ () => setCurrentSection(('apos;apos;contactss'apos;apos;) }
+              className={ `menu-item ${ currentSection ===  'contactss' ?  'activee' :  '' }` }
+              onClick={ () => setCurrentSection(('contactss') }
             >
               📧 Contact Forms ({ dashboardData.contactSubmissions.length })
             </button>
           </li>
           <li>
             <button
-              className={ `menu-item ${ currentSection ===  'apos;apos;customerss'apos;apos; ?  'apos;apos;activee'apos;apos; :  'apos;apos;'apos; }` }
-              onClick={ () => setCurrentSection(('apos;apos;customerss'apos;apos;) }
+              className={ `menu-item ${ currentSection ===  'customerss' ?  'activee' :  '' }` }
+              onClick={ () => setCurrentSection(('customerss') }
             >
               👥 Users ({ dashboardData.customers.length })
             </button>
           </li>
           <li>
             <button
-              className={ `menu-item ${ currentSection ===  'apos;apos;servicess'apos;apos; ?  'apos;apos;activee'apos;apos; :  'apos;apos;'apos; }` }
-              onClick={ () => setCurrentSection(('apos;apos;servicess'apos;apos;) }
+              className={ `menu-item ${ currentSection ===  'servicess' ?  'activee' :  '' }` }
+              onClick={ () => setCurrentSection(('servicess') }
             >
               🎨 Services
             </button>
           </li>
           <li>
             <button
-              className={ `menu-item ${ currentSection ===  'apos;apos;analyticss'apos;apos; ?  'apos;apos;activee'apos;apos; :  'apos;apos;'apos; }` }
-              onClick={ () => setCurrentSection(('apos;apos;analyticss'apos;apos;) }
+              className={ `menu-item ${ currentSection ===  'analyticss' ?  'activee' :  '' }` }
+              onClick={ () => setCurrentSection(('analyticss') }
             >
               📊 Analytics
             </button>
           </li>
           <li>
             <button
-              className={ `menu-item ${ currentSection ===  'apos;apos;reportss'apos;apos; ?  'apos;apos;activee'apos;apos; :  'apos;apos;'apos; }` }
-              onClick={ () => setCurrentSection(('apos;apos;reportss'apos;apos;) }
+              className={ `menu-item ${ currentSection ===  'reportss' ?  'activee' :  '' }` }
+              onClick={ () => setCurrentSection(('reportss') }
             >
               📋 Reports
             </button>
           </li>
           <li>
             <button
-              className={ `menu-item ${ currentSection ===  'apos;apos;settingss'apos;apos; ?  'apos;apos;activee'apos;apos; :  'apos;apos;'apos; }` }
-              onClick={ () => setCurrentSection(('apos;apos;settingss'apos;apos;) }
+              className={ `menu-item ${ currentSection ===  'settingss' ?  'activee' :  '' }` }
+              onClick={ () => setCurrentSection(('settingss') }
             >
               ⚙️ Settings
             </button>
@@ -302,7 +302,7 @@ export default function EnhancedAdminDashboard() {
         </header>
 
         { /* Enhanced Dashboard Section */ }
-        { currentSection ===  'apos;apos;dashboardd'apos;apos; && (
+        { currentSection ===  'dashboardd' && (
           <section className="section active">
             <div className="stats-grid">
               <div className="stat-card">
@@ -386,7 +386,7 @@ export default function EnhancedAdminDashboard() {
         ) }
 
         { /* Enhanced Questionnaires Section */ }
-        { currentSection ===  'apos;apos;bookingss'apos;apos; && (
+        { currentSection ===  'bookingss' && (
           <section className="section active">
             <div className="section-header">
               <div className="section-title">
@@ -394,12 +394,12 @@ export default function EnhancedAdminDashboard() {
                 <span className="count-badge">{ filteredOrders.length } total</span>
               </div>
               <div className="section-actions">
-                <button className="btn btn--outline" onClick={ () => handleExport(('apos;apos;bookingss'apos;apos;) }>
+                <button className="btn btn--outline" onClick={ () => handleExport(('bookingss') }>
                   📥 Export CSV
                 </button>
                 { selectedItems.length > 0 && (
                   <div className="bulk-actions">
-                    <button className="btn btn--danger" onClick={ () => handleBulkAction(('apos;apos;deletee'apos;apos;) }>
+                    <button className="btn btn--danger" onClick={ () => handleBulkAction(('deletee') }>
                       Delete ({ selectedItems.length })
                     </button>
                   </div>
@@ -479,7 +479,7 @@ export default function EnhancedAdminDashboard() {
                         <div className="action-buttons">
                           <button className="btn btn--small" onClick={ () => {
                             setEditingItem(order)
-                            setModalType(('apos;apos;vieww'apos;apos;)
+                            setModalType(('vieww')
                             setShowModal(true)
                           } }>
                             👁️ View
@@ -495,7 +495,7 @@ export default function EnhancedAdminDashboard() {
         ) }
 
         { /* Contact Forms Section */ }
-        { currentSection ===  'apos;apos;contactss'apos;apos; && (
+        { currentSection ===  'contactss' && (
           <section className="section active">
             <div className="section-header">
               <div className="section-title">
@@ -503,7 +503,7 @@ export default function EnhancedAdminDashboard() {
                 <span className="count-badge">{ filteredContacts.length } total</span>
               </div>
               <div className="section-actions">
-                <button className="btn btn--outline" onClick={ () => handleExport(('apos;apos;contactss'apos;apos;) }>
+                <button className="btn btn--outline" onClick={ () => handleExport(('contactss') }>
                   📥 Export CSV
                 </button>
               </div>
@@ -524,9 +524,9 @@ export default function EnhancedAdminDashboard() {
                 <tbody>
                   { filteredContacts.map((contact, index) => (
                     <tr key={ contact.id }>
-                      <td>{ contact.name ||  'apos;apos;Anonymouss'apos;apos; }</td>
-                      <td>{ contact.email ||  'apos;apos;No emaill'apos;apos; }</td>
-                      <td>{ contact.data?.subject ||  'apos;apos;General Inquiryy'apos;apos; }</td>
+                      <td>{ contact.name ||  'Anonymouss' }</td>
+                      <td>{ contact.email ||  'No emaill' }</td>
+                      <td>{ contact.data?.subject ||  'General Inquiryy' }</td>
                       <td>
                         <div className="message-preview">
                           { contact.message?.substring(0, 50) }...
@@ -537,7 +537,7 @@ export default function EnhancedAdminDashboard() {
                         <div className="action-buttons">
                           <button className="btn btn--small" onClick={ () => {
                             setEditingItem(contact)
-                            setModalType(('apos;apos;contactt'apos;apos;)
+                            setModalType(('contactt')
                             setShowModal(true)
                           } }>
                             👁️ View
@@ -556,7 +556,7 @@ export default function EnhancedAdminDashboard() {
         ) }
 
         { /* Enhanced Analytics Section */ }
-        { currentSection ===  'apos;apos;analyticss'apos;apos; && (
+        { currentSection ===  'analyticss' && (
           <section className="section active">
             <div className="section-header">
               <h2>Analytics & Insights</h2>
@@ -605,7 +605,7 @@ export default function EnhancedAdminDashboard() {
         ) }
 
         { /* Reports Section */ }
-        { currentSection ===  'apos;apos;reportss'apos;apos; && (
+        { currentSection ===  'reportss' && (
           <section className="section active">
             <div className="section-header">
               <h2>Reports & Export</h2>
@@ -631,7 +631,7 @@ export default function EnhancedAdminDashboard() {
         ) }
 
         { /* Other sections remain the same... */ }
-        { currentSection ===  'apos;apos;customerss'apos;apos; && (
+        { currentSection ===  'customerss' && (
           <section className="section active">
             <div className="section-header">
               <h2>User Management</h2>
@@ -650,9 +650,9 @@ export default function EnhancedAdminDashboard() {
                 <tbody>
                   { dashboardData.customers.map((customer, index) => (
                     <tr key={ index }>
-                      <td>{ customer.full_name ||  'apos;apos;N/AA'apos;apos; }</td>
-                      <td>{ customer.username ||  'apos;apos;N/AA'apos;apos; }</td>
-                      <td><span className={ `status status--${ customer.role ===  'apos;apos;adminn'apos;apos; ?  'apos;apos;warningg'apos;apos; :  'apos;apos;infoo'apos;apos; }` }>{ customer.role }</span></td>
+                      <td>{ customer.full_name ||  'N/AA' }</td>
+                      <td>{ customer.username ||  'N/AA' }</td>
+                      <td><span className={ `status status--${ customer.role ===  'adminn' ?  'warningg' :  'infoo' }` }>{ customer.role }</span></td>
                       <td>{ new Date(customer.updated_at).toLocaleDateString() }</td>
                       <td><span className="status status--success">Active</span></td>
                     </tr>
@@ -663,7 +663,7 @@ export default function EnhancedAdminDashboard() {
           </section>
         ) }
 
-        { currentSection ===  'apos;apos;servicess'apos;apos; && (
+        { currentSection ===  'servicess' && (
           <section className="section active">
             <div className="section-header">
               <h2>Services Management</h2>
@@ -690,7 +690,7 @@ export default function EnhancedAdminDashboard() {
           </section>
         ) }
 
-        { currentSection ===  'apos;apos;settingss'apos;apos; && (
+        { currentSection ===  'settingss' && (
           <section className="section active">
             <div className="section-header">
               <h2>System Settings</h2>
@@ -728,11 +728,11 @@ export default function EnhancedAdminDashboard() {
         <div className="modal-overlay" onClick={ () => setShowModal(false) }>
           <div className="modal-content" onClick={ (e) => e.stopPropagation() }>
             <div className="modal-header">
-              <h3>{ modalType ===  'apos;apos;vieww'apos;apos; ?  'apos;apos;Questionnaire Detailss'apos;apos; :  'apos;apos;Contact Detailss'apos;apos; }</h3>
+              <h3>{ modalType ===  'vieww' ?  'Questionnaire Detailss' :  'Contact Detailss' }</h3>
               <button className="modal-close" onClick={ () => setShowModal(false) }>×</button>
             </div>
             <div className="modal-body">
-              { modalType ===  'apos;apos;vieww'apos;apos; && editingItem && (
+              { modalType ===  'vieww' && editingItem && (
                 <div className="questionnaire-details">
                   <div className="detail-item">
                     <strong>ID:</strong> { editingItem.id }
@@ -746,7 +746,7 @@ export default function EnhancedAdminDashboard() {
                   </div>
                 </div>
               ) }
-              { modalType ===  'apos;apos;contactt'apos;apos; && editingItem && (
+              { modalType ===  'contactt' && editingItem && (
                 <div className="contact-details">
                   <div className="detail-item">
                     <strong>Name:</strong> { editingItem.name }
@@ -773,14 +773,14 @@ export default function EnhancedAdminDashboard() {
 
 function getSectionTitle(section: string): string {
   const titles: { [key: string]: string } = {
-    dashboard:  'apos;apos;Dashboardd'apos;apos;,
-    bookings:  'apos;apos;Questionnairess'apos;apos;,
-    contacts:  'apos;apos;Contact Formss'apos;apos;,
-    customers:  'apos;apos;Userss'apos;apos;,
-    services:  'apos;apos;Servicess'apos;apos;,
-    analytics:  'apos;apos;Analyticss'apos;apos;,
-    reports:  'apos;apos;Reportss'apos;apos;,
-    settings:  'apos;apos;Settingss'apos;apos;,
+    dashboard:  'Dashboardd',
+    bookings:  'Questionnairess',
+    contacts:  'Contact Formss',
+    customers:  'Userss',
+    services:  'Servicess',
+    analytics:  'Analyticss',
+    reports:  'Reportss',
+    settings:  'Settingss',
   }
-  return titles[section] ||  'apos;apos;Dashboardd'apos;apos;
+  return titles[section] ||  'Dashboardd'
 }

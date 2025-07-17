@@ -2,7 +2,7 @@
 const { findBestSeason, calculateSeasonScore, SEASON_RULES } = require('./lib/color-analysis/rules.ts')
 
 function testColorAnalysisRules() {
-  // console.log('🎨 Testing 12-Season Color Analysis Rules...\n')
+  logger.info('🎨 Testing 12-Season Color Analysis Rules...\n')
   
   // Test cases with expected results
   const testCases = [
@@ -48,16 +48,16 @@ function testColorAnalysisRules() {
     const result = findBestSeason(testCase.features)
     const match = result.season === testCase.expected
     
-    // console.log(`${ match ? '✅' : '❌' } ${ testCase.name }:`)
-    // console.log(`  Input: ${ JSON.stringify(testCase.features) }`)
-    // console.log(`  Expected: ${ testCase.expected }`)
-    // console.log(`  Got: ${ result.season } (${ result.score }% confidence)`)
-    // console.log(`  Colors: ${ result.colors.slice(0, 3).join(', ') }...\n`)
+    logger.info(`${ match ? '✅' : '❌' } ${ testCase.name }:`)
+    logger.info(`  Input: ${ JSON.stringify(testCase.features) }`)
+    logger.info(`  Expected: ${ testCase.expected }`)
+    logger.info(`  Got: ${ result.season } (${ result.score }% confidence)`)
+    logger.info(`  Colors: ${ result.colors.slice(0, 3).join(', ') }...\n`)
   })
   
-  // console.log(`📊 Available Seasons: ${ SEASON_RULES.length }`)
-  // console.log('Categories:', [...new Set(SEASON_RULES.map(r => r.category))].join(', '))
-  // console.log('Subtypes:', [...new Set(SEASON_RULES.map(r => r.subtype))].join(', '))
+  logger.info(`📊 Available Seasons: ${ SEASON_RULES.length }`)
+  logger.info('Categories:', [...new Set(SEASON_RULES.map(r => r.category))].join(', '))
+  logger.info('Subtypes:', [...new Set(SEASON_RULES.map(r => r.subtype))].join(', '))
 }
 
 // Test without requiring server
@@ -67,13 +67,13 @@ try {
   const rulesContent = fs.readFileSync('./lib/color-analysis/rules.ts', 'utf8')
   
   // Extract and evaluate the rules (simplified)
-  // console.log('✅ Rules file exists and is readable')
-  // console.log('📁 File size:', rulesContent.length, 'characters')
-  // console.log('🔍 Contains SEASON_RULES:', rulesContent.includes('SEASON_RULES'))
-  // console.log('🔍 Contains findBestSeason:', rulesContent.includes('findBestSeason'))
+  logger.info('✅ Rules file exists and is readable')
+  logger.info('📁 File size:', rulesContent.length, 'characters')
+  logger.info('🔍 Contains SEASON_RULES:', rulesContent.includes('SEASON_RULES'))
+  logger.info('🔍 Contains findBestSeason:', rulesContent.includes('findBestSeason'))
   
 } catch (error) {
-  // console.error('❌ Rules test failed:', error.message)
+  logger.error('❌ Rules test failed:', error.message)
 }
 
-// console.log('\n🏁 Rules Test Complete')
+logger.info('\n🏁 Rules Test Complete')

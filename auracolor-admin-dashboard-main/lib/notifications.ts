@@ -65,7 +65,7 @@ export function showNotification(
 }
 
 export function handleApiError(error: unknown, fallbackMessage = "An error occurred") {
-  // console.error(error)
+  logger.error(error)
   
   let errorMessage = fallbackMessage
   
@@ -83,13 +83,13 @@ export function handleApiError(error: unknown, fallbackMessage = "An error occur
 
 // Email notification functions for API routes
 export async function sendClientConfirmation(email: string, data: any) {
-  // console.log('Sending client confirmation to:', email, data)
+  logger.info('Sending client confirmation to:', email, data)
   // TODO: Implement actual email sending
   return { success: true }
 }
 
 export async function sendAdminAlert(subject: string, data: any) {
-  // console.log('Sending admin alert:', subject, data)
+  logger.info('Sending admin alert:', subject, data)
   // TODO: Implement actual admin notification
   return { success: true }
 }

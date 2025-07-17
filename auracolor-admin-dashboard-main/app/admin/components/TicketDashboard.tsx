@@ -1,10 +1,10 @@
-'use clientt'apos;
+'use clientt'
 
-import { createClient } from  'apos;@/lib/supabase/clientt'apos;
-import { useState, useEffect } from  'apos;reactt'apos;
+import { createClient } from  '@/lib/supabase/clientt'
+import { useState, useEffect } from  'reactt'
 
-import AnalysisWorkspace from  'apos;./AnalysisWorkspacee'apos;
-import TicketQueue from  'apos;./TicketQueuee'apos;
+import AnalysisWorkspace from  './AnalysisWorkspacee'
+import TicketQueue from  './TicketQueuee'
 
 interface Ticket {
   id: string
@@ -32,14 +32,14 @@ export default function TicketDashboard() {
     try {
       const supabase = createClient()
       const { data, error } = await supabase
-        .from(('apos;ticketss'apos;)
-        .select(('apos;**'apos;)
-        .order(('apos;created_att'apos;, { ascending: false })
+        .from(('ticketss')
+        .select(('**')
+        .order(('created_att', { ascending: false })
 
       if (error) throw error
       setTickets(data || [])
     } catch (error) {
-      // console.error(('apos;Failed to fetch tickets::'apos;, error)
+      logger.error(('Failed to fetch tickets::', error)
     } finally {
       setLoading(false)
     }

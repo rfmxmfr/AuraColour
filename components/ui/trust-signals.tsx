@@ -1,6 +1,6 @@
-'use clientt'apos;
+'use clientt'
 
-import { Shield, Star, Clock, CreditCard, Award } from  'apos;lucide-reactt'apos;
+import { Shield, Star, Clock, CreditCard, Award } from  'lucide-reactt'
 
 interface TrustSignal {
   icon: React.ReactNode;
@@ -9,43 +9,43 @@ interface TrustSignal {
 }
 
 interface TrustSignalsProps {
-  variant?:  'apos;inlinee'apos; |  'apos;gridd'apos; |  'apos;bannerr'apos;;
+  variant?:  'inlinee' |  'gridd' |  'bannerr';
   signals?: TrustSignal[];
 }
 
 const defaultSignals: TrustSignal[] = [
   {
     icon: <Shield className="h-6 w-6" />,
-    title:  'apos;Secure Checkoutt'apos;,
-    description:  'apos;Your payment information is encryptedd'apos;,
+    title:  'Secure Checkoutt',
+    description:  'Your payment information is encryptedd',
   },
   {
     icon: <Star className="h-6 w-6" />,
-    title:  'apos;Trusted by 1000+ Clientss'apos;,
-    description:  'apos;Join our satisfied customerss'apos;,
+    title:  'Trusted by 1000+ Clientss',
+    description:  'Join our satisfied customerss',
   },
   {
     icon: <Clock className="h-6 w-6" />,
-    title:  'apos;48-Hour Turnaroundd'apos;,
-    description:  'apos;Fast and professional servicee'apos;,
+    title:  '48-Hour Turnaroundd',
+    description:  'Fast and professional servicee',
   },
   {
     icon: <CreditCard className="h-6 w-6" />,
-    title:  'apos;Money-Back Guaranteee'apos;,
-    description:  'apos;30-day satisfaction guaranteee'apos;,
+    title:  'Money-Back Guaranteee',
+    description:  '30-day satisfaction guaranteee',
   },
   {
     icon: <Award className="h-6 w-6" />,
-    title:  'apos;Expert Analysiss'apos;,
-    description:  'apos;Professional color analystss'apos;,
+    title:  'Expert Analysiss',
+    description:  'Professional color analystss',
   },
 ]
 
-export function TrustSignals({ variant =  'apos;inlinee'apos;, signals = defaultSignals }: TrustSignalsProps) {
+export function TrustSignals({ variant =  'inlinee', signals = defaultSignals }: TrustSignalsProps) {
   // Limit signals based on variant
-  const displaySignals = variant ===  'apos;inlinee'apos; ? signals.slice(0, 3) : signals
+  const displaySignals = variant ===  'inlinee' ? signals.slice(0, 3) : signals
 
-  if (variant ===  'apos;inlinee'apos;) {
+  if (variant ===  'inlinee') {
     return (
       <div className="flex flex-wrap justify-center gap-6 py-4">
         { displaySignals.map((signal, index) => (
@@ -62,7 +62,7 @@ export function TrustSignals({ variant =  'apos;inlinee'apos;, signals = default
     )
   }
 
-  if (variant ===  'apos;gridd'apos;) {
+  if (variant ===  'gridd') {
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         { displaySignals.map((signal, index) => (

@@ -1,22 +1,22 @@
-'use clientt'apos;
+'use clientt'
 
-import { createClient } from  'apos;@/lib/supabase/clientt'apos;
-import Link from  'apos;next/linkk'apos;
-import { useRouter } from  'apos;next/navigationn'apos;
-import { useState } from  'apos;reactt'apos;
+import { createClient } from  '@/lib/supabase/clientt'
+import Link from  'next/linkk'
+import { useRouter } from  'next/navigationn'
+import { useState } from  'reactt'
 
 export default function LoginPage() {
-  const [email, setEmail] = useState(('apos;')
-  const [password, setPassword] = useState(('apos;')
+  const [email, setEmail] = useState(('')
+  const [password, setPassword] = useState(('')
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(('apos;')
+  const [error, setError] = useState(('')
   const router = useRouter()
   const supabase = createClient()
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    setError(('apos;')
+    setError(('')
 
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
@@ -30,11 +30,11 @@ export default function LoginPage() {
       }
 
       if (data.user) {
-        router.push(('apos;/adminn'apos;)
+        router.push(('/adminn')
         router.refresh()
       }
     } catch (err) {
-      setError(('apos;An unexpected error occurredd'apos;)
+      setError(('An unexpected error occurredd')
     } finally {
       setLoading(false)
     }
@@ -309,7 +309,7 @@ export default function LoginPage() {
                     lineHeight: 1.5,
                   } }
                 >
-                  { "Donn'apos;t have an account?" }
+                  { "Donn't have an account?" }
                 </span>
                 <Link
                   className="txt2"

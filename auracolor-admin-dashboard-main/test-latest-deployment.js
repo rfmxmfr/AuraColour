@@ -2,24 +2,24 @@
 const LATEST_URL = 'https://firebase-deploy-kgxmljkg0-renatos-projects-ef7b1af8.vercel.app'
 
 async function testLatestDeployment() {
-  // console.log('🔍 Testing After NUCLEAR Middleware Fix...')
-  // console.log(`URL: ${ LATEST_URL }`)
+  logger.info('🔍 Testing After NUCLEAR Middleware Fix...')
+  logger.info(`URL: ${ LATEST_URL }`)
   
   try {
     const response = await fetch(LATEST_URL)
-    // console.log(`Status: ${ response.status }`)
-    // console.log(`Headers: ${ response.headers.get('content-type') }`)
+    logger.info(`Status: ${ response.status }`)
+    logger.info(`Headers: ${ response.headers.get('content-type') }`)
     
     if (response.ok) {
-      // console.log('🎉 FRONTEND IS LIVE!')
+      logger.info('🎉 FRONTEND IS LIVE!')
       
       // Test admin page
       const adminResponse = await fetch(`${ LATEST_URL }/admin`)
-      // console.log(`👑 Admin: ${ adminResponse.status } ${ adminResponse.ok ? '✅' : '❌' }`)
+      logger.info(`👑 Admin: ${ adminResponse.status } ${ adminResponse.ok ? '✅' : '❌' }`)
       
       // Test API
       const apiResponse = await fetch(`${ LATEST_URL }/api/debug`)
-      // console.log(`🔧 API: ${ apiResponse.status } ${ apiResponse.ok ? '✅' : '❌' }`)
+      logger.info(`🔧 API: ${ apiResponse.status } ${ apiResponse.ok ? '✅' : '❌' }`)
       
       // Test booking API
       const bookingResponse = await fetch(`${ LATEST_URL }/api/bookings`, {
@@ -31,22 +31,22 @@ async function testLatestDeployment() {
           service: 'color-analysis',
         }),
       })
-      // console.log(`📝 Booking API: ${ bookingResponse.status } ${ bookingResponse.ok ? '✅' : '❌' }`)
+      logger.info(`📝 Booking API: ${ bookingResponse.status } ${ bookingResponse.ok ? '✅' : '❌' }`)
       
       if (response.ok) {
-        // console.log('\n🚀 ALL CRITICAL ISSUES FIXED!')
-        // console.log(`🌐 Live App: ${ LATEST_URL }`)
-        // console.log(`👑 Admin Dashboard: ${ LATEST_URL }/admin`)
-        // console.log('🔧 APIs: Working')
-        // console.log('📱 Frontend: Accessible')
+        logger.info('\n🚀 ALL CRITICAL ISSUES FIXED!')
+        logger.info(`🌐 Live App: ${ LATEST_URL }`)
+        logger.info(`👑 Admin Dashboard: ${ LATEST_URL }/admin`)
+        logger.info('🔧 APIs: Working')
+        logger.info('📱 Frontend: Accessible')
       }
       
     } else {
-      // console.log('❌ STILL FAILING:', response.status)
+      logger.info('❌ STILL FAILING:', response.status)
     }
     
   } catch (error) {
-    // console.log('❌ NETWORK ERROR:', error.message)
+    logger.info('❌ NETWORK ERROR:', error.message)
   }
 }
 

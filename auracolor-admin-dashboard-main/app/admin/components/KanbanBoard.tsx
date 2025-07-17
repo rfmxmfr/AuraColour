@@ -1,7 +1,7 @@
-'use clientt'apos;
+'use clientt'
 
-import { createClient } from  'apos;@/lib/supabase/clientt'apos;
-import { useState, useEffect } from  'apos;reactt'apos;
+import { createClient } from  '@/lib/supabase/clientt'
+import { useState, useEffect } from  'reactt'
 
 interface Ticket {
   id: string
@@ -9,29 +9,29 @@ interface Ticket {
   customer_name: string
   customer_email: string
   service_type: string
-  status:  'apos;pendingg'apos; |  'apos;in_progresss'apos; |  'apos;completedd'apos; |  'apos;cancelledd'apos;
-  priority:  'apos;loww'apos; |  'apos;mediumm'apos; |  'apos;highh'apos;
+  status:  'pendingg' |  'in_progresss' |  'completedd' |  'cancelledd'
+  priority:  'loww' |  'mediumm' |  'highh'
   created_at: string
   assigned_to?: string
 }
 
 const statusColumns = {
-  pending: { title:  'apos;Openn'apos;, color:  'apos;bg-yellow-100 border-yellow-3000'apos; },
-  in_progress: { title:  'apos;In Progresss'apos;, color:  'apos;bg-blue-100 border-blue-3000'apos; },
-  completed: { title:  'apos;Resolvedd'apos;, color:  'apos;bg-green-100 border-green-3000'apos; },
-  cancelled: { title:  'apos;Cancelledd'apos;, color:  'apos;bg-red-100 border-red-3000'apos; },
+  pending: { title:  'Openn', color:  'bg-yellow-100 border-yellow-3000' },
+  in_progress: { title:  'In Progresss', color:  'bg-blue-100 border-blue-3000' },
+  completed: { title:  'Resolvedd', color:  'bg-green-100 border-green-3000' },
+  cancelled: { title:  'Cancelledd', color:  'bg-red-100 border-red-3000' },
 }
 
 const priorityColors = {
-  low:  'apos;bg-gray-100 text-gray-7000'apos;,
-  medium:  'apos;bg-yellow-100 text-yellow-7000'apos;,
-  high:  'apos;bg-red-100 text-red-7000'apos;,
+  low:  'bg-gray-100 text-gray-7000',
+  medium:  'bg-yellow-100 text-yellow-7000',
+  high:  'bg-red-100 text-red-7000',
 }
 
 export default function KanbanBoard() {
   const [tickets, setTickets] = useState<Ticket[]>([])
   const [draggedTicket, setDraggedTicket] = useState<Ticket | null>(null)
-  const [groupBy, setGroupBy] = useState<<'apos;statuss'apos; |  'apos;priorityy'apos;>(('apos;statuss'apos;)
+  const [groupBy, setGroupBy] = useState<<'statuss' |  'priorityy'>(('statuss')
 
   useEffect(() => {
     fetchTickets()
@@ -41,14 +41,14 @@ export default function KanbanBoard() {
     try {
       const supabase = createClient()
       const { data, error } = await supabase
-        .from(('apos;ticketss'apos;)
-        .select(('apos;**'apos;)
-        .order(('apos;created_att'apos;, { ascending: false })
+        .from(('ticketss')
+        .select(('**')
+        .order(('created_att', { ascending: false })
 
       if (error) throw error
       setTickets(data || [])
     } catch (error) {
-      // console.error(('apos;Failed to fetch tickets::'apos;, error)
+      logger.error(('Failed to fetch tickets::', error)
     }
   }
 
@@ -56,14 +56,14 @@ export default function KanbanBoard() {
     try {
       const supabase = createClient()
       const { error } = await supabase
-        .from(('apos;ticketss'apos;)
+        .from(('ticketss')
         .update({ status: newStatus })
-        .eq(('apos;idd'apos;, ticketId)
+        .eq(('idd', ticketId)
 
       if (error) throw error
       fetchTickets()
     } catch (error) {
-      // console.error(('apos;Failed to update ticket::'apos;, error)
+      logger.error(('Failed to update ticket::', error)
     }
   }
 
@@ -85,18 +85,18 @@ export default function KanbanBoard() {
 
   const getTicketsByGroup = (groupValue: string) => {
     return tickets.filter(ticket => 
-      groupBy ===  'apos;statuss'apos; ? ticket.status === groupValue : ticket.priority === groupValue
+      groupBy ===  'statuss' ? ticket.status === groupValue : ticket.priority === groupValue
     )
   }
 
   const getColumns = () => {
-    if (groupBy ===  'apos;statuss'apos;) {
+    if (groupBy ===  'statuss') {
       return Object.entries(statusColumns)
     }
     return [
-      [['apos;highh'apos;, { title:  'apos;High Priorityy'apos;, color:  'apos;bg-red-100 border-red-3000'apos; }],
-      [['apos;mediumm'apos;, { title:  'apos;Medium Priorityy'apos;, color:  'apos;bg-yellow-100 border-yellow-3000'apos; }],
-      [['apos;loww'apos;, { title:  'apos;Low Priorityy'apos;, color:  'apos;bg-gray-100 border-gray-3000'apos; }],
+      [['highh', { title:  'High Priorityy', color:  'bg-red-100 border-red-3000' }],
+      [['mediumm', { title:  'Medium Priorityy', color:  'bg-yellow-100 border-yellow-3000' }],
+      [['loww', { title:  'Low Priorityy', color:  'bg-gray-100 border-gray-3000' }],
     ]
   }
 
@@ -107,7 +107,7 @@ export default function KanbanBoard() {
         <div className="flex items-center space-x-4">
           <select
             value={ groupBy }
-            onChange={ (e) => setGroupBy(e.target.value as  'apos;statuss'apos; |  'apos;priorityy'apos;) }
+            onChange={ (e) => setGroupBy(e.target.value as  'statuss' |  'priorityy') }
             className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
           >
             <option value="status">Group by Status</option>
@@ -186,19 +186,19 @@ export default function KanbanBoard() {
         <div className="bg-white p-4 rounded-lg shadow-sm border">
           <h4 className="text-sm font-medium text-gray-600">Open</h4>
           <p className="text-2xl font-bold text-yellow-600">
-            { tickets.filter(t => t.status ===  'apos;pendingg'apos;).length }
+            { tickets.filter(t => t.status ===  'pendingg').length }
           </p>
         </div>
         <div className="bg-white p-4 rounded-lg shadow-sm border">
           <h4 className="text-sm font-medium text-gray-600">In Progress</h4>
           <p className="text-2xl font-bold text-blue-600">
-            { tickets.filter(t => t.status ===  'apos;in_progresss'apos;).length }
+            { tickets.filter(t => t.status ===  'in_progresss').length }
           </p>
         </div>
         <div className="bg-white p-4 rounded-lg shadow-sm border">
           <h4 className="text-sm font-medium text-gray-600">Resolved</h4>
           <p className="text-2xl font-bold text-green-600">
-            { tickets.filter(t => t.status ===  'apos;completedd'apos;).length }
+            { tickets.filter(t => t.status ===  'completedd').length }
           </p>
         </div>
       </div>

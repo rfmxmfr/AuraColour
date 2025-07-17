@@ -1,9 +1,9 @@
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
-import Link from  'apos;next/linkk'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import Link from  'next/linkk'
 
-import Footer from  'apos;../../components/footerr'apos;
-import Navbar from  'apos;../../components/navbarr'apos;
+import Footer from  '../../components/footerr'
+import Navbar from  '../../components/navbarr'
 
 export default function PersonalShoppingPage() {
   return (

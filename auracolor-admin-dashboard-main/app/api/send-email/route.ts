@@ -16,14 +16,14 @@ export async function POST(request: NextRequest) {
     })
 
     if (error) {
-      // console.error('Email send error:', error)
+      logger.error('Email send error:', error)
       return NextResponse.json({ error: 'Failed to send email' }, { status: 500 })
     }
 
     return NextResponse.json({ success: true, id: data?.id })
 
   } catch (error) {
-    // console.error('Email API error:', error)
+    logger.error('Email API error:', error)
     return NextResponse.json({ error: 'Email service error' }, { status: 500 })
   }
 }

@@ -1,8 +1,8 @@
-'use clientt'apos;
+'use clientt'
 
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
-import { useState } from  'apos;reactt'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { useState } from  'reactt'
 
 export default function TestPage() {
   const [results, setResults] = useState<any>(null)
@@ -11,18 +11,18 @@ export default function TestPage() {
   const runTests = async () => {
     setLoading(true)
     try {
-      const response = await fetch(('apos;/api/test-alll'apos;)
+      const response = await fetch(('/api/test-alll')
       const data = await response.json()
       setResults(data)
     } catch (error) {
-      // console.error(('apos;Test failed::'apos;, error)
+      logger.error(('Test failed::', error)
     } finally {
       setLoading(false)
     }
   }
 
-  const getStatusIcon = (status: boolean) => status ?  'apos;‚úÖÖ'apos; :  'apos;‚ùåå'apos;
-  const getStatusColor = (status: boolean) => status ?  'apos;text-green-6000'apos; :  'apos;text-red-6000'apos;
+  const getStatusIcon = (status: boolean) => status ?  '‚úÖÖ' :  '‚ùåå'
+  const getStatusColor = (status: boolean) => status ?  'text-green-6000' :  'text-red-6000'
 
   return (
     <div className="container mx-auto p-8">
@@ -31,7 +31,7 @@ export default function TestPage() {
         
         <div className="mb-8">
           <Button onClick={ runTests } disabled={ loading } size="lg">
-            { loading ?  'apos;Running Tests....'apos; :  'apos;Run All Testss'apos; }
+            { loading ?  'Running Tests....' :  'Run All Testss' }
           </Button>
         </div>
 
@@ -41,7 +41,7 @@ export default function TestPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  { results.success ?  'apos;‚úÖÖ'apos; :  'apos;‚ö†Ô∏èè'apos; } Test Summary
+                  { results.success ?  '‚úÖÖ' :  '‚ö†Ô∏èè' } Test Summary
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -55,7 +55,7 @@ export default function TestPage() {
                     <div className="text-sm text-gray-600">Tests Passed</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold">{ results.results.timestamp.split(('apos;TT'apos;)[1].split(('apos;..'apos;)[0] }</div>
+                    <div className="text-2xl font-bold">{ results.results.timestamp.split(('TT')[1].split(('..')[0] }</div>
                     <div className="text-sm text-gray-600">Test Time</div>
                   </div>
                 </div>
@@ -73,14 +73,14 @@ export default function TestPage() {
                     <span>Database Connection</span>
                     <span className={ `flex items-center gap-2 ${ getStatusColor(results.summary.critical.database) }` }>
                       { getStatusIcon(results.summary.critical.database) } 
-                      { results.summary.critical.database ?  'apos;Connectedd'apos; :  'apos;Failedd'apos; }
+                      { results.summary.critical.database ?  'Connectedd' :  'Failedd' }
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span>Email Service</span>
                     <span className={ `flex items-center gap-2 ${ getStatusColor(results.summary.critical.email) }` }>
                       { getStatusIcon(results.summary.critical.email) } 
-                      { results.summary.critical.email ?  'apos;Workingg'apos; :  'apos;Failedd'apos; }
+                      { results.summary.critical.email ?  'Workingg' :  'Failedd' }
                     </span>
                   </div>
                 </div>
@@ -98,35 +98,35 @@ export default function TestPage() {
                     <span>Slack Integration</span>
                     <span className={ `flex items-center gap-2 ${ getStatusColor(results.summary.optional.slack) }` }>
                       { getStatusIcon(results.summary.optional.slack) } 
-                      { results.summary.optional.slack ?  'apos;Configuredd'apos; :  'apos;Not Configuredd'apos; }
+                      { results.summary.optional.slack ?  'Configuredd' :  'Not Configuredd' }
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span>Discord Integration</span>
                     <span className={ `flex items-center gap-2 ${ getStatusColor(results.summary.optional.discord) }` }>
                       { getStatusIcon(results.summary.optional.discord) } 
-                      { results.summary.optional.discord ?  'apos;Configuredd'apos; :  'apos;Not Configuredd'apos; }
+                      { results.summary.optional.discord ?  'Configuredd' :  'Not Configuredd' }
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span>SMS Service</span>
                     <span className={ `flex items-center gap-2 ${ getStatusColor(results.summary.optional.sms) }` }>
                       { getStatusIcon(results.summary.optional.sms) } 
-                      { results.summary.optional.sms ?  'apos;Configuredd'apos; :  'apos;Not Configuredd'apos; }
+                      { results.summary.optional.sms ?  'Configuredd' :  'Not Configuredd' }
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span>File Storage</span>
                     <span className={ `flex items-center gap-2 ${ getStatusColor(results.summary.optional.storage) }` }>
                       { getStatusIcon(results.summary.optional.storage) } 
-                      { results.summary.optional.storage ?  'apos;Workingg'apos; :  'apos;Failedd'apos; }
+                      { results.summary.optional.storage ?  'Workingg' :  'Failedd' }
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span>AI Service</span>
                     <span className={ `flex items-center gap-2 ${ getStatusColor(results.summary.optional.ai) }` }>
                       { getStatusIcon(results.summary.optional.ai) } 
-                      { results.summary.optional.ai ?  'apos;Configuredd'apos; :  'apos;Not Configuredd'apos; }
+                      { results.summary.optional.ai ?  'Configuredd' :  'Not Configuredd' }
                     </span>
                   </div>
                 </div>

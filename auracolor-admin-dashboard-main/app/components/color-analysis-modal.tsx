@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, AnimatePresence } from  'apos;./framer-motion-fixx'apos;
+import { motion, AnimatePresence } from  './framer-motion-fixx'
 
 interface ColorAnalysisModalProps {
   isOpen: boolean
@@ -91,7 +91,7 @@ export default function ColorAnalysisModal({ isOpen, onClose }: ColorAnalysisMod
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-white mb-3">What Youu'apos;ll Receive</h3>
+                <h3 className="text-xl font-semibold text-white mb-3">What Youu'll Receive</h3>
                 <ul className="space-y-2 list-disc list-inside">
                   <li>Your personal seasonal classification</li>
                   <li>Custom color palette with 30+ colors</li>

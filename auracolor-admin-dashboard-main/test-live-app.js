@@ -2,23 +2,23 @@
 const BASE_URL = 'https://firebase-deploy-ecru.vercel.app'
 
 async function testLiveApp() {
-  // console.log('🔍 Testing Live App...\n')
+  logger.info('🔍 Testing Live App...\n')
   
   // Test Frontend Pages
-  // console.log('📄 Frontend Pages:')
+  logger.info('📄 Frontend Pages:')
   const pages = ['/', '/services', '/questionnaire', '/book', '/payment', '/admin', '/vouchers']
   
   for (const page of pages) {
     try {
       const response = await fetch(`${ BASE_URL }${ page }`)
       const isHTML = response.headers.get('content-type')?.includes('text/html')
-      // console.log(`${ response.ok ? '✅' : '❌' } ${ page }: ${ response.status } ${ isHTML ? '(HTML)' : '(JSON)' }`)
+      logger.info(`${ response.ok ? '✅' : '❌' } ${ page }: ${ response.status } ${ isHTML ? '(HTML)' : '(JSON)' }`)
     } catch (error) {
-      // console.log(`❌ ${ page }: ERROR - ${ error.message }`)
+      logger.info(`❌ ${ page }: ERROR - ${ error.message }`)
     }
   }
   
-  // console.log('\n🔧 API Endpoints:')
+  logger.info('\n🔧 API Endpoints:')
   
   // Test Booking API
   try {
@@ -34,14 +34,14 @@ async function testLiveApp() {
     })
     
     const isJSON = bookingResponse.headers.get('content-type')?.includes('application/json')
-    // console.log(`${ bookingResponse.ok ? '✅' : '❌' } POST /api/bookings: ${ bookingResponse.status } ${ isJSON ? '(JSON)' : '(HTML)' }`)
+    logger.info(`${ bookingResponse.ok ? '✅' : '❌' } POST /api/bookings: ${ bookingResponse.status } ${ isJSON ? '(JSON)' : '(HTML)' }`)
     
     if (isJSON && bookingResponse.ok) {
       const data = await bookingResponse.json()
-      // console.log(`   Booking ID: ${ data.booking_id || 'N/A' }`)
+      logger.info(`   Booking ID: ${ data.booking_id || 'N/A' }`)
     }
   } catch (error) {
-    // console.log(`❌ POST /api/bookings: ERROR - ${ error.message }`)
+    logger.info(`❌ POST /api/bookings: ERROR - ${ error.message }`)
   }
   
   // Test Payment Intent
@@ -56,14 +56,14 @@ async function testLiveApp() {
     })
     
     const isJSON = paymentResponse.headers.get('content-type')?.includes('application/json')
-    // console.log(`${ paymentResponse.ok ? '✅' : '❌' } POST /api/create-payment-intent: ${ paymentResponse.status } ${ isJSON ? '(JSON)' : '(HTML)' }`)
+    logger.info(`${ paymentResponse.ok ? '✅' : '❌' } POST /api/create-payment-intent: ${ paymentResponse.status } ${ isJSON ? '(JSON)' : '(HTML)' }`)
     
     if (isJSON && paymentResponse.ok) {
       const data = await paymentResponse.json()
-      // console.log(`   Client Secret: ${ data.clientSecret ? 'Generated' : 'Missing' }`)
+      logger.info(`   Client Secret: ${ data.clientSecret ? 'Generated' : 'Missing' }`)
     }
   } catch (error) {
-    // console.log(`❌ POST /api/create-payment-intent: ERROR - ${ error.message }`)
+    logger.info(`❌ POST /api/create-payment-intent: ERROR - ${ error.message }`)
   }
   
   // Test Voucher API
@@ -79,17 +79,17 @@ async function testLiveApp() {
     })
     
     const isJSON = voucherResponse.headers.get('content-type')?.includes('application/json')
-    // console.log(`${ voucherResponse.ok ? '✅' : '❌' } POST /api/vouchers: ${ voucherResponse.status } ${ isJSON ? '(JSON)' : '(HTML)' }`)
+    logger.info(`${ voucherResponse.ok ? '✅' : '❌' } POST /api/vouchers: ${ voucherResponse.status } ${ isJSON ? '(JSON)' : '(HTML)' }`)
     
     if (isJSON && voucherResponse.ok) {
       const data = await voucherResponse.json()
-      // console.log(`   Voucher Code: ${ data.voucherCode || 'N/A' }`)
+      logger.info(`   Voucher Code: ${ data.voucherCode || 'N/A' }`)
     }
   } catch (error) {
-    // console.log(`❌ POST /api/vouchers: ERROR - ${ error.message }`)
+    logger.info(`❌ POST /api/vouchers: ERROR - ${ error.message }`)
   }
   
-  // console.log('\n🎯 Live App Test Complete')
+  logger.info('\n🎯 Live App Test Complete')
 }
 
 testLiveApp()

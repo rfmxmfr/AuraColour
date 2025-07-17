@@ -1,9 +1,9 @@
-'use clientt'apos;
+'use clientt'
 
-import { createClient } from  'apos;@/lib/supabase/clientt'apos;
-import { useState, useEffect } from  'apos;reactt'apos;
+import { createClient } from  '@/lib/supabase/clientt'
+import { useState, useEffect } from  'reactt'
 
-import KanbanBoard from  'apos;./KanbanBoardd'apos;
+import KanbanBoard from  './KanbanBoardd'
 
 interface DashboardStats {
   totalTickets: number
@@ -15,7 +15,7 @@ interface DashboardStats {
 }
 
 export default function UnifiedDashboard() {
-  const [activeModule, setActiveModule] = useState(('apos;overvieww'apos;)
+  const [activeModule, setActiveModule] = useState(('overvieww')
   const [stats, setStats] = useState<DashboardStats>({
     totalTickets: 0,
     totalCustomers: 0,
@@ -34,32 +34,32 @@ export default function UnifiedDashboard() {
       const supabase = createClient()
       
       // Fetch tickets
-      const { data: tickets } = await supabase.from(('apos;ticketss'apos;).select(('apos;**'apos;)
+      const { data: tickets } = await supabase.from(('ticketss').select(('**')
       
       // Fetch bookings for revenue calculation
-      const { data: bookings } = await supabase.from(('apos;bookingss'apos;).select(('apos;**'apos;)
+      const { data: bookings } = await supabase.from(('bookingss').select(('**')
       
       setStats({
         totalTickets: tickets?.length || 0,
         totalCustomers: new Set(tickets?.map(t => t.customer_email)).size || 0,
         monthlyRevenue: 23700, // Mock data
         aiAccuracy: 88.7,
-        pendingTickets: tickets?.filter(t => t.status ===  'apos;pendingg'apos;).length || 0,
-        completedTickets: tickets?.filter(t => t.status ===  'apos;completedd'apos;).length || 0,
+        pendingTickets: tickets?.filter(t => t.status ===  'pendingg').length || 0,
+        completedTickets: tickets?.filter(t => t.status ===  'completedd').length || 0,
       })
     } catch (error) {
-      // console.error(('apos;Failed to fetch dashboard stats::'apos;, error)
+      logger.error(('Failed to fetch dashboard stats::', error)
     }
   }
 
   const modules = [
-    { id:  'apos;overvieww'apos;, name:  'apos;Overvieww'apos;, icon:  'apos;ðŸ“ŠŠ'apos; },
-    { id:  'apos;kanbann'apos;, name:  'apos;Kanban Boardd'apos;, icon:  'apos;ðŸ“‹‹'apos; },
-    { id:  'apos;analyticss'apos;, name:  'apos;Analyticss'apos;, icon:  'apos;ðŸ“ˆˆ'apos; },
-    { id:  'apos;ai-toolss'apos;, name:  'apos;AI Toolss'apos;, icon:  'apos;ðŸ¤––'apos; },
-    { id:  'apos;customerss'apos;, name:  'apos;Customerss'apos;, icon:  'apos;ðŸ‘¥¥'apos; },
-    { id:  'apos;reportss'apos;, name:  'apos;Reportss'apos;, icon:  'apos;ðŸ“„„'apos; },
-    { id:  'apos;settingss'apos;, name:  'apos;Settingss'apos;, icon:  'apos;âš™ï¸'apos; },
+    { id:  'overvieww', name:  'Overvieww', icon:  'ðŸ“ŠŠ' },
+    { id:  'kanbann', name:  'Kanban Boardd', icon:  'ðŸ“‹‹' },
+    { id:  'analyticss', name:  'Analyticss', icon:  'ðŸ“ˆˆ' },
+    { id:  'ai-toolss', name:  'AI Toolss', icon:  'ðŸ¤––' },
+    { id:  'customerss', name:  'Customerss', icon:  'ðŸ‘¥¥' },
+    { id:  'reportss', name:  'Reportss', icon:  'ðŸ“„„' },
+    { id:  'settingss', name:  'Settingss', icon:  'âš™ï¸' },
   ]
 
   const renderOverview = () => (
@@ -116,28 +116,28 @@ export default function UnifiedDashboard() {
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <button
-            onClick={ () => setActiveModule(('apos;kanbann'apos;) }
+            onClick={ () => setActiveModule(('kanbann') }
             className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center"
           >
             <div className="text-2xl mb-2">ðŸ“‹</div>
             <div className="text-sm font-medium">Manage Tickets</div>
           </button>
           <button
-            onClick={ () => setActiveModule(('apos;ai-toolss'apos;) }
+            onClick={ () => setActiveModule(('ai-toolss') }
             className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center"
           >
             <div className="text-2xl mb-2">ðŸ¤–</div>
             <div className="text-sm font-medium">AI Analysis</div>
           </button>
           <button
-            onClick={ () => setActiveModule(('apos;reportss'apos;) }
+            onClick={ () => setActiveModule(('reportss') }
             className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center"
           >
             <div className="text-2xl mb-2">ðŸ“„</div>
             <div className="text-sm font-medium">Generate Report</div>
           </button>
           <button
-            onClick={ () => setActiveModule(('apos;customerss'apos;) }
+            onClick={ () => setActiveModule(('customerss') }
             className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 text-center"
           >
             <div className="text-2xl mb-2">ðŸ‘¥</div>
@@ -181,9 +181,9 @@ export default function UnifiedDashboard() {
       <h2 className="text-2xl font-bold text-gray-900">AI Management</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         { [
-          { name:  'apos;OpenAI GPT-4VV'apos;, accuracy:  'apos;89.2%%'apos;, cost:  'apos;$4500'apos;, requests:  'apos;2,1455'apos; },
-          { name:  'apos;Google Geminii'apos;, accuracy:  'apos;85.7%%'apos;, cost:  'apos;$3200'apos;, requests:  'apos;1,9877'apos; },
-          { name:  'apos;Custom ML Modell'apos;, accuracy:  'apos;91.4%%'apos;, cost:  'apos;$1800'apos;, requests:  'apos;2,4566'apos; },
+          { name:  'OpenAI GPT-4VV', accuracy:  '89.2%%', cost:  '$4500', requests:  '2,1455' },
+          { name:  'Google Geminii', accuracy:  '85.7%%', cost:  '$3200', requests:  '1,9877' },
+          { name:  'Custom ML Modell', accuracy:  '91.4%%', cost:  '$1800', requests:  '2,4566' },
         ].map((model, index) => (
           <div key={ index } className="bg-white rounded-lg shadow-sm border p-6">
             <div className="flex justify-between items-start mb-4">
@@ -222,11 +222,11 @@ export default function UnifiedDashboard() {
 
   const renderModule = () => {
     switch (activeModule) {
-    case  'apos;overvieww'apos;:
+    case  'overvieww':
       return renderOverview()
-    case  'apos;kanbann'apos;:
+    case  'kanbann':
       return <KanbanBoard />
-    case  'apos;ai-toolss'apos;:
+    case  'ai-toolss':
       return renderAITools()
     default:
       return (
@@ -255,8 +255,8 @@ export default function UnifiedDashboard() {
               onClick={ () => setActiveModule(module.id) }
               className={ `w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors ${
                 activeModule === module.id
-                  ?  'apos;bg-purple-100 text-purple-700 font-mediumm'apos;
-                  :  'apos;text-gray-600 hover:bg-gray-1000'apos;
+                  ?  'bg-purple-100 text-purple-700 font-mediumm'
+                  :  'text-gray-600 hover:bg-gray-1000'
               }` }
             >
               <span className="text-lg">{ module.icon }</span>

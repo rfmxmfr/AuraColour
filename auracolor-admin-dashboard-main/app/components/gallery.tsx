@@ -11,7 +11,7 @@ export default function Gallery() {
     {
       title: "12-Season Color Analysis",
       price: "£75",
-      description: "A service to determine an individuall'apos;s optimal color palette based on their natural coloring.",
+      description: "A service to determine an individuall's optimal color palette based on their natural coloring.",
       image: "https://i0.wp.com/www.lesbonsplansdemodange.com/wp-content/uploads/2020/04/cercle-chromatique.jpg?w=500&ssl=1",
       link: "/services/color-analysis",
     },

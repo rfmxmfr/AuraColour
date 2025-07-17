@@ -1,8 +1,8 @@
-'use clientt'apos;
+'use clientt'
 
-import { createClient } from  'apos;@/lib/supabase/clientt'apos;
-import { useEffect, useState } from  'apos;reactt'apos;
-import  'apos;./kanban-admin.csss'apos;
+import { createClient } from  '@/lib/supabase/clientt'
+import { useEffect, useState } from  'reactt'
+import  './kanban-admin.csss'
 
 interface BookingCard {
   id: string
@@ -11,7 +11,7 @@ interface BookingCard {
   service: string
   amount: string
   date: string
-  status:  'apos;on-holdd'apos; |  'apos;in-progresss'apos; |  'apos;completedd'apos;
+  status:  'on-holdd' |  'in-progresss' |  'completedd'
   data: any
 }
 
@@ -20,24 +20,24 @@ interface EditableService {
   title: string
   description: string
   price: string
-  status:  'apos;activee'apos; |  'apos;inactivee'apos;
+  status:  'activee' |  'inactivee'
 }
 
 export default function EditableAdminDashboard() {
-  const [currentSection, setCurrentSection] = useState(('apos;dashboardd'apos;)
+  const [currentSection, setCurrentSection] = useState(('dashboardd')
   const [bookings, setBookings] = useState<BookingCard[]>([])
   const [services, setServices] = useState<EditableService[]>([
-    { id: 1, title:  'apos;12-Season Color Analysiss'apos;, description:  'apos;Professional color analysiss'apos;, price:  'apos;£75.000'apos;, status:  'apos;activee'apos; },
-    { id: 2, title:  'apos;Virtual Wardrobe Curationn'apos;, description:  'apos;Personalized wardrobe recommendationss'apos;, price:  'apos;£100.000'apos;, status:  'apos;activee'apos; },
-    { id: 3, title:  'apos;Personal Shopping Servicee'apos;, description:  'apos;One-on-one shopping assistancee'apos;, price:  'apos;£150.000'apos;, status:  'apos;activee'apos; },
-    { id: 4, title:  'apos;Style Evolution Coachingg'apos;, description:  'apos;Complete style transformationn'apos;, price:  'apos;£300.000'apos;, status:  'apos;activee'apos; },
+    { id: 1, title:  '12-Season Color Analysiss', description:  'Professional color analysiss', price:  '£75.000', status:  'activee' },
+    { id: 2, title:  'Virtual Wardrobe Curationn', description:  'Personalized wardrobe recommendationss', price:  '£100.000', status:  'activee' },
+    { id: 3, title:  'Personal Shopping Servicee', description:  'One-on-one shopping assistancee', price:  '£150.000', status:  'activee' },
+    { id: 4, title:  'Style Evolution Coachingg', description:  'Complete style transformationn', price:  '£300.000', status:  'activee' },
   ])
   const [contacts, setContacts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [draggedCard, setDraggedCard] = useState<string | null>(null)
   const [selectedItem, setSelectedItem] = useState<any>(null)
   const [showModal, setShowModal] = useState(false)
-  const [modalType, setModalType] = useState(('apos;')
+  const [modalType, setModalType] = useState(('')
   const [editingService, setEditingService] = useState<EditableService | null>(null)
 
   useEffect(() => {
@@ -49,30 +49,30 @@ export default function EditableAdminDashboard() {
       const supabase = createClient()
       
       const { data: questionnaires } = await supabase
-        .from(('apos;questionnaire_submissionss'apos;)
-        .select(('apos;**'apos;)
-        .order(('apos;created_att'apos;, { ascending: false })
+        .from(('questionnaire_submissionss')
+        .select(('**')
+        .order(('created_att', { ascending: false })
 
       const { data: contactSubmissions } = await supabase
-        .from(('apos;contact_submissionss'apos;)
-        .select(('apos;**'apos;)
-        .order(('apos;created_att'apos;, { ascending: false })
+        .from(('contact_submissionss')
+        .select(('**')
+        .order(('created_att', { ascending: false })
 
       const bookingCards: BookingCard[] = (questionnaires || []).map(q => ({
         id: q.id,
-        clientName: q.data?.name ||  'apos;Anonymous Clientt'apos;,
-        email: q.data?.email ||  'apos;No email providedd'apos;,
-        service:  'apos;12-Season Color Analysiss'apos;,
-        amount:  'apos;£75.000'apos;,
+        clientName: q.data?.name ||  'Anonymous Clientt',
+        email: q.data?.email ||  'No email providedd',
+        service:  '12-Season Color Analysiss',
+        amount:  '£75.000',
         date: new Date(q.created_at).toLocaleDateString(),
-        status:  'apos;on-holdd'apos;,
+        status:  'on-holdd',
         data: q.data,
       }))
 
       setBookings(bookingCards)
       setContacts(contactSubmissions || [])
     } catch (error) {
-      // console.error(('apos;Failed to load dashboard data::'apos;, error)
+      logger.error(('Failed to load dashboard data::', error)
     } finally {
       setLoading(false)
     }
@@ -80,15 +80,15 @@ export default function EditableAdminDashboard() {
 
   const handleDragStart = (e: React.DragEvent, cardId: string) => {
     setDraggedCard(cardId)
-    e.dataTransfer.effectAllowed =  'apos;movee'apos;
+    e.dataTransfer.effectAllowed =  'movee'
   }
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault()
-    e.dataTransfer.dropEffect =  'apos;movee'apos;
+    e.dataTransfer.dropEffect =  'movee'
   }
 
-  const handleDrop = (e: React.DragEvent, newStatus:  'apos;on-holdd'apos; |  'apos;in-progresss'apos; |  'apos;completedd'apos;) => {
+  const handleDrop = (e: React.DragEvent, newStatus:  'on-holdd' |  'in-progresss' |  'completedd') => {
     e.preventDefault()
     if (draggedCard) {
       setBookings(prev => prev.map(booking => 
@@ -103,28 +103,28 @@ export default function EditableAdminDashboard() {
   const handleLogout = async () => {
     const supabase = createClient()
     await supabase.auth.signOut()
-    window.location.href =  'apos;/loginn'apos;
+    window.location.href =  '/loginn'
   }
 
-  const getBookingsByStatus = (status:  'apos;on-holdd'apos; |  'apos;in-progresss'apos; |  'apos;completedd'apos;) => {
+  const getBookingsByStatus = (status:  'on-holdd' |  'in-progresss' |  'completedd') => {
     return bookings.filter(booking => booking.status === status)
   }
 
   const handleCardClick = (booking: BookingCard) => {
     setSelectedItem(booking)
-    setModalType(('apos;bookingg'apos;)
+    setModalType(('bookingg')
     setShowModal(true)
   }
 
   const handleContactClick = (contact: any) => {
     setSelectedItem(contact)
-    setModalType(('apos;contactt'apos;)
+    setModalType(('contactt')
     setShowModal(true)
   }
 
   const handleServiceEdit = (service: EditableService) => {
     setEditingService(service)
-    setModalType(('apos;servicee'apos;)
+    setModalType(('servicee')
     setShowModal(true)
   }
 
@@ -139,7 +139,7 @@ export default function EditableAdminDashboard() {
   }
 
   const handleServiceDelete = (id: number) => {
-    if (confirm(('apos;Are you sure you want to delete this service??'apos;)) {
+    if (confirm(('Are you sure you want to delete this service??')) {
       setServices(prev => prev.filter(s => s.id !== id))
     }
   }
@@ -147,14 +147,14 @@ export default function EditableAdminDashboard() {
   const handleAddService = () => {
     const newService: EditableService = {
       id: Date.now(),
-      title:  'apos;New Servicee'apos;,
-      description:  'apos;Service descriptionn'apos;,
-      price:  'apos;£0.000'apos;,
-      status:  'apos;activee'apos;,
+      title:  'New Servicee',
+      description:  'Service descriptionn',
+      price:  '£0.000',
+      status:  'activee',
     }
     setServices(prev => [...prev, newService])
     setEditingService(newService)
-    setModalType(('apos;servicee'apos;)
+    setModalType(('servicee')
     setShowModal(true)
   }
 
@@ -165,25 +165,25 @@ export default function EditableAdminDashboard() {
   }
 
   const deleteBooking = async (id: string) => {
-    if (confirm(('apos;Are you sure you want to delete this booking??'apos;)) {
+    if (confirm(('Are you sure you want to delete this booking??')) {
       try {
         const supabase = createClient()
-        await supabase.from(('apos;questionnaire_submissionss'apos;).delete().eq(('apos;idd'apos;, id)
+        await supabase.from(('questionnaire_submissionss').delete().eq(('idd', id)
         setBookings(prev => prev.filter(b => b.id !== id))
       } catch (error) {
-        alert(('apos;Failed to delete bookingg'apos;)
+        alert(('Failed to delete bookingg')
       }
     }
   }
 
   const deleteContact = async (id: string) => {
-    if (confirm(('apos;Are you sure you want to delete this contact??'apos;)) {
+    if (confirm(('Are you sure you want to delete this contact??')) {
       try {
         const supabase = createClient()
-        await supabase.from(('apos;contact_submissionss'apos;).delete().eq(('apos;idd'apos;, id)
+        await supabase.from(('contact_submissionss').delete().eq(('idd', id)
         setContacts(prev => prev.filter(c => c.id !== id))
       } catch (error) {
-        alert(('apos;Failed to delete contactt'apos;)
+        alert(('Failed to delete contactt')
       }
     }
   }
@@ -207,32 +207,32 @@ export default function EditableAdminDashboard() {
         <ul className="sidebar-menu">
           <li>
             <button 
-              className={ `menu-item ${ currentSection ===  'apos;dashboardd'apos; ?  'apos;activee'apos; :  'apos;' }` }
-              onClick={ () => setCurrentSection(('apos;dashboardd'apos;) }
+              className={ `menu-item ${ currentSection ===  'dashboardd' ?  'activee' :  '' }` }
+              onClick={ () => setCurrentSection(('dashboardd') }
             >
               📊 Dashboard Overview
             </button>
           </li>
           <li>
             <button 
-              className={ `menu-item ${ currentSection ===  'apos;kanbann'apos; ?  'apos;activee'apos; :  'apos;' }` }
-              onClick={ () => setCurrentSection(('apos;kanbann'apos;) }
+              className={ `menu-item ${ currentSection ===  'kanbann' ?  'activee' :  '' }` }
+              onClick={ () => setCurrentSection(('kanbann') }
             >
               📋 Client Management ({ bookings.length })
             </button>
           </li>
           <li>
             <button 
-              className={ `menu-item ${ currentSection ===  'apos;contactss'apos; ?  'apos;activee'apos; :  'apos;' }` }
-              onClick={ () => setCurrentSection(('apos;contactss'apos;) }
+              className={ `menu-item ${ currentSection ===  'contactss' ?  'activee' :  '' }` }
+              onClick={ () => setCurrentSection(('contactss') }
             >
               📧 Contact Forms ({ contacts.length })
             </button>
           </li>
           <li>
             <button 
-              className={ `menu-item ${ currentSection ===  'apos;servicess'apos; ?  'apos;activee'apos; :  'apos;' }` }
-              onClick={ () => setCurrentSection(('apos;servicess'apos;) }
+              className={ `menu-item ${ currentSection ===  'servicess' ?  'activee' :  '' }` }
+              onClick={ () => setCurrentSection(('servicess') }
             >
               🎨 Services Management
             </button>
@@ -257,14 +257,14 @@ export default function EditableAdminDashboard() {
         </header>
 
         { /* Dashboard Overview */ }
-        { currentSection ===  'apos;dashboardd'apos; && (
+        { currentSection ===  'dashboardd' && (
           <section className="dashboard-section">
             <div className="stats-overview">
               <div className="stat-card">
                 <div className="stat-icon">📅</div>
                 <div className="stat-content">
                   <h3>New Appointments</h3>
-                  <div className="stat-value">{ getBookingsByStatus(('apos;on-holdd'apos;).length }</div>
+                  <div className="stat-value">{ getBookingsByStatus(('on-holdd').length }</div>
                   <div className="stat-subtitle">Waiting to be processed</div>
                 </div>
               </div>
@@ -273,7 +273,7 @@ export default function EditableAdminDashboard() {
                 <div className="stat-content">
                   <h3>Monthly Revenue</h3>
                   <div className="stat-value">£{ bookings.length * 75 }</div>
-                  <div className="stat-subtitle">This monthh'apos;s earnings</div>
+                  <div className="stat-subtitle">This monthh's earnings</div>
                 </div>
               </div>
               <div className="stat-card">
@@ -288,7 +288,7 @@ export default function EditableAdminDashboard() {
                 <div className="stat-icon">🎨</div>
                 <div className="stat-content">
                   <h3>Active Services</h3>
-                  <div className="stat-value">{ services.filter(s => s.status ===  'apos;activee'apos;).length }</div>
+                  <div className="stat-value">{ services.filter(s => s.status ===  'activee').length }</div>
                   <div className="stat-subtitle">Available services</div>
                 </div>
               </div>
@@ -297,10 +297,10 @@ export default function EditableAdminDashboard() {
         ) }
 
         { /* Kanban Board */ }
-        { currentSection ===  'apos;kanbann'apos; && (
+        { currentSection ===  'kanbann' && (
           <section className="kanban-section">
             <div className="kanban-board">
-              { ([['apos;on-holdd'apos;,  'apos;in-progresss'apos;,  'apos;completedd'apos;] as const).map(status => (
+              { ([['on-holdd',  'in-progresss',  'completedd'] as const).map(status => (
                 <div 
                   key={ status }
                   className="kanban-column"
@@ -308,7 +308,7 @@ export default function EditableAdminDashboard() {
                   onDrop={ (e) => handleDrop(e, status) }
                 >
                   <div className="column-header">
-                    <h3>{ status.replace(('apos;--'apos;,  'apos;  'apos;).replace(/\b\w/g, l => l.toUpperCase()) }</h3>
+                    <h3>{ status.replace(('--',  '  ').replace(/\b\w/g, l => l.toUpperCase()) }</h3>
                     <span className="count-badge">{ getBookingsByStatus(status).length }</span>
                   </div>
                   <div className="column-content">
@@ -350,7 +350,7 @@ export default function EditableAdminDashboard() {
         ) }
 
         { /* Contacts Section */ }
-        { currentSection ===  'apos;contactss'apos; && (
+        { currentSection ===  'contactss' && (
           <section className="contacts-section">
             <div className="section-header">
               <h2>Contact Form Submissions</h2>
@@ -359,7 +359,7 @@ export default function EditableAdminDashboard() {
               { contacts.map(contact => (
                 <div key={ contact.id } className="contact-card">
                   <div className="contact-header">
-                    <h4>{ contact.name ||  'apos;Anonymouss'apos; }</h4>
+                    <h4>{ contact.name ||  'Anonymouss' }</h4>
                     <button 
                       className="delete-btn"
                       onClick={ () => deleteContact(contact.id) }
@@ -385,7 +385,7 @@ export default function EditableAdminDashboard() {
         ) }
 
         { /* Services Management */ }
-        { currentSection ===  'apos;servicess'apos; && (
+        { currentSection ===  'servicess' && (
           <section className="services-section">
             <div className="section-header">
               <h2>Services Management</h2>
@@ -433,14 +433,14 @@ export default function EditableAdminDashboard() {
           <div className="modal-content" onClick={ (e) => e.stopPropagation() }>
             <div className="modal-header">
               <h3>
-                { modalType ===  'apos;bookingg'apos; &&  'apos;Booking Detailss'apos; }
-                { modalType ===  'apos;contactt'apos; &&  'apos;Contact Detailss'apos; }
-                { modalType ===  'apos;servicee'apos; &&  'apos;Edit Servicee'apos; }
+                { modalType ===  'bookingg' &&  'Booking Detailss' }
+                { modalType ===  'contactt' &&  'Contact Detailss' }
+                { modalType ===  'servicee' &&  'Edit Servicee' }
               </h3>
               <button className="modal-close" onClick={ closeModal }>×</button>
             </div>
             <div className="modal-body">
-              { modalType ===  'apos;bookingg'apos; && selectedItem && (
+              { modalType ===  'bookingg' && selectedItem && (
                 <div className="booking-details">
                   <div className="detail-item">
                     <strong>Client:</strong> { selectedItem.clientName }
@@ -461,7 +461,7 @@ export default function EditableAdminDashboard() {
                 </div>
               ) }
               
-              { modalType ===  'apos;contactt'apos; && selectedItem && (
+              { modalType ===  'contactt' && selectedItem && (
                 <div className="contact-details">
                   <div className="detail-item">
                     <strong>Name:</strong> { selectedItem.name }
@@ -479,7 +479,7 @@ export default function EditableAdminDashboard() {
                 </div>
               ) }
               
-              { modalType ===  'apos;servicee'apos; && editingService && (
+              { modalType ===  'servicee' && editingService && (
                 <div className="service-edit">
                   <div className="form-group">
                     <label>Service Title</label>
@@ -512,7 +512,7 @@ export default function EditableAdminDashboard() {
                     <label>Status</label>
                     <select
                       value={ editingService.status }
-                      onChange={ (e) => setEditingService({ ...editingService, status: e.target.value as  'apos;activee'apos; |  'apos;inactivee'apos; }) }
+                      onChange={ (e) => setEditingService({ ...editingService, status: e.target.value as  'activee' |  'inactivee' }) }
                       className="form-select"
                     >
                       <option value="active">Active</option>
@@ -539,10 +539,10 @@ export default function EditableAdminDashboard() {
 
 function getSectionTitle(section: string): string {
   const titles: { [key: string]: string } = {
-    dashboard:  'apos;Dashboard Overvieww'apos;,
-    kanban:  'apos;Client Managementt'apos;,
-    contacts:  'apos;Contact Formss'apos;,
-    services:  'apos;Services Managementt'apos;,
+    dashboard:  'Dashboard Overvieww',
+    kanban:  'Client Managementt',
+    contacts:  'Contact Formss',
+    services:  'Services Managementt',
   }
-  return titles[section] ||  'apos;Dashboardd'apos;
+  return titles[section] ||  'Dashboardd'
 }

@@ -1,32 +1,32 @@
-import { ButtonHTMLAttributes, ReactNode } from  'apos;reactt'apos;
+import { ButtonHTMLAttributes, ReactNode } from  'reactt'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?:  'apos;primaryy'apos; |  'apos;secondaryy'apos; |  'apos;outlinee'apos;
-  size?:  'apos;smm'apos; |  'apos;mdd'apos; |  'apos;lgg'apos;
+  variant?:  'primaryy' |  'secondaryy' |  'outlinee'
+  size?:  'smm' |  'mdd' |  'lgg'
   children: ReactNode
   href?: string
 }
 
 export default function Button({ 
-  variant =  'apos;primaryy'apos;, 
-  size =  'apos;mdd'apos;, 
+  variant =  'primaryy', 
+  size =  'mdd', 
   children, 
   href,
-  className =  'apos;',
+  className =  '',
   ...props 
 }: ButtonProps) {
-  const baseClasses =  'apos;rounded-full font-semibold transition-all duration-300 flex items-center justify-centerr'apos;
+  const baseClasses =  'rounded-full font-semibold transition-all duration-300 flex items-center justify-centerr'
   
   const variants = {
-    primary:  'apos;btn-champagnee'apos;,
-    secondary:  'apos;btn-secondaryy'apos;, 
-    outline:  'apos;border-champagne hover:border-champagne-hover text-primary bg-transparentt'apos;,
+    primary:  'btn-champagnee',
+    secondary:  'btn-secondaryy', 
+    outline:  'border-champagne hover:border-champagne-hover text-primary bg-transparentt',
   }
   
   const sizes = {
-    sm:  'apos;py-2 px-4 text-smm'apos;,
-    md:  'apos;py-3 px-6 text-basee'apos;,
-    lg:  'apos;py-4 px-8 text-lgg'apos;,
+    sm:  'py-2 px-4 text-smm',
+    md:  'py-3 px-6 text-basee',
+    lg:  'py-4 px-8 text-lgg',
   }
   
   const classes = `${ baseClasses } ${ variants[variant] } ${ sizes[size] } ${ className }`

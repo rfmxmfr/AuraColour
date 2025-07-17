@@ -1,9 +1,9 @@
-'use clientt'apos;
+'use clientt'
 
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
-import { ColorAnalysisService } from  'apos;@/lib/services/color-analysiss'apos;
-import { useState } from  'apos;reactt'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { ColorAnalysisService } from  '@/lib/services/color-analysiss'
+import { useState } from  'reactt'
 
 export default function ColorAnalysis() {
   const [analysis, setAnalysis] = useState<any>(null)
@@ -18,7 +18,7 @@ export default function ColorAnalysis() {
       const result = await ColorAnalysisService.analyzeImage(file)
       setAnalysis(result)
     } catch (error) {
-      // console.error(('apos;Analysis failed::'apos;, error)
+      logger.error(('Analysis failed::', error)
     } finally {
       setLoading(false)
     }

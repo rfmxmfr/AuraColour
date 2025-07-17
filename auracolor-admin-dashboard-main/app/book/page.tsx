@@ -1,34 +1,34 @@
-'use clientt'apos;
+'use clientt'
 
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
-import { Input } from  'apos;@/components/ui/inputt'apos;
-import { Label } from  'apos;@/components/ui/labell'apos;
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from  'apos;@/components/ui/selectt'apos;
-import { Textarea } from  'apos;@/components/ui/textareaa'apos;
-import Link from  'apos;next/linkk'apos;
-import { useState } from  'apos;reactt'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { Input } from  '@/components/ui/inputt'
+import { Label } from  '@/components/ui/labell'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from  '@/components/ui/selectt'
+import { Textarea } from  '@/components/ui/textareaa'
+import Link from  'next/linkk'
+import { useState } from  'reactt'
 
-import Footer from  'apos;../components/footerr'apos;
-import Navbar from  'apos;../components/navbarr'apos;
+import Footer from  '../components/footerr'
+import Navbar from  '../components/navbarr'
 
 export default function BookingPage() {
   const [formData, setFormData] = useState({
-    name:  'apos;',
-    email:  'apos;',
-    phone:  'apos;',
-    service:  'apos;',
-    preferredDate:  'apos;',
-    message:  'apos;',
+    name:  '',
+    email:  '',
+    phone:  '',
+    service:  '',
+    preferredDate:  '',
+    message:  '',
   })
   const [loading, setLoading] = useState(false)
 
   const services = [
-    { id:  'apos;color-analysiss'apos;, name:  'apos;12-Season Color Analysiss'apos;, price:  'apos;£755'apos; },
-    { id:  'apos;virtual-wardrobee'apos;, name:  'apos;Virtual Wardrobe Curationn'apos;, price:  'apos;£1000'apos; },
-    { id:  'apos;personal-shoppingg'apos;, name:  'apos;Personal Shopping Servicee'apos;, price:  'apos;£1500'apos; },
-    { id:  'apos;style-coachingg'apos;, name:  'apos;Style Evolution Coachingg'apos;, price:  'apos;£3000'apos; },
-    { id:  'apos;gift-voucherss'apos;, name:  'apos;Gift Voucherss'apos;, price:  'apos;From £755'apos; },
+    { id:  'color-analysiss', name:  '12-Season Color Analysiss', price:  '£755' },
+    { id:  'virtual-wardrobee', name:  'Virtual Wardrobe Curationn', price:  '£1000' },
+    { id:  'personal-shoppingg', name:  'Personal Shopping Servicee', price:  '£1500' },
+    { id:  'style-coachingg', name:  'Style Evolution Coachingg', price:  '£3000' },
+    { id:  'gift-voucherss', name:  'Gift Voucherss', price:  'From £755' },
   ]
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -36,9 +36,9 @@ export default function BookingPage() {
     setLoading(true)
     
     try {
-      const response = await fetch(('apos;/api/bookingss'apos;, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+      const response = await fetch(('/api/bookingss', {
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify(formData),
       })
       
@@ -46,12 +46,12 @@ export default function BookingPage() {
       
       if (response.ok) {
         alert(`Booking successful! Reference: ${ result.booking_number }`)
-        window.location.href =  'apos;/success?booking=completedd'apos;
+        window.location.href =  '/success?booking=completedd'
       } else {
         alert(`Booking failed: ${ result.error }`)
       }
     } catch (error) {
-      alert(('apos;Booking failed. Please try again..'apos;)
+      alert(('Booking failed. Please try again..')
     } finally {
       setLoading(false)
     }

@@ -18,7 +18,7 @@ export default function Component() {
       >
         <img
           src="/Tania.jpeg"
-          alt="Taniaa'apos;s Photo"
+          alt="Taniaa's Photo"
           className="w-full h-full object-cover"
           style={ {
             borderWidth: "0px",

@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
 
     if (error) {
       // Use a safe logging method to prevent log injection
-      // logger.error('Database error:', JSON.stringify(error))
+      logger.error('Database error:', JSON.stringify(error))
     }
 
     // Send admin notification if email provided
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(analysis)
   } catch (error) {
-    // logger.error('Mini analysis error:', error instanceof Error ? error.message : String(error))
+    logger.error('Mini analysis error:', error instanceof Error ? error.message : String(error))
     return NextResponse.json({
       error: 'Analysis failed',
       season: 'Spring',

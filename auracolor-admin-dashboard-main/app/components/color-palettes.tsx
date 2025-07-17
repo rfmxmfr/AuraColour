@@ -1,8 +1,8 @@
 export default function ColorPalettes() {
   const springPalette = {
-    best: [['apos;#FF6B6BB'apos;,  'apos;#FFD93DD'apos;,  'apos;#6BCF7FF'apos;,  'apos;#4ECDC44'apos;,  'apos;#FF8C422'apos;,  'apos;#98D8E88'apos;],
-    good: [['apos;#FFA07AA'apos;,  'apos;#F0E68CC'apos;,  'apos;#90EE900'apos;,  'apos;#87CEEBB'apos;,  'apos;#DDA0DDD'apos;,  'apos;#F5DEB33'apos;],
-    avoid: [['apos;#2F4F4FF'apos;,  'apos;#8000800'apos;,  'apos;#8B00000'apos;,  'apos;#0000800'apos;,  'apos;#6969699'apos;,  'apos;#2E2E2EE'apos;],
+    best: [['#FF6B6BB',  '#FFD93DD',  '#6BCF7FF',  '#4ECDC44',  '#FF8C422',  '#98D8E88'],
+    good: [['#FFA07AA',  '#F0E68CC',  '#90EE900',  '#87CEEBB',  '#DDA0DDD',  '#F5DEB33'],
+    avoid: [['#2F4F4FF',  '#8000800',  '#8B00000',  '#0000800',  '#6969699',  '#2E2E2EE'],
   }
 
   return (

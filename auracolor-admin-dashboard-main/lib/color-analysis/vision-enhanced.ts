@@ -124,7 +124,7 @@ Focus on: undertone detection, contrast levels, color temperature, and image qua
   try {
     return JSON.parse(content) as EnhancedColorFeatures
   } catch (error) {
-    // console.error('Failed to parse enhanced features:', error)
+    logger.error('Failed to parse enhanced features:', error)
     throw new Error('Invalid feature extraction response')
   }
 }

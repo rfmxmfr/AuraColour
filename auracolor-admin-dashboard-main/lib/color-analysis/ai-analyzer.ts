@@ -62,7 +62,7 @@ export async function analyzeColorProfile(imageUrl: string): Promise<ColorAnalys
 
     return JSON.parse(content)
   } catch (error) {
-    // console.error('AI analysis failed:', error)
+    logger.error('AI analysis failed:', error)
     // Fallback to rule-based analysis
     return generateFallbackAnalysis()
   }

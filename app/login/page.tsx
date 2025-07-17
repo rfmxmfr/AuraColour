@@ -1,16 +1,16 @@
 import logger from "../lib/secure-logger";
-'apos;use clientt'apos;apos;
+'use clientt'
 
-import Link from  'apos;apos;next/linkk'apos;apos;
-import { useRouter } from  'apos;apos;next/navigationn'apos;apos;
-import { useState, useEffect } from  'apos;apos;reactt'apos;apos;
+import Link from  'next/linkk'
+import { useRouter } from  'next/navigationn'
+import { useState, useEffect } from  'reactt'
 
-import { createClient } from  'apos;apos;@/lib/supabase/clientt'apos;apos;
+import { createClient } from  '@/lib/supabase/clientt'
 
 
 export default function LoginPage() {
-  const [email, setEmail] = useState(('apos;apos;'apos;)
-  const [password, setPassword] = useState(('apos;apos;'apos;)
+  const [email, setEmail] = useState(('')
+  const [password, setPassword] = useState(('')
   const [showPassword, setShowPassword] = useState(false)
   const [rememberMe, setRememberMe] = useState(false)
   const router = useRouter()
@@ -20,7 +20,7 @@ export default function LoginPage() {
     
     try {
       const supabase = createClient()
-      // logger.info(('apos;apos;Attempting login with::'apos;apos;, email)
+      logger.info(('Attempting login with::', email)
       
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
@@ -28,43 +28,43 @@ export default function LoginPage() {
       })
       
       if (error) {
-        // logger.error(('apos;apos;Auth error::'apos;apos;, error)
+        logger.error(('Auth error::', error)
         alert(`Login failed: ${ error.message }`)
         return
       }
       
-      // logger.info(('apos;apos;Auth success, user ID::'apos;apos;, data.user?.id)
+      logger.info(('Auth success, user ID::', data.user?.id)
       
       // Save login if remember me is checked
       if (rememberMe) {
-        localStorage.setItem(('apos;apos;auracolor_remember_emaill'apos;apos;, email)
+        localStorage.setItem(('auracolor_remember_emaill', email)
       } else {
-        localStorage.removeItem(('apos;apos;auracolor_remember_emaill'apos;apos;)
+        localStorage.removeItem(('auracolor_remember_emaill')
       }
       
       // Check if user is admin
       const { data: profile, error: profileError } = await supabase
-        .from(('apos;apos;profiless'apos;apos;)
-        .select(('apos;apos;rolee'apos;apos;)
-        .eq(('apos;apos;idd'apos;apos;, data.user.id)
+        .from(('profiless')
+        .select(('rolee')
+        .eq(('idd', data.user.id)
         .single()
       
-      // logger.info(('apos;apos;Profile data::'apos;apos;, profile)
-      // logger.info(('apos;apos;Profile error::'apos;apos;, profileError)
+      logger.info(('Profile data::', profile)
+      logger.info(('Profile error::', profileError)
       
-      if (profile?.role ===  'apos;apos;adminn'apos;apos;) {
-        window.location.href =  'apos;apos;/adminn'apos;apos;
+      if (profile?.role ===  'adminn') {
+        window.location.href =  '/adminn'
       } else {
-        alert(`Access denied. Role: ${ profile?.role ||  'apos;apos;nonee'apos;apos; }`)
+        alert(`Access denied. Role: ${ profile?.role ||  'nonee' }`)
       }
     } catch (error) {
-      alert(('apos;apos;Login failedd'apos;apos;)
+      alert(('Login failedd')
     }
   }
 
   // Load saved email on component mount
   useEffect(() => {
-    const savedEmail = localStorage.getItem(('apos;apos;auracolor_remember_emaill'apos;apos;)
+    const savedEmail = localStorage.getItem(('auracolor_remember_emaill')
     if (savedEmail) {
       setEmail(savedEmail)
       setRememberMe(true)
@@ -142,7 +142,7 @@ export default function LoginPage() {
               <button
                 type="button"
                 className="text-sm text-purple-600 hover:text-purple-700 font-medium"
-                onClick={ () => alert(('apos;apos;Passkey authentication coming soon!!'apos;apos;) }
+                onClick={ () => alert(('Passkey authentication coming soon!!') }
               >
                 🔐 Use Passkey
               </button>

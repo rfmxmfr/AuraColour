@@ -31,5 +31,5 @@ export default function RootLayout({
 }
 
 export const metadata = {
-  generator:  'apos;apos;v0.devv'apos;apos;,
+  generator:  'v0.devv',
 };

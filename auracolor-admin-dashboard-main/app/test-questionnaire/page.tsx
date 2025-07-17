@@ -1,14 +1,14 @@
-'use clientt'apos;
+'use clientt'
 
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
-import { Input } from  'apos;@/components/ui/inputt'apos;
-import { toast } from  'apos;@/hooks/use-toastt'apos;
-import { useState } from  'apos;reactt'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { Input } from  '@/components/ui/inputt'
+import { toast } from  '@/hooks/use-toastt'
+import { useState } from  'reactt'
 
 export default function TestQuestionnaire() {
-  const [email, setEmail] = useState(('apos;')
-  const [name, setName] = useState(('apos;')
+  const [email, setEmail] = useState(('')
+  const [name, setName] = useState(('')
   const [loading, setLoading] = useState(false)
 
   const sendTestQuestionnaire = async () => {
@@ -23,10 +23,10 @@ export default function TestQuestionnaire() {
 
     setLoading(true)
     try {
-      const response = await fetch(('apos;/api/full-color-testt'apos;, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
-        body: JSON.stringify({ email, name: name ||  'apos;Test Userr'apos; }),
+      const response = await fetch(('/api/full-color-testt', {
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
+        body: JSON.stringify({ email, name: name ||  'Test Userr' }),
       })
 
       const data = await response.json()
@@ -36,8 +36,8 @@ export default function TestQuestionnaire() {
           title: "Success! 🎨",
           description: "Full color analysis questionnaire sent to your email",
         })
-        setEmail(('apos;')
-        setName(('apos;')
+        setEmail(('')
+        setName(('')
       } else {
         throw new Error(data.error)
       }
@@ -89,11 +89,11 @@ export default function TestQuestionnaire() {
               disabled={ loading }
               className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700"
             >
-              { loading ?  'apos;Sending....'apos; :  'apos;Send Test Questionnairee'apos; }
+              { loading ?  'Sending....' :  'Send Test Questionnairee' }
             </Button>
             
             <div className="mt-4 md:mt-6 p-3 md:p-4 bg-blue-50 rounded-lg">
-              <h3 className="font-semibold text-blue-900 mb-1 md:mb-2 text-sm md:text-base">What youu'apos;ll receive:</h3>
+              <h3 className="font-semibold text-blue-900 mb-1 md:mb-2 text-sm md:text-base">What youu'll receive:</h3>
               <ul className="text-xs md:text-sm text-blue-800 space-y-1">
                 <li>• Complete color season analysis (Spring/Summer/Autumn/Winter)</li>
                 <li>• Personalized color palette with 5 perfect colors</li>

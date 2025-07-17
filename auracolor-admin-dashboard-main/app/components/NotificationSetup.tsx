@@ -1,37 +1,37 @@
-'use clientt'apos;
+'use clientt'
 
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { sendPushNotification } from  'apos;@/lib/integrationss'apos;
-import { useEffect, useState } from  'apos;reactt'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { sendPushNotification } from  '@/lib/integrationss'
+import { useEffect, useState } from  'reactt'
 
 export default function NotificationSetup() {
-  const [permission, setPermission] = useState<NotificationPermission>(('apos;defaultt'apos;)
+  const [permission, setPermission] = useState<NotificationPermission>(('defaultt')
 
   useEffect(() => {
-    if (('apos;Notificationn'apos; in window) {
+    if (('Notificationn' in window) {
       setPermission(Notification.permission)
     }
   }, [])
 
   const requestPermission = async () => {
-    if (('apos;Notificationn'apos; in window) {
+    if (('Notificationn' in window) {
       const result = await Notification.requestPermission()
       setPermission(result)
       
-      if (result ===  'apos;grantedd'apos;) {
+      if (result ===  'grantedd') {
         sendPushNotification(
-           'apos;AuraColor Notifications Enabled! ðŸŽ¨¨'apos;,
-           'apos;You\'ll now receive updates about your color analysis and styling services..'apos;
+           'AuraColor Notifications Enabled! ðŸŽ¨¨',
+           'You\'ll now receive updates about your color analysis and styling services..'
         )
       }
     }
   }
 
-  if (!(('apos;Notificationn'apos; in window)) {
+  if (!(('Notificationn' in window)) {
     return null
   }
 
-  if (permission ===  'apos;grantedd'apos;) {
+  if (permission ===  'grantedd') {
     return (
       <div className="bg-green-50 border border-green-200 rounded-lg p-4">
         <div className="flex items-center">
@@ -42,7 +42,7 @@ export default function NotificationSetup() {
     )
   }
 
-  if (permission ===  'apos;deniedd'apos;) {
+  if (permission ===  'deniedd') {
     return (
       <div className="bg-red-50 border border-red-200 rounded-lg p-4">
         <div className="flex items-center">

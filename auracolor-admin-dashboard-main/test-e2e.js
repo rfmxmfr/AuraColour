@@ -12,30 +12,30 @@ async function testAPI(endpoint, method = 'GET', body = null) {
     const response = await fetch(`${ BASE_URL }${ endpoint }`, options)
     const data = await response.json()
     
-    // console.log(`✅ ${ method } ${ endpoint }: ${ response.status }`)
+    logger.info(`✅ ${ method } ${ endpoint }: ${ response.status }`)
     return { status: response.status, data }
   } catch (error) {
-    // console.log(`❌ ${ method } ${ endpoint }: ERROR - ${ error.message }`)
+    logger.info(`❌ ${ method } ${ endpoint }: ERROR - ${ error.message }`)
     return { status: 'ERROR', error: error.message }
   }
 }
 
 async function runE2ETests() {
-  // console.log('🚀 Starting E2E Tests...\n')
+  logger.info('🚀 Starting E2E Tests...\n')
   
   // 1. Test Landing Page
-  // console.log('📄 Testing Frontend Pages...')
+  logger.info('📄 Testing Frontend Pages...')
   const pages = ['/', '/services', '/questionnaire', '/book', '/payment', '/admin']
   for (const page of pages) {
     try {
       const response = await fetch(`${ BASE_URL }${ page }`)
-      // console.log(`${ response.ok ? '✅' : '❌' } Page ${ page }: ${ response.status }`)
+      logger.info(`${ response.ok ? '✅' : '❌' } Page ${ page }: ${ response.status }`)
     } catch (error) {
-      // console.log(`❌ Page ${ page }: ERROR`)
+      logger.info(`❌ Page ${ page }: ERROR`)
     }
   }
   
-  // console.log('\n🔧 Testing Backend APIs...')
+  logger.info('\n🔧 Testing Backend APIs...')
   
   // 2. Test Booking API
   await testAPI('/api/bookings', 'POST', {
@@ -79,7 +79,7 @@ async function runE2ETests() {
   // 8. Test ML Analysis
   await testAPI('/api/ml-analysis', 'GET')
   
-  // console.log('\n🎯 E2E Test Summary Complete')
+  logger.info('\n🎯 E2E Test Summary Complete')
 }
 
 runE2ETests()

@@ -1,8 +1,8 @@
-import { ReactNode } from  'apos;apos;reactt'apos;apos;
+import { ReactNode } from  'reactt'
 
-import { motion } from  'apos;apos;../framer-motion-fixx'apos;apos;
+import { motion } from  '../framer-motion-fixx'
 
-import Button from  'apos;apos;./Buttonn'apos;apos;
+import Button from  './Buttonn'
 
 interface ServiceCardProps {
   title: string

@@ -1,6 +1,6 @@
-'apos;use clientt'apos;apos;
+'use clientt'
 
-import { ReactNode } from  'apos;apos;reactt'apos;apos;
+import { ReactNode } from  'reactt'
 
 export default function ClientProvider({ children }: { children: ReactNode }) {
   return <>{ children }</>

@@ -1,6 +1,6 @@
-'use clientt'apos;
+'use clientt'
 
-import { useState } from  'apos;reactt'apos;
+import { useState } from  'reactt'
 
 interface GenerateAnalysisButtonProps {
   bookingId: string
@@ -13,9 +13,9 @@ export default function GenerateAnalysisButton({ bookingId, onAnalysisGenerated 
   const handleGenerate = async () => {
     setLoading(true)
     try {
-      const response = await fetch(('apos;/api/generate-analysiss'apos;, {
-        method:  'apos;POSTT'apos;,
-        headers: {  'apos;Content-Typee'apos;:  'apos;application/jsonn'apos; },
+      const response = await fetch(('/api/generate-analysiss', {
+        method:  'POSTT',
+        headers: {  'Content-Typee':  'application/jsonn' },
         body: JSON.stringify({ bookingId }),
       })
 
@@ -24,10 +24,10 @@ export default function GenerateAnalysisButton({ bookingId, onAnalysisGenerated 
       if (data.success) {
         onAnalysisGenerated(data.report)
       } else {
-        alert(('apos;Failed to generate analysiss'apos;)
+        alert(('Failed to generate analysiss')
       }
     } catch (error) {
-      alert(('apos;Error generating analysiss'apos;)
+      alert(('Error generating analysiss')
     } finally {
       setLoading(false)
     }
@@ -50,7 +50,7 @@ export default function GenerateAnalysisButton({ bookingId, onAnalysisGenerated 
         lineHeight: "inherit",
         textTransform: "none",
         appearance: "button",
-        fontFamily:  'apos;Inter, "Century Gothic", sans-seriff'apos;,
+        fontFamily:  'Inter, "Century Gothic", sans-seriff',
         letterSpacing: "0.02em",
         background: "linear-gradient(135deg, rgb(102, 126, 234) 0%, rgb(118, 75, 162) 100%)",
         border: "none",
@@ -67,7 +67,7 @@ export default function GenerateAnalysisButton({ bookingId, onAnalysisGenerated 
         opacity: loading ? 0.7 : 1,
       } }
     >
-      { loading ?  'apos;Generating....'apos; :  'apos;Generate Analysiss'apos; }
+      { loading ?  'Generating....' :  'Generate Analysiss' }
     </button>
   )
 }

@@ -37,7 +37,7 @@ export default function UserDashboard() {
 
   useEffect(() => {
     fetchUserData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   
   // Note: fetchUserData is defined inside the component and doesn't depend on props or state
   // so it doesn't need to be added to the dependency array
@@ -71,11 +71,11 @@ export default function UserDashboard() {
 
   const resumePayment = async (submissionId: string) => {
     // Implementation would redirect to a payment recovery page
-    window.location.href = `/payment-retry?id=${submissionId}`;
+    window.location.href = `/payment-retry?id=${ submissionId }`;
   };
 
   const viewResults = (submissionId: string) => {
-    window.location.href = `/results?id=${submissionId}`;
+    window.location.href = `/results?id=${ submissionId }`;
   };
 
   return (
@@ -85,7 +85,7 @@ export default function UserDashboard() {
         <p className="text-gray-600">Track your color analysis and styling services</p>
       </div>
 
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
+      <Tabs value={ activeTab } onValueChange={ setActiveTab }>
         <TabsList className="mb-6">
           <TabsTrigger value="orders">Orders</TabsTrigger>
           <TabsTrigger value="results">Results</TabsTrigger>
@@ -104,13 +104,13 @@ export default function UserDashboard() {
                 <div className="mb-4">
                   <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
                     <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                   </div>
                 </div>
                 <h3 className="text-lg font-medium mb-2">No orders yet</h3>
                 <p className="text-gray-500 mb-4">Start by taking our color analysis questionnaire</p>
-                <Button onClick={() => window.location.href = '/questionnaire'}>
+                <Button onClick={ () => window.location.href = '/questionnaire' }>
                   Start Questionnaire
                 </Button>
               </CardContent>
@@ -118,76 +118,76 @@ export default function UserDashboard() {
           ) : (
             <div className="space-y-6">
               { submissions.map((submission) => (
-                <Card key={submission.id}>
+                <Card key={ submission.id }>
                   <CardHeader className="pb-2">
                     <div className="flex justify-between items-start">
                       <div>
-                        <CardTitle>{submission.service_type || '12-Season Color Analysis'}</CardTitle>
+                        <CardTitle>{ submission.service_type || '12-Season Color Analysis' }</CardTitle>
                         <CardDescription>
-                          { new Date(submission.created_at).toLocaleDateString()}
+                          { new Date(submission.created_at).toLocaleDateString() }
                         </CardDescription>
                       </div>
-                      <Badge className={statusColors[submission.status || 'draft']}>
-                        {userStatusLabels[submission.status || 'draft']}
+                      <Badge className={ statusColors[submission.status || 'draft'] }>
+                        { userStatusLabels[submission.status || 'draft'] }
                       </Badge>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      {submission.status === 'payment_pending' && (
+                      { submission.status === 'payment_pending' && (
                         <div className="bg-yellow-50 p-4 rounded-md">
                           <p className="text-yellow-800 text-sm mb-3">
                             Your order requires payment to proceed.
                           </p>
                           <Button 
                             size="sm" 
-                            onClick={() => resumePayment(submission.id)}
+                            onClick={ () => resumePayment(submission.id) }
                           >
                             Complete Payment
                           </Button>
                         </div>
-                      )}
+                      ) }
                       
-                      {submission.status === 'paid' && (
+                      { submission.status === 'paid' && (
                         <div className="bg-blue-50 p-4 rounded-md">
                           <p className="text-blue-800 text-sm">
                             Your order is in queue. Our team will begin processing it shortly.
                           </p>
                         </div>
-                      )}
+                      ) }
                       
-                      {submission.status === 'in_analysis' && (
+                      { submission.status === 'in_analysis' && (
                         <div className="bg-purple-50 p-4 rounded-md">
                           <p className="text-purple-800 text-sm">
                             Your color analysis is currently being processed by our team.
                           </p>
                         </div>
-                      )}
+                      ) }
                       
-                      {submission.status === 'complete' && (
+                      { submission.status === 'complete' && (
                         <div className="bg-green-50 p-4 rounded-md flex justify-between items-center">
                           <p className="text-green-800 text-sm">
                             Your results are ready to view!
                           </p>
                           <Button 
                             size="sm"
-                            onClick={() => viewResults(submission.id)}
+                            onClick={ () => viewResults(submission.id) }
                           >
                             View Results
                           </Button>
                         </div>
-                      )}
+                      ) }
                       
                       <div className="pt-2">
                         <div className="text-sm font-medium text-gray-500 mb-1">Order ID</div>
-                        <div className="font-mono text-xs">{submission.id}</div>
+                        <div className="font-mono text-xs">{ submission.id }</div>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
-              ))}
+              )) }
             </div>
-          )}
+          ) }
         </TabsContent>
 
         <TabsContent value="results">
@@ -197,7 +197,7 @@ export default function UserDashboard() {
               <CardDescription>View your completed analyses</CardDescription>
             </CardHeader>
             <CardContent>
-              {loading ? (
+              { loading ? (
                 <div className="text-center py-4">Loading results...</div>
               ) : submissions.filter(s => s.status === 'complete').length === 0 ? (
                 <div className="text-center py-4">
@@ -208,16 +208,16 @@ export default function UserDashboard() {
                   { submissions
                     .filter(s => s.status === 'complete')
                     .map((submission) => (
-                      <div key={submission.id} className="flex justify-between items-center p-4 border rounded-md">
+                      <div key={ submission.id } className="flex justify-between items-center p-4 border rounded-md">
                         <div>
-                          <div className="font-medium">{submission.service_type}</div>
+                          <div className="font-medium">{ submission.service_type }</div>
                           <div className="text-sm text-gray-500">
-                            {new Date(submission.created_at).toLocaleDateString()}
+                            { new Date(submission.created_at).toLocaleDateString() }
                           </div>
                         </div>
                         <Button 
                           size="sm"
-                          onClick={() => viewResults(submission.id)}
+                          onClick={ () => viewResults(submission.id) }
                         >
                           View
                         </Button>
@@ -225,7 +225,7 @@ export default function UserDashboard() {
                     ))
                   }
                 </div>
-              )}
+              ) }
             </CardContent>
           </Card>
         </TabsContent>

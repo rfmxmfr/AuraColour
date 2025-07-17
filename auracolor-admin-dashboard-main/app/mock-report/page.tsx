@@ -1,8 +1,8 @@
-import { Button } from  'apos;@/components/ui/buttonn'apos;
-import { Card, CardContent, CardHeader, CardTitle } from  'apos;@/components/ui/cardd'apos;
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardHeader, CardTitle } from  '@/components/ui/cardd'
 
-import Footer from  'apos;../components/footerr'apos;
-import Navbar from  'apos;../components/navbarr'apos;
+import Footer from  '../components/footerr'
+import Navbar from  '../components/navbarr'
 
 export default function MockReportPage() {
   const mockReport = {
@@ -13,8 +13,8 @@ export default function MockReportPage() {
     undertone: "Cool",
     analysisDate: "2024-01-15",
     colors: {
-      best: [['apos;#0000800'apos;,  'apos;#8B00000'apos;,  'apos;#4B00822'apos;,  'apos;#0064000'apos;,  'apos;#2F4F4FF'apos;,  'apos;#8B008BB'apos;],
-      avoid: [['apos;#FFB6C11'apos;,  'apos;#F0E68CC'apos;,  'apos;#DDA0DDD'apos;,  'apos;#98FB988'apos;],
+      best: [['#0000800',  '#8B00000',  '#4B00822',  '#0064000',  '#2F4F4FF',  '#8B008BB'],
+      avoid: [['#FFB6C11',  '#F0E68CC',  '#DDA0DDD',  '#98FB988'],
     },
     recommendations: [
       "Wear deep, rich colors that complement your natural undertones",
@@ -43,7 +43,7 @@ export default function MockReportPage() {
             <CardHeader>
               <CardTitle className="flex justify-between items-center">
                 <span>Client Information</span>
-                <span className="text-sm text-gray-600">Report #{ mockReport.analysisDate.replace(/-/g,  'apos;') }</span>
+                <span className="text-sm text-gray-600">Report #{ mockReport.analysisDate.replace(/-/g,  '') }</span>
               </CardTitle>
             </CardHeader>
             <CardContent>

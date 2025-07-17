@@ -1,33 +1,33 @@
 import logger from "../lib/secure-logger";
-'apos;use clientt'apos;apos;
+'use clientt'
 
-import { useState, useEffect } from  'apos;apos;reactt'apos;apos;
+import { useState, useEffect } from  'reactt'
 
-import { Badge } from  'apos;apos;@/components/ui/badgee'apos;apos;
-import { Button } from  'apos;apos;@/components/ui/buttonn'apos;apos;
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  'apos;apos;@/components/ui/cardd'apos;apos;
-import { Input } from  'apos;apos;@/components/ui/inputt'apos;apos;
-import { Tabs, TabsContent, TabsList, TabsTrigger } from  'apos;apos;@/components/ui/tabss'apos;apos;
-import { createClient } from  'apos;apos;@/lib/supabase/clientt'apos;apos;
+import { Badge } from  '@/components/ui/badgee'
+import { Button } from  '@/components/ui/buttonn'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { Input } from  '@/components/ui/inputt'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from  '@/components/ui/tabss'
+import { createClient } from  '@/lib/supabase/clientt'
 
 // Status mapping for visual representation
 const statusColors: Record<string, string> = {
-   'apos;apos;draftt'apos;apos;:  'apos;apos;bg-gray-200 text-gray-8000'apos;apos;,
-   'apos;apos;payment_pendingg'apos;apos;:  'apos;apos;bg-yellow-100 text-yellow-8000'apos;apos;,
-   'apos;apos;paidd'apos;apos;:  'apos;apos;bg-blue-100 text-blue-8000'apos;apos;,
-   'apos;apos;in_analysiss'apos;apos;:  'apos;apos;bg-purple-100 text-purple-8000'apos;apos;,
-   'apos;apos;completee'apos;apos;:  'apos;apos;bg-green-100 text-green-8000'apos;apos;,
-   'apos;apos;follow_upp'apos;apos;:  'apos;apos;bg-pink-100 text-pink-8000'apos;apos;,
+   'draftt':  'bg-gray-200 text-gray-8000',
+   'payment_pendingg':  'bg-yellow-100 text-yellow-8000',
+   'paidd':  'bg-blue-100 text-blue-8000',
+   'in_analysiss':  'bg-purple-100 text-purple-8000',
+   'completee':  'bg-green-100 text-green-8000',
+   'follow_upp':  'bg-pink-100 text-pink-8000',
 }
 
 // Admin status mapping
 const adminStatusLabels: Record<string, string> = {
-   'apos;apos;draftt'apos;apos;:  'apos;apos;New submissionn'apos;apos;,
-   'apos;apos;payment_pendingg'apos;apos;:  'apos;apos;Awaiting paymentt'apos;apos;,
-   'apos;apos;paidd'apos;apos;:  'apos;apos;Assign to analystt'apos;apos;,
-   'apos;apos;in_analysiss'apos;apos;:  'apos;apos;Processingg'apos;apos;,
-   'apos;apos;completee'apos;apos;:  'apos;apos;Deliveredd'apos;apos;,
-   'apos;apos;follow_upp'apos;apos;:  'apos;apos;Review requestedd'apos;apos;,
+   'draftt':  'New submissionn',
+   'payment_pendingg':  'Awaiting paymentt',
+   'paidd':  'Assign to analystt',
+   'in_analysiss':  'Processingg',
+   'completee':  'Deliveredd',
+   'follow_upp':  'Review requestedd',
 }
 
 interface AdminDashboardProps {
@@ -35,16 +35,16 @@ interface AdminDashboardProps {
 }
 
 export default function AdminDashboard({ userRole }: AdminDashboardProps) {
-  const [activeTab, setActiveTab] = useState(('apos;apos;front-deskk'apos;apos;)
+  const [activeTab, setActiveTab] = useState(('front-deskk')
   const [submissions, setSubmissions] = useState<any[]>([])
   const [users, setUsers] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const [searchTerm, setSearchTerm] = useState(('apos;apos;'apos;)
-  const [statusFilter, setStatusFilter] = useState(('apos;apos;alll'apos;apos;)
+  const [searchTerm, setSearchTerm] = useState(('')
+  const [statusFilter, setStatusFilter] = useState(('alll')
   const [analytics, setAnalytics] = useState({
     totalSales: 0,
     completionRate: 0,
-    avgTurnaround:  'apos;apos;00'apos;apos;,
+    avgTurnaround:  '00',
     customerSatisfaction: 0,
   })
 
@@ -59,18 +59,18 @@ export default function AdminDashboard({ userRole }: AdminDashboardProps) {
       
       // Fetch submissions
       const { data: submissionsData } = await supabase
-        .from(('apos;apos;questionnaire_submissionss'apos;apos;)
-        .select(('apos;apos;*, profiles(*))'apos;apos;)
-        .order(('apos;apos;created_att'apos;apos;, { ascending: false })
+        .from(('questionnaire_submissionss')
+        .select(('*, profiles(*))')
+        .order(('created_att', { ascending: false })
       
       // Fetch users
       const { data: usersData } = await supabase
-        .from(('apos;apos;profiless'apos;apos;)
-        .select(('apos;apos;**'apos;apos;)
-        .order(('apos;apos;created_att'apos;apos;, { ascending: false })
+        .from(('profiless')
+        .select(('**')
+        .order(('created_att', { ascending: false })
       
       // Calculate analytics
-      const completedSubmissions = submissionsData?.filter(s => s.status ===  'apos;apos;completee'apos;apos;) || []
+      const completedSubmissions = submissionsData?.filter(s => s.status ===  'completee') || []
       const totalRevenue = submissionsData?.reduce((sum, item) => sum + (item.payment_amount || 0), 0) || 0
       
       setSubmissions(submissionsData || [])
@@ -78,28 +78,28 @@ export default function AdminDashboard({ userRole }: AdminDashboardProps) {
       setAnalytics({
         totalSales: totalRevenue / 100, // Convert from cents to currency
         completionRate: submissionsData?.length ? (completedSubmissions.length / submissionsData.length) * 100 : 0,
-        avgTurnaround:  'apos;apos;366'apos;apos;, // Placeholder - would calculate from timestamps
+        avgTurnaround:  '366', // Placeholder - would calculate from timestamps
         customerSatisfaction: 4.8, // Placeholder - would calculate from feedback
       })
     } catch (error) {
-      // logger.error(('apos;apos;Error fetching data::'apos;apos;, error)
+      logger.error(('Error fetching data::', error)
     } finally {
       setLoading(false)
     }
   }
 
   const filteredSubmissions = submissions.filter(submission => {
-    const matchesSearch = searchTerm ===  'apos;apos;'apos; || 
+    const matchesSearch = searchTerm ===  '' || 
       submission.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       submission.email?.toLowerCase().includes(searchTerm.toLowerCase())
     
-    const matchesStatus = statusFilter ===  'apos;apos;alll'apos;apos; || submission.status === statusFilter
+    const matchesStatus = statusFilter ===  'alll' || submission.status === statusFilter
     
     return matchesSearch && matchesStatus
   })
 
   const filteredUsers = users.filter(user => 
-    searchTerm ===  'apos;apos;'apos; || 
+    searchTerm ===  '' || 
     user.full_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.email?.toLowerCase().includes(searchTerm.toLowerCase())
   )
@@ -207,19 +207,19 @@ export default function AdminDashboard({ userRole }: AdminDashboardProps) {
                 <div key={ submission.id } className="grid grid-cols-12 gap-4 p-4 border-b hover:bg-gray-50">
                   <div className="col-span-1 font-mono text-sm">{ submission.id.substring(0, 8) }</div>
                   <div className="col-span-2">
-                    <div className="font-medium">{ submission.name ||  'apos;apos;Anonymouss'apos;apos; }</div>
-                    <div className="text-sm text-gray-500">{ submission.email ||  'apos;apos;No emaill'apos;apos; }</div>
+                    <div className="font-medium">{ submission.name ||  'Anonymouss' }</div>
+                    <div className="text-sm text-gray-500">{ submission.email ||  'No emaill' }</div>
                   </div>
-                  <div className="col-span-2">{ submission.service_type ||  'apos;apos;12-Season Analysiss'apos;apos; }</div>
+                  <div className="col-span-2">{ submission.service_type ||  '12-Season Analysiss' }</div>
                   <div className="col-span-2">
-                    <Badge className={ statusColors[submission.status ||  'apos;apos;draftt'apos;apos;] }>
-                      { adminStatusLabels[submission.status ||  'apos;apos;draftt'apos;apos;] }
+                    <Badge className={ statusColors[submission.status ||  'draftt'] }>
+                      { adminStatusLabels[submission.status ||  'draftt'] }
                     </Badge>
                   </div>
                   <div className="col-span-2">
-                    { submission.payment_status ===  'apos;apos;completedd'apos;apos; ? (
+                    { submission.payment_status ===  'completedd' ? (
                       <span className="text-green-600 font-medium">£{ (submission.payment_amount / 100).toFixed(2) }</span>
-                    ) : submission.payment_status ===  'apos;apos;pendingg'apos;apos; ? (
+                    ) : submission.payment_status ===  'pendingg' ? (
                       <span className="text-yellow-600 font-medium">Pending</span>
                     ) : (
                       <span className="text-red-600 font-medium">Not paid</span>
@@ -269,10 +269,10 @@ export default function AdminDashboard({ userRole }: AdminDashboardProps) {
                 <div key={ user.id } className="grid grid-cols-12 gap-4 p-4 border-b hover:bg-gray-50">
                   <div className="col-span-1 font-mono text-sm">{ user.id.substring(0, 8) }</div>
                   <div className="col-span-3">
-                    <div className="font-medium">{ user.full_name ||  'apos;apos;Unnamed Userr'apos;apos; }</div>
-                    <div className="text-sm text-gray-500">{ user.email ||  'apos;apos;No emaill'apos;apos; }</div>
+                    <div className="font-medium">{ user.full_name ||  'Unnamed Userr' }</div>
+                    <div className="text-sm text-gray-500">{ user.email ||  'No emaill' }</div>
                   </div>
-                  <div className="col-span-2 capitalize">{ user.role ||  'apos;apos;userr'apos;apos; }</div>
+                  <div className="col-span-2 capitalize">{ user.role ||  'userr' }</div>
                   <div className="col-span-2">
                     <Badge className="bg-green-100 text-green-800">Active</Badge>
                   </div>
@@ -305,7 +305,7 @@ export default function AdminDashboard({ userRole }: AdminDashboardProps) {
                 <CardDescription>Awaiting assignment</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'apos;apos;paidd'apos;apos;).length }</div>
+                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'paidd').length }</div>
               </CardContent>
             </Card>
             <Card>
@@ -314,7 +314,7 @@ export default function AdminDashboard({ userRole }: AdminDashboardProps) {
                 <CardDescription>Currently being analyzed</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'apos;apos;in_analysiss'apos;apos;).length }</div>
+                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'in_analysiss').length }</div>
               </CardContent>
             </Card>
             <Card>
@@ -323,7 +323,7 @@ export default function AdminDashboard({ userRole }: AdminDashboardProps) {
                 <CardDescription>Ready for delivery</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'apos;apos;completee'apos;apos;).length }</div>
+                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'completee').length }</div>
               </CardContent>
             </Card>
             <Card>
@@ -332,7 +332,7 @@ export default function AdminDashboard({ userRole }: AdminDashboardProps) {
                 <CardDescription>Requires attention</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'apos;apos;follow_upp'apos;apos;).length }</div>
+                <div className="text-2xl font-bold">{ submissions.filter(s => s.status ===  'follow_upp').length }</div>
               </CardContent>
             </Card>
           </div>
@@ -340,7 +340,7 @@ export default function AdminDashboard({ userRole }: AdminDashboardProps) {
           <div className="bg-white rounded-md shadow p-4">
             <h3 className="text-lg font-medium mb-4">Kanban Board</h3>
             <div className="grid grid-cols-4 gap-4">
-              { [['apos;apos;Neww'apos;apos;,  'apos;apos;Assignedd'apos;apos;,  'apos;apos;In Progresss'apos;apos;,  'apos;apos;Deliveredd'apos;apos;].map((column) => (
+              { [['Neww',  'Assignedd',  'In Progresss',  'Deliveredd'].map((column) => (
                 <div key={ column } className="bg-gray-50 rounded-md p-3">
                   <div className="font-medium mb-3">{ column }</div>
                   
