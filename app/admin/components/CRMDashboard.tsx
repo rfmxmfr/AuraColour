@@ -20,8 +20,11 @@ import {
   Users 
 } from 'lucide-react'
 
+// Define status types
+type StatusType = 'draft' | 'payment_pending' | 'paid' | 'in_analysis' | 'complete' | 'follow_up' | string;
+
 // Status mapping for visual representation
-const statusColors = {
+const statusColors: Record<StatusType, string> = {
   'draft': 'bg-gray-200 text-gray-800',
   'payment_pending': 'bg-yellow-100 text-yellow-800',
   'paid': 'bg-blue-100 text-blue-800',
@@ -31,7 +34,7 @@ const statusColors = {
 }
 
 // Admin status mapping
-const adminStatusLabels = {
+const adminStatusLabels: Record<StatusType, string> = {
   'draft': 'New submission',
   'payment_pending': 'Awaiting payment',
   'paid': 'Assign to analyst',
@@ -42,8 +45,28 @@ const adminStatusLabels = {
 
 export default function CRMDashboard() {
   const [activeTab, setActiveTab] = useState('front-desk')
-  const [submissions, setSubmissions] = useState([])
-  const [users, setUsers] = useState([])
+  interface Submission {
+    id: string;
+    name?: string;
+    email?: string;
+    service_type?: string;
+    status?: StatusType;
+    payment_status?: string;
+    payment_amount?: number;
+    created_at: string;
+    profiles?: any;
+  }
+
+  interface User {
+    id: string;
+    full_name?: string;
+    email?: string;
+    role?: string;
+    created_at: string;
+  }
+
+  const [submissions, setSubmissions] = useState<Submission[]>([])
+  const [users, setUsers] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
@@ -249,7 +272,7 @@ export default function CRMDashboard() {
                   </div>
                   <div className="col-span-2">
                     {submission.payment_status === 'completed' ? (
-                      <span className="text-green-600 font-medium">£{(submission.payment_amount / 100).toFixed(2)}</span>
+                      <span className="text-green-600 font-medium">£{((submission.payment_amount || 0) / 100).toFixed(2)}</span>
                     ) : submission.payment_status === 'pending' ? (
                       <span className="text-yellow-600 font-medium">Pending</span>
                     ) : (

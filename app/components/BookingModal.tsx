@@ -68,7 +68,7 @@ export default function BookingModal({ isOpen, onClose, answers, serviceType }: 
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>Book Your Color Analysis</DialogTitle>
+          <DialogTitle>Book Your {serviceType || '12-Season Color Analysis'}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input

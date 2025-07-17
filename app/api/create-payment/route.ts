@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { Resend } from 'resend'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-12-18.acacia'
+  apiVersion: '2025-06-30.basil'
 })
 
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
       .single()
 
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card', 'apple_pay', 'google_pay'],
+      payment_method_types: ['card'],
       line_items: [{
         price_data: {
           currency: 'gbp',
@@ -68,6 +68,28 @@ export async function POST(request: NextRequest) {
       }
     })
 
+    // Service-specific email content
+    let serviceDescription = '';
+    let serviceTimeline = '24-48 hours';
+    let serviceNextSteps = '';
+    
+    if (serviceName === '12-Season Color Analysis') {
+      serviceDescription = 'your personalized color analysis that will help you discover your perfect color palette';
+      serviceNextSteps = 'You\'ll receive your detailed color palette, styling guide, and personalized recommendations';
+    } else if (serviceName === 'Virtual Wardrobe Curation') {
+      serviceDescription = 'your virtual wardrobe curation service that will help you organize and optimize your existing wardrobe';
+      serviceTimeline = '3-5 business days';
+      serviceNextSteps = 'You\'ll receive a comprehensive wardrobe audit, outfit combinations, and shopping recommendations';
+    } else if (serviceName === 'Personal Shopping Service') {
+      serviceDescription = 'your personal shopping service that will help you find the perfect pieces for your style and budget';
+      serviceTimeline = '5-7 business days';
+      serviceNextSteps = 'Our stylist will contact you to schedule your personal shopping session and discuss your preferences in detail';
+    } else if (serviceName === 'Style Evolution Coaching') {
+      serviceDescription = 'your style evolution coaching program that will transform your personal style over the next 3 months';
+      serviceTimeline = '1-2 business days';
+      serviceNextSteps = 'Our style coach will contact you to schedule your first session and discuss your transformation plan';
+    }
+    
     await resend.emails.send({
       from: 'AuraColor <noreply@auracolor.com>',
       to: [email],
@@ -76,7 +98,7 @@ export async function POST(request: NextRequest) {
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <h2 style="color: #21808D;">Booking Started! 💳</h2>
           <p>Hi ${name},</p>
-          <p>Thank you for starting your booking for ${serviceName.toLowerCase()}.</p>
+          <p>Thank you for starting your booking for ${serviceDescription}.</p>
           <p><strong>Service:</strong> ${serviceName}<br/>
           <strong>Amount:</strong> £${price/100}</p>
           <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin: 20px 0;">
@@ -85,7 +107,7 @@ export async function POST(request: NextRequest) {
           <p><strong>What happens after payment:</strong><br/>
           • You'll receive a payment confirmation email<br/>
           • Our team will be notified to begin your service<br/>
-          • You'll receive your results within 24-48 hours</p>
+          • ${serviceNextSteps} within ${serviceTimeline}</p>
           <p>Best regards,<br>The AuraColor Team</p>
         </div>
       `

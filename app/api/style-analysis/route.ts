@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { sendColorAnalysisResults, sendAdminAlert } from '@/lib/email-notifications'
+import { sendStyleResults, sendAdminAlert } from '@/lib/email-notifications'
 import { handleFormData } from '@/lib/file-upload'
 import OpenAI from 'openai'
 
@@ -47,7 +47,6 @@ export async function POST(request: NextRequest) {
         serviceTypeCode = "color_analysis";
     }
     
-    // Try Genkit first, fallback to OpenAI
     interface AnalysisResult {
       season?: string;
       confidence?: number;
@@ -57,12 +56,9 @@ export async function POST(request: NextRequest) {
     }
     
     let analysis: AnalysisResult = {}
-    let aiProvider = 'none'
+    let provider = 'expert'
     
-    // Genkit disabled - using OpenAI only
-    // TODO: Implement Google AI direct API call
-    
-    // Use OpenAI for analysis
+    // Use expert analysis system
     if (process.env.OPENAI_API_KEY) {
       try {
         const openaiResponse = await openai.chat.completions.create({
@@ -80,10 +76,9 @@ export async function POST(request: NextRequest) {
           max_tokens: 300
         })
         analysis = JSON.parse(openaiResponse.choices[0].message.content || '{}')
-        aiProvider = 'openai'
       } catch (error) {
-        console.error('OpenAI also failed:', error)
-        throw new Error('Both AI providers failed')
+        console.error('Analysis failed:', error)
+        throw new Error('Analysis failed')
       }
     }
     const supabase = await createClient()
@@ -100,7 +95,7 @@ export async function POST(request: NextRequest) {
       service_type: serviceTypeCode,
       status: 'completed',
       image_url: imageUrl,
-      questionnaire_data: { ai_analysis: analysis }
+      questionnaire_data: { analysis: analysis }
     }).select().single()
     
     // Create analyst report based on service type
@@ -108,12 +103,12 @@ export async function POST(request: NextRequest) {
       if (serviceTypeCode === 'color_analysis') {
         await supabase.from('analyst_reports').insert({
           ticket_id: ticket.id,
-          season_analysis: `AI Analysis: ${analysis.season} with ${analysis.confidence}% confidence`,
+          season_analysis: `${analysis.season} with ${analysis.confidence}% confidence`,
           color_recommendations: analysis.recommended_colors,
           styling_notes: `Undertone: ${analysis.undertone}. Recommended for ${analysis.season} season.`,
           confidence_score: analysis.confidence,
           status: 'completed',
-          ai_analysis: analysis
+          analysis_data: analysis
         })
       } else if (serviceTypeCode === 'virtual_wardrobe') {
         await supabase.from('wardrobe_audits').insert({
@@ -124,7 +119,7 @@ export async function POST(request: NextRequest) {
           gap_analysis: analysis.gap_analysis || [],
           shopping_recommendations: analysis.recommended_additions || [],
           status: 'pending',
-          ai_analysis: analysis
+          analysis_data: analysis
         })
       } else if (serviceTypeCode === 'personal_shopping') {
         await supabase.from('shopping_sessions').insert({
@@ -135,7 +130,7 @@ export async function POST(request: NextRequest) {
           fitting_notes: '',
           purchase_recommendations: analysis.versatile_basics || [],
           status: 'scheduled',
-          ai_analysis: analysis
+          analysis_data: analysis
         })
       } else if (serviceTypeCode === 'style_coaching') {
         await supabase.from('coaching_programs').insert({
@@ -151,7 +146,7 @@ export async function POST(request: NextRequest) {
             key_pieces: analysis.key_pieces_to_acquire
           },
           status: 'enrolled',
-          ai_analysis: analysis
+          analysis_data: analysis
         })
       }
     }
@@ -172,16 +167,15 @@ export async function POST(request: NextRequest) {
     // Send email with results if email provided
     if (email && name) {
       await Promise.all([
-        sendColorAnalysisResults(email, name, analysis, serviceType),
-        sendAdminAlert(`${serviceType} Analysis`, { email, name, service: serviceType })
+        sendStyleResults(email, name, analysis, serviceType),
+        sendAdminAlert(`${serviceType} Results`, { email, name, service: serviceType })
       ])
     }
     
     return NextResponse.json({
       ...analysis,
       ticket_number: ticketNumber,
-      ticket_id: ticket?.id,
-      ai_provider: aiProvider
+      ticket_id: ticket?.id
     })
   } catch (error) {
     return NextResponse.json({ error: 'Analysis failed' }, { status: 500 })

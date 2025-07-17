@@ -23,31 +23,35 @@ export default function ServicesPage() {
       description: "A service to determine an individual's optimal color palette based on their natural coloring.",
       features: ["Personal color season identification", "Comprehensive color palette", "Style guide", "Shopping recommendations"],
       image: "https://i0.wp.com/www.lesbonsplansdemodange.com/wp-content/uploads/2020/04/cercle-chromatique.jpg?w=500&ssl=1",
-      link: "/services/color-analysis"
+      link: "/questionnaire?service=12-Season Color Analysis",
+      quiz: true
     },
     {
       title: "Virtual Wardrobe Curation",
       price: "£100",
       description: "A service to help clients organize, optimize, and plan their existing wardrobe virtually.",
-      features: ["Wardrobe audit", "Outfit combinations", "Gap analysis", "Shopping list"],
+      features: ["Professional wardrobe analysis", "Outfit combinations", "Gap analysis", "Shopping list"],
       image: "https://i.pinimg.com/736x/eb/4b/80/eb4b8075c2fb78868ba8e2b4b5a0f0d0.jpg",
-      link: "/services/virtual-wardrobe"
+      link: "/questionnaire?service=Virtual Wardrobe Curation",
+      quiz: true
     },
     {
       title: "Personal Shopping Service",
       price: "£150",
       description: "A service providing guided shopping assistance to help clients acquire new clothing and accessories.",
-      features: ["Personal shopping session", "Curated selections", "Fitting assistance", "Style coaching"],
+      features: ["Expert style profile creation", "Curated selections", "Fitting assistance", "Style coaching"],
       image: "http://www.charlotteloves.co.uk/wp-content/uploads/2017/03/corporate_styling.jpg",
-      link: "/services/personal-shopping"
+      link: "/questionnaire?service=Personal Shopping Service",
+      quiz: true
     },
     {
       title: "Style Evolution Coaching",
       price: "£300",
       description: "A comprehensive style transformation program with ongoing support.",
-      features: ["Complete style makeover", "3-month support", "Personal styling sessions", "Confidence coaching"],
+      features: ["Personalized style assessment", "3-month support", "Personal styling sessions", "Confidence coaching"],
       image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070",
-      link: "/services/style-coaching"
+      link: "/questionnaire?service=Style Evolution Coaching",
+      quiz: true
     },
     {
       title: "Gift Vouchers",
@@ -107,10 +111,10 @@ export default function ServicesPage() {
 
                   <div className="space-y-3">
                     <Link
-                      href="/questionnaire"
+                      href={service.link}
                       className="block w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl text-center hover:shadow-lg hover:scale-105 transition-all duration-200"
                     >
-                      Take the Quiz
+                      {service.quiz ? "Take the Quiz" : "Learn More"}
                     </Link>
                   </div>
                 </div>
