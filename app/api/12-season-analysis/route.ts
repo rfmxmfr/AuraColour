@@ -31,12 +31,12 @@ export async function POST(request: NextRequest) {
     // Sanitize user inputs
     const sanitizedName = name ? sanitizeInput(name) : 'Anonymous'
     const sanitizedEmail = email || 'anonymous@auracolor.com'
-    const sanitizedQuestionnaire = questionnaire ? sanitizeObject(questionnaire) : {}
+    const sanitizedQuestionnaire = questionnaire ? sanitizeObject(questionnaire) : { }
 
     const analysis = await analyze12Season(imageUrl)
     const supabase = await createClient()
 
-    const ticketNumber = `12S-${Date.now()}`
+    const ticketNumber = `12S-${ Date.now()}`
     const { data: ticket } = await supabase.from('tickets').insert({
       ticket_number: ticketNumber,
       customer_email: sanitizedEmail,
@@ -50,9 +50,9 @@ export async function POST(request: NextRequest) {
     if (ticket) {
       await supabase.from('analyst_reports').insert({
         ticket_id: ticket.id,
-        season_analysis: `12-Season Analysis: ${analysis.season}`,
+        season_analysis: `12-Season Analysis: ${ analysis.season}`,
         color_recommendations: analysis.colors,
-        styling_notes: `Features: ${JSON.stringify(analysis.features)}. Category: ${analysis.category}`,
+        styling_notes: `Features: ${ JSON.stringify(analysis.features)}. Category: ${ analysis.category}`,
         confidence_score: analysis.confidence,
         status: 'completed',
         ai_analysis: analysis,

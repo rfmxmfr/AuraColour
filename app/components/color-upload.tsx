@@ -1,11 +1,9 @@
-import logger from "../lib/secure-logger";
 'use client';
 
 import { useState } from 'react';
 
-import { uploadImage } from '@/lib/supabase/storage';
-
-import ImageUpload from './ImageUpload'
+import ImageUpload from './ImageUpload';
+import logger from "../lib/secure-logger";
 
 interface ColorUploadProps {
   onAnalysisComplete?: (result: unknown) => void
@@ -50,7 +48,7 @@ export default function ColorUpload({ onAnalysisComplete }: ColorUploadProps) {
           <ImageUpload onUpload={handleImageUpload} />
         </div>
 
-        { imageUrl && (
+        {imageUrl && (
           <button
             onClick={analyzeImage}
             disabled={analyzing}
@@ -58,7 +56,7 @@ export default function ColorUpload({ onAnalysisComplete }: ColorUploadProps) {
           >
             {analyzing ? 'Analyzing...' : 'Analyze Colors'}
           </button>
-        ) }
+        )}
       </div>
     </section>
   )

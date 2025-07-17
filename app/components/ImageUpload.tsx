@@ -1,9 +1,9 @@
-'apos;use clientt'apos;apos;
+'use client';
 
-import { useState } from  'apos;apos;reactt'apos;apos;
+import { useState } from 'react';
 
-import { Button } from  'apos;apos;@/components/ui/buttonn'apos;apos;
-import { uploadImage } from  'apos;apos;@/lib/supabase/storagee'apos;apos;
+import { Button } from '@/components/ui/button';
+import { uploadImage } from '@/lib/supabase/storage'
 
 interface ImageUploadProps {
   onUpload: (url: string) => void
@@ -24,7 +24,7 @@ export default function ImageUpload({
     if (!file) return
 
     if (file.size > maxSize) {
-      alert(('apos;apos;File too large. Max 5MB allowed..'apos;apos;)
+      alert('File too large. Max 5MB allowed.')
       return
     }
 
@@ -40,10 +40,10 @@ export default function ImageUpload({
       if (url) {
         onUpload(url)
       } else {
-        alert(('apos;apos;Upload failedd'apos;apos;)
+        alert('Upload failed')
       }
     } catch (error) {
-      alert(('apos;apos;Upload errorr'apos;apos;)
+      alert('Upload error')
     } finally {
       setUploading(false)
     }
@@ -52,8 +52,8 @@ export default function ImageUpload({
   return (
     <div className="space-y-4">
       <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-        { preview ? (
-          <img src={ preview } alt="Preview" className="max-w-full h-48 mx-auto object-cover rounded" />
+        {preview ? (
+          <img src={preview} alt="Preview" className="max-w-full h-48 mx-auto object-cover rounded" />
         ) : (
           <div className="space-y-2">
             <div className="text-4xl">📸</div>
@@ -65,19 +65,19 @@ export default function ImageUpload({
       
       <input
         type="file"
-        accept={ accept }
-        onChange={ handleFileSelect }
+        accept={accept}
+        onChange={handleFileSelect}
         className="hidden"
         id="image-upload"
         disabled={ uploading }
       />
       
       <Button 
-        onClick={ () => document.getElementById(('apos;apos;image-uploadd'apos;apos;)?.click() }
+        onClick={() => document.getElementById('image-upload')?.click()}
         disabled={ uploading }
         className="w-full"
       >
-        { uploading ?  'apos;apos;Uploading....'apos;apos; :  'apos;apos;Choose Imagee'apos;apos; }
+        {uploading ? 'Uploading...' : 'Choose Image'}
       </Button>
     </div>
   )

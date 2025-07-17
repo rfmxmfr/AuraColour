@@ -1,5 +1,6 @@
-import logger from "../lib/secure-logger";
 'use client';
+
+import logger from "../lib/secure-logger";
 
 import { useState, useEffect } from 'react';
 
@@ -36,7 +37,10 @@ export default function UserDashboard() {
 
   useEffect(() => {
     fetchUserData();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
+  
+  // Note: fetchUserData is defined inside the component and doesn't depend on props or state
+  // so it doesn't need to be added to the dependency array
 
   const fetchUserData = async () => {
     try {
@@ -89,7 +93,7 @@ export default function UserDashboard() {
         </TabsList>
 
         <TabsContent value="orders">
-          {loading ? (
+          { loading ? (
             <div className="text-center py-8">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4" />
               <p className="text-gray-600">Loading your orders...</p>
@@ -100,7 +104,7 @@ export default function UserDashboard() {
                 <div className="mb-4">
                   <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
                     <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                   </div>
                 </div>
@@ -113,14 +117,14 @@ export default function UserDashboard() {
             </Card>
           ) : (
             <div className="space-y-6">
-              {submissions.map((submission) => (
+              { submissions.map((submission) => (
                 <Card key={submission.id}>
                   <CardHeader className="pb-2">
                     <div className="flex justify-between items-start">
                       <div>
                         <CardTitle>{submission.service_type || '12-Season Color Analysis'}</CardTitle>
                         <CardDescription>
-                          {new Date(submission.created_at).toLocaleDateString()}
+                          { new Date(submission.created_at).toLocaleDateString()}
                         </CardDescription>
                       </div>
                       <Badge className={statusColors[submission.status || 'draft']}>
@@ -201,7 +205,7 @@ export default function UserDashboard() {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  {submissions
+                  { submissions
                     .filter(s => s.status === 'complete')
                     .map((submission) => (
                       <div key={submission.id} className="flex justify-between items-center p-4 border rounded-md">

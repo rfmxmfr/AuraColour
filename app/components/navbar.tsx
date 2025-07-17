@@ -61,12 +61,12 @@ export default function Navbar() {
               Contact
             </Link>
             
-            {isAuthenticated ? (
+            { isAuthenticated ? (
               <div className="flex items-center space-x-4">
                 <Link href="/dashboard" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
                   Dashboard
                 </Link>
-                {userRole === 'admin' && (
+                { userRole === 'admin' && (
                   <Link href="/admin" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
                     Admin
                   </Link>
@@ -80,16 +80,16 @@ export default function Navbar() {
           </div>
           
           <button 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={ () => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 text-gray-700 hover:text-purple-600 transition-colors"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2} d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
           </button>
         </div>
         
-        {isMobileMenuOpen && (
+        { isMobileMenuOpen && (
           <div className="md:hidden mt-4 py-4 border-t border-gray-100">
             <div className="space-y-4">
               <Link href="/" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium">
@@ -105,12 +105,12 @@ export default function Navbar() {
                 Contact
               </Link>
               
-              {isAuthenticated ? (
+              { isAuthenticated ? (
                 <>
                   <Link href="/dashboard" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium">
                     Dashboard
                   </Link>
-                  {userRole === 'admin' && (
+                  { userRole === 'admin' && (
                     <Link href="/admin" className="block text-gray-700 hover:text-purple-600 transition-colors font-medium">
                       Admin
                     </Link>
