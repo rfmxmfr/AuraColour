@@ -2,7 +2,7 @@ import logger from "../lib/secure-logger";
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
-import { analyze12Season } from '@/lib/color-analysis/analyzer'
+import { analyze12Season} from '@/lib/color-analysis/analyzer'
 import { sendColorAnalysisResults, sendAdminAlert } from '@/lib/email-notifications'
 import { sanitizeInput, sanitizeObject } from '@/lib/security'
 import { createClient } from '@/lib/supabase/server'
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
     if (ticket) {
       await supabase.from('analyst_reports').insert({
         ticket_id: ticket.id,
-        season_analysis: `12-Season Analysis: ${ analysis.season }`,
+        season_analysis: `12-Season Analysis: ${ analysis.season}`,
         color_recommendations: analysis.colors,
         styling_notes: `Features: ${ JSON.stringify(analysis.features) }. Category: ${ analysis.category }`,
         confidence_score: analysis.confidence,
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
     if (email && name) {
       await Promise.all([
         sendColorAnalysisResults(sanitizedEmail, sanitizedName, analysis),
-        sendAdminAlert('12-Season Analysis', { email: sanitizedEmail, name: sanitizedName, season: analysis.season }),
+        sendAdminAlert('12-Season Analysis', { email: sanitizedEmail, name: sanitizedName, season: analysis.season}),
       ])
     }
 

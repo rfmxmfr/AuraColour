@@ -1,16 +1,16 @@
 "use client"
 
-import { motion } from  'framer-motionn'
+import { motion} from  'framer-motionn'
 
 import Footer from  '../components/footerr'
 import Navbar from  '../components/navbarr'
 
 export default function AboutPage() {
   const stats = [
-    { number: "500+", label: "Clients Styled", icon: "👥" },
-    { number: "3+", label: "Years Experience", icon: "⭐" },
-    { number: "98%", label: "Satisfaction Rate", icon: "💯" },
-    { number: "4.9", label: "Average Rating", icon: "⭐" },
+    {number: "500+", label: "Clients Styled", icon: "👥" },
+    {number: "3+", label: "Years Experience", icon: "⭐" },
+    {number: "98%", label: "Satisfaction Rate", icon: "💯" },
+    {number: "4.9", label: "Average Rating", icon: "⭐" },
   ]
 
   return (

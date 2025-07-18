@@ -1,6 +1,8 @@
-'use client'
+'use client';
 
-import { useMutation } from '@tanstack/react-query'
+
+
+import { useMutation} from '@tanstack/react-query'
 
 interface AnalysisParams {
   imageUrl: string

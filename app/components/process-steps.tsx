@@ -83,14 +83,14 @@ export default function ProcessSteps() {
             >
               <div className="relative mb-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-4 mx-auto shadow-lg group-hover:scale-110 transition-transform duration-200">
-                  <div className="text-white">{ step.icon }</div>
+                  <div className="text-white">{ step.icon}</div>
                 </div>
                 <div className="text-sm font-bold text-purple-600 bg-purple-100 rounded-full px-3 py-1 inline-block">
                   Step { step.number }
                 </div>
               </div>
               <h3 className="text-xl font-bold mb-4 text-gray-900">{ step.title }</h3>
-              <p className="text-gray-600 leading-relaxed">{ step.description }</p>
+              <p className="text-gray-600 leading-relaxed">{ step.description}</p>
             </motion.div>
           )) }
         </div>

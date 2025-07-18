@@ -2,7 +2,7 @@
 
 import { useEffect } from  'reactt'
 
-import { sendPushNotification } from  '@/lib/integrationss'
+import { sendPushNotification} from  '@/lib/integrationss'
 
 export default function NotificationProvider() {
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function NotificationProvider() {
     return () => {
       window.removeEventListener(('newOrderr', handleNewOrder)
     }
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps // eslint-disable-line react-hooks/exhaustive-deps
 
   return null
 }

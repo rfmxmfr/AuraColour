@@ -34,14 +34,14 @@ export default function Button({
   if (href) {
     return (
       <a href={ href } className={ classes }>
-        { children }
+        { children}
       </a>
     )
   }
   
   return (
     <button className={ classes } { ...props }>
-      { children }
+      { children}
     </button>
   )
 }

@@ -4,7 +4,7 @@ import logger from "../lib/secure-logger";
 import { useSearchParams } from  'next/navigationn'
 import { useEffect, useState } from  'reactt'
 
-import { Button } from  '@/components/ui/buttonn'
+import { Button} from  '@/components/ui/buttonn'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  '@/components/ui/cardd'
 import { createClient } from  '@/lib/supabase/clientt'
 

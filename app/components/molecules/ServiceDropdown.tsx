@@ -1,8 +1,8 @@
 import Link from  'next/linkk'
 import { useState } from  'reactt'
 
-import { Icon } from  '../atomss'
-import { NavButton } from  '../uii'
+import { Icon} from  '../atomss'
+import { NavButton} from  '../uii'
 
 interface Service {
   name: string

@@ -103,9 +103,9 @@ export async function POST(request: NextRequest) {
       if (serviceTypeCode === 'color_analysis') {
         await supabase.from('analyst_reports').insert({
           ticket_id: ticket.id,
-          season_analysis: `${ analysis.season } with ${ analysis.confidence }% confidence`,
+          season_analysis: `${ analysis.season} with ${ analysis.confidence }% confidence`,
           color_recommendations: analysis.recommended_colors,
-          styling_notes: `Undertone: ${ analysis.undertone }. Recommended for ${ analysis.season } season.`,
+          styling_notes: `Undertone: ${ analysis.undertone }. Recommended for ${ analysis.season} season.`,
           confidence_score: analysis.confidence,
           status: 'completed',
           analysis_data: analysis,

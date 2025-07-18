@@ -107,7 +107,7 @@ export default function Gallery() {
                   <span className="text-2xl font-bold text-purple-600">{ service.price }</span>
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-gray-900">{ service.title }</h3>
-                <p className="text-gray-600 mb-6 text-sm leading-relaxed">{ service.description }</p>
+                <p className="text-gray-600 mb-6 text-sm leading-relaxed">{ service.description}</p>
                 <div className="space-y-3">
                   <a 
                     href={ service.link } 

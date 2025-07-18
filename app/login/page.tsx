@@ -1,75 +1,66 @@
-import logger from "../lib/secure-logger";
-'use clientt'
+"use client";
 
-import Link from  'next/linkk'
-import { useRouter } from  'next/navigationn'
-import { useState, useEffect } from  'reactt'
-
-import { createClient } from  '@/lib/supabase/clientt'
-
+import { signIn } from "next-auth/react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState(('')
-  const [password, setPassword] = useState(('')
-  const [showPassword, setShowPassword] = useState(false)
-  const [rememberMe, setRememberMe] = useState(false)
-  const router = useRouter()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
     
     try {
-      const supabase = createClient()
-      logger.info(('Attempting login with::', email)
-      
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const result = await signIn("credentials", {
+        redirect: false,
         email,
         password,
-      })
+        callbackUrl,
+      });
       
-      if (error) {
-        logger.error(('Auth error::', error)
-        alert(`Login failed: ${ error.message }`)
-        return
+      if (result?.error) {
+        setError("Invalid email or password");
+        setIsLoading(false);
+        return;
       }
-      
-      logger.info(('Auth success, user ID::', data.user?.id)
       
       // Save login if remember me is checked
       if (rememberMe) {
-        localStorage.setItem(('auracolor_remember_emaill', email)
+        localStorage.setItem("auracolor_remember_email", email);
       } else {
-        localStorage.removeItem(('auracolor_remember_emaill')
+        localStorage.removeItem("auracolor_remember_email");
       }
       
-      // Check if user is admin
-      const { data: profile, error: profileError } = await supabase
-        .from(('profiless')
-        .select(('rolee')
-        .eq(('idd', data.user.id)
-        .single()
+      // Redirect based on user role
+      router.push(callbackUrl);
+      router.refresh();
       
-      logger.info(('Profile data::', profile)
-      logger.info(('Profile error::', profileError)
-      
-      if (profile?.role ===  'adminn') {
-        window.location.href =  '/adminn'
-      } else {
-        alert(`Access denied. Role: ${ profile?.role ||  'nonee' }`)
-      }
     } catch (error) {
-      alert(('Login failedd')
+      setError("An unexpected error occurred");
+      setIsLoading(false);
     }
-  }
+  };
 
   // Load saved email on component mount
   useEffect(() => {
-    const savedEmail = localStorage.getItem(('auracolor_remember_emaill')
+    const savedEmail = localStorage.getItem("auracolor_remember_email");
     if (savedEmail) {
-      setEmail(savedEmail)
-      setRememberMe(true)
+      setEmail(savedEmail);
+      setRememberMe(true);
     }
-  }, [])
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-rose-50 flex items-center justify-center">
@@ -79,18 +70,24 @@ export default function LoginPage() {
             <Link href="/" className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               AuraColor
             </Link>
-            <p className="text-gray-600 mt-2">Admin Login</p>
+            <p className="text-gray-600 mt-2">Login</p>
           </div>
 
-          <form onSubmit={ handleSubmit } className="space-y-6">
+          {error && (
+            <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-black mb-2">
                 Email
               </label>
               <input
                 type="email"
-                value={ email }
-                onChange={ (e) => setEmail(e.target.value) }
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 bg-white text-black border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-500"
                 placeholder="Enter your email"
                 required
@@ -103,28 +100,28 @@ export default function LoginPage() {
               </label>
               <div className="relative">
                 <input
-                  type={ showPassword ? "text" : "password" }
-                  value={ password }
-                  onChange={ (e) => setPassword(e.target.value) }
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-4 py-3 pr-12 bg-white text-black border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-500"
                   placeholder="Enter password"
                   required
                 />
                 <button
                   type="button"
-                  onClick={ () => setShowPassword(!showPassword) }
+                  onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
                 >
-                  { showPassword ? (
+                  {showPassword ? (
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
                     </svg>
                   ) : (
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                     </svg>
-                  ) }
+                  )}
                 </button>
               </div>
             </div>
@@ -133,26 +130,26 @@ export default function LoginPage() {
               <label className="flex items-center">
                 <input
                   type="checkbox"
-                  checked={ rememberMe }
-                  onChange={ (e) => setRememberMe(e.target.checked) }
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
                   className="w-4 h-4 text-purple-600 bg-white/50 border-white/30 rounded focus:ring-purple-500 focus:ring-2"
                 />
                 <span className="ml-2 text-sm text-gray-700">Remember me</span>
               </label>
-              <button
-                type="button"
+              <Link
+                href="/forgot-password"
                 className="text-sm text-purple-600 hover:text-purple-700 font-medium"
-                onClick={ () => alert(('Passkey authentication coming soon!!') }
               >
-                🔐 Use Passkey
-              </button>
+                Forgot password?
+              </Link>
             </div>
 
             <button
               type="submit"
-              className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-200"
+              disabled={isLoading}
+              className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-200 disabled:opacity-70"
             >
-              Login
+              {isLoading ? "Logging in..." : "Login"}
             </button>
           </form>
 
@@ -161,10 +158,8 @@ export default function LoginPage() {
               ← Back to Home
             </Link>
           </div>
-
-
         </div>
       </div>
     </div>
-  )
+  );
 }

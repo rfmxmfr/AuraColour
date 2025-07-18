@@ -210,16 +210,16 @@ function generateColorAnalysis(answers: any) {
     makeupTips,
     wardrobeTips,
     shoppingGuide,
-    personalMessage: `Your ${ season } coloring is absolutely beautiful! These carefully selected colors will enhance your natural radiance and make you feel confident and stylish.`,
-    notes: `Based on ${ skin } skin tone, ${ hair } hair, and ${ eyes } eyes, you are a ${ season }. This season complements your natural coloring with ${ undertone } undertones.`,
-    description: `You are a ${ season } with ${ undertone } undertones. This means you look best in ${ season === 'Spring' || season === 'Autumn' ? 'warm' : 'cool' } colors that ${ season === 'Winter' ? 'are bold and dramatic' : season === 'Summer' ? 'are soft and muted' : season === 'Spring' ? 'are bright and clear' : 'are rich and warm' }.`,
+    personalMessage: `Your ${ season} coloring is absolutely beautiful! These carefully selected colors will enhance your natural radiance and make you feel confident and stylish.`,
+    notes: `Based on ${ skin} skin tone, ${ hair } hair, and ${ eyes } eyes, you are a ${ season}. This season complements your natural coloring with ${ undertone } undertones.`,
+    description: `You are a ${ season} with ${ undertone } undertones. This means you look best in ${ season === 'Spring' || season === 'Autumn' ? 'warm' : 'cool' } colors that ${ season === 'Winter' ? 'are bold and dramatic' : season === 'Summer' ? 'are soft and muted' : season === 'Spring' ? 'are bright and clear' : 'are rich and warm' }.`,
     topColors: colors,
   }
 }
 
 function generateWardrobeAnalysis(answers: any, data: any) {
   const { 'wardrobe-size': wardrobeSize, 'wardrobe-refresh': wardrobeRefresh, 'frequent-items': frequentItems } = answers;
-  const { specificItems, missingColors, styleInspiration } = data || { };
+  const { specificItems, missingColors, styleInspiration} = data || { };
   
   // Determine dominant style based on style preference and frequent items
   const stylePreference = answers['style-preference'] || 'Classic and timeless';

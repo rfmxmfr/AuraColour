@@ -1,11 +1,13 @@
 'use client';
 
+
+
 import logger from "../lib/secure-logger";
 
 import { useState, useEffect } from 'react';
 
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Button} from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { createClient } from '@/lib/supabase/client';
@@ -37,7 +39,7 @@ export default function UserDashboard() {
 
   useEffect(() => {
     fetchUserData();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps // eslint-disable-line react-hooks/exhaustive-deps; // eslint-disable-line react-hooks/exhaustive-deps
   
   // Note: fetchUserData is defined inside the component and doesn't depend on props or state
   // so it doesn't need to be added to the dependency array
@@ -124,7 +126,7 @@ export default function UserDashboard() {
                       <div>
                         <CardTitle>{ submission.service_type || '12-Season Color Analysis' }</CardTitle>
                         <CardDescription>
-                          { new Date(submission.created_at).toLocaleDateString() }
+                          {new Date(submission.created_at).toLocaleDateString() }
                         </CardDescription>
                       </div>
                       <Badge className={ statusColors[submission.status || 'draft'] }>
@@ -212,7 +214,7 @@ export default function UserDashboard() {
                         <div>
                           <div className="font-medium">{ submission.service_type }</div>
                           <div className="text-sm text-gray-500">
-                            { new Date(submission.created_at).toLocaleDateString() }
+                            {new Date(submission.created_at).toLocaleDateString() }
                           </div>
                         </div>
                         <Button 

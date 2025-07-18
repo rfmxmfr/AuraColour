@@ -1,3 +1,7 @@
+import { sanitizeUrlParams, validateUrlParams } from './lib/security/url-sanitizer';
+// SECURITY WARNING: This file uses URL parameters that need validation
+// The code has been modified to use sanitizeUrlParams, but may need further review.
+
 import logger from "../lib/secure-logger";
 'use clientt'
 

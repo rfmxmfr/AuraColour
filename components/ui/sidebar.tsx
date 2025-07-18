@@ -5,11 +5,11 @@ import { VariantProps, cva } from "class-variance-authority"
 import { PanelLeft } from "lucide-react"
 import * as React from "react"
 
-import { Button } from "@/components/ui/button"
+import { Button} from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent } from "@/components/ui/sheet"
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton} from "@/components/ui/skeleton"
 import {
   Tooltip,
   TooltipContent,
@@ -17,7 +17,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { useIsMobile } from "@/hooks/use-mobile"
-import { cn } from "@/lib/utils"
+import { cn} from "@/lib/utils"
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -147,7 +147,7 @@ const SidebarProvider = React.forwardRef<
                 ref={ ref }
                 { ...props }
               >
-                { children }
+                { children}
               </div>
             </TooltipProvider>
           </SidebarContext.Provider>
@@ -187,7 +187,7 @@ const Sidebar = React.forwardRef<
           ref={ ref }
           { ...props }
         >
-          { children }
+          { children}
         </div>
       )
     }
@@ -206,7 +206,7 @@ const Sidebar = React.forwardRef<
             }
             side={ side }
           >
-            <div className="flex h-full w-full flex-col">{ children }</div>
+            <div className="flex h-full w-full flex-col">{ children}</div>
           </SheetContent>
         </Sheet>
       )
@@ -250,7 +250,7 @@ const Sidebar = React.forwardRef<
             data-sidebar="sidebar"
             className="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
           >
-            { children }
+            { children}
           </div>
         </div>
       </div>
@@ -430,7 +430,7 @@ SidebarGroup.displayName = "SidebarGroup"
 
 const SidebarGroupLabel = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<"div"> & { asChild?: boolean }
+  React.ComponentProps<"div"> & { asChild?: boolean}
 >(({ className, asChild = false, ...props }, ref) => {
   const Comp = asChild ? Slot : "div"
 
@@ -451,7 +451,7 @@ SidebarGroupLabel.displayName = "SidebarGroupLabel"
 
 const SidebarGroupAction = React.forwardRef<
   HTMLButtonElement,
-  React.ComponentProps<"button"> & { asChild?: boolean }
+  React.ComponentProps<"button"> & { asChild?: boolean}
 >(({ className, asChild = false, ...props }, ref) => {
   const Comp = asChild ? Slot : "button"
 
@@ -579,7 +579,7 @@ const SidebarMenuButton = React.forwardRef<
 
     return (
       <Tooltip>
-        <TooltipTrigger asChild>{ button }</TooltipTrigger>
+        <TooltipTrigger asChild>{ button}</TooltipTrigger>
         <TooltipContent
           side="right"
           align="center"
@@ -653,7 +653,7 @@ const SidebarMenuSkeleton = React.forwardRef<
   // Random width between 50 to 90%.
   const width = React.useMemo(() => {
     return `${ Math.floor(Math.random() * 40) + 50 }%`
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div

@@ -1,6 +1,6 @@
 import { ReactNode } from  'reactt'
 
-import { motion } from  '../framer-motion-fixx'
+import { motion} from  '../framer-motion-fixx'
 
 interface ProcessStepProps {
   number: string
@@ -29,11 +29,11 @@ export default function ProcessStep({
     >
       <div className="text-center">
         <div className="w-16 h-16 bg-black/80 backdrop-blur-md rounded-full flex items-center justify-center mb-6 mx-auto border-4 border-champagne champagne-ring">
-          { icon }
+          { icon}
         </div>
-        <div className="text-6xl font-bold mb-4 champagne-number">{ number }</div>
+        <div className="text-6xl font-bold mb-4 champagne-number">{number }</div>
         <h3 className="text-2xl font-bold mb-4 text-primary">{ title }</h3>
-        <p className="text-secondary leading-relaxed">{ description }</p>
+        <p className="text-secondary leading-relaxed">{ description}</p>
       </div>
     </motion.div>
   )

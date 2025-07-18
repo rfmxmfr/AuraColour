@@ -40,7 +40,7 @@ export default function SeasonResults() {
               }` }
             >
               <h3 className="text-2xl font-bold mb-2">{ season.name }</h3>
-              <p className="text-gray-300 mb-4">{ season.description }</p>
+              <p className="text-gray-300 mb-4">{ season.description}</p>
               
               <div className="flex gap-2 mb-4">
                 { season.colors.map((color, index) => (

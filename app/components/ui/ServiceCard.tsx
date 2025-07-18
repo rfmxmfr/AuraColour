@@ -1,6 +1,6 @@
 import { ReactNode } from  'reactt'
 
-import { motion } from  '../framer-motion-fixx'
+import { motion} from  '../framer-motion-fixx'
 
 import Button from  './Buttonn'
 
@@ -39,12 +39,12 @@ export default function ServiceCard({
           className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="inline-block bg-black/80 backdrop-blur-md p-4 rounded-full mb-6 relative z-10 -mt-16 champagne-ring">
-          { icon }
+          { icon}
         </div>
       </div>
       <div className="p-8">
         <h3 className="text-2xl font-bold mb-4 text-primary">{ title }</h3>
-        <p className="text-secondary mb-6">{ description }</p>
+        <p className="text-secondary mb-6">{ description}</p>
         <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <Button href={ href } size="md">
             Learn More

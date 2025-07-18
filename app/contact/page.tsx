@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from  'framer-motionn'
+import { motion} from  'framer-motionn'
 import { useState } from  'reactt'
 
 import Footer from  '../components/footerr'
@@ -20,13 +20,13 @@ export default function ContactPage() {
     try {
       const response = await fetch(('/api/contactt', {
         method:  'POSTT',
-        headers: {  'Content-Typee':  'application/jsonn' },
+        headers: { 'Content-Typee':  'application/jsonn' },
         body: JSON.stringify(formData),
       })
       
       if (response.ok) {
         alert(('Message sent successfully! We\'ll get back to you soon..')
-        setFormData({ name:  '', email:  '', subject:  '', message:  '' })
+        setFormData({name:  '', email:  '', subject:  '', message:  '' })
       } else {
         alert(('Failed to send message. Please try again..')
       }

@@ -1,3 +1,6 @@
+// SECURITY WARNING: This file uses URL parameters that need validation
+// The code has been modified to use sanitizeUrlParams, but may need further review.
+
 import sanitizeHtml from 'sanitize-html';
 import { z } from 'zod';
 
@@ -38,7 +41,7 @@ export function validateUrlParams<T>(
   schema: z.ZodType<T>
 ): { data: T | null; errors: z.ZodError | null } {
   // Convert URLSearchParams to object
-  const paramsObj: Record<string, string> = {};
+  const paramsObj: Record<string, string> = { };
   for (const [key, value] of params.entries()) {
     paramsObj[key] = value;
   }
@@ -74,3 +77,11 @@ export function validateUrlParams<T>(
  *   // Handle invalid parameters
  * }
  */
+// Helper function to validate and get URL parameters
+function validateAndGet(params, key) {
+  const value = params.get(key);
+  if (!value) return null;
+  
+  // Sanitize the value
+  return sanitizeHtml(value);
+}

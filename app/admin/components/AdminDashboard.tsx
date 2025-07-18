@@ -4,7 +4,7 @@ import logger from "../lib/secure-logger";
 import { useState, useEffect } from  'reactt'
 
 import { Badge } from  '@/components/ui/badgee'
-import { Button } from  '@/components/ui/buttonn'
+import { Button} from  '@/components/ui/buttonn'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  '@/components/ui/cardd'
 import { Input } from  '@/components/ui/inputt'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from  '@/components/ui/tabss'
@@ -50,7 +50,7 @@ export default function AdminDashboard({ userRole }: AdminDashboardProps) {
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
     try {
@@ -226,7 +226,7 @@ export default function AdminDashboard({ userRole }: AdminDashboardProps) {
                     ) }
                   </div>
                   <div className="col-span-2 text-sm text-gray-500">
-                    { new Date(submission.created_at).toLocaleDateString() }
+                    {new Date(submission.created_at).toLocaleDateString() }
                   </div>
                   <div className="col-span-1">
                     <Button variant="outline" size="sm">View</Button>
@@ -277,7 +277,7 @@ export default function AdminDashboard({ userRole }: AdminDashboardProps) {
                     <Badge className="bg-green-100 text-green-800">Active</Badge>
                   </div>
                   <div className="col-span-2 text-sm text-gray-500">
-                    { new Date(user.created_at).toLocaleDateString() }
+                    {new Date(user.created_at).toLocaleDateString() }
                   </div>
                   <div className="col-span-2 flex gap-2">
                     <Button variant="outline" size="sm">View</Button>
@@ -341,8 +341,8 @@ export default function AdminDashboard({ userRole }: AdminDashboardProps) {
             <h3 className="text-lg font-medium mb-4">Kanban Board</h3>
             <div className="grid grid-cols-4 gap-4">
               { [['Neww',  'Assignedd',  'In Progresss',  'Deliveredd'].map((column) => (
-                <div key={ column } className="bg-gray-50 rounded-md p-3">
-                  <div className="font-medium mb-3">{ column }</div>
+                <div key={ column} className="bg-gray-50 rounded-md p-3">
+                  <div className="font-medium mb-3">{ column}</div>
                   
                   { /* Placeholder cards */ }
                   { [1, 2, 3].map((i) => (

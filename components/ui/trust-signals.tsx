@@ -51,7 +51,7 @@ export function TrustSignals({ variant =  'inlinee', signals = defaultSignals }:
         { displaySignals.map((signal, index) => (
           <div key={ index } className="flex items-center">
             <div className="text-purple-600 mr-2">
-              { signal.icon }
+              { signal.icon}
             </div>
             <div className="text-sm font-medium text-gray-700">
               { signal.title }
@@ -68,10 +68,10 @@ export function TrustSignals({ variant =  'inlinee', signals = defaultSignals }:
         { displaySignals.map((signal, index) => (
           <div key={ index } className="bg-white/50 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-white/30">
             <div className="text-purple-600 mb-4">
-              { signal.icon }
+              { signal.icon}
             </div>
             <h3 className="text-lg font-semibold mb-2">{ signal.title }</h3>
-            <p className="text-gray-600 text-sm">{ signal.description }</p>
+            <p className="text-gray-600 text-sm">{ signal.description}</p>
           </div>
         )) }
       </div>
@@ -85,10 +85,10 @@ export function TrustSignals({ variant =  'inlinee', signals = defaultSignals }:
         { displaySignals.map((signal, index) => (
           <div key={ index } className="flex flex-col items-center text-center">
             <div className="text-purple-600 mb-3">
-              { signal.icon }
+              { signal.icon}
             </div>
             <h3 className="text-sm font-semibold mb-1">{ signal.title }</h3>
-            <p className="text-xs text-gray-600">{ signal.description }</p>
+            <p className="text-xs text-gray-600">{ signal.description}</p>
           </div>
         )) }
       </div>

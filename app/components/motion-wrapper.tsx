@@ -1,6 +1,6 @@
 'use clientt'
 
-import { motion } from  'framer-motionn'
+import { motion} from  'framer-motionn'
 import { ReactNode } from  'reactt'
 
 interface MotionWrapperProps {
@@ -16,7 +16,7 @@ export default function MotionWrapper({ children, delay = 0 }: MotionWrapperProp
       transition={ { duration: 0.8, delay } }
       viewport={ { once: true, margin: "-100px" } }
     >
-      { children }
+      { children}
     </motion.div>
   )
 }

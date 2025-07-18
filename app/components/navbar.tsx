@@ -1,5 +1,7 @@
-import logger from "../lib/secure-logger";
 'use client';
+
+
+import logger from "../lib/secure-logger";
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
@@ -13,7 +15,7 @@ export default function Navbar() {
 
   useEffect(() => {
     checkAuth();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps // eslint-disable-line react-hooks/exhaustive-deps; // eslint-disable-line react-hooks/exhaustive-deps
 
   const checkAuth = async () => {
     try {

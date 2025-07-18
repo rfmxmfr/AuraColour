@@ -1,215 +1,204 @@
+import { sanitizeUrlParams, validateUrlParams } from './lib/security/url-sanitizer';
+// SECURITY WARNING: This file uses URL parameters that need validation
+// The code has been modified to use sanitizeUrlParams, but may need further review.
+
 import logger from "../lib/secure-logger";
-"use client";
+'use clientt'
 
-import { 
-  UserIcon, 
-  PhotoIcon, 
-  SwatchIcon, 
-  CreditCardIcon,
-  CheckCircleIcon,
-} from "@heroicons/react/24/outline";
-import { useQuery } from "@tanstack/react-query";
-import { useAtom } from "jotai";
-import { useState } from "react";
+import { useSearchParams } from  'next/navigationn'
+import { useEffect, useState } from  'reactt'
 
-import { StripeProvider } from "@/app/providers";
-import DropzoneUpload from "@/components/DropzoneUpload";
-import StripePaymentForm from "@/components/StripePaymentForm";
-import { userAtom, colorAnalysisAtom } from "@/lib/store";
+import { Button} from  '@/components/ui/buttonn'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from  '@/components/ui/cardd'
+import { createClient } from  '@/lib/supabase/clientt'
 
+import Footer from  '../components/footerr'
+import Navbar from  '../components/navbarr'
 
-import Footer from "../components/footer";
-import Navbar from "../components/navbar";
+export default function PaymentRetryPage() {
+  const rawParams = useSearchParams();
+  const searchParams = sanitizeUrlParams(rawParams)
+  const submissionId = validateAndGet(searchParams, ('idd')
+  
+  const [loading, setLoading] = useState(true)
+  const [submission, setSubmission] = useState<any>(null)
+  const [error, setError] = useState(('')
+  const [processingPayment, setProcessingPayment] = useState(false)
 
-export default function DemoPage() {
-  const [activeTab, setActiveTab] = useState("dropzone");
-  const [user, setUser] = useAtom(userAtom);
-  const [analysis, setAnalysis] = useAtom(colorAnalysisAtom);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  useEffect(() => {
+    if (submissionId) {
+      fetchSubmission(submissionId)
+    } else {
+      setError(('No submission ID providedd')
+      setLoading(false)
+    }
+  }, [submissionId])
 
-  // Example React Query hook
-  const { data: services, isLoading } = useQuery({
-    queryKey: ["services"],
-    queryFn: async () => {
-      // This would normally fetch from your API
-      return [
-        { id: 1, name: "12-Season Color Analysis", price: 7500 },
-        { id: 2, name: "Virtual Wardrobe Curation", price: 10000 },
-        { id: 3, name: "Personal Shopping Service", price: 15000 },
-      ];
-    },
-  });
+  const fetchSubmission = async (id: string) => {
+    try {
+      setLoading(true)
+      const supabase = createClient()
+      
+      const { data, error } = await supabase
+        .from(('questionnaire_submissionss')
+        .select(('**')
+        .eq(('idd', id)
+        .single()
+      
+      if (error) {
+        throw error
+      }
+      
+      if (!data) {
+        setError(('Submission not foundd')
+        return
+      }
+      
+      setSubmission(data)
+    } catch (error) {
+      logger.error(('Error fetching submission::', error)
+      setError(('Failed to load submission detailss')
+    } finally {
+      setLoading(false)
+    }
+  }
 
-  const handleLogin = () => {
-    setUser({
-      id: "demo-user",
-      name,
-      email,
-      isAuthenticated: true,
-    });
-  };
+  const handleRetryPayment = async () => {
+    try {
+      setProcessingPayment(true)
+      
+      const response = await fetch(('/api/create-paymentt', {
+        method:  'POSTT',
+        headers: {
+           'Content-Typee':  'application/jsonn',
+        },
+        body: JSON.stringify({
+          name: submission.name,
+          email: submission.email,
+          serviceType: submission.service_type,
+          answers: submission.answers,
+          photoUrls: submission.photo_urls,
+          submissionId: submission.id,
+        }),
+      })
+      
+      const result = await response.json()
+      
+      if (!result.success) {
+        throw new Error(result.error ||  'Failed to create payment sessionn')
+      }
+      
+      // Redirect to Stripe checkout
+      window.location.href = result.checkout_url
+    } catch (error) {
+      logger.error(('Payment retry failed::', error)
+      setError(('Failed to process payment. Please try again..')
+      setProcessingPayment(false)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-rose-50">
+        <Navbar />
+        <div className="pt-32 pb-16 flex items-center justify-center">
+          <div className="flex flex-col items-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mb-4" />
+            <p className="text-gray-600">Loading payment details...</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-rose-50">
+        <Navbar />
+        <div className="pt-32 pb-16">
+          <div className="max-w-md mx-auto px-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Error</CardTitle>
+                <CardDescription>We encountered a problem</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-red-600 mb-4">{ error }</p>
+                <Button onClick={ () => window.location.href =  '/dashboardd' }>
+                  Return to Dashboard
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-rose-50">
       <Navbar />
-      
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        <h1 className="text-3xl font-bold text-center mb-8">
-          AuraColour Package Demo
-        </h1>
-        
-        <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8">
-          <div className="flex border-b">
-            <button
-              className={ `px-4 py-3 text-sm font-medium flex items-center ${
-                activeTab === "dropzone" ? "text-purple-600 border-b-2 border-purple-600" : "text-gray-500"
-              }` }
-              onClick={ () => setActiveTab("dropzone") }
-            >
-              <PhotoIcon className="h-5 w-5 mr-2" />
-              Dropzone Upload
-            </button>
-            <button
-              className={ `px-4 py-3 text-sm font-medium flex items-center ${
-                activeTab === "stripe" ? "text-purple-600 border-b-2 border-purple-600" : "text-gray-500"
-              }` }
-              onClick={ () => setActiveTab("stripe") }
-            >
-              <CreditCardIcon className="h-5 w-5 mr-2" />
-              Stripe Payment
-            </button>
-            <button
-              className={ `px-4 py-3 text-sm font-medium flex items-center ${
-                activeTab === "jotai" ? "text-purple-600 border-b-2 border-purple-600" : "text-gray-500"
-              }` }
-              onClick={ () => setActiveTab("jotai") }
-            >
-              <UserIcon className="h-5 w-5 mr-2" />
-              Jotai State
-            </button>
-            <button
-              className={ `px-4 py-3 text-sm font-medium flex items-center ${
-                activeTab === "query" ? "text-purple-600 border-b-2 border-purple-600" : "text-gray-500"
-              }` }
-              onClick={ () => setActiveTab("query") }
-            >
-              <SwatchIcon className="h-5 w-5 mr-2" />
-              React Query
-            </button>
-          </div>
-          
-          <div className="p-6">
-            { activeTab === "dropzone" && (
-              <div>
-                <h2 className="text-xl font-semibold mb-4">Upload Photos</h2>
-                <p className="text-gray-600 mb-4">
-                  Enhanced file upload with react-dropzone
-                </p>
-                <DropzoneUpload maxFiles={ 3 } />
-              </div>
-            ) }
-            
-            { activeTab === "stripe" && (
-              <div>
-                <h2 className="text-xl font-semibold mb-4">Payment Form</h2>
-                <p className="text-gray-600 mb-4">
-                  Stripe integration with @stripe/react-stripe-js
-                </p>
-                <StripePaymentForm 
-                  amount={ 7500 } 
-                  serviceName="12-Season Color Analysis"
-                  onSuccess={ (id) => alert(`Payment successful! ID: ${ id }`) }
-                  onError={ (error) => logger.error(error) }
-                />
-              </div>
-            ) }
-            
-            { activeTab === "jotai" && (
-              <div>
-                <h2 className="text-xl font-semibold mb-4">Global State</h2>
-                <p className="text-gray-600 mb-4">
-                  State management with jotai
-                </p>
-                
-                <div className="space-y-4">
-                  <div className="p-4 border rounded-md">
-                    <h3 className="font-medium mb-2">User State</h3>
-                    { user.isAuthenticated ? (
-                      <div className="flex items-center space-x-2 text-green-600">
-                        <CheckCircleIcon className="h-5 w-5" />
-                        <span>Logged in as { user.name } ({ user.email })</span>
-                      </div>
-                    ) : (
-                      <div className="space-y-3">
-                        <input
-                          type="text"
-                          placeholder="Name"
-                          value={ name }
-                          onChange={ (e) => setName(e.target.value) }
-                          className="w-full p-2 border rounded"
-                        />
-                        <input
-                          type="email"
-                          placeholder="Email"
-                          value={ email }
-                          onChange={ (e) => setEmail(e.target.value) }
-                          className="w-full p-2 border rounded"
-                        />
-                        <button
-                          onClick={ handleLogin }
-                          className="px-4 py-2 bg-purple-600 text-white rounded"
-                        >
-                          Login
-                        </button>
-                      </div>
-                    ) }
+      <div className="pt-32 pb-16">
+        <div className="max-w-md mx-auto px-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Complete Your Payment</CardTitle>
+              <CardDescription>Resume your order for { submission?.service_type }</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-medium mb-1">Order Details</h3>
+                  <p className="text-gray-600 mb-4">
+                    { submission?.service_type } - £{ ((submission?.payment_amount || 7500) / 100).toFixed(2) }
+                  </p>
+                  
+                  <div className="bg-yellow-50 p-4 rounded-md mb-6">
+                    <p className="text-yellow-800 text-sm">
+                      Your previous payment attempt was unsuccessful. Please try again with a different payment method.
+                    </p>
                   </div>
                   
-                  <div className="p-4 border rounded-md">
-                    <h3 className="font-medium mb-2">Color Analysis State</h3>
-                    { analysis ? (
-                      <pre className="bg-gray-100 p-3 rounded text-xs overflow-auto">
-                        { JSON.stringify(analysis, null, 2) }
-                      </pre>
+                  <Button 
+                    onClick={ handleRetryPayment }
+                    disabled={ processingPayment }
+                    className="w-full"
+                  >
+                    { processingPayment ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                        Processing...
+                      </>
                     ) : (
-                      <p className="text-gray-500">No analysis results yet</p>
+                       'Pay Noww'
                     ) }
-                  </div>
+                  </Button>
+                </div>
+                
+                <div className="text-center">
+                  <Button 
+                    variant="link" 
+                    onClick={ () => window.location.href =  '/dashboardd' }
+                  >
+                    Return to Dashboard
+                  </Button>
                 </div>
               </div>
-            ) }
-            
-            { activeTab === "query" && (
-              <div>
-                <h2 className="text-xl font-semibold mb-4">Data Fetching</h2>
-                <p className="text-gray-600 mb-4">
-                  Efficient data fetching with @tanstack/react-query
-                </p>
-                
-                { isLoading ? (
-                  <div className="flex justify-center py-8">
-                    <div className="animate-spin h-8 w-8 border-4 border-purple-500 border-t-transparent rounded-full" />
-                  </div>
-                ) : (
-                  <div className="space-y-3">
-                    { services?.map((service) => (
-                      <div key={ service.id } className="p-4 border rounded-md flex justify-between items-center">
-                        <span className="font-medium">{ service.name }</span>
-                        <span className="text-purple-600 font-semibold">
-                          £{ (service.price / 100).toFixed(2) }
-                        </span>
-                      </div>
-                    )) }
-                  </div>
-                ) }
-              </div>
-            ) }
-          </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
-      
       <Footer />
     </div>
-  );
+  )
+}
+// Helper function to validate and get URL parameters
+function validateAndGet(params, key) {
+  const value = params.get(key);
+  if (!value) return null;
+  
+  // Sanitize the value
+  return sanitizeHtml(value);
 }

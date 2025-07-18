@@ -59,7 +59,7 @@ async function sendGiftVoucherEmail(email: string, name: string, voucher: any) {
     to: email,
     subject: `You've received an AuraColor gift voucher!`,
     html: `
-      <h2>Hello ${ name }!</h2>
+      <h2>Hello ${name }!</h2>
       <p>You've received a gift voucher from ${ voucher.from }!</p>
       <div style="background: #f5f5f5; padding: 20px; border-radius: 10px; margin: 20px 0;">
         <h3>Voucher Code: <strong>${ voucher.code }</strong></h3>

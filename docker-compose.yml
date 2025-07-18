@@ -1,39 +1,17 @@
 version: '3'
 
 services:
-  # Frontend and API
   app:
     build:
       context: .
       dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
-    volumes:
-      - .:/app
-      - /app/node_modules
     environment:
       - NODE_ENV=development
       - NEXT_PUBLIC_SUPABASE_URL=http://localhost:54321
-      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
-      - NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0
       - NEXT_PUBLIC_SITE_URL=http://localhost:3000
-    depends_on:
-      - supabase-db
-    networks:
-      - auracolour-network
-
-  # Supabase services are managed by Supabase CLI
-  # This is just a placeholder to remind you to run:
-  # supabase start
-  supabase-db:
-    image: supabase/postgres:15.1.0.117
-    ports:
-      - "54322:5432"
-    environment:
-      - POSTGRES_PASSWORD=postgres
-    networks:
-      - auracolour-network
-
-networks:
-  auracolour-network:
-    driver: bridge
+    volumes:
+      - .:/app
+      - /app/node_modules

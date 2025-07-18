@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import { sendClientConfirmation } from '@/lib/email-notifications'
+import { sendClientConfirmation} from '@/lib/email-notifications'
 import { handleFormData } from '@/lib/file-upload'
 import { createClient } from '@/lib/supabase/server'
 

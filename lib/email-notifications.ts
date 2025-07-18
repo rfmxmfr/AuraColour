@@ -13,7 +13,7 @@ export async function sendStyleResults(email: string, name: string, analysis: an
     case 'Virtual Wardrobe Curation':
       subject = 'Your Virtual Wardrobe Analysis Results';
       htmlContent = `
-          <h2>Hello ${ name }!</h2>
+          <h2>Hello ${name }!</h2>
           <p>Your wardrobe analysis is complete.</p>
           <h3>Analysis Results:</h3>
           <ul>
@@ -31,7 +31,7 @@ export async function sendStyleResults(email: string, name: string, analysis: an
     case 'Personal Shopping Service':
       subject = 'Your Personal Shopping Style Profile';
       htmlContent = `
-          <h2>Hello ${ name }!</h2>
+          <h2>Hello ${name }!</h2>
           <p>Your personal shopping style profile is ready.</p>
           <h3>Style Profile:</h3>
           <p>${ analysis.style_profile || 'Custom profile being prepared' }</p>
@@ -47,7 +47,7 @@ export async function sendStyleResults(email: string, name: string, analysis: an
     case 'Style Evolution Coaching':
       subject = 'Your Style Evolution Assessment';
       htmlContent = `
-          <h2>Hello ${ name }!</h2>
+          <h2>Hello ${name }!</h2>
           <p>Your style evolution assessment is ready.</p>
           <h3>Current Style Assessment:</h3>
           <p>${ analysis.current_style_assessment || 'Detailed assessment in progress' }</p>
@@ -59,10 +59,10 @@ export async function sendStyleResults(email: string, name: string, analysis: an
         `;
       break;
     default: // 12-Season Color Analysis
-      subject = `Your ${ analysis.season } Color Analysis Results`;
+      subject = `Your ${ analysis.season} Color Analysis Results`;
       htmlContent = `
-          <h2>Hello ${ name }!</h2>
-          <p>Your color analysis is complete. You are a <strong>${ analysis.season }</strong> with ${ analysis.confidence }% confidence.</p>
+          <h2>Hello ${name }!</h2>
+          <p>Your color analysis is complete. You are a <strong>${ analysis.season}</strong> with ${ analysis.confidence }% confidence.</p>
           <h3>Your Colors:</h3>
           <div style="display: flex; gap: 10px;">
             ${ analysis.recommended_colors?.map((color: string) => `<div style="width: 40px; height: 40px; background: ${ color }; border-radius: 50%;"></div>`).join('') || '' }
@@ -114,7 +114,7 @@ export async function sendAdminAlert(type: string, data: any) {
         <h3>New ${ type }</h3>
         <p><strong>Customer:</strong> ${ data.name } (${ data.email })</p>
         <p><strong>${ resultInfo }</strong></p>
-        <p><strong>Time:</strong> ${ new Date().toISOString() }</p>
+        <p><strong>Time:</strong> ${new Date().toISOString() }</p>
       `,
     })
     return true
@@ -131,7 +131,7 @@ export async function sendClientConfirmation(email: string, name: string) {
       to: email,
       subject: 'Welcome to AuraColor!',
       html: `
-        <h2>Welcome ${ name }!</h2>
+        <h2>Welcome ${name }!</h2>
         <p>Thank you for choosing AuraColor. We'll process your analysis and send results within 48 hours.</p>
         <p>Best regards,<br>AuraColor Team</p>
       `,

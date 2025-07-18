@@ -1,272 +1,106 @@
-# 🎨 AuraColour - AI-Powered Color Analysis Platform
+# AuraColor
 
-A comprehensive color analysis platform that uses AI to determine personal color palettes and provide styling recommendations.
+Professional color analysis and styling service platform.
 
-## ✨ Features
+## Overview
 
-### 🤖 AI Color Analysis
-- **OpenAI GPT-4 Vision** integration for advanced image analysis
-- **12-Season Color Analysis** with confidence scoring
-- **Undertone Detection** (warm, cool, neutral)
-- **Personalized Color Recommendations**
+AuraColor is a B2C service marketplace for personal styling services founded by Tania Hernando Crespo. The platform offers personalized color palette recommendations using the 12-season color system and styling services.
 
-### 💼 Business Management
-- **Admin Dashboard** with comprehensive analytics
-- **Customer Management** system
-- **Booking & Appointment** scheduling
-- **Payment Processing** via Stripe
-- **Email Notifications** via Resend
+### Services
 
-### 🗄️ Database & Storage
-- **Supabase Backend** with PostgreSQL
-- **File Storage** for photos and reports
-- **Row Level Security** for data protection
-- **Real-time Updates** and subscriptions
+- 12-Season Color Analysis (£75) - Personal color season identification with comprehensive palette
+- Virtual Wardrobe Curation (£100) - Wardrobe audit and outfit combinations
+- Personal Shopping Service (£150) - Guided shopping assistance
+- Style Evolution Coaching (£300) - Complete style transformation program
+- Gift Vouchers (From £75) - Flexible gift options
 
-## 🚀 Quick Start
+## Getting Started
 
 ### Prerequisites
+
 - Node.js 18+
-- Supabase account
-- Stripe account (for payments)
-- OpenAI API key
-- Resend account (for emails)
+- npm or yarn
+- Git
 
 ### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/auracolour.git
-   cd auracolour
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install --legacy-peer-deps
-   ```
-
-3. **Set up environment variables**
-   ```bash
-   cp .env.example .env.local
-   # Edit .env.local with your API keys
-   ```
-
-4. **Set up database**
-   ```bash
-   ./setup-supabase.sh
-   ```
-
-5. **Start development server**
-   ```bash
-   npm run dev
-   ```
-
-## 🔧 Configuration
-
-### Environment Variables
-```env
-# Supabase
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
-
-# Stripe
-STRIPE_SECRET_KEY=your_stripe_secret_key
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_publishable_key
-STRIPE_WEBHOOK_SECRET=your_webhook_secret
-
-# AI Services
-OPENAI_API_KEY=your_openai_key
-GOOGLE_AI_API_KEY=your_google_ai_key
-
-# Email
-RESEND_API_KEY=your_resend_key
-```
-
-## 📊 Database Schema
-
-### Core Tables
-- **profiles** - User management with roles
-- **questionnaire_submissions** - Color analysis forms
-- **contact_submissions** - Contact form data
-- **analyst_reports** - Generated analysis reports
-- **bookings** - Appointment scheduling
-- **payments** - Stripe transactions
-- **gift_vouchers** - Voucher management
-
-## 🎯 API Endpoints
-
-### Core APIs
-- `POST /api/questionnaire` - Submit color analysis form
-- `POST /api/color-analysis` - AI color analysis
-- `POST /api/contact` - Contact form submission
-- `POST /api/create-payment` - Stripe payment creation
-- `GET /api/reports/[id]` - Get analysis report
-
-### Admin APIs
-- `GET /api/admin/dashboard` - Dashboard statistics
-- `GET /api/admin/submissions` - All submissions
-- `PUT /api/admin/submissions/[id]` - Update submission
-
-## 🔐 Authentication
-
-### User Roles
-- **User** - Standard customer access
-- **Admin** - Full system access
-- **Analyst** - Report management access
-
-### Login
-- Admin login: `/login`
-- User authentication via Supabase Auth
-- Role-based access control
-
-## 💳 Payment Integration
-
-### Stripe Setup
-1. Create Stripe account
-2. Get API keys (test/live)
-3. Set up webhooks
-4. Configure environment variables
-
-### Supported Features
-- One-time payments
-- Multiple currencies (GBP, USD)
-- Webhook handling
-- Refund management
-
-## 📧 Email System
-
-### Resend Integration
-- Automated customer emails
-- Admin notifications
-- Report delivery
-- Contact form responses
-
-## 🧪 Testing
-
-### End-to-End Testing
+1. Clone the repository
 ```bash
-npm run test:e2e
+git clone https://github.com/your-username/auracolor.git
+cd auracolor
 ```
 
-### Manual Testing
+2. Install dependencies
 ```bash
-node test-e2e.js
+npm install
+# or
+yarn install
 ```
 
-## 🚀 Deployment
-
-### Production Build
+3. Set up environment variables
 ```bash
-npm run build
-npm start
+cp .env.example .env.local
 ```
 
-### Environment Setup
-1. Set production environment variables
-2. Configure Supabase for production
-3. Set up Stripe webhooks
-4. Configure domain and CORS
-
-## 📁 Project Structure
-
-```
-├── app/                    # Next.js app directory
-│   ├── api/               # API routes
-│   ├── admin/             # Admin dashboard
-│   ├── components/        # React components
-│   └── (auth)/            # Authentication pages
-├── lib/                   # Utility libraries
-│   ├── supabase/         # Database client
-│   ├── services/         # Business logic
-│   └── utils/            # Helper functions
-├── supabase/             # Database migrations
-├── components/           # Shared components
-└── public/              # Static assets
+4. Start the development server
+```bash
+npm run dev
+# or
+yarn dev
 ```
 
-## 🛠️ Development
+## Project Structure
 
-### Code Style
-- TypeScript for type safety
-- ESLint for code quality
-- Prettier for formatting
-- Tailwind CSS for styling
+```
+auracolor/
+├── app/                # Next.js App Router
+│   ├── api/            # API routes
+│   ├── components/     # Shared components
+│   ├── (routes)/       # App routes
+│   └── layout.tsx      # Root layout
+├── public/             # Static assets
+├── lib/                # Utility functions and services
+├── styles/             # Global styles
+└── types/              # TypeScript type definitions
+```
 
-### Database Management
-- Supabase CLI for migrations
-- Row Level Security policies
-- Automated backups
-- Performance monitoring
+## Tech Stack
 
-## 📈 Analytics
+- **Frontend**: Next.js 14 (App Router), React, TypeScript, Tailwind CSS, Shadcn/UI
+- **Backend**: Next.js API Routes, Supabase
+- **Database**: PostgreSQL (via Supabase)
+- **Authentication**: Supabase Auth
+- **Payments**: Stripe
+- **Deployment**: Vercel
 
-### Dashboard Metrics
-- Total revenue
-- Customer count
-- Conversion rates
-- Monthly statistics
+## Development
 
-### Business Intelligence
-- Customer behavior tracking
-- Service popularity
-- Revenue analytics
-- Performance metrics
+### Code Standards
 
-## 🔒 Security
+- Follow ESLint and Prettier configurations
+- Use TypeScript for type safety
+- Follow the component structure in the project
+- Write tests for new features
 
-### Data Protection
-- Row Level Security (RLS)
-- JWT authentication
-- Input validation
-- XSS protection
-- SQL injection prevention
+### Branch Strategy
 
-### File Security
-- Type validation
-- Size limits
-- Secure storage
-- Access controls
+- `main` - Production-ready code
+- `develop` - Integration branch for features
+- `feature/*` - For new features
+- `bugfix/*` - For bug fixes
+- `hotfix/*` - For urgent production fixes
 
-## 📦 Enhanced Packages
+### Commit Guidelines
 
-The application has been enhanced with the following packages:
+Follow conventional commits format:
+- `feat:` - New features
+- `fix:` - Bug fixes
+- `docs:` - Documentation changes
+- `style:` - Formatting changes
+- `refactor:` - Code refactoring
+- `test:` - Adding or updating tests
+- `chore:` - Maintenance tasks
 
-- **@tanstack/react-query** - For efficient data fetching with caching
-- **@stripe/react-stripe-js** - For React components that integrate with Stripe
-- **@heroicons/react** - For high-quality SVG icons
-- **jotai** - For lightweight global state management
-- **react-dropzone** - For enhanced file upload functionality
+## License
 
-See [PACKAGES_GUIDE.md](PACKAGES_GUIDE.md) for usage details.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch
-3. Make changes
-4. Add tests
-5. Submit pull request
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 🆘 Support
-
-- Documentation: [README-BACKEND.md](README-BACKEND.md)
-- Issues: GitHub Issues
-- Email: support@auracolour.com
-
-## 🎯 Roadmap
-
-- [ ] Mobile app development
-- [ ] Advanced AI models
-- [ ] Multi-language support
-- [ ] Affiliate program
-- [ ] API marketplace
-- [ ] White-label solutions
-
----
-
-Built with ❤️ using Next.js, Supabase, and OpenAI
+This project is proprietary and confidential. All rights reserved.

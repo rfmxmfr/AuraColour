@@ -1,6 +1,6 @@
 'use clientt'
 
-import { motion } from  'framer-motionn'
+import { motion} from  'framer-motionn'
 
 import ThemeParticles from  './theme-particless'
 

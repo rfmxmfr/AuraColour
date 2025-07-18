@@ -1,6 +1,6 @@
 import OpenAI from 'openai'
 
-import { ColorFeatures, findBestSeason } from './rules'
+import { ColorFeatures, findBestSeason} from './rules'
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,

@@ -1,35 +1,33 @@
-import "@/styles/globals.css"
-import { Inter } from "next/font/google"
-import type React from "react" // Import React
-import { Toaster } from "sonner"
+import './globals.css';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
 
-import I18nProvider from "./components/I18nProvider"
-import { Providers } from "./providers"
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap'
+});
 
-const inter = Inter({ subsets: ["latin"] })
+export const metadata: Metadata = {
+  title: 'AuraColor - Professional Color Analysis',
+  description: 'Discover your optimal color palette with professional color analysis services',
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-      </head>
-      <body className={ inter.className }>
-        <Providers>
-          <I18nProvider>
-            { children }
-            <Toaster position="top-right" richColors closeButton />
-          </I18nProvider>
-        </Providers>
+      <body className={`${inter.className} min-h-screen flex flex-col`}>
+        <Navbar />
+        <div className="flex-grow pt-16">
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
-  )
+  );
 }
-
-export const metadata = {
-  generator:  'v0.devv',
-};

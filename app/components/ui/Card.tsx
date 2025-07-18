@@ -27,7 +27,7 @@ export default function Card({
   
   return (
     <div className={ classes }>
-      { children }
+      { children}
     </div>
   )
 }

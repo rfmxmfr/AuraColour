@@ -8,7 +8,7 @@ export function safeJsonParse<T>(jsonString: string): T | null {
     // Use native JSON.parse which doesn't use eval internally
     return JSON.parse(jsonString) as T;
   } catch (error) {
-    console.error('Failed to parse JSON:', error);
+    logger.error('Failed to parse JSON:', error);
     return null;
   }
 }
@@ -22,8 +22,8 @@ export function safeJsonStringify(value: unknown): string {
   try {
     return JSON.stringify(value);
   } catch (error) {
-    console.error('Failed to stringify to JSON:', error);
-    return '{}';
+    logger.error('Failed to stringify to JSON:', error);
+    return '{ }';
   }
 }
 
@@ -47,7 +47,7 @@ export function parseAndValidateJson<T>(
     return parsed;
   }
   
-  console.error('JSON validation failed');
+  logger.error('JSON validation failed');
   return null;
 }
 

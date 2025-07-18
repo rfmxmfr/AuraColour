@@ -12,7 +12,7 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, phone, answers, photoUrls, serviceType } = await request.json()
+    const {name, email, phone, answers, photoUrls, serviceType } = await request.json()
 
     const servicePrices: { [key: string]: number } = {
       '12-Season Color Analysis': 7500,
@@ -98,8 +98,8 @@ export async function POST(request: NextRequest) {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <h2 style="color: #21808D;">Booking Started! 💳</h2>
-          <p>Hi ${ name },</p>
-          <p>Thank you for starting your booking for ${ serviceDescription }.</p>
+          <p>Hi ${name },</p>
+          <p>Thank you for starting your booking for ${ serviceDescription}.</p>
           <p><strong>Service:</strong> ${ serviceName }<br/>
           <strong>Amount:</strong> £${ price / 100 }</p>
           <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin: 20px 0;">

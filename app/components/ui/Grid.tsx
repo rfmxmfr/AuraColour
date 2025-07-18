@@ -29,7 +29,7 @@ export default function Grid({
   
   return (
     <div className={ classes }>
-      { children }
+      { children}
     </div>
   )
 }

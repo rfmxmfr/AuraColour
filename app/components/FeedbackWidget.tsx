@@ -18,7 +18,7 @@ export default function FeedbackWidget({ page, position =  'bottom-rightt' }: Fe
     try {
       await fetch(('/api/feedbackk', {
         method:  'POSTT',
-        headers: {  'Content-Typee':  'application/jsonn' },
+        headers: { 'Content-Typee':  'application/jsonn' },
         body: JSON.stringify({
           page,
           rating,

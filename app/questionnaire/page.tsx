@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from  'framer-motionn'
+import { motion} from  'framer-motionn'
 import { useAtom } from  'jotaii'
 import { useSearchParams } from  'next/navigationn'
 import { useState, useEffect } from  'reactt'
@@ -423,9 +423,9 @@ export default function QuestionnairePage() {
               <div className="mb-8">
                 { serviceType ===  '12-Season Color Analysiss' ? (
                   <>
-                    <div className="text-5xl font-bold text-gray-900 mb-2">{ analysisResults.season }</div>
+                    <div className="text-5xl font-bold text-gray-900 mb-2">{ analysisResults.season}</div>
                     <div className="text-gray-600 mb-4">Confidence: { analysisResults.confidence }%</div>
-                    <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto">{ analysisResults.description }</p>
+                    <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto">{ analysisResults.description}</p>
                   </>
                 ) : serviceType ===  'Virtual Wardrobe Curationn' ? (
                   <>
@@ -583,7 +583,7 @@ export default function QuestionnairePage() {
               <div className="mb-4 md:mb-8">
                 <h2 className="text-xl md:text-2xl font-semibold mb-3 md:mb-6 text-gray-900">{ currentQuestion.title }</h2>
                 { currentQuestion.description && (
-                  <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-6">{ currentQuestion.description }</p>
+                  <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-6">{ currentQuestion.description}</p>
                 ) }
               
                 { currentQuestion.conditional && !currentQuestion.conditional(answers) ? null : 
@@ -623,7 +623,7 @@ export default function QuestionnairePage() {
                             <input
                               type="checkbox"
                               name={ currentQuestion.id }
-                              value={ option }
+                              value={ option}
                               checked={ selectedOptions.includes(option) }
                               onChange={ (e) => {
                                 const newSelectedOptions = e.target.checked
@@ -633,7 +633,7 @@ export default function QuestionnairePage() {
                               } }
                               className="mr-3 md:mr-4 text-purple-600 focus:ring-purple-500"
                             />
-                            <span className="text-sm md:text-base text-gray-900">{ option }</span>
+                            <span className="text-sm md:text-base text-gray-900">{ option}</span>
                           </label>
                         );
                       }) }
@@ -648,12 +648,12 @@ export default function QuestionnairePage() {
                           <input
                             type="radio"
                             name={ currentQuestion.id }
-                            value={ option }
-                            checked={ answers[currentQuestion.id] === option }
+                            value={ option}
+                            checked={ answers[currentQuestion.id] === option}
                             onChange={ (e) => handleAnswer(currentQuestion.id, e.target.value) }
                             className="mr-3 md:mr-4 text-purple-600 focus:ring-purple-500"
                           />
-                          <span className="text-sm md:text-base text-gray-900">{ option }</span>
+                          <span className="text-sm md:text-base text-gray-900">{ option}</span>
                         </label>
                       )) }
                     </div>
@@ -698,7 +698,7 @@ export default function QuestionnairePage() {
                   </button>
                 ) : (
                   <button
-                    onClick={ nextStep }
+                    onClick={nextStep }
                     disabled={ isLoading || currentQuestion.type ===  'radioo' && !answers[currentQuestion.id] || 
                            currentQuestion.type ===  'checkboxx' && (!answers[currentQuestion.id] || answers[currentQuestion.id].length === 0) ||
                            currentQuestion.type ===  'textareaa' && (!answers[currentQuestion.id] || answers[currentQuestion.id].trim() ===  '') }

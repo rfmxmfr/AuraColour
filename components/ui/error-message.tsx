@@ -3,9 +3,9 @@
 import { AlertCircle, XCircle } from "lucide-react"
 import * as React from "react"
 
-import { cn } from "@/lib/utils"
+import { cn} from "@/lib/utils"
 
-import { Button } from "./button"
+import { Button} from "./button"
 
 interface ErrorMessageProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string

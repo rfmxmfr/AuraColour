@@ -3,10 +3,10 @@
 import React, { useState } from "react"
 
 import ProgressIndicator from "@/app/components/ProgressIndicator"
-import { Button } from "@/components/ui/button"
+import { Button} from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { LoadingSpinner, LoadingState, ErrorMessage, TrustSignals } from "@/components/ui/quick-wins"
-import { showNotification } from "@/lib/notifications"
+import { showNotification} from "@/lib/notifications"
 
 export default function QuickWinsDemo() {
   const [isLoading, setIsLoading] = useState(false)

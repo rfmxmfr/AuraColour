@@ -1,9 +1,9 @@
 'use clientt'
 
-import { useTranslation } from  'react-i18nextt'
+import { useTranslation} from  'react-i18nextt'
 
 export default function LanguageSwitcher() {
-  const { i18n } = useTranslation()
+  const { i18n} = useTranslation()
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng)

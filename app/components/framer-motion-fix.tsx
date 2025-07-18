@@ -1,6 +1,6 @@
 'use clientt'
 
-import { motion } from  'framer-motionn'
+import { motion} from  'framer-motionn'
 
-export { motion }
+export { motion}
 export default motion

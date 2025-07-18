@@ -14,7 +14,7 @@ const SANITIZE_HTML_OPTIONS = {
     '*': ['class', 'id', 'style']
   },
   allowedSchemes: ['http', 'https', 'mailto'],
-  allowedSchemesByTag: {},
+  allowedSchemesByTag: { },
   allowedSchemesAppliedToAttributes: ['href', 'src'],
   allowProtocolRelative: true
 };
@@ -38,7 +38,7 @@ export function sanitizeObject<T>(obj: T): T {
     return obj;
   }
 
-  const result = Array.isArray(obj) ? [] : {} as T;
+  const result = Array.isArray(obj) ? [] : { } as T;
 
   for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {

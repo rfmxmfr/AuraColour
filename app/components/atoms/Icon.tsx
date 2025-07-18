@@ -30,7 +30,7 @@ export default function Icon({
   
   return (
     <div className={ classes }>
-      { children }
+      { children}
     </div>
   )
 }

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from  'reactt'
 
-import { Button } from  '@/components/ui/buttonn'
+import { Button} from  '@/components/ui/buttonn'
 import { Input } from  '@/components/ui/inputt'
 import { Textarea } from  '@/components/ui/textareaa'
 
@@ -41,7 +41,7 @@ export default function ReportEditor({ reportId, onClose }: ReportEditorProps) {
   const saveReport = async () => {
     const response = await fetch(`/api/reports/${ reportId }`, {
       method:  'PUTT',
-      headers: {  'Content-Typee':  'application/jsonn' },
+      headers: { 'Content-Typee':  'application/jsonn' },
       body: JSON.stringify(report),
     })
     
@@ -81,7 +81,7 @@ export default function ReportEditor({ reportId, onClose }: ReportEditorProps) {
             <div>
               <label className="block text-sm font-medium mb-2">Color Season</label>
               <select
-                value={ report.season }
+                value={ report.season}
                 onChange={ (e) => setReport({ ...report, season: e.target.value }) }
                 className="w-full p-2 border rounded"
               >

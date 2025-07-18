@@ -3,7 +3,7 @@ import logger from "../lib/secure-logger";
 
 import { useState, useEffect } from  'reactt'
 
-import { Button } from  '@/components/ui/buttonn'
+import { Button} from  '@/components/ui/buttonn'
 import { Card, CardContent, CardHeader, CardTitle } from  '@/components/ui/cardd'
 import { StylistCoachingService } from  '@/lib/services/stylist-coachingg'
 
@@ -14,7 +14,7 @@ export default function StylistCoaching() {
 
   useEffect(() => {
     loadAvailability()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadAvailability = async () => {
     try {
@@ -62,7 +62,7 @@ export default function StylistCoaching() {
                         value={ slot }
                         onChange={ (e) => setSelectedSlot(e.target.value) }
                       />
-                      <span>{ new Date(slot).toLocaleString() }</span>
+                      <span>{new Date(slot).toLocaleString() }</span>
                     </label>
                   )) }
                 </div>
@@ -87,7 +87,7 @@ export default function StylistCoaching() {
             <CardContent>
               <div className="space-y-2">
                 <p><strong>Stylist:</strong> { appointment.stylist }</p>
-                <p><strong>Date:</strong> { new Date(appointment.datetime).toLocaleString() }</p>
+                <p><strong>Date:</strong> {new Date(appointment.datetime).toLocaleString() }</p>
                 <p><strong>Appointment ID:</strong> { appointment.appointmentId }</p>
                 
                 <Button

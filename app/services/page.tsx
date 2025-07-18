@@ -96,7 +96,7 @@ export default function ServicesPage() {
                 <div className="p-8">
                   <div className="text-center mb-6">
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">{ service.title }</h3>
-                    <p className="text-gray-600 mb-6">{ service.description }</p>
+                    <p className="text-gray-600 mb-6">{ service.description}</p>
                   </div>
 
                   <ul className="space-y-3 mb-8">

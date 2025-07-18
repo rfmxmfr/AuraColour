@@ -3,7 +3,7 @@
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
 
-import { cn } from "@/lib/utils"
+import { cn} from "@/lib/utils"
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: "", dark: ".dark" } as const
@@ -59,7 +59,7 @@ const ChartContainer = React.forwardRef<
       >
         <ChartStyle id={ chartId } config={ config } />
         <RechartsPrimitive.ResponsiveContainer>
-          { children }
+          { children}
         </RechartsPrimitive.ResponsiveContainer>
       </div>
     </ChartContext.Provider>
@@ -186,7 +186,7 @@ const ChartTooltipContent = React.forwardRef<
         { !nestLabel ? tooltipLabel : null }
         <div className="grid gap-1.5">
           { payload.map((item, index) => {
-            const key = `${ nameKey || item.name || item.dataKey || "value" }`
+            const key = `${nameKey || item.name || item.dataKey || "value" }`
             const itemConfig = getPayloadConfigFromPayload(config, item, key)
             const indicatorColor = color || item.payload.fill || item.color
 
@@ -233,7 +233,7 @@ const ChartTooltipContent = React.forwardRef<
                       ) }
                     >
                       <div className="grid gap-1.5">
-                        { nestLabel ? tooltipLabel : null }
+                        {nestLabel ? tooltipLabel : null }
                         <span className="text-muted-foreground">
                           { itemConfig?.label || item.name }
                         </span>
@@ -286,7 +286,7 @@ const ChartLegendContent = React.forwardRef<
         ) }
       >
         { payload.map((item) => {
-          const key = `${ nameKey || item.dataKey || "value" }`
+          const key = `${nameKey || item.dataKey || "value" }`
           const itemConfig = getPayloadConfigFromPayload(config, item, key)
 
           return (

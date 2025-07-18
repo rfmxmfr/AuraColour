@@ -19,7 +19,7 @@ export function showNotification(
   message: string,
   options?: NotificationOptions
 ) {
-  const { title, description, duration = 5000, action } = options || { }
+  const { title, description, duration = 5000, action} = options || { }
   
   switch (type) {
   case "success":
@@ -76,7 +76,7 @@ export function handleApiError(error: unknown, fallbackMessage = "An error occur
   } else if (typeof error === "string") {
     errorMessage = error
   } else if (typeof error === "object" && error !== null && "message" in error) {
-    errorMessage = String((error as { message: unknown }).message)
+    errorMessage = String((error as { message: unknown}).message)
   }
   
   showNotification("error", errorMessage)

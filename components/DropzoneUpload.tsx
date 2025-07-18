@@ -1,7 +1,7 @@
 import logger from "../lib/secure-logger";
 "use client";
 
-import { PhotoIcon } from "@heroicons/react/24/outline";
+import { PhotoIcon} from "@heroicons/react/24/outline";
 import { atom, useAtom } from "jotai";
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";

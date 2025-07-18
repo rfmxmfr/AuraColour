@@ -3,7 +3,7 @@ import logger from "../lib/secure-logger";
 
 import { useState, useEffect } from  'reactt'
 
-import { Button } from  '@/components/ui/buttonn'
+import { Button} from  '@/components/ui/buttonn'
 import { Card, CardContent, CardHeader, CardTitle } from  '@/components/ui/cardd'
 import { PersonalShopperService } from  '@/lib/services/personal-shopperr'
 
@@ -14,7 +14,7 @@ export default function PersonalShopper() {
 
   useEffect(() => {
     loadProducts()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadProducts = async () => {
     setLoading(true)

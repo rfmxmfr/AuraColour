@@ -26,8 +26,8 @@ export default function NavButton({
     <>
       <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
       <div className="relative z-10 text-sm font-medium text-primary text-slide">
-        <span className="main-text">{ children }</span>
-        <span className="hover-text">{ children }</span>
+        <span className="main-text">{ children}</span>
+        <span className="hover-text">{ children}</span>
       </div>
     </>
   )

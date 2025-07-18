@@ -3,7 +3,7 @@ import logger from "../lib/secure-logger";
 
 import { useState } from  'reactt'
 
-import { Button } from  '@/components/ui/buttonn'
+import { Button} from  '@/components/ui/buttonn'
 import { Card, CardContent, CardHeader, CardTitle } from  '@/components/ui/cardd'
 import { ColorAnalysisService } from  '@/lib/services/color-analysiss'
 
@@ -46,7 +46,7 @@ export default function ColorAnalysis() {
             { analysis && (
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold">Your Season: { analysis.season }</h3>
+                  <h3 className="font-semibold">Your Season: { analysis.season}</h3>
                   <p>Skin Tone: { analysis.skinTone }</p>
                 </div>
                 

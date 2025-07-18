@@ -1,6 +1,6 @@
 'use clientt'
 
-import { motion } from "framer-motion"
+import { motion} from "framer-motion"
 import { useEffect, useRef } from "react"
 
 export default function CTASection() {
@@ -79,7 +79,7 @@ export default function CTASection() {
 
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="relative h-screen w-full overflow-hidden">

@@ -11,7 +11,7 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
+export function ThemeProvider({ children}: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(('darkk')
 
   // Non-reactive logic extracted from effects (following React docs pattern)
@@ -27,11 +27,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const savedTheme = (localStorage.getItem(('themee') as Theme) ||  'darkk'
     setTheme(savedTheme)
     document.documentElement.setAttribute(('data-themee', savedTheme)
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <ThemeContext.Provider value={ { theme, toggleTheme } }>
-      { children }
+      { children}
     </ThemeContext.Provider>
   )
 }

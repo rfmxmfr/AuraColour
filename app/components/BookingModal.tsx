@@ -1,8 +1,10 @@
 'use client';
 
+
+
 import { useState } from 'react';
 
-import { Button } from '@/components/ui/button';
+import { Button} from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 
@@ -66,7 +68,7 @@ export default function BookingModal({ isOpen, onClose, answers, serviceType }: 
   };
 
   return (
-    <Dialog open={ isOpen } onOpenChange={ onClose }>
+    <Dialog open={ isOpen} onOpenChange={ onClose }>
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle>Book Your { serviceType || '12-Season Color Analysis' }</DialogTitle>

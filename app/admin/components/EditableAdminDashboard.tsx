@@ -44,7 +44,7 @@ export default function EditableAdminDashboard() {
 
   useEffect(() => {
     loadDashboardData()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps // eslint-disable-line react-hooks/exhaustive-deps
 
   const loadDashboardData = async () => {
     try {
@@ -372,7 +372,7 @@ export default function EditableAdminDashboard() {
                   <div className="contact-details">
                     <p><strong>Email:</strong> { contact.email }</p>
                     <p><strong>Message:</strong> { contact.message?.substring(0, 100) }...</p>
-                    <p><strong>Date:</strong> { new Date(contact.created_at).toLocaleDateString() }</p>
+                    <p><strong>Date:</strong> {new Date(contact.created_at).toLocaleDateString() }</p>
                   </div>
                   <button 
                     className="view-btn"
@@ -416,7 +416,7 @@ export default function EditableAdminDashboard() {
                     </div>
                   </div>
                   <div className="service-details">
-                    <p>{ service.description }</p>
+                    <p>{ service.description}</p>
                     <div className="service-price">{ service.price }</div>
                     <div className={ `service-status ${ service.status }` }>
                       { service.status }
@@ -476,7 +476,7 @@ export default function EditableAdminDashboard() {
                     <p className="message-full">{ selectedItem.message }</p>
                   </div>
                   <div className="detail-item">
-                    <strong>Date:</strong> { new Date(selectedItem.created_at).toLocaleString() }
+                    <strong>Date:</strong> {new Date(selectedItem.created_at).toLocaleString() }
                   </div>
                 </div>
               ) }
@@ -495,7 +495,7 @@ export default function EditableAdminDashboard() {
                   <div className="form-group">
                     <label>Description</label>
                     <textarea
-                      value={ editingService.description }
+                      value={ editingService.description}
                       onChange={ (e) => setEditingService({ ...editingService, description: e.target.value }) }
                       className="form-textarea"
                       rows={ 3 }

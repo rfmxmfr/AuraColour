@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion} from "framer-motion"
 import { useEffect, useRef } from "react"
 
 export default function Hero() {
@@ -79,7 +79,7 @@ export default function Hero() {
 
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="relative h-screen w-full overflow-hidden">

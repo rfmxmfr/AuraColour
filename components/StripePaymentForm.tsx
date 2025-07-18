@@ -1,6 +1,6 @@
 "use client";
 
-import { CreditCardIcon } from "@heroicons/react/24/outline";
+import { CreditCardIcon} from "@heroicons/react/24/outline";
 import { useStripe, useElements, PaymentElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 
@@ -30,7 +30,7 @@ function PaymentFormContent({ amount, onSuccess, onError, serviceName }: Payment
     try {
       const { error, paymentIntent } = await stripe.confirmPayment({
         elements,
-        confirmParams: { return_url: `${ window.location.origin }/success` },
+        confirmParams: { return_url: `${ window.location.origin}/success` },
         redirect: "if_required",
       });
 

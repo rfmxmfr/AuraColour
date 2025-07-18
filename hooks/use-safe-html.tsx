@@ -49,7 +49,7 @@ export function SafeHtml({
   const safeHtml = useSafeHtml(html, options);
   const Tag = tag as any;
   
-  return <Tag className={className} dangerouslySetInnerHTML={safeHtml} />;
+  return <Tag className={ className } dangerouslySetInnerHTML={ safeHtml } />;
 }
 
 /**
@@ -58,8 +58,8 @@ export function SafeHtml({
  * // Using the hook
  * const htmlContent = "<p>User content with <strong>formatting</strong></p>";
  * const safeHtml = useSafeHtml(htmlContent);
- * return <div dangerouslySetInnerHTML={safeHtml} />;
+ * return <div dangerouslySetInnerHTML={ safeHtml } />;
  * 
  * // Using the component
- * return <SafeHtml html={htmlContent} />;
+ * return <SafeHtml html={ htmlContent } />;
  */

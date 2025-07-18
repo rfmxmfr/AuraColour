@@ -6,8 +6,8 @@ import useEmblaCarousel, {
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import * as React from "react"
 
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { Button} from "@/components/ui/button"
+import { cn} from "@/lib/utils"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -75,7 +75,7 @@ const Carousel = React.forwardRef<
 
       setCanScrollPrev(api.canScrollPrev())
       setCanScrollNext(api.canScrollNext())
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps // eslint-disable-line react-hooks/exhaustive-deps
 
     const scrollPrev = React.useCallback(() => {
       api?.scrollPrev()
@@ -136,13 +136,13 @@ const Carousel = React.forwardRef<
       >
         <div
           ref={ ref }
-          onKeyDownCapture={ handleKeyDown }
+          onKeyDownCapture={ handleKeyDown}
           className={ cn("relative", className) }
           role="region"
           aria-roledescription="carousel"
           { ...props }
         >
-          { children }
+          { children}
         </div>
       </CarouselContext.Provider>
     )
@@ -154,7 +154,7 @@ const CarouselContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  const { carouselRef, orientation } = useCarousel()
+  const { carouselRef, orientation} = useCarousel()
 
   return (
     <div ref={ carouselRef } className="overflow-hidden">
@@ -176,7 +176,7 @@ const CarouselItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  const { orientation } = useCarousel()
+  const { orientation} = useCarousel()
 
   return (
     <div

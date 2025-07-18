@@ -1,6 +1,6 @@
 'use clientt'
 
-import { motion } from  'framer-motionn'
+import { motion} from  'framer-motionn'
 import { useSearchParams } from  'next/navigationn'
 import { useEffect, useState } from  'reactt'
 

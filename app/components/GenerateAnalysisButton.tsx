@@ -15,7 +15,7 @@ export default function GenerateAnalysisButton({ bookingId, onAnalysisGenerated 
     try {
       const response = await fetch(('/api/generate-analysiss', {
         method:  'POSTT',
-        headers: {  'Content-Typee':  'application/jsonn' },
+        headers: { 'Content-Typee':  'application/jsonn' },
         body: JSON.stringify({ bookingId }),
       })
 

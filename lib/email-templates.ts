@@ -10,7 +10,7 @@ export const emailTemplates = {
         </div>
         
         <div style="padding: 40px 30px;">
-          <h2 style="color: #1a202c; margin: 0 0 20px 0; font-size: 24px;">Hi ${ name }!</h2>
+          <h2 style="color: #1a202c; margin: 0 0 20px 0; font-size: 24px;">Hi ${name }!</h2>
           
           <p style="color: #4a5568; line-height: 1.6; margin: 0 0 20px 0;">
             Thank you for reaching out to AuraColor! We've received your message and will get back to you within 24 hours.
@@ -51,12 +51,12 @@ export const emailTemplates = {
 
   // Color analysis results
   colorResults: (name: string, results: any) => ({
-    subject: `Your AuraColor Analysis Results are Ready! ${ results.season ? `You're a ${ results.season }!` : '' } 🎨`,
+    subject: `Your AuraColor Analysis Results are Ready! ${ results.season ? `You're a ${ results.season}!` : '' } 🎨`,
     html: `
       <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
         <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 20px; text-align: center;">
           <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 700;">🎨 Your Color Analysis</h1>
-          <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 16px;">Personalized Results for ${ name }</p>
+          <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 16px;">Personalized Results for ${name }</p>
         </div>
         
         <div style="padding: 40px 30px;">
@@ -148,7 +148,7 @@ export const emailTemplates = {
       <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
         <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 40px 20px; text-align: center;">
           <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 700;">🎉 Booking Confirmed!</h1>
-          <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 16px;">We can't wait to work with you, ${ name }!</p>
+          <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 16px;">We can't wait to work with you, ${name }!</p>
         </div>
         
         <div style="padding: 40px 30px;">
@@ -218,7 +218,7 @@ export const emailTemplates = {
         </div>
         
         <div style="padding: 40px 30px;">
-          <h2 style="color: #1a202c; margin: 0 0 20px 0; font-size: 24px;">Hi ${ name }! 👋</h2>
+          <h2 style="color: #1a202c; margin: 0 0 20px 0; font-size: 24px;">Hi ${name }! 👋</h2>
           
           <p style="color: #4a5568; line-height: 1.6; margin: 0 0 25px 0;">
             Welcome to the AuraColor family! I'm Tania, and I'm thrilled you've joined us on this colorful journey of self-discovery and style transformation.

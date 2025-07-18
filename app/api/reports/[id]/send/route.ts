@@ -47,7 +47,7 @@ function generateReportHTML(reportData: any) {
     <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;">
       <div style="text-align: center; margin-bottom: 30px;">
         <h1 style="color: #21808D; font-size: 28px;">Your Personal Color Analysis</h1>
-        <h2 style="color: #666; font-size: 24px;">You are a ${ reportData.season }!</h2>
+        <h2 style="color: #666; font-size: 24px;">You are a ${ reportData.season}!</h2>
       </div>
       
       <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">

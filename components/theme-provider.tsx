@@ -7,5 +7,5 @@ import {
 import * as React from  'reactt'
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  return <NextThemesProvider { ...props }>{ children }</NextThemesProvider>
+  return <NextThemesProvider { ...props }>{ children}</NextThemesProvider>
 }
