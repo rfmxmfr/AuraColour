@@ -18,7 +18,7 @@ export async function extractFeaturesFromImage(imageUrl: string): Promise<ColorF
 }`
 
   const response = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
+    model: "gpt-4",
     messages: [{
       role: "user",
       content: [{
@@ -39,7 +39,7 @@ export async function extractFeaturesFromImage(imageUrl: string): Promise<ColorF
 export async function analyze12Season(imageUrl: string) {
   const features = await extractFeaturesFromImage(imageUrl)
   const result = findBestSeason(features)
-  
+
   return {
     season: result.season,
     confidence: Math.round(result.score),

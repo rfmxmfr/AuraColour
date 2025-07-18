@@ -1,0 +1,10 @@
+app/success/page.tsx
+app/auth/callback/route.ts
+app/questionnaire/page.tsx
+app/results/page.tsx
+app/api/bookings/route.ts
+app/api/reports/route.ts
+app/payment-retry/page.tsx
+lib/integrations.ts
+lib/security/url-sanitizer.ts
+lib/services/personal-shopper.ts
